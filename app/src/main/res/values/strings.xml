@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lumen</string>
+    <string name="facebook_app_id">1412973413750096</string>
+    <string name="facebook_client_token">5f95c165bf9ce586003bd04b474ba92f</string>
 </resources>
