@@ -30,13 +30,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
+import coil.request.ImageRequest
 import androidx.compose.ui.platform.LocalContext
 import com.app.lumen.features.audio.AudioPlayerManager
 import com.app.lumen.features.audio.ReadingType
 import com.app.lumen.features.liturgy.model.liturgicalColor
 import com.app.lumen.features.liturgy.viewmodel.DaySelection
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
+import com.app.lumen.ui.components.shimmerBrush
+import com.app.lumen.ui.components.LiturgyLoadingSkeleton
 import com.app.lumen.ui.components.ReadingCard
 import com.app.lumen.ui.components.SaintCard
 import com.app.lumen.ui.components.VerseCard
@@ -57,6 +61,18 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
     val currentReading by audioPlayer.currentReadingType.collectAsState()
     val isPlaying by audioPlayer.isPlaying.collectAsState()
 
+    // Check for day change when resuming from background
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+                viewModel.checkForDayChange()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
     Box(modifier = Modifier.fillMaxSize().background(NearBlack)) {
         AnimatedContent(
             targetState = daySelection,
@@ -65,6 +81,22 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
             },
             label = "day_switch"
         ) { currentDay ->
+            if (isLoading && liturgy == null) {
+                // Show shimmer skeleton while loading with no cached data
+                Box(modifier = Modifier.fillMaxSize()) {
+                    LiturgyLoadingSkeleton()
+
+                    // Day picker on top of skeleton
+                    DayPicker(
+                        selected = currentDay,
+                        onSelect = viewModel::selectDay,
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .statusBarsPadding()
+                            .padding(top = 8.dp)
+                    )
+                }
+            } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 // Header with image + overlay content
                 item {
@@ -75,11 +107,21 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                     ) {
                         // Background image
                         if (liturgy?.imageUrl != null) {
-                            AsyncImage(
-                                model = liturgy?.imageUrl,
+                            SubcomposeAsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(liturgy?.imageUrl)
+                                    .crossfade(300)
+                                    .build(),
                                 contentDescription = null,
                                 contentScale = ContentScale.Crop,
                                 alignment = Alignment.Center,
+                                loading = {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .background(shimmerBrush())
+                                    )
+                                },
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .drawWithContent {
@@ -184,22 +226,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                     }
                 }
 
-                if (isLoading) {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 60.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            CircularProgressIndicator(
-                                color = SoftGold,
-                                strokeWidth = 2.dp,
-                                modifier = Modifier.size(32.dp)
-                            )
-                        }
-                    }
-                } else if (error != null) {
+                if (error != null && liturgy == null) {
                     item {
                         Text(
                             text = error!!,
@@ -331,6 +358,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                     }
                 }
             }
+            } // end else (not loading)
         }
     }
 }
