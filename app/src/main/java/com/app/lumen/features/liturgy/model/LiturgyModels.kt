@@ -10,8 +10,16 @@ data class DailyLiturgy(
     val liturgicalColor: String,
     val saintOfDay: SaintOfDay? = null,
     val readings: LiturgyReadings,
+    val audioUrls: AudioUrls? = null,
     val sermon: String? = null,
     val imageUrl: String? = null,
+)
+
+data class AudioUrls(
+    val firstReading: String? = null,
+    val psalm: String? = null,
+    val secondReading: String? = null,
+    val gospel: String? = null,
 )
 
 data class LiturgyReadings(

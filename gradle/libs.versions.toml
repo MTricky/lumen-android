@@ -39,11 +39,17 @@ ksp = "2.0.21-1.0.27"
 # DataStore (preferences)
 datastore = "1.1.1"
 
+# Floating Tab Bar
+floatingTabBar = "1.0.1"
+
 # Accompanist
 accompanist = "0.36.0"
 
 # Media3 (audio playback)
 media3 = "1.5.0"
+
+# Splash Screen
+splashScreen = "1.0.1"
 
 # Serialization
 kotlinxSerialization = "1.7.3"
@@ -113,6 +119,9 @@ media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", versi
 media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
 
+# Splash Screen
+splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
+
 # Kotlinx Serialization
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
@@ -120,6 +129,9 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+
+# Floating Tab Bar
+floating-tab-bar = { group = "io.github.elyesmansour", name = "floatingTabBar", version.ref = "floatingTabBar" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }

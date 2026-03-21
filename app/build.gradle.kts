@@ -110,6 +110,12 @@ dependencies {
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
+    // Splash Screen
+    implementation(libs.splash.screen)
+
+    // Floating Tab Bar
+    implementation(libs.floating.tab.bar)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

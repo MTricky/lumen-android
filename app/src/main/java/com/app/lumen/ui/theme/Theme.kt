@@ -10,7 +10,7 @@ val SoftGold = Color(0xFFD4AF37)
 val MarianBlue = Color(0xFF1E3A5F)
 val SoftIvory = Color(0xFFFAF9F6)
 val Slate = Color(0xFF64748B)
-val CardBackground = Color(0xFF1E1E2E)
+val CardBackground = Color(0xFF0E0E1E)
 
 val LiturgicalGreen = Color(0xFF2E7D32)
 val LiturgicalPurple = Color(0xFF6A1B9A)

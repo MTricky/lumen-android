@@ -3,6 +3,7 @@ package com.app.lumen.features.liturgy.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.lumen.features.liturgy.model.*
+import com.app.lumen.features.liturgy.model.AudioUrls
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -144,6 +145,7 @@ class LiturgyViewModel : ViewModel() {
         val secondReading = readings["secondReading"] as? Map<String, Any>
         val gospel = readings["gospel"] as? Map<String, Any> ?: emptyMap()
         val saint = data["saintOfDay"] as? Map<String, Any>
+        val audioUrlsMap = data["audioUrls"] as? Map<String, Any>
 
         return DailyLiturgy(
             date = data["date"] as? String ?: "",
@@ -177,6 +179,14 @@ class LiturgyViewModel : ViewModel() {
                     text = gospel["text"] as? String ?: "",
                 ),
             ),
+            audioUrls = audioUrlsMap?.let {
+                AudioUrls(
+                    firstReading = it["first_reading"] as? String,
+                    psalm = it["psalm"] as? String,
+                    secondReading = it["second_reading"] as? String,
+                    gospel = it["gospel"] as? String,
+                )
+            },
             sermon = data["sermon"] as? String,
             imageUrl = imageUrl,
         )

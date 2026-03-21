@@ -31,6 +31,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import androidx.compose.ui.platform.LocalContext
+import com.app.lumen.features.audio.AudioPlayerManager
+import com.app.lumen.features.audio.ReadingType
 import com.app.lumen.features.liturgy.model.liturgicalColor
 import com.app.lumen.features.liturgy.viewmodel.DaySelection
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
@@ -48,6 +51,11 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
     val daySelection by viewModel.daySelection.collectAsStateWithLifecycle()
+
+    val context = LocalContext.current
+    val audioPlayer = remember { AudioPlayerManager.getInstance(context) }
+    val currentReading by audioPlayer.currentReadingType.collectAsState()
+    val isPlaying by audioPlayer.isPlaying.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize().background(NearBlack)) {
         AnimatedContent(
@@ -224,7 +232,17 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             label = "First Reading",
                             reference = lit.readings.firstReading.reference,
                             previewText = lit.readings.firstReading.text,
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                            audioUrl = lit.audioUrls?.firstReading,
+                            isPlayingThis = isPlaying && currentReading == ReadingType.FIRST_READING,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onPlayClick = {
+                                val url = lit.audioUrls?.firstReading ?: return@ReadingCard
+                                if (currentReading == ReadingType.FIRST_READING) {
+                                    audioPlayer.togglePlayPause()
+                                } else {
+                                    audioPlayer.play(url, ReadingType.FIRST_READING, "First Reading")
+                                }
+                            },
                         )
                     }
 
@@ -235,7 +253,17 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             label = "Responsorial Psalm",
                             reference = lit.readings.psalm.reference,
                             previewText = lit.readings.psalm.response,
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                            audioUrl = lit.audioUrls?.psalm,
+                            isPlayingThis = isPlaying && currentReading == ReadingType.PSALM,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onPlayClick = {
+                                val url = lit.audioUrls?.psalm ?: return@ReadingCard
+                                if (currentReading == ReadingType.PSALM) {
+                                    audioPlayer.togglePlayPause()
+                                } else {
+                                    audioPlayer.play(url, ReadingType.PSALM, "Responsorial Psalm")
+                                }
+                            },
                         )
                     }
 
@@ -247,7 +275,17 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                                 label = "Second Reading",
                                 reference = lit.readings.secondReading.reference,
                                 previewText = lit.readings.secondReading.text,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                                audioUrl = lit.audioUrls?.secondReading,
+                                isPlayingThis = isPlaying && currentReading == ReadingType.SECOND_READING,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                onPlayClick = {
+                                    val url = lit.audioUrls?.secondReading ?: return@ReadingCard
+                                    if (currentReading == ReadingType.SECOND_READING) {
+                                        audioPlayer.togglePlayPause()
+                                    } else {
+                                        audioPlayer.play(url, ReadingType.SECOND_READING, "Second Reading")
+                                    }
+                                },
                             )
                         }
                     }
@@ -260,7 +298,17 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             reference = lit.readings.gospel.reference,
                             previewText = lit.readings.gospel.text,
                             prominent = true,
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                            audioUrl = lit.audioUrls?.gospel,
+                            isPlayingThis = isPlaying && currentReading == ReadingType.GOSPEL,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onPlayClick = {
+                                val url = lit.audioUrls?.gospel ?: return@ReadingCard
+                                if (currentReading == ReadingType.GOSPEL) {
+                                    audioPlayer.togglePlayPause()
+                                } else {
+                                    audioPlayer.play(url, ReadingType.GOSPEL, "Gospel")
+                                }
+                            },
                         )
                     }
 
@@ -295,35 +343,35 @@ private fun DayPicker(
 ) {
     Row(
         modifier = modifier
-            .width(220.dp)
-            .clip(RoundedCornerShape(24.dp))
+            .width(190.dp)
+            .clip(RoundedCornerShape(20.dp))
             .background(Color.White.copy(alpha = 0.15f))
             .border(
                 width = 0.5.dp,
                 color = Color.White.copy(alpha = 0.25f),
-                shape = RoundedCornerShape(24.dp)
+                shape = RoundedCornerShape(20.dp)
             )
-            .padding(4.dp),
+            .padding(3.dp),
     ) {
         DaySelection.entries.forEach { day ->
             val isSelected = day == selected
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(20.dp))
+                    .clip(RoundedCornerShape(17.dp))
                     .background(
                         if (isSelected) Color.White.copy(alpha = 0.2f)
                         else Color.Transparent
                     )
                     .clickable { onSelect(day) }
-                    .padding(vertical = 8.dp),
+                    .padding(vertical = 6.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = if (day == DaySelection.TODAY) "Today" else "Tomorrow",
-                    fontSize = 14.sp,
+                    fontSize = 13.sp,
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-                    color = Color.White.copy(alpha = if (isSelected) 1f else 0.7f),
+                    color = Color.White,
                 )
             }
         }

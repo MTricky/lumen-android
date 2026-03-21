@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,8 +26,8 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
 
-private val CardBorder = Color.White.copy(alpha = 0.08f)
-private val CardBg = Color.White.copy(alpha = 0.04f)
+private val CardBorder = Color.White.copy(alpha = 0.10f)
+private val CardBg = Color(0xFF1A1A29)
 private val ReferenceBlue = Color(0xFF5BA8D9)
 
 // Verse category colors matching iOS
@@ -65,8 +66,11 @@ fun ReadingCard(
     reference: String,
     previewText: String,
     prominent: Boolean = false,
+    audioUrl: String? = null,
+    isPlayingThis: Boolean = false,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
+    onPlayClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -94,6 +98,20 @@ fun ReadingCard(
                 fontWeight = FontWeight.SemiBold,
                 color = if (prominent) SoftGold else Color.White,
             )
+            if (audioUrl != null) {
+                Spacer(Modifier.weight(1f))
+                IconButton(
+                    onClick = onPlayClick,
+                    modifier = Modifier.size(32.dp),
+                ) {
+                    Icon(
+                        imageVector = if (isPlayingThis) Icons.Filled.PauseCircle else Icons.Filled.PlayCircle,
+                        contentDescription = if (isPlayingThis) "Pause" else "Play",
+                        tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.6f),
+                        modifier = Modifier.size(28.dp),
+                    )
+                }
+            }
         }
 
         Spacer(Modifier.height(10.dp))
