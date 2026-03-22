@@ -50,6 +50,8 @@ data class DailyVerse(
     val reference: String,
     val category: String,
     val reflection: String? = null,
+    val liturgicalConnectionType: String? = null,
+    val liturgicalConnectionDescription: String? = null,
 )
 
 fun liturgicalColor(color: String): Color = when (color) {

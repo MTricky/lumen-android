@@ -59,6 +59,7 @@ private val HEADER_HEIGHT = 380.dp
 fun LiturgyScreen(
     bottomPadding: Dp = 0.dp,
     onOpenReadings: (DailyLiturgy, DailyVerse?, ReadingSection) -> Unit = { _, _, _ -> },
+    onVerseClick: (DailyVerse) -> Unit = {},
     viewModel: LiturgyViewModel = viewModel(),
 ) {
     val liturgy by viewModel.liturgy.collectAsStateWithLifecycle()
@@ -374,7 +375,8 @@ fun LiturgyScreen(
                                 text = verse!!.text,
                                 reference = verse!!.reference,
                                 category = verse!!.category,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                onClick = { onVerseClick(verse!!) },
                             )
                         }
                     }

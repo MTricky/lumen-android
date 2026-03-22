@@ -91,6 +91,16 @@
     <string name="lang_german">German</string>
     <string name="lang_polish">Polish</string>
 
+    <!-- Verse of the Day detail -->
+    <string name="verse_reflection">Reflection</string>
+    <string name="verse_liturgical_connection">Liturgical Connection</string>
+    <string name="verse_share">Share Verse</string>
+    <string name="verse_connection_gospel">Today\'s Gospel</string>
+    <string name="verse_connection_first_reading">First Reading</string>
+    <string name="verse_connection_psalm">Responsorial Psalm</string>
+    <string name="verse_connection_saint">Saint of the Day</string>
+    <string name="verse_connection_season">Liturgical Season</string>
+
     <!-- Bible errors -->
     <string name="error_api_limit">Daily API limit reached. Please try again tomorrow.</string>
     <string name="error_load_bible_versions">Failed to load Bible versions</string>

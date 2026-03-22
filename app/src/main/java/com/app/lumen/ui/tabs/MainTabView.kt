@@ -41,6 +41,7 @@ import com.app.lumen.features.audio.ReadingType
 import com.app.lumen.features.liturgy.ui.LiturgyScreen
 import com.app.lumen.features.liturgy.ui.ReadingSection
 import com.app.lumen.features.liturgy.ui.ReadingsScreen
+import com.app.lumen.features.liturgy.ui.VerseDetailScreen
 import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
 import com.app.lumen.features.bible.ui.BibleScreen
@@ -123,6 +124,10 @@ fun MainTabView() {
     var readingsLiturgy by remember { mutableStateOf<DailyLiturgy?>(null) }
     var readingsVerse by remember { mutableStateOf<DailyVerse?>(null) }
 
+    // Verse detail navigation state
+    var showVerseDetail by remember { mutableStateOf(false) }
+    var verseDetailData by remember { mutableStateOf<DailyVerse?>(null) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -137,6 +142,10 @@ fun MainTabView() {
                     readingsVerse = verse
                     readingsInitialSection = section
                     showReadings = true
+                },
+                onVerseClick = { verse ->
+                    verseDetailData = verse
+                    showVerseDetail = true
                 },
             )
             Tab.BIBLE -> BibleScreen(
@@ -412,6 +421,26 @@ fun MainTabView() {
                     verse = readingsVerse,
                     initialSection = readingsInitialSection,
                     onBack = { showReadings = false },
+                )
+            }
+        }
+
+        // Verse detail overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showVerseDetail,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            verseDetailData?.let { verse ->
+                VerseDetailScreen(
+                    verse = verse,
+                    onBack = { showVerseDetail = false },
                 )
             }
         }

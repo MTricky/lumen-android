@@ -315,17 +315,44 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
         )
     }
 
+    private fun getLanguageCode(): String {
+        val lang = Locale.getDefault().language
+        return when (lang) {
+            "es" -> "es"
+            "pt" -> "pt"
+            "fr" -> "fr"
+            "it" -> "it"
+            "de" -> "de"
+            "pl" -> "pl"
+            else -> "en"
+        }
+    }
+
     @Suppress("UNCHECKED_CAST")
     private fun parseVerse(data: Map<String, Any>): DailyVerse? {
+        val lang = getLanguageCode()
         val verses = data["verses"] as? Map<String, Any> ?: return null
-        val en = verses["en"] as? Map<String, Any> ?: return null
+        val localizedVerse = verses[lang] as? Map<String, Any>
+            ?: verses["en"] as? Map<String, Any>
+            ?: return null
         val reflections = data["reflection"] as? Map<String, Any>
+        val connection = data["liturgicalConnection"] as? Map<String, Any>
+
+        // Resolve localized liturgical connection description
+        val connectionDesc = if (connection != null) {
+            val localized = connection["descriptionLocalized"] as? Map<String, String>
+            localized?.get(lang)
+                ?: connection["description"] as? String
+        } else null
 
         return DailyVerse(
-            text = en["text"] as? String ?: return null,
-            reference = en["reference"] as? String ?: "",
+            text = localizedVerse["text"] as? String ?: return null,
+            reference = localizedVerse["reference"] as? String ?: "",
             category = data["category"] as? String ?: "",
-            reflection = reflections?.get("en") as? String,
+            reflection = reflections?.get(lang) as? String
+                ?: reflections?.get("en") as? String,
+            liturgicalConnectionType = connection?.get("type") as? String,
+            liturgicalConnectionDescription = connectionDesc,
         )
     }
 }

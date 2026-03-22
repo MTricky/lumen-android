@@ -323,14 +323,15 @@ fun VerseCard(
             Icon(
                 imageVector = Icons.Filled.FormatQuote,
                 contentDescription = null,
-                tint = Color.White.copy(alpha = 0.5f),
+                tint = SoftGold,
                 modifier = Modifier.size(22.dp)
             )
             Spacer(Modifier.width(10.dp))
             Text(
                 text = stringResource(R.string.verse_of_the_day),
                 fontSize = 13.sp,
-                color = Slate,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
             )
             Spacer(Modifier.weight(1f))
             if (category.isNotEmpty()) {
