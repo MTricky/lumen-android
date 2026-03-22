@@ -1,6 +1,8 @@
 package com.app.lumen.features.bible.service
 
 import android.content.Context
+import com.app.lumen.features.bible.model.BibleChapter
+import com.app.lumen.features.bible.model.BibleChapterSummary
 import com.app.lumen.features.bible.model.BibleVersion
 
 /**
@@ -61,6 +63,24 @@ class BibleRoutingService(private val context: Context) {
 
         // Fall back to API.Bible
         return apiService.fetchBooks(bibleId)
+    }
+
+    /**
+     * Fetch chapter summaries for a book. Firebase first, then API.Bible.
+     */
+    suspend fun fetchChapters(bibleId: String, bookId: String): List<BibleChapterSummary> {
+        val firebaseChapters = firebaseService.fetchChapters(bibleId, bookId)
+        if (!firebaseChapters.isNullOrEmpty()) return firebaseChapters
+        return apiService.fetchChapters(bibleId, bookId)
+    }
+
+    /**
+     * Fetch a single chapter's content. Firebase first, then API.Bible.
+     */
+    suspend fun fetchChapter(bibleId: String, chapterId: String): BibleChapter {
+        val firebaseChapter = firebaseService.fetchChapter(bibleId, chapterId)
+        if (firebaseChapter != null) return firebaseChapter
+        return apiService.fetchChapter(bibleId, chapterId)
     }
 
     /**

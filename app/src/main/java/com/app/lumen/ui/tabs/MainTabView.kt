@@ -44,8 +44,13 @@ import com.app.lumen.features.liturgy.ui.ReadingsScreen
 import com.app.lumen.features.liturgy.ui.VerseDetailScreen
 import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
+import com.app.lumen.features.bible.ui.BibleBook
+import com.app.lumen.features.bible.ui.BibleReaderScreen
 import com.app.lumen.features.bible.ui.BibleScreen
+import com.app.lumen.features.bible.service.BibleBookInfo
+import com.app.lumen.features.bible.viewmodel.BibleViewModel
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.lumen.R
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
@@ -128,6 +133,12 @@ fun MainTabView() {
     var showVerseDetail by remember { mutableStateOf(false) }
     var verseDetailData by remember { mutableStateOf<DailyVerse?>(null) }
 
+    // Bible reader navigation state
+    val bibleViewModel: BibleViewModel = viewModel()
+    var showBibleReader by remember { mutableStateOf(false) }
+    var selectedBibleBook by remember { mutableStateOf<BibleBook?>(null) }
+    var selectedBibleBookInfo by remember { mutableStateOf<BibleBookInfo?>(null) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -150,6 +161,15 @@ fun MainTabView() {
             )
             Tab.BIBLE -> BibleScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                onBookSelected = { book ->
+                    selectedBibleBook = book
+                    // Find matching BibleBookInfo from ViewModel
+                    val books = bibleViewModel.books.value
+                    selectedBibleBookInfo = books.find { it.id == book.id }
+                        ?: BibleBookInfo(id = book.id, abbreviation = book.abbreviation, name = book.name)
+                    showBibleReader = true
+                },
+                bibleViewModel = bibleViewModel,
             )
             else -> PlaceholderScreen(tab = selectedTab)
         }
@@ -441,6 +461,30 @@ fun MainTabView() {
                 VerseDetailScreen(
                     verse = verse,
                     onBack = { showVerseDetail = false },
+                )
+            }
+        }
+
+        // Bible reader overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showBibleReader,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            val book = selectedBibleBook
+            val bookInfo = selectedBibleBookInfo
+            if (book != null && bookInfo != null) {
+                BibleReaderScreen(
+                    book = book,
+                    bookInfo = bookInfo,
+                    bibleViewModel = bibleViewModel,
+                    onBack = { showBibleReader = false },
                 )
             }
         }

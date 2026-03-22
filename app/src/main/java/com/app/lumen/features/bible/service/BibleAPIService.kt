@@ -149,6 +149,73 @@ class BibleAPIService(private val context: Context) {
             books
         }
 
+    suspend fun fetchChapters(bibleId: String, bookId: String): List<BibleChapterSummary> =
+        withContext(Dispatchers.IO) {
+            val cacheKey = "chapters_${bibleId}_$bookId"
+            val cached = readCache(cacheKey, 30L * 24 * 60 * 60 * 1000)
+            if (cached != null) {
+                return@withContext try {
+                    json.decodeFromString<List<BibleChapterSummary>>(cached)
+                } catch (_: Exception) {
+                    fetchChaptersFromNetwork(bibleId, bookId)
+                }
+            }
+            fetchChaptersFromNetwork(bibleId, bookId)
+        }
+
+    private suspend fun fetchChaptersFromNetwork(
+        bibleId: String,
+        bookId: String,
+    ): List<BibleChapterSummary> = withContext(Dispatchers.IO) {
+        checkRateLimit()
+        val responseText = makeRequest("$BASE_URL/bibles/$bibleId/books/$bookId/chapters")
+        incrementCount()
+        val wrapper = json.decodeFromString<BibleAPIChapterListResponse>(responseText)
+        val chapters = wrapper.data.map {
+            BibleChapterSummary(id = it.id, number = it.number, reference = it.reference)
+        }
+        writeCache(
+            "chapters_${bibleId}_$bookId",
+            json.encodeToString(
+                kotlinx.serialization.builtins.ListSerializer(BibleChapterSummary.serializer()),
+                chapters,
+            ),
+        )
+        chapters
+    }
+
+    suspend fun fetchChapter(bibleId: String, chapterId: String): BibleChapter =
+        withContext(Dispatchers.IO) {
+            val cacheKey = "chapter_${bibleId}_$chapterId"
+            val cached = readCache(cacheKey, 30L * 24 * 60 * 60 * 1000)
+            if (cached != null) {
+                return@withContext try {
+                    json.decodeFromString<BibleChapter>(cached)
+                } catch (_: Exception) {
+                    fetchChapterFromNetwork(bibleId, chapterId)
+                }
+            }
+            fetchChapterFromNetwork(bibleId, chapterId)
+        }
+
+    private suspend fun fetchChapterFromNetwork(
+        bibleId: String,
+        chapterId: String,
+    ): BibleChapter = withContext(Dispatchers.IO) {
+        checkRateLimit()
+        val url = "$BASE_URL/bibles/$bibleId/chapters/$chapterId" +
+                "?content-type=html&include-verse-numbers=true"
+        val responseText = makeRequest(url)
+        incrementCount()
+        val wrapper = json.decodeFromString<BibleAPIChapterResponse>(responseText)
+        val chapter = wrapper.data.toBibleChapter()
+        writeCache(
+            "chapter_${bibleId}_$chapterId",
+            json.encodeToString(BibleChapter.serializer(), chapter),
+        )
+        chapter
+    }
+
     // ── HTTP ────────────────────────────────────────────────────────
 
     private fun makeRequest(urlString: String): String {
@@ -227,3 +294,31 @@ data class BibleBookInfo(
 
 @kotlinx.serialization.Serializable
 data class BibleAPIBookListResponse(val data: List<BibleBookInfo>)
+
+@kotlinx.serialization.Serializable
+data class APIChapterSummaryEntry(
+    val id: String,
+    val number: String,
+    val reference: String = "",
+)
+
+@kotlinx.serialization.Serializable
+data class BibleAPIChapterListResponse(val data: List<APIChapterSummaryEntry>)
+
+@kotlinx.serialization.Serializable
+data class APIChapterData(
+    val id: String,
+    val number: String,
+    val content: String = "",
+    val verseCount: Int = 0,
+    val next: com.app.lumen.features.bible.model.ChapterNav? = null,
+    val previous: com.app.lumen.features.bible.model.ChapterNav? = null,
+) {
+    fun toBibleChapter(): BibleChapter = BibleChapter(
+        id = id, number = number, content = content,
+        verseCount = verseCount, next = next, previous = previous,
+    )
+}
+
+@kotlinx.serialization.Serializable
+data class BibleAPIChapterResponse(val data: APIChapterData)

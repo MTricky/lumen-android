@@ -67,13 +67,13 @@ enum class ReadingFontSize(@androidx.annotation.StringRes val labelRes: Int, val
     EXTRA_LARGE(R.string.font_size_extra_large, 24, 38),
 }
 
-private fun getSavedFontSize(context: Context): ReadingFontSize {
+fun getSavedFontSize(context: Context): ReadingFontSize {
     val prefs = context.getSharedPreferences("reading_prefs", Context.MODE_PRIVATE)
     val name = prefs.getString("font_size", ReadingFontSize.MEDIUM.name) ?: ReadingFontSize.MEDIUM.name
     return try { ReadingFontSize.valueOf(name) } catch (_: Exception) { ReadingFontSize.MEDIUM }
 }
 
-private fun saveFontSize(context: Context, size: ReadingFontSize) {
+fun saveFontSize(context: Context, size: ReadingFontSize) {
     context.getSharedPreferences("reading_prefs", Context.MODE_PRIVATE)
         .edit().putString("font_size", size.name).apply()
 }

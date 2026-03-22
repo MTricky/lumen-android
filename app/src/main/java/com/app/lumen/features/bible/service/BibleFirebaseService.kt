@@ -107,6 +107,61 @@ class BibleFirebaseService(private val context: Context) {
         return config?.toBibleVersion()
     }
 
+    // ── Chapter Fetching ────────────────────────────────────────────
+
+    // In-memory cache for downloaded book data (chapters + summaries)
+    private val bookDataCache = mutableMapOf<String, FirebaseBookData>()
+
+    suspend fun fetchChapters(bibleId: String, bookId: String): List<BibleChapterSummary>? {
+        val bookData = getBookData(bibleId, bookId) ?: return null
+        return bookData.chapterSummaries.ifEmpty { null }
+    }
+
+    suspend fun fetchChapter(bibleId: String, chapterId: String): BibleChapter? {
+        // chapterId format is like "GEN.1" — extract bookId
+        val bookId = chapterId.substringBeforeLast(".")
+        val bookData = getBookData(bibleId, bookId) ?: return null
+        return bookData.chapters[chapterId]
+    }
+
+    private suspend fun getBookData(bibleId: String, bookId: String): FirebaseBookData? {
+        val cacheKey = "${bibleId}_$bookId"
+
+        // 1. Memory cache
+        bookDataCache[cacheKey]?.let { return it }
+
+        // 2. Disk cache
+        val diskFile = File(cacheDir, "bookdata_$cacheKey.json")
+        if (diskFile.exists()) {
+            try {
+                val data = json.decodeFromString(FirebaseBookData.serializer(), diskFile.readText())
+                bookDataCache[cacheKey] = data
+                return data
+            } catch (_: Exception) {}
+        }
+
+        // 3. Download from Firebase Storage
+        val config = configs[bibleId] ?: loadConfigFromDisk(bibleId) ?: return null
+        val downloadUrl = config.downloadUrl(bookId) ?: return null
+        if (downloadUrl.isEmpty()) return null
+
+        return withContext(Dispatchers.IO) {
+            try {
+                val url = java.net.URL(downloadUrl)
+                val conn = url.openConnection() as java.net.HttpURLConnection
+                conn.connectTimeout = 30_000
+                conn.readTimeout = 30_000
+                val responseText = conn.inputStream.bufferedReader().readText()
+                val data = json.decodeFromString(FirebaseBookData.serializer(), responseText)
+                bookDataCache[cacheKey] = data
+                try { diskFile.writeText(responseText) } catch (_: Exception) {}
+                data
+            } catch (_: Exception) {
+                null
+            }
+        }
+    }
+
     // ── Parsing ─────────────────────────────────────────────────────
 
     @Suppress("UNCHECKED_CAST")

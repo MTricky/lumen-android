@@ -73,6 +73,17 @@
     <string name="catholic_bible">Catholic Bible</string>
     <string name="protestant_bible">Protestant Bible</string>
 
+    <!-- Bible Reader -->
+    <string name="cd_text_settings">Text Settings</string>
+    <string name="cd_chapter_picker">Chapter picker</string>
+    <string name="reader_font_size">Font Size</string>
+    <string name="reader_line_spacing">Line Spacing</string>
+    <string name="reader_justify_text">Justify Text</string>
+    <string name="reader_preview_text">In the beginning God created the heavens and the earth.</string>
+    <string name="reader_pt_format">%1$d pt</string>
+    <string name="error_load_chapter">Failed to load chapter</string>
+    <string name="error_load_chapters">Failed to load chapters</string>
+
     <!-- Bible book sections -->
     <string name="section_law">Law</string>
     <string name="section_ot_history">History</string>

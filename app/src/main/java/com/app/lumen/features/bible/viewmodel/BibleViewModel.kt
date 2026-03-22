@@ -61,6 +61,25 @@ class BibleViewModel(application: Application) : AndroidViewModel(application) {
     private val _booksLoadingState = MutableStateFlow(LoadingState.IDLE)
     val booksLoadingState: StateFlow<LoadingState> = _booksLoadingState.asStateFlow()
 
+    // ── Reader State ─────────────────────────────────────────────────
+
+    private val _selectedBookInfo = MutableStateFlow<BibleBookInfo?>(null)
+    val selectedBookInfo: StateFlow<BibleBookInfo?> = _selectedBookInfo.asStateFlow()
+
+    private val _chapters = MutableStateFlow<List<BibleChapterSummary>>(emptyList())
+    val chapters: StateFlow<List<BibleChapterSummary>> = _chapters.asStateFlow()
+
+    private val _chaptersLoadingState = MutableStateFlow(LoadingState.IDLE)
+    val chaptersLoadingState: StateFlow<LoadingState> = _chaptersLoadingState.asStateFlow()
+
+    private val _currentChapter = MutableStateFlow<BibleChapter?>(null)
+    val currentChapter: StateFlow<BibleChapter?> = _currentChapter.asStateFlow()
+
+    private val _chapterLoadingState = MutableStateFlow(LoadingState.IDLE)
+    val chapterLoadingState: StateFlow<LoadingState> = _chapterLoadingState.asStateFlow()
+
+    private val chapterCache = mutableMapOf<String, BibleChapter>()
+
     init {
         loadBibleVersions()
     }
@@ -144,6 +163,58 @@ class BibleViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 _loadingState.value = LoadingState.ERROR
                 _error.value = e.message ?: "Failed to load Bible versions"
+            }
+        }
+    }
+
+    // ── Reader Methods ─────────────────────────────────────────────
+
+    fun selectBookForReader(book: BibleBookInfo) {
+        _selectedBookInfo.value = book
+        _chapters.value = emptyList()
+        _currentChapter.value = null
+        loadChapters(book.id)
+    }
+
+    fun loadChapters(bookId: String) {
+        val bibleId = _selectedBible.value?.id ?: return
+        if (_chaptersLoadingState.value == LoadingState.LOADING) return
+
+        viewModelScope.launch {
+            _chaptersLoadingState.value = LoadingState.LOADING
+            try {
+                val fetched = routingService.fetchChapters(bibleId, bookId)
+                _chapters.value = fetched
+                _chaptersLoadingState.value = LoadingState.LOADED
+
+                // Auto-load first chapter
+                if (fetched.isNotEmpty() && _currentChapter.value == null) {
+                    loadChapter(fetched.first().id)
+                }
+            } catch (_: Exception) {
+                _chaptersLoadingState.value = LoadingState.ERROR
+            }
+        }
+    }
+
+    fun loadChapter(chapterId: String) {
+        val bibleId = _selectedBible.value?.id ?: return
+
+        // Check cache first
+        chapterCache[chapterId]?.let { cached ->
+            _currentChapter.value = cached
+            return
+        }
+
+        viewModelScope.launch {
+            _chapterLoadingState.value = LoadingState.LOADING
+            try {
+                val chapter = routingService.fetchChapter(bibleId, chapterId)
+                chapterCache[chapterId] = chapter
+                _currentChapter.value = chapter
+                _chapterLoadingState.value = LoadingState.LOADED
+            } catch (_: Exception) {
+                _chapterLoadingState.value = LoadingState.ERROR
             }
         }
     }
