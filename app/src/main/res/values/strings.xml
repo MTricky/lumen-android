@@ -63,6 +63,9 @@
     <string name="bible_book_count">%1$d Books</string>
     <string name="cd_language">Language</string>
     <string name="cd_search">Search</string>
+    <string name="bible_search_books">Search books…</string>
+    <string name="bible_search_hint">Search by book name or abbreviation</string>
+    <string name="bible_no_results">No results for \"%1$s\"</string>
     <string name="translation">Translation</string>
     <string name="done">Done</string>
     <string name="retry">Retry</string>

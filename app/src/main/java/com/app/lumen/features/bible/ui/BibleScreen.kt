@@ -1,6 +1,7 @@
 package com.app.lumen.features.bible.ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -20,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
 import androidx.compose.material.icons.automirrored.filled.MenuBook
@@ -32,15 +34,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -215,6 +223,8 @@ fun BibleScreen(
 ) {
     var selectedTestament by remember { mutableStateOf(Testament.OLD) }
     var showTranslationPicker by remember { mutableStateOf(false) }
+    var isSearching by remember { mutableStateOf(false) }
+    var searchText by remember { mutableStateOf("") }
 
     val apiBooks by bibleViewModel.books.collectAsState()
     val booksLoadingState by bibleViewModel.booksLoadingState.collectAsState()
@@ -230,6 +240,19 @@ fun BibleScreen(
 
     val books = remember(allBooks, selectedTestament) {
         allBooks.filter { it.section.testament == selectedTestament }
+    }
+
+    // Search: filter across all books by name, abbreviation, and id
+    val searchResults = remember(allBooks, searchText) {
+        if (searchText.isBlank()) emptyList()
+        else {
+            val query = searchText.lowercase()
+            allBooks.filter { book ->
+                book.name.lowercase().contains(query) ||
+                        book.abbreviation.lowercase().contains(query) ||
+                        book.id.lowercase().contains(query)
+            }
+        }
     }
 
     val sections = remember(selectedTestament) {
@@ -348,7 +371,7 @@ fun BibleScreen(
 
                             // Search button
                             IconButton(
-                                onClick = { /* TODO: search */ },
+                                onClick = { isSearching = true },
                                 modifier = Modifier
                                     .size(40.dp)
                                     .clip(CircleShape)
@@ -489,6 +512,294 @@ fun BibleScreen(
             TranslationPickerSheet(
                 viewModel = bibleViewModel,
                 onDismiss = { showTranslationPicker = false },
+            )
+        }
+
+        // Search overlay
+        AnimatedVisibility(
+            visible = isSearching,
+            enter = fadeIn(tween(200)),
+            exit = fadeOut(tween(150)),
+        ) {
+            BibleSearchOverlay(
+                searchText = searchText,
+                onSearchTextChange = { searchText = it },
+                searchResults = searchResults,
+                onBookSelected = { book ->
+                    searchText = ""
+                    isSearching = false
+                    onBookSelected(book)
+                },
+                onClose = {
+                    searchText = ""
+                    isSearching = false
+                },
+            )
+        }
+    }
+}
+
+// ── Search Overlay ──────────────────────────────────────────────────
+@Composable
+private fun BibleSearchOverlay(
+    searchText: String,
+    onSearchTextChange: (String) -> Unit,
+    searchResults: List<BibleBook>,
+    onBookSelected: (BibleBook) -> Unit,
+    onClose: () -> Unit,
+) {
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+        keyboardController?.show()
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(NearBlack)
+            .statusBarsPadding(),
+    ) {
+        // Search bar
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Row(
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color.White.copy(alpha = 0.08f))
+                    .border(1.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(12.dp))
+                    .padding(horizontal = 12.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = null,
+                    tint = Color.White.copy(alpha = 0.4f),
+                    modifier = Modifier.size(20.dp),
+                )
+                Spacer(Modifier.width(8.dp))
+
+                Box(modifier = Modifier.weight(1f)) {
+                    if (searchText.isEmpty()) {
+                        Text(
+                            text = stringResource(R.string.bible_search_books),
+                            fontSize = 16.sp,
+                            color = Color.White.copy(alpha = 0.35f),
+                        )
+                    }
+                    BasicTextField(
+                        value = searchText,
+                        onValueChange = onSearchTextChange,
+                        singleLine = true,
+                        textStyle = TextStyle(
+                            fontSize = 16.sp,
+                            color = Color.White,
+                        ),
+                        cursorBrush = SolidColor(SoftGold),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusRequester(focusRequester),
+                    )
+                }
+
+                if (searchText.isNotEmpty()) {
+                    IconButton(
+                        onClick = { onSearchTextChange("") },
+                        modifier = Modifier.size(20.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = null,
+                            tint = Color.White.copy(alpha = 0.5f),
+                            modifier = Modifier.size(16.dp),
+                        )
+                    }
+                }
+            }
+
+            Spacer(Modifier.width(12.dp))
+
+            // Close button
+            IconButton(
+                onClick = {
+                    keyboardController?.hide()
+                    onClose()
+                },
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(Color.White.copy(alpha = 0.08f)),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = stringResource(R.string.done),
+                    tint = Color.White,
+                    modifier = Modifier.size(20.dp),
+                )
+            }
+        }
+
+        // Results
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            if (searchText.isEmpty()) {
+                // Hint
+                item {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 60.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Search,
+                            contentDescription = null,
+                            tint = Color.White.copy(alpha = 0.3f),
+                            modifier = Modifier.size(48.dp),
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Text(
+                            text = stringResource(R.string.bible_search_hint),
+                            fontSize = 15.sp,
+                            color = Color.White.copy(alpha = 0.4f),
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+            } else if (searchResults.isEmpty()) {
+                // No results
+                item {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 60.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.SearchOff,
+                            contentDescription = null,
+                            tint = Color.White.copy(alpha = 0.3f),
+                            modifier = Modifier.size(48.dp),
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Text(
+                            text = stringResource(R.string.bible_no_results, searchText),
+                            fontSize = 15.sp,
+                            color = Color.White.copy(alpha = 0.4f),
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+            } else {
+                items(searchResults, key = { it.id }) { book ->
+                    SearchResultRow(
+                        book = book,
+                        onClick = { onBookSelected(book) },
+                    )
+                }
+            }
+
+            // Bottom spacer for nav bar
+            item { Spacer(Modifier.height(100.dp)) }
+        }
+    }
+}
+
+// ── Search Result Row ───────────────────────────────────────────────
+@Composable
+private fun SearchResultRow(
+    book: BibleBook,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(BookCardBg)
+            .border(1.dp, BookCardBorder, RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        // Section icon circle
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .clip(CircleShape)
+                .background(SoftGold.copy(alpha = 0.15f)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = book.section.icon,
+                contentDescription = null,
+                tint = SoftGold,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+
+        Spacer(Modifier.width(14.dp))
+
+        // Book name + section info
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = book.name,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Spacer(Modifier.height(3.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = stringResource(book.section.displayNameRes),
+                    fontSize = 13.sp,
+                    color = Color.White.copy(alpha = 0.5f),
+                )
+                Text(
+                    text = " · ",
+                    fontSize = 13.sp,
+                    color = Color.White.copy(alpha = 0.3f),
+                )
+                Text(
+                    text = if (book.section.testament == Testament.OLD)
+                        stringResource(R.string.bible_old_testament)
+                    else
+                        stringResource(R.string.bible_new_testament),
+                    fontSize = 13.sp,
+                    color = Color.White.copy(alpha = 0.5f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+        }
+
+        Spacer(Modifier.width(8.dp))
+
+        // Abbreviation + chevron
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = book.abbreviation,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = SoftGold,
+            )
+            Spacer(Modifier.width(4.dp))
+            Icon(
+                imageVector = Icons.Filled.ChevronRight,
+                contentDescription = null,
+                tint = Color.White.copy(alpha = 0.3f),
+                modifier = Modifier.size(16.dp),
             )
         }
     }
