@@ -63,6 +63,37 @@
     <string name="bible_book_count">%1$d Books</string>
     <string name="cd_language">Language</string>
     <string name="cd_search">Search</string>
+    <string name="translation">Translation</string>
+    <string name="done">Done</string>
+    <string name="retry">Retry</string>
+    <string name="error_load_translations">Failed to load translations</string>
+    <string name="catholic_bible">Catholic Bible</string>
+    <string name="protestant_bible">Protestant Bible</string>
+
+    <!-- Bible book sections -->
+    <string name="section_law">Law</string>
+    <string name="section_ot_history">History</string>
+    <string name="section_poetry">Poetry &amp; Wisdom</string>
+    <string name="section_major_prophets">Major Prophets</string>
+    <string name="section_minor_prophets">Minor Prophets</string>
+    <string name="section_gospels">Gospels</string>
+    <string name="section_nt_history">History</string>
+    <string name="section_pauline_epistles">Pauline Epistles</string>
+    <string name="section_general_epistles">General Epistles</string>
+    <string name="section_prophecy">Prophecy</string>
+
+    <!-- Bible languages -->
+    <string name="lang_english">English</string>
+    <string name="lang_spanish">Spanish</string>
+    <string name="lang_portuguese">Portuguese</string>
+    <string name="lang_french">French</string>
+    <string name="lang_italian">Italian</string>
+    <string name="lang_german">German</string>
+    <string name="lang_polish">Polish</string>
+
+    <!-- Bible errors -->
+    <string name="error_api_limit">Daily API limit reached. Please try again tomorrow.</string>
+    <string name="error_load_bible_versions">Failed to load Bible versions</string>
 
     <!-- Placeholder -->
     <string name="coming_soon">Coming soon</string>

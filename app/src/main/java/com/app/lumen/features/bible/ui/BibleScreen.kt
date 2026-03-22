@@ -2,6 +2,11 @@ package com.app.lumen.features.bible.ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -24,8 +29,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -37,7 +44,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.annotation.StringRes
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.lumen.R
+import com.app.lumen.features.bible.service.BibleBookInfo
+import com.app.lumen.features.bible.viewmodel.BibleViewModel
+import com.app.lumen.features.bible.viewmodel.LoadingState
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -49,23 +61,23 @@ enum class Testament {
 
 // ── Book Sections ───────────────────────────────────────────────────
 enum class BibleBookSection(
-    val displayName: String,
+    @StringRes val displayNameRes: Int,
     val icon: ImageVector,
     val testament: Testament,
 ) {
     // Old Testament
-    LAW("Law", Icons.Filled.Description, Testament.OLD),
-    OT_HISTORY("History", Icons.AutoMirrored.Filled.MenuBook, Testament.OLD),
-    POETRY("Poetry & Wisdom", Icons.Filled.MusicNote, Testament.OLD),
-    MAJOR_PROPHETS("Major Prophets", Icons.Filled.RecordVoiceOver, Testament.OLD),
-    MINOR_PROPHETS("Minor Prophets", Icons.Filled.RecordVoiceOver, Testament.OLD),
+    LAW(R.string.section_law, Icons.Filled.Description, Testament.OLD),
+    OT_HISTORY(R.string.section_ot_history, Icons.AutoMirrored.Filled.MenuBook, Testament.OLD),
+    POETRY(R.string.section_poetry, Icons.Filled.MusicNote, Testament.OLD),
+    MAJOR_PROPHETS(R.string.section_major_prophets, Icons.Filled.RecordVoiceOver, Testament.OLD),
+    MINOR_PROPHETS(R.string.section_minor_prophets, Icons.Filled.RecordVoiceOver, Testament.OLD),
 
     // New Testament
-    GOSPELS("Gospels", Icons.Filled.AutoStories, Testament.NEW),
-    NT_HISTORY("History", Icons.AutoMirrored.Filled.DirectionsWalk, Testament.NEW),
-    PAULINE_EPISTLES("Pauline Epistles", Icons.Filled.Email, Testament.NEW),
-    GENERAL_EPISTLES("General Epistles", Icons.Filled.Email, Testament.NEW),
-    PROPHECY("Prophecy", Icons.Filled.AutoAwesome, Testament.NEW),
+    GOSPELS(R.string.section_gospels, Icons.Filled.AutoStories, Testament.NEW),
+    NT_HISTORY(R.string.section_nt_history, Icons.AutoMirrored.Filled.DirectionsWalk, Testament.NEW),
+    PAULINE_EPISTLES(R.string.section_pauline_epistles, Icons.Filled.Email, Testament.NEW),
+    GENERAL_EPISTLES(R.string.section_general_epistles, Icons.Filled.Email, Testament.NEW),
+    PROPHECY(R.string.section_prophecy, Icons.Filled.AutoAwesome, Testament.NEW),
 }
 
 // ── Bible Book ──────────────────────────────────────────────────────
@@ -76,8 +88,25 @@ data class BibleBook(
     val section: BibleBookSection,
 )
 
-// ── Book Data ───────────────────────────────────────────────────────
-private val allBooks = listOf(
+// ── Section mapping from book ID ────────────────────────────────────
+private val bookSectionMap: Map<String, BibleBookSection> by lazy {
+    defaultBooks.associate { it.id to it.section }
+}
+
+private fun sectionForBookId(id: String): BibleBookSection? = bookSectionMap[id]
+
+private fun toBibleBook(info: BibleBookInfo): BibleBook? {
+    val section = sectionForBookId(info.id) ?: return null
+    return BibleBook(
+        id = info.id,
+        abbreviation = info.abbreviation.ifEmpty { info.id },
+        name = info.name,
+        section = section,
+    )
+}
+
+// ── Default Book Data (fallback + section mapping source) ───────────
+private val defaultBooks = listOf(
     // Law
     BibleBook("GEN", "GEN", "Genesis", BibleBookSection.LAW),
     BibleBook("EXO", "EXO", "Exodus", BibleBookSection.LAW),
@@ -182,16 +211,33 @@ private val BookCardBorder = Color.White.copy(alpha = 0.10f)
 fun BibleScreen(
     bottomPadding: Dp = 0.dp,
     onBookSelected: (BibleBook) -> Unit = {},
+    bibleViewModel: BibleViewModel = viewModel(),
 ) {
     var selectedTestament by remember { mutableStateOf(Testament.OLD) }
+    var showTranslationPicker by remember { mutableStateOf(false) }
 
-    val books = remember(selectedTestament) {
+    val apiBooks by bibleViewModel.books.collectAsState()
+    val booksLoadingState by bibleViewModel.booksLoadingState.collectAsState()
+
+    // Convert API books to BibleBook with section mapping, fall back to defaults
+    val allBooks = remember(apiBooks) {
+        if (apiBooks.isEmpty()) {
+            defaultBooks
+        } else {
+            apiBooks.mapNotNull { toBibleBook(it) }.ifEmpty { defaultBooks }
+        }
+    }
+
+    val books = remember(allBooks, selectedTestament) {
         allBooks.filter { it.section.testament == selectedTestament }
     }
 
     val sections = remember(selectedTestament) {
         BibleBookSection.entries.filter { it.testament == selectedTestament }
     }
+
+    val isLoadingBooks = booksLoadingState == LoadingState.LOADING ||
+            booksLoadingState == LoadingState.IDLE
 
     val bookCount = books.size
     val testamentTitle = if (selectedTestament == Testament.OLD)
@@ -275,7 +321,7 @@ fun BibleScreen(
                             else
                                 ToolbarGlassBg
                             IconButton(
-                                onClick = { /* TODO: language picker */ },
+                                onClick = { showTranslationPicker = true },
                                 modifier = Modifier
                                     .size(40.dp)
                                     .clip(CircleShape)
@@ -357,58 +403,74 @@ fun BibleScreen(
                     }
                 }
 
-                // Sections with books
-                var sectionIndex = 0
-                sections.forEach { section ->
-                    val sectionBooks = books.filter { it.section == section }
-                    if (sectionBooks.isNotEmpty()) {
-                        val topPad = if (sectionIndex == 0) 0.dp else 20.dp
-                        sectionIndex++
-                        // Section header
-                        item(key = "header_${section.name}") {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 20.dp)
-                                    .padding(top = topPad, bottom = 10.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                Icon(
-                                    imageVector = section.icon,
-                                    contentDescription = null,
-                                    tint = SoftGold,
-                                    modifier = Modifier.size(18.dp),
-                                )
-                                Spacer(Modifier.width(8.dp))
-                                Text(
-                                    text = section.displayName,
-                                    fontSize = 15.sp,
-                                    fontWeight = FontWeight.Medium,
-                                    color = Slate,
-                                )
-                            }
+                if (isLoadingBooks) {
+                    // Shimmer placeholder grid (12 cards in 2 columns)
+                    items(6) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
+                                .padding(bottom = 10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        ) {
+                            ShimmerBookCard(modifier = Modifier.weight(1f))
+                            ShimmerBookCard(modifier = Modifier.weight(1f))
                         }
-
-                        // Books in 2-column grid
-                        val rows = sectionBooks.chunked(2)
-                        items(rows, key = { row -> row.first().id }) { row ->
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 16.dp)
-                                    .padding(bottom = 10.dp),
-                                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                            ) {
-                                row.forEach { book ->
-                                    BookCard(
-                                        book = book,
-                                        onClick = { onBookSelected(book) },
-                                        modifier = Modifier.weight(1f),
+                    }
+                } else {
+                    // Sections with books
+                    var sectionIndex = 0
+                    sections.forEach { section ->
+                        val sectionBooks = books.filter { it.section == section }
+                        if (sectionBooks.isNotEmpty()) {
+                            val topPad = if (sectionIndex == 0) 0.dp else 20.dp
+                            sectionIndex++
+                            // Section header
+                            item(key = "header_${section.name}") {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 20.dp)
+                                        .padding(top = topPad, bottom = 10.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = section.icon,
+                                        contentDescription = null,
+                                        tint = SoftGold,
+                                        modifier = Modifier.size(18.dp),
+                                    )
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(
+                                        text = stringResource(section.displayNameRes),
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.Medium,
+                                        color = Slate,
                                     )
                                 }
-                                // Fill empty space if odd number
-                                if (row.size == 1) {
-                                    Spacer(Modifier.weight(1f))
+                            }
+
+                            // Books in 2-column grid
+                            val rows = sectionBooks.chunked(2)
+                            items(rows, key = { row -> row.first().id }) { row ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp)
+                                        .padding(bottom = 10.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                                ) {
+                                    row.forEach { book ->
+                                        BookCard(
+                                            book = book,
+                                            onClick = { onBookSelected(book) },
+                                            modifier = Modifier.weight(1f),
+                                        )
+                                    }
+                                    // Fill empty space if odd number
+                                    if (row.size == 1) {
+                                        Spacer(Modifier.weight(1f))
+                                    }
                                 }
                             }
                         }
@@ -420,6 +482,14 @@ fun BibleScreen(
                     Spacer(Modifier.height(bottomPadding + 8.dp))
                 }
             }
+        }
+
+        // Translation picker sheet
+        if (showTranslationPicker) {
+            TranslationPickerSheet(
+                viewModel = bibleViewModel,
+                onDismiss = { showTranslationPicker = false },
+            )
         }
     }
 }
@@ -498,6 +568,60 @@ private fun BookCard(
             text = book.name,
             fontSize = 13.sp,
             color = Color.White.copy(alpha = 0.7f),
+        )
+    }
+}
+
+// ── Shimmer Book Card ──────────────────────────────────────────────
+@Composable
+private fun ShimmerBookCard(modifier: Modifier = Modifier) {
+    val transition = rememberInfiniteTransition(label = "shimmer")
+    val offsetX by transition.animateFloat(
+        initialValue = -200f,
+        targetValue = 200f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 1500, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "shimmer_offset",
+    )
+
+    val shimmerBrush = Brush.linearGradient(
+        colors = listOf(
+            Color.Transparent,
+            Color.White.copy(alpha = 0.1f),
+            Color.Transparent,
+        ),
+        start = Offset(offsetX, 0f),
+        end = Offset(offsetX + 200f, 0f),
+    )
+
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(Color.White.copy(alpha = 0.05f))
+            .clipToBounds()
+            .padding(vertical = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // Abbreviation placeholder
+        Box(
+            modifier = Modifier
+                .width(40.dp)
+                .height(20.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(Color.White.copy(alpha = 0.1f))
+                .background(shimmerBrush),
+        )
+        Spacer(Modifier.height(6.dp))
+        // Name placeholder
+        Box(
+            modifier = Modifier
+                .width(60.dp)
+                .height(14.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(Color.White.copy(alpha = 0.1f))
+                .background(shimmerBrush),
         )
     }
 }
