@@ -213,6 +213,91 @@ fun SaintCard(
 }
 
 @Composable
+fun ReflectionCard(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(16.dp))
+            .background(CardBg)
+            .clickable(onClick = onClick)
+            .padding(16.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = Icons.Filled.FormatListBulleted,
+                contentDescription = null,
+                tint = Color.White.copy(alpha = 0.5f),
+                modifier = Modifier.size(22.dp)
+            )
+            Spacer(Modifier.width(10.dp))
+            Text(
+                text = "Reflection",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+            )
+        }
+
+        Spacer(Modifier.height(12.dp))
+
+        Text(
+            text = text,
+            fontSize = 15.sp,
+            color = Color.White.copy(alpha = 0.8f),
+            lineHeight = 22.sp,
+            maxLines = 4,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        Spacer(Modifier.height(6.dp))
+
+        Text(
+            text = "Tap to read more...",
+            fontSize = 12.sp,
+            color = Slate,
+        )
+    }
+}
+
+@Composable
+fun GlassButton(
+    title: String,
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+) {
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(50))
+            .background(Color.White.copy(alpha = 0.08f))
+            .border(0.5.dp, Color.White.copy(alpha = 0.15f), RoundedCornerShape(50))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 24.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = Color.White,
+            modifier = Modifier.size(20.dp)
+        )
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White,
+        )
+    }
+}
+
+@Composable
 fun VerseCard(
     text: String,
     reference: String,

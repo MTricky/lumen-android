@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -40,8 +41,10 @@ import com.app.lumen.features.liturgy.model.liturgicalColor
 import com.app.lumen.features.liturgy.viewmodel.DaySelection
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
 import com.app.lumen.ui.components.shimmerBrush
+import com.app.lumen.ui.components.GlassButton
 import com.app.lumen.ui.components.LiturgyLoadingSkeleton
 import com.app.lumen.ui.components.ReadingCard
+import com.app.lumen.ui.components.ReflectionCard
 import com.app.lumen.ui.components.SaintCard
 import com.app.lumen.ui.components.VerseCard
 import com.app.lumen.ui.theme.*
@@ -339,6 +342,16 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                         )
                     }
 
+                    // Reflection (sermon)
+                    if (lit.sermon != null) {
+                        item {
+                            ReflectionCard(
+                                text = lit.sermon,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                            )
+                        }
+                    }
+
                     // Verse of the Day
                     if (verse != null) {
                         item {
@@ -352,9 +365,24 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                         }
                     }
 
+                    // View All Readings button
+                    item {
+                        Spacer(Modifier.height(16.dp))
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            GlassButton(
+                                title = "View All Readings",
+                                icon = Icons.AutoMirrored.Filled.MenuBook,
+                                onClick = { /* TODO: navigate to full readings */ }
+                            )
+                        }
+                    }
+
                     // Bottom spacer for tab bar
                     item {
-                        Spacer(Modifier.height(bottomPadding + 16.dp))
+                        Spacer(Modifier.height(bottomPadding + 8.dp))
                     }
                 }
             }
