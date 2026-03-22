@@ -37,6 +37,8 @@ import coil.request.ImageRequest
 import androidx.compose.ui.platform.LocalContext
 import com.app.lumen.features.audio.AudioPlayerManager
 import com.app.lumen.features.audio.ReadingType
+import com.app.lumen.features.liturgy.model.DailyLiturgy
+import com.app.lumen.features.liturgy.model.DailyVerse
 import com.app.lumen.features.liturgy.model.liturgicalColor
 import com.app.lumen.features.liturgy.viewmodel.DaySelection
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
@@ -52,7 +54,11 @@ import com.app.lumen.ui.theme.*
 private val HEADER_HEIGHT = 380.dp
 
 @Composable
-fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewModel()) {
+fun LiturgyScreen(
+    bottomPadding: Dp = 0.dp,
+    onOpenReadings: (DailyLiturgy, DailyVerse?, ReadingSection) -> Unit = { _, _, _ -> },
+    viewModel: LiturgyViewModel = viewModel(),
+) {
     val liturgy by viewModel.liturgy.collectAsStateWithLifecycle()
     val verse by viewModel.verse.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
@@ -250,7 +256,8 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             SaintCard(
                                 name = lit.saintOfDay.name,
                                 description = lit.saintOfDay.description,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                onClick = { onOpenReadings(lit, verse, ReadingSection.SAINT) },
                             )
                         }
                     }
@@ -265,6 +272,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             audioUrl = lit.audioUrls?.firstReading,
                             isPlayingThis = isPlaying && currentReading == ReadingType.FIRST_READING,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onClick = { onOpenReadings(lit, verse, ReadingSection.FIRST_READING) },
                             onPlayClick = {
                                 val url = lit.audioUrls?.firstReading ?: return@ReadingCard
                                 if (currentReading == ReadingType.FIRST_READING) {
@@ -286,6 +294,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             audioUrl = lit.audioUrls?.psalm,
                             isPlayingThis = isPlaying && currentReading == ReadingType.PSALM,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onClick = { onOpenReadings(lit, verse, ReadingSection.PSALM) },
                             onPlayClick = {
                                 val url = lit.audioUrls?.psalm ?: return@ReadingCard
                                 if (currentReading == ReadingType.PSALM) {
@@ -308,6 +317,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                                 audioUrl = lit.audioUrls?.secondReading,
                                 isPlayingThis = isPlaying && currentReading == ReadingType.SECOND_READING,
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                onClick = { onOpenReadings(lit, verse, ReadingSection.SECOND_READING) },
                                 onPlayClick = {
                                     val url = lit.audioUrls?.secondReading ?: return@ReadingCard
                                     if (currentReading == ReadingType.SECOND_READING) {
@@ -331,6 +341,7 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             audioUrl = lit.audioUrls?.gospel,
                             isPlayingThis = isPlaying && currentReading == ReadingType.GOSPEL,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            onClick = { onOpenReadings(lit, verse, ReadingSection.GOSPEL) },
                             onPlayClick = {
                                 val url = lit.audioUrls?.gospel ?: return@ReadingCard
                                 if (currentReading == ReadingType.GOSPEL) {
@@ -347,7 +358,8 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                         item {
                             ReflectionCard(
                                 text = lit.sermon,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                onClick = { onOpenReadings(lit, verse, ReadingSection.REFLECTION) },
                             )
                         }
                     }
@@ -375,7 +387,11 @@ fun LiturgyScreen(bottomPadding: Dp = 0.dp, viewModel: LiturgyViewModel = viewMo
                             GlassButton(
                                 title = "View All Readings",
                                 icon = Icons.AutoMirrored.Filled.MenuBook,
-                                onClick = { /* TODO: navigate to full readings */ }
+                                onClick = {
+                                    val firstSection = if (lit.saintOfDay != null) ReadingSection.SAINT
+                                        else ReadingSection.FIRST_READING
+                                    onOpenReadings(lit, verse, firstSection)
+                                },
                             )
                         }
                     }

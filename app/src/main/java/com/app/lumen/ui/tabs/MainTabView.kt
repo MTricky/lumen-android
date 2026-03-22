@@ -39,6 +39,10 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.features.audio.AudioPlayerManager
 import com.app.lumen.features.audio.ReadingType
 import com.app.lumen.features.liturgy.ui.LiturgyScreen
+import com.app.lumen.features.liturgy.ui.ReadingSection
+import com.app.lumen.features.liturgy.ui.ReadingsScreen
+import com.app.lumen.features.liturgy.model.DailyLiturgy
+import com.app.lumen.features.liturgy.model.DailyVerse
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -70,6 +74,8 @@ class TabBarScrollState(private val thresholdPx: Float) : NestedScrollConnection
         private set
     private var accumulated = 0f
     private var lastDir = 0
+
+    fun forceExpand() { isInline = false; accumulated = 0f }
 
     override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
         val dy = available.y
@@ -104,7 +110,14 @@ fun MainTabView() {
     }
 
     val showAccessory = currentReading != null
-    val isInline = scrollState.isInline
+    // Only allow inline mode on scrollable screens (Liturgy)
+    val isInline = scrollState.isInline && selectedTab == Tab.LITURGY
+
+    // Readings detail navigation state
+    var showReadings by remember { mutableStateOf(false) }
+    var readingsInitialSection by remember { mutableStateOf(ReadingSection.FIRST_READING) }
+    var readingsLiturgy by remember { mutableStateOf<DailyLiturgy?>(null) }
+    var readingsVerse by remember { mutableStateOf<DailyVerse?>(null) }
 
     Box(
         modifier = Modifier
@@ -114,7 +127,13 @@ fun MainTabView() {
     ) {
         when (selectedTab) {
             Tab.LITURGY -> LiturgyScreen(
-                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp
+                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                onOpenReadings = { liturgy, verse, section ->
+                    readingsLiturgy = liturgy
+                    readingsVerse = verse
+                    readingsInitialSection = section
+                    showReadings = true
+                },
             )
             else -> PlaceholderScreen(tab = selectedTab)
         }
@@ -139,7 +158,7 @@ fun MainTabView() {
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        // Selected tab icon only (left)
+                        // Selected tab icon only (left) — tap to expand
                         Box(
                             modifier = Modifier
                                 .sharedElement(
@@ -150,6 +169,11 @@ fun MainTabView() {
                                 .clip(RoundedCornerShape(50))
                                 .background(BarBg)
                                 .border(1.dp, BarBorder, RoundedCornerShape(50))
+                                .clickable(
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = null,
+                                    onClick = { scrollState.forceExpand() },
+                                )
                                 .padding(14.dp),
                             contentAlignment = Alignment.Center,
                         ) {
@@ -360,6 +384,28 @@ fun MainTabView() {
                         }
                     }
                 }
+            }
+        }
+
+        // Readings detail overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showReadings,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            readingsLiturgy?.let { liturgy ->
+                ReadingsScreen(
+                    liturgy = liturgy,
+                    verse = readingsVerse,
+                    initialSection = readingsInitialSection,
+                    onBack = { showReadings = false },
+                )
             }
         }
     }
