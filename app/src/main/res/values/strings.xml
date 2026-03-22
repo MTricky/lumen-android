@@ -55,6 +55,15 @@
     <string name="font_size_large">Large</string>
     <string name="font_size_extra_large">Extra Large</string>
 
+    <!-- Bible -->
+    <string name="bible_old">Old</string>
+    <string name="bible_new">New</string>
+    <string name="bible_old_testament">Old Testament</string>
+    <string name="bible_new_testament">New Testament</string>
+    <string name="bible_book_count">%1$d Books</string>
+    <string name="cd_language">Language</string>
+    <string name="cd_search">Search</string>
+
     <!-- Placeholder -->
     <string name="coming_soon">Coming soon</string>
 

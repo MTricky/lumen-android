@@ -43,6 +43,7 @@ import com.app.lumen.features.liturgy.ui.ReadingSection
 import com.app.lumen.features.liturgy.ui.ReadingsScreen
 import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
+import com.app.lumen.features.bible.ui.BibleScreen
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.ui.theme.NearBlack
@@ -137,6 +138,9 @@ fun MainTabView() {
                     readingsInitialSection = section
                     showReadings = true
                 },
+            )
+            Tab.BIBLE -> BibleScreen(
+                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
             )
             else -> PlaceholderScreen(tab = selectedTab)
         }
