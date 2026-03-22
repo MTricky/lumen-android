@@ -1,6 +1,9 @@
 package com.app.lumen.ui.tabs
 
 import androidx.compose.animation.*
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +27,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
@@ -204,7 +209,11 @@ fun MainTabView() {
                             Icon(
                                 imageVector = Icons.Filled.Settings,
                                 contentDescription = "Settings",
-                                tint = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
+                                tint = animateColorAsState(
+                                    targetValue = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
+                                    animationSpec = tween(200),
+                                    label = "settings_tint",
+                                ).value,
                                 modifier = Modifier.size(22.dp),
                             )
                         }
@@ -243,10 +252,11 @@ fun MainTabView() {
                                 .height(IntrinsicSize.Min),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            // Main capsule
-                            Row(
+                            // Main capsule with animated selection pill
+                            Box(
                                 modifier = Modifier
                                     .weight(1f)
+                                    .height(IntrinsicSize.Min)
                                     .sharedElement(
                                         rememberSharedContentState("tabGroup"),
                                         this@AnimatedContent,
@@ -256,18 +266,61 @@ fun MainTabView() {
                                     .background(BarBg)
                                     .border(1.dp, BarBorder, RoundedCornerShape(50))
                                     .padding(5.dp),
-                                horizontalArrangement = Arrangement.SpaceEvenly,
-                                verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Tab.entries.filter { it != Tab.SETTINGS }.forEach { tab ->
-                                    val isSelected = selectedTab == tab
-                                    ExpandedTabItem(
-                                        icon = tab.icon,
-                                        label = tab.label,
-                                        isSelected = isSelected,
-                                        onClick = { selectedTab = tab },
-                                        modifier = Modifier.weight(1f),
+                                // Track tab positions
+                                val tabPositions = remember { mutableStateMapOf<Tab, Pair<Float, Float>>() }
+                                val density = LocalDensity.current
+
+                                // Animated pill position
+                                val selectedPos = tabPositions[selectedTab]
+                                val pillOffsetX by animateDpAsState(
+                                    targetValue = with(density) { (selectedPos?.first ?: 0f).toDp() },
+                                    animationSpec = spring(dampingRatio = 0.75f, stiffness = 300f),
+                                    label = "pill_x",
+                                )
+                                val pillWidth by animateDpAsState(
+                                    targetValue = with(density) { (selectedPos?.second ?: 0f).toDp() },
+                                    animationSpec = spring(dampingRatio = 0.75f, stiffness = 300f),
+                                    label = "pill_w",
+                                )
+
+                                // Selection pill (behind tabs)
+                                if (selectedPos != null && pillWidth > 0.dp) {
+                                    val pillShape = RoundedCornerShape(50)
+                                    Box(
+                                        modifier = Modifier
+                                            .offset(x = pillOffsetX)
+                                            .width(pillWidth)
+                                            .fillMaxHeight()
+                                            .clip(pillShape)
+                                            .background(SelectedBg)
+                                            .border(0.5.dp, SelectedBorder, pillShape)
                                     )
+                                }
+
+                                // Tab items row (on top)
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceEvenly,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Tab.entries.filter { it != Tab.SETTINGS }.forEach { tab ->
+                                        val isSelected = selectedTab == tab
+                                        ExpandedTabItem(
+                                            icon = tab.icon,
+                                            label = tab.label,
+                                            isSelected = isSelected,
+                                            onClick = { selectedTab = tab },
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .onGloballyPositioned { coords ->
+                                                    tabPositions[tab] = Pair(
+                                                        coords.positionInParent().x,
+                                                        coords.size.width.toFloat(),
+                                                    )
+                                                },
+                                        )
+                                    }
                                 }
                             }
 
@@ -296,7 +349,11 @@ fun MainTabView() {
                                 Icon(
                                     imageVector = Icons.Filled.Settings,
                                     contentDescription = "Settings",
-                                    tint = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
+                                    tint = animateColorAsState(
+                                    targetValue = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
+                                    animationSpec = tween(200),
+                                    label = "settings_tint",
+                                ).value,
                                     modifier = Modifier.size(26.dp),
                                 )
                             }
@@ -316,19 +373,15 @@ private fun ExpandedTabItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val tint = if (isSelected) SoftGold else UnselectedTint
-
-    val pillShape = RoundedCornerShape(50)
+    val tint by animateColorAsState(
+        targetValue = if (isSelected) SoftGold else UnselectedTint,
+        animationSpec = tween(200),
+        label = "tab_tint",
+    )
 
     Column(
         modifier = modifier
-            .clip(pillShape)
-            .then(
-                if (isSelected) Modifier
-                    .background(SelectedBg)
-                    .border(0.5.dp, SelectedBorder, pillShape)
-                else Modifier
-            )
+            .clip(RoundedCornerShape(50))
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
