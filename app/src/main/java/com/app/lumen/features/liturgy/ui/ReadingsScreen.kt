@@ -1,5 +1,6 @@
 package com.app.lumen.features.liturgy.ui
 
+import android.content.Context
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -23,6 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -55,6 +57,24 @@ enum class ReadingSection(
     REFLECTION("Reflection", "Reflect", Icons.Filled.FormatListBulleted),
 }
 
+enum class ReadingFontSize(val label: String, val bodySize: Int, val lineHeight: Int) {
+    SMALL("Small", 15, 24),
+    MEDIUM("Medium", 17, 28),
+    LARGE("Large", 20, 32),
+    EXTRA_LARGE("Extra Large", 24, 38),
+}
+
+private fun getSavedFontSize(context: Context): ReadingFontSize {
+    val prefs = context.getSharedPreferences("reading_prefs", Context.MODE_PRIVATE)
+    val name = prefs.getString("font_size", ReadingFontSize.MEDIUM.name) ?: ReadingFontSize.MEDIUM.name
+    return try { ReadingFontSize.valueOf(name) } catch (_: Exception) { ReadingFontSize.MEDIUM }
+}
+
+private fun saveFontSize(context: Context, size: ReadingFontSize) {
+    context.getSharedPreferences("reading_prefs", Context.MODE_PRIVATE)
+        .edit().putString("font_size", size.name).apply()
+}
+
 private val ChipBg = Color.White.copy(alpha = 0.12f)
 private val ChipBorder = Color.White.copy(alpha = 0.15f)
 private val ChipSelectedBg = Color.White.copy(alpha = 0.22f)
@@ -80,6 +100,10 @@ fun ReadingsScreen(
         while (isPlaying) { audioPlayer.updateProgress(); delay(500) }
     }
 
+    // Font size
+    var fontSize by remember { mutableStateOf(getSavedFontSize(context)) }
+    var showFontMenu by remember { mutableStateOf(false) }
+
     // Build available sections based on data
     val sections = remember(liturgy) {
         buildList {
@@ -104,10 +128,14 @@ fun ReadingsScreen(
         )
     }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(NearBlack)
+    ) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
             .statusBarsPadding()
     ) {
         // Top bar
@@ -138,6 +166,18 @@ fun ReadingsScreen(
                     .align(Alignment.Center)
                     .padding(horizontal = 56.dp),
             )
+
+            // Font size button
+            IconButton(
+                onClick = { showFontMenu = !showFontMenu },
+                modifier = Modifier.align(Alignment.CenterEnd),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.FormatSize,
+                    contentDescription = "Font size",
+                    tint = Color.White,
+                )
+            }
         }
 
         // Chip selector
@@ -176,7 +216,7 @@ fun ReadingsScreen(
                     .navigationBarsPadding(),
             ) {
                 when (section) {
-                    ReadingSection.SAINT -> SaintContent(liturgy)
+                    ReadingSection.SAINT -> SaintContent(liturgy, fontSize)
                     ReadingSection.FIRST_READING -> ReadingContent(
                         icon = ReadingSection.FIRST_READING.icon,
                         title = "First Reading",
@@ -186,11 +226,13 @@ fun ReadingsScreen(
                         readingType = ReadingType.FIRST_READING,
                         isPlaying = isPlaying && currentReading == ReadingType.FIRST_READING,
                         audioPlayer = audioPlayer,
+                        fontSize = fontSize,
                     )
                     ReadingSection.PSALM -> PsalmContent(
                         liturgy = liturgy,
                         isPlaying = isPlaying && currentReading == ReadingType.PSALM,
                         audioPlayer = audioPlayer,
+                        fontSize = fontSize,
                     )
                     ReadingSection.SECOND_READING -> ReadingContent(
                         icon = ReadingSection.SECOND_READING.icon,
@@ -201,6 +243,7 @@ fun ReadingsScreen(
                         readingType = ReadingType.SECOND_READING,
                         isPlaying = isPlaying && currentReading == ReadingType.SECOND_READING,
                         audioPlayer = audioPlayer,
+                        fontSize = fontSize,
                     )
                     ReadingSection.GOSPEL -> ReadingContent(
                         icon = ReadingSection.GOSPEL.icon,
@@ -212,8 +255,9 @@ fun ReadingsScreen(
                         readingType = ReadingType.GOSPEL,
                         isPlaying = isPlaying && currentReading == ReadingType.GOSPEL,
                         audioPlayer = audioPlayer,
+                        fontSize = fontSize,
                     )
-                    ReadingSection.REFLECTION -> ReflectionContent(liturgy)
+                    ReadingSection.REFLECTION -> ReflectionContent(liturgy, fontSize)
                 }
             }
         }
@@ -287,7 +331,84 @@ fun ReadingsScreen(
                 }
             }
         } // end Box (pager + player)
+    } // end Column
+
+    // Font size panel overlay (on top of everything)
+    androidx.compose.animation.AnimatedVisibility(
+        visible = showFontMenu,
+        enter = androidx.compose.animation.fadeIn(tween(150)) +
+                androidx.compose.animation.scaleIn(
+                    initialScale = 0.85f,
+                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
+                    animationSpec = tween(150),
+                ),
+        exit = androidx.compose.animation.fadeOut(tween(100)) +
+                androidx.compose.animation.scaleOut(
+                    targetScale = 0.85f,
+                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
+                    animationSpec = tween(100),
+                ),
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        // Invisible dismiss layer
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                    onClick = { showFontMenu = false },
+                ),
+        ) {
+            // Glass panel anchored below the toolbar button
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .statusBarsPadding()
+                    .padding(top = 52.dp, end = 8.dp)
+                    .width(200.dp)
+                    .shadow(16.dp, RoundedCornerShape(14.dp))
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(Color(0xFF23233D))
+                    .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(14.dp)),
+            ) {
+                ReadingFontSize.entries.forEachIndexed { index, size ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                fontSize = size
+                                saveFontSize(context, size)
+                                showFontMenu = false
+                            }
+                            .padding(horizontal = 16.dp, vertical = 13.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = "A",
+                            fontSize = (13 + size.ordinal * 3).sp,
+                            color = if (fontSize == size) SoftGold else Color.White.copy(alpha = 0.7f),
+                            fontWeight = FontWeight.Medium,
+                            modifier = Modifier.width(28.dp),
+                        )
+                        Text(
+                            text = size.label,
+                            fontSize = 15.sp,
+                            color = if (fontSize == size) SoftGold else Color.White,
+                            fontWeight = if (fontSize == size) FontWeight.SemiBold else FontWeight.Normal,
+                        )
+                    }
+                    if (index < ReadingFontSize.entries.size - 1) {
+                        HorizontalDivider(
+                            color = Color.White.copy(alpha = 0.08f),
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                        )
+                    }
+                }
+            }
+        }
     }
+    } // end outer Box
 }
 
 private fun formatTime(millis: Long): String {
@@ -350,7 +471,7 @@ private fun SectionChip(
 }
 
 @Composable
-private fun SaintContent(liturgy: DailyLiturgy) {
+private fun SaintContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize) {
     val saint = liturgy.saintOfDay ?: return
 
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -383,9 +504,9 @@ private fun SaintContent(liturgy: DailyLiturgy) {
 
     Text(
         text = saint.description,
-        fontSize = 17.sp,
+        fontSize = fontSize.bodySize.sp,
         color = Color.White.copy(alpha = 0.85f),
-        lineHeight = 28.sp,
+        lineHeight = fontSize.lineHeight.sp,
     )
 }
 
@@ -400,6 +521,7 @@ private fun ReadingContent(
     readingType: ReadingType,
     isPlaying: Boolean,
     audioPlayer: AudioPlayerManager,
+    fontSize: ReadingFontSize = ReadingFontSize.MEDIUM,
 ) {
     // Header
     Row(
@@ -449,9 +571,9 @@ private fun ReadingContent(
 
     Text(
         text = text,
-        fontSize = 17.sp,
+        fontSize = fontSize.bodySize.sp,
         color = Color.White.copy(alpha = 0.85f),
-        lineHeight = 28.sp,
+        lineHeight = fontSize.lineHeight.sp,
     )
 }
 
@@ -460,6 +582,7 @@ private fun PsalmContent(
     liturgy: DailyLiturgy,
     isPlaying: Boolean,
     audioPlayer: AudioPlayerManager,
+    fontSize: ReadingFontSize = ReadingFontSize.MEDIUM,
 ) {
     val psalm = liturgy.readings.psalm
 
@@ -541,14 +664,14 @@ private fun PsalmContent(
 
     Text(
         text = psalm.text,
-        fontSize = 17.sp,
+        fontSize = fontSize.bodySize.sp,
         color = Color.White.copy(alpha = 0.85f),
-        lineHeight = 28.sp,
+        lineHeight = fontSize.lineHeight.sp,
     )
 }
 
 @Composable
-private fun ReflectionContent(liturgy: DailyLiturgy) {
+private fun ReflectionContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize = ReadingFontSize.MEDIUM) {
     val sermon = liturgy.sermon ?: return
 
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -572,9 +695,9 @@ private fun ReflectionContent(liturgy: DailyLiturgy) {
 
     Text(
         text = sermon,
-        fontSize = 17.sp,
+        fontSize = fontSize.bodySize.sp,
         color = Color.White.copy(alpha = 0.85f),
-        lineHeight = 28.sp,
+        lineHeight = fontSize.lineHeight.sp,
     )
 }
 
