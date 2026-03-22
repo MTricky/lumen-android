@@ -1,5 +1,7 @@
 package com.app.lumen.ui.components
 
+import androidx.compose.ui.res.stringResource
+import com.app.lumen.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -106,7 +108,7 @@ fun ReadingCard(
                 ) {
                     Icon(
                         imageVector = if (isPlayingThis) Icons.Filled.PauseCircle else Icons.Filled.PlayCircle,
-                        contentDescription = if (isPlayingThis) "Pause" else "Play",
+                        contentDescription = stringResource(if (isPlayingThis) R.string.cd_pause else R.string.cd_play),
                         tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.6f),
                         modifier = Modifier.size(28.dp),
                     )
@@ -137,7 +139,7 @@ fun ReadingCard(
         Spacer(Modifier.height(6.dp))
 
         Text(
-            text = "Tap to read more",
+            text = stringResource(R.string.tap_to_read_more),
             fontSize = 12.sp,
             color = Slate,
         )
@@ -169,7 +171,7 @@ fun SaintCard(
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                text = "Saint of the Day",
+                text = stringResource(R.string.section_saint_title),
                 fontSize = 13.sp,
                 color = Slate,
             )
@@ -205,7 +207,7 @@ fun SaintCard(
         Spacer(Modifier.height(4.dp))
 
         Text(
-            text = "Tap to read more...",
+            text = stringResource(R.string.tap_to_read_more_ellipsis),
             fontSize = 12.sp,
             color = Slate,
         )
@@ -236,7 +238,7 @@ fun ReflectionCard(
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                text = "Reflection",
+                text = stringResource(R.string.section_reflection_title),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
@@ -257,7 +259,7 @@ fun ReflectionCard(
         Spacer(Modifier.height(6.dp))
 
         Text(
-            text = "Tap to read more...",
+            text = stringResource(R.string.tap_to_read_more_ellipsis),
             fontSize = 12.sp,
             color = Slate,
         )
@@ -326,7 +328,7 @@ fun VerseCard(
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                text = "Verse of the Day",
+                text = stringResource(R.string.verse_of_the_day),
                 fontSize = 13.sp,
                 color = Slate,
             )

@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -38,6 +39,8 @@ import com.app.lumen.features.audio.AudioPlayerManager
 import com.app.lumen.features.audio.ReadingType
 import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
+import androidx.compose.ui.res.stringResource
+import com.app.lumen.R
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -45,23 +48,23 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 enum class ReadingSection(
-    val title: String,
-    val shortTitle: String,
+    @androidx.annotation.StringRes val titleRes: Int,
+    @androidx.annotation.StringRes val shortTitleRes: Int,
     val icon: ImageVector,
 ) {
-    SAINT("Saint of the Day", "Saint", Icons.Filled.Person),
-    FIRST_READING("First Reading", "1st", Icons.Filled.LooksOne),
-    PSALM("Responsorial Psalm", "Psalm", Icons.Filled.MusicNote),
-    SECOND_READING("Second Reading", "2nd", Icons.Filled.LooksTwo),
-    GOSPEL("Gospel", "Gospel", Icons.Filled.AutoStories),
-    REFLECTION("Reflection", "Reflect", Icons.Filled.FormatListBulleted),
+    SAINT(R.string.section_saint_title, R.string.section_saint_short, Icons.Filled.Person),
+    FIRST_READING(R.string.section_first_reading_title, R.string.section_first_reading_short, Icons.Filled.LooksOne),
+    PSALM(R.string.section_psalm_title, R.string.section_psalm_short, Icons.Filled.MusicNote),
+    SECOND_READING(R.string.section_second_reading_title, R.string.section_second_reading_short, Icons.Filled.LooksTwo),
+    GOSPEL(R.string.section_gospel_title, R.string.section_gospel_short, Icons.Filled.AutoStories),
+    REFLECTION(R.string.section_reflection_title, R.string.section_reflection_short, Icons.Filled.FormatListBulleted),
 }
 
-enum class ReadingFontSize(val label: String, val bodySize: Int, val lineHeight: Int) {
-    SMALL("Small", 15, 24),
-    MEDIUM("Medium", 17, 28),
-    LARGE("Large", 20, 32),
-    EXTRA_LARGE("Extra Large", 24, 38),
+enum class ReadingFontSize(@androidx.annotation.StringRes val labelRes: Int, val bodySize: Int, val lineHeight: Int) {
+    SMALL(R.string.font_size_small, 15, 24),
+    MEDIUM(R.string.font_size_medium, 17, 28),
+    LARGE(R.string.font_size_large, 20, 32),
+    EXTRA_LARGE(R.string.font_size_extra_large, 24, 38),
 }
 
 private fun getSavedFontSize(context: Context): ReadingFontSize {
@@ -75,10 +78,11 @@ private fun saveFontSize(context: Context, size: ReadingFontSize) {
         .edit().putString("font_size", size.name).apply()
 }
 
-private val ChipBg = Color.White.copy(alpha = 0.12f)
-private val ChipBorder = Color.White.copy(alpha = 0.15f)
-private val ChipSelectedBg = Color.White.copy(alpha = 0.22f)
-private val ChipSelectedBorder = Color.White.copy(alpha = 0.25f)
+private val GlassBg = Color(0xFF191927)
+private val ChipBg = Color(0xFF191927)
+private val ChipBorder = Color.White.copy(alpha = 0.14f)
+private val ChipSelectedBg = Color.White.copy(alpha = 0.20f)
+private val ChipSelectedBorder = Color.White.copy(alpha = 0.24f)
 private val DividerColor = Color.White.copy(alpha = 0.15f)
 private val ReferenceBlue = Color(0xFF5BA8D9)
 
@@ -142,16 +146,23 @@ fun ReadingsScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 4.dp, vertical = 8.dp),
+                .padding(horizontal = 20.dp)
+                .padding(top = 8.dp, bottom = 16.dp),
         ) {
             IconButton(
                 onClick = onBack,
-                modifier = Modifier.align(Alignment.CenterStart),
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(GlassBg)
+                    .border(0.5.dp, Color.White.copy(alpha = 0.18f), CircleShape),
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.cd_back),
                     tint = Color.White,
+                    modifier = Modifier.size(20.dp),
                 )
             }
             Text(
@@ -170,15 +181,23 @@ fun ReadingsScreen(
             // Font size button
             IconButton(
                 onClick = { showFontMenu = !showFontMenu },
-                modifier = Modifier.align(Alignment.CenterEnd),
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(GlassBg)
+                    .border(0.5.dp, Color.White.copy(alpha = 0.18f), CircleShape),
             ) {
                 Icon(
                     imageVector = Icons.Filled.FormatSize,
-                    contentDescription = "Font size",
+                    contentDescription = stringResource(R.string.cd_font_size),
                     tint = Color.White,
+                    modifier = Modifier.size(20.dp),
                 )
             }
         }
+
+        Spacer(Modifier.height(4.dp))
 
         // Chip selector
         LazyRow(
@@ -219,7 +238,7 @@ fun ReadingsScreen(
                     ReadingSection.SAINT -> SaintContent(liturgy, fontSize)
                     ReadingSection.FIRST_READING -> ReadingContent(
                         icon = ReadingSection.FIRST_READING.icon,
-                        title = "First Reading",
+                        title = stringResource(R.string.section_first_reading_title),
                         reference = liturgy.readings.firstReading.reference,
                         text = liturgy.readings.firstReading.text,
                         audioUrl = liturgy.audioUrls?.firstReading,
@@ -236,7 +255,7 @@ fun ReadingsScreen(
                     )
                     ReadingSection.SECOND_READING -> ReadingContent(
                         icon = ReadingSection.SECOND_READING.icon,
-                        title = "Second Reading",
+                        title = stringResource(R.string.section_second_reading_title),
                         reference = liturgy.readings.secondReading?.reference ?: "",
                         text = liturgy.readings.secondReading?.text ?: "",
                         audioUrl = liturgy.audioUrls?.secondReading,
@@ -247,7 +266,7 @@ fun ReadingsScreen(
                     )
                     ReadingSection.GOSPEL -> ReadingContent(
                         icon = ReadingSection.GOSPEL.icon,
-                        title = "Gospel",
+                        title = stringResource(R.string.section_gospel_title),
                         reference = liturgy.readings.gospel.reference,
                         text = liturgy.readings.gospel.text,
                         prominent = true,
@@ -334,38 +353,51 @@ fun ReadingsScreen(
     } // end Column
 
     // Font size panel overlay (on top of everything)
+    // Scrim layer
     androidx.compose.animation.AnimatedVisibility(
         visible = showFontMenu,
-        enter = androidx.compose.animation.fadeIn(tween(150)) +
-                androidx.compose.animation.scaleIn(
-                    initialScale = 0.85f,
-                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
-                    animationSpec = tween(150),
-                ),
-        exit = androidx.compose.animation.fadeOut(tween(100)) +
-                androidx.compose.animation.scaleOut(
-                    targetScale = 0.85f,
-                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
-                    animationSpec = tween(100),
-                ),
+        enter = androidx.compose.animation.fadeIn(tween(200)),
+        exit = androidx.compose.animation.fadeOut(tween(150)),
         modifier = Modifier.fillMaxSize(),
     ) {
-        // Invisible dismiss layer
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.2f))
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
                     onClick = { showFontMenu = false },
                 ),
+        )
+    }
+
+    // Font menu panel
+    androidx.compose.animation.AnimatedVisibility(
+        visible = showFontMenu,
+        enter = androidx.compose.animation.fadeIn(tween(150)) +
+                androidx.compose.animation.scaleIn(
+                    initialScale = 0.4f,
+                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
+                    animationSpec = tween(150),
+                ),
+        exit = androidx.compose.animation.fadeOut(tween(100)) +
+                androidx.compose.animation.scaleOut(
+                    targetScale = 0.4f,
+                    transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.9f, 0f),
+                    animationSpec = tween(100),
+                ),
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
         ) {
             // Glass panel anchored below the toolbar button
             Column(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .statusBarsPadding()
-                    .padding(top = 52.dp, end = 8.dp)
+                    .padding(top = 60.dp, end = 20.dp)
                     .width(200.dp)
                     .shadow(16.dp, RoundedCornerShape(14.dp))
                     .clip(RoundedCornerShape(14.dp))
@@ -392,7 +424,7 @@ fun ReadingsScreen(
                             modifier = Modifier.width(28.dp),
                         )
                         Text(
-                            text = size.label,
+                            text = stringResource(size.labelRes),
                             fontSize = 15.sp,
                             color = if (fontSize == size) SoftGold else Color.White,
                             fontWeight = if (fontSize == size) FontWeight.SemiBold else FontWeight.Normal,
@@ -462,7 +494,7 @@ private fun SectionChip(
         )
         Spacer(Modifier.width(6.dp))
         Text(
-            text = section.shortTitle,
+            text = stringResource(section.shortTitleRes),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = if (isSelected && section == ReadingSection.GOSPEL) SoftGold else textColor,
@@ -483,7 +515,7 @@ private fun SaintContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize) {
         )
         Spacer(Modifier.width(10.dp))
         Text(
-            text = "Saint of the Day",
+            text = stringResource(R.string.section_saint_title),
             fontSize = 15.sp,
             color = Slate,
         )
@@ -599,12 +631,13 @@ private fun PsalmContent(
         )
         Spacer(Modifier.width(10.dp))
         Text(
-            text = "Responsorial Psalm",
+            text = stringResource(R.string.section_psalm_title),
             fontSize = 15.sp,
             color = Slate,
         )
         Spacer(Modifier.weight(1f))
         if (liturgy.audioUrls?.psalm != null) {
+            val psalmLabel = stringResource(R.string.section_psalm_short)
             ListenButton(
                 isPlaying = isPlaying,
                 prominent = false,
@@ -612,7 +645,7 @@ private fun PsalmContent(
                     if (isPlaying) {
                         audioPlayer.togglePlayPause()
                     } else {
-                        audioPlayer.play(liturgy.audioUrls.psalm!!, ReadingType.PSALM, "Psalm")
+                        audioPlayer.play(liturgy.audioUrls.psalm!!, ReadingType.PSALM, psalmLabel)
                     }
                 },
             )
@@ -643,7 +676,7 @@ private fun PsalmContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Response",
+            text = stringResource(R.string.psalm_response_label),
             fontSize = 12.sp,
             color = Slate,
             fontWeight = FontWeight.Medium,
@@ -683,7 +716,7 @@ private fun ReflectionContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize =
         )
         Spacer(Modifier.width(10.dp))
         Text(
-            text = "Reflection",
+            text = stringResource(R.string.section_reflection_title),
             fontSize = 15.sp,
             color = Slate,
         )
@@ -726,7 +759,7 @@ private fun ListenButton(
         )
         Spacer(Modifier.width(6.dp))
         Text(
-            text = if (isPlaying) "Pause" else "Listen",
+            text = stringResource(if (isPlaying) R.string.pause else R.string.listen),
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium,
             color = tint,

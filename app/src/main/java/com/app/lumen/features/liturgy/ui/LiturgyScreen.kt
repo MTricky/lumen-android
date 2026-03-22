@@ -49,6 +49,8 @@ import com.app.lumen.ui.components.ReadingCard
 import com.app.lumen.ui.components.ReflectionCard
 import com.app.lumen.ui.components.SaintCard
 import com.app.lumen.ui.components.VerseCard
+import androidx.compose.ui.res.stringResource
+import com.app.lumen.R
 import com.app.lumen.ui.theme.*
 
 private val HEADER_HEIGHT = 380.dp
@@ -385,7 +387,7 @@ fun LiturgyScreen(
                             contentAlignment = Alignment.Center,
                         ) {
                             GlassButton(
-                                title = "View All Readings",
+                                title = stringResource(R.string.view_all_readings),
                                 icon = Icons.AutoMirrored.Filled.MenuBook,
                                 onClick = {
                                     val firstSection = if (lit.saintOfDay != null) ReadingSection.SAINT
@@ -440,7 +442,7 @@ private fun DayPicker(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = if (day == DaySelection.TODAY) "Today" else "Tomorrow",
+                    text = stringResource(if (day == DaySelection.TODAY) R.string.today else R.string.tomorrow),
                     fontSize = 13.sp,
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                     color = Color.White,

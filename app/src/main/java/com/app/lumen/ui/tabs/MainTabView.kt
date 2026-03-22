@@ -43,21 +43,24 @@ import com.app.lumen.features.liturgy.ui.ReadingSection
 import com.app.lumen.features.liturgy.ui.ReadingsScreen
 import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
+import androidx.compose.ui.res.stringResource
+import com.app.lumen.R
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
+import androidx.annotation.StringRes
 import kotlinx.coroutines.delay
 import kotlin.math.abs
 
 enum class Tab(
-    val label: String,
+    @StringRes val labelRes: Int,
     val icon: ImageVector,
 ) {
-    LITURGY("Liturgy", Icons.AutoMirrored.Filled.MenuBook),
-    BIBLE("Bible", Icons.Filled.Book),
-    PRAYERS("Prayers", Icons.Filled.GridView),
-    CALENDAR("Calendar", Icons.Filled.CalendarMonth),
-    SETTINGS("Settings", Icons.Filled.Settings),
+    LITURGY(R.string.tab_liturgy, Icons.AutoMirrored.Filled.MenuBook),
+    BIBLE(R.string.tab_bible, Icons.Filled.Book),
+    PRAYERS(R.string.tab_prayers, Icons.Filled.GridView),
+    CALENDAR(R.string.tab_calendar, Icons.Filled.CalendarMonth),
+    SETTINGS(R.string.tab_settings, Icons.Filled.Settings),
 }
 
 // Styling
@@ -179,7 +182,7 @@ fun MainTabView() {
                         ) {
                             Icon(
                                 imageVector = selectedTab.icon,
-                                contentDescription = selectedTab.label,
+                                contentDescription = stringResource(selectedTab.labelRes),
                                 tint = SoftGold,
                                 modifier = Modifier.size(24.dp),
                             )
@@ -232,7 +235,7 @@ fun MainTabView() {
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Settings,
-                                contentDescription = "Settings",
+                                contentDescription = stringResource(R.string.cd_settings),
                                 tint = animateColorAsState(
                                     targetValue = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
                                     animationSpec = tween(200),
@@ -332,7 +335,7 @@ fun MainTabView() {
                                         val isSelected = selectedTab == tab
                                         ExpandedTabItem(
                                             icon = tab.icon,
-                                            label = tab.label,
+                                            labelRes = tab.labelRes,
                                             isSelected = isSelected,
                                             onClick = { selectedTab = tab },
                                             modifier = Modifier
@@ -372,7 +375,7 @@ fun MainTabView() {
                             ) {
                                 Icon(
                                     imageVector = Icons.Filled.Settings,
-                                    contentDescription = "Settings",
+                                    contentDescription = stringResource(R.string.cd_settings),
                                     tint = animateColorAsState(
                                     targetValue = if (selectedTab == Tab.SETTINGS) SoftGold else UnselectedTint,
                                     animationSpec = tween(200),
@@ -414,7 +417,7 @@ fun MainTabView() {
 @Composable
 private fun ExpandedTabItem(
     icon: ImageVector,
-    label: String,
+    @StringRes labelRes: Int,
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -436,6 +439,7 @@ private fun ExpandedTabItem(
             .padding(start = 4.dp, end = 4.dp, top = 7.dp, bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        val label = stringResource(labelRes)
         Icon(
             imageVector = icon,
             contentDescription = label,
@@ -593,14 +597,14 @@ private fun PlaceholderScreen(tab: Tab) {
             )
             Spacer(Modifier.height(16.dp))
             Text(
-                text = tab.label,
+                text = stringResource(tab.labelRes),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White.copy(alpha = 0.5f)
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "Coming soon",
+                text = stringResource(R.string.coming_soon),
                 fontSize = 14.sp,
                 color = Slate,
             )
