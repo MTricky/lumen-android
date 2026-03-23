@@ -119,6 +119,18 @@
     <string name="error_api_limit">Daily API limit reached. Please try again tomorrow.</string>
     <string name="error_load_bible_versions">Failed to load Bible versions</string>
 
+    <!-- Rosary -->
+    <string name="rosary_todays_mysteries">Today\'s Mysteries</string>
+    <string name="rosary_joyful">Joyful</string>
+    <string name="rosary_sorrowful">Sorrowful</string>
+    <string name="rosary_glorious">Glorious</string>
+    <string name="rosary_luminous">Luminous</string>
+    <string name="rosary_days_joyful">Monday, Saturday</string>
+    <string name="rosary_days_sorrowful">Tuesday, Friday</string>
+    <string name="rosary_days_glorious">Wednesday, Sunday</string>
+    <string name="rosary_days_luminous">Thursday</string>
+    <string name="rosary_tap_to_start">Tap to start praying\u2026</string>
+
     <!-- Placeholder -->
     <string name="coming_soon">Coming soon</string>
 

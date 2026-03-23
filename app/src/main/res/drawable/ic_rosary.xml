@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="146.094"
+    android:viewportHeight="149.268">
+    <!-- Bottom circle -->
+    <path android:fillColor="@android:color/white"
+        android:pathData="M73.047,149.121C88.037,149.121 100.439,136.719 100.439,121.68C100.439,106.689 88.037,94.287 73.047,94.287C57.861,94.287 45.557,106.689 45.557,121.68C45.557,136.719 57.861,149.121 73.047,149.121Z" />
+    <!-- Right circle -->
+    <path android:fillColor="@android:color/white"
+        android:pathData="M118.701,102.002C133.691,102.002 146.094,89.551 146.094,74.561C146.094,59.57 133.691,47.168 118.701,47.168C103.516,47.168 91.211,59.57 91.211,74.561C91.211,89.551 103.516,102.002 118.701,102.002Z" />
+    <!-- Left circle -->
+    <path android:fillColor="@android:color/white"
+        android:pathData="M27.49,102.002C42.48,102.002 54.834,89.551 54.834,74.561C54.834,59.57 42.48,47.168 27.49,47.168C12.305,47.168 0,59.57 0,74.561C0,89.551 12.305,102.002 27.49,102.002Z" />
+    <!-- Top circle -->
+    <path android:fillColor="@android:color/white"
+        android:pathData="M73.047,54.834C88.037,54.834 100.439,42.432 100.439,27.393C100.439,12.451 88.037,0 73.047,0C57.861,0 45.557,12.451 45.557,27.393C45.557,42.432 57.861,54.834 73.047,54.834Z" />
+</vector>

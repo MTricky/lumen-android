@@ -49,6 +49,8 @@ import com.app.lumen.features.bible.ui.BibleReaderScreen
 import com.app.lumen.features.bible.ui.BibleScreen
 import com.app.lumen.features.bible.service.BibleBookInfo
 import com.app.lumen.features.bible.viewmodel.BibleViewModel
+import com.app.lumen.features.rosary.ui.RosaryScreen
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.lumen.R
@@ -61,13 +63,14 @@ import kotlin.math.abs
 
 enum class Tab(
     @StringRes val labelRes: Int,
-    val icon: ImageVector,
+    val icon: ImageVector? = null,
+    @androidx.annotation.DrawableRes val iconRes: Int? = null,
 ) {
-    LITURGY(R.string.tab_liturgy, Icons.AutoMirrored.Filled.MenuBook),
-    BIBLE(R.string.tab_bible, Icons.Filled.Book),
-    PRAYERS(R.string.tab_prayers, Icons.Filled.GridView),
-    CALENDAR(R.string.tab_calendar, Icons.Filled.CalendarMonth),
-    SETTINGS(R.string.tab_settings, Icons.Filled.Settings),
+    LITURGY(R.string.tab_liturgy, icon = Icons.AutoMirrored.Filled.MenuBook),
+    BIBLE(R.string.tab_bible, icon = Icons.Filled.Book),
+    PRAYERS(R.string.tab_prayers, iconRes = R.drawable.ic_christian_cross),
+    CALENDAR(R.string.tab_calendar, icon = Icons.Filled.CalendarMonth),
+    SETTINGS(R.string.tab_settings, icon = Icons.Filled.Settings),
 }
 
 // Styling
@@ -171,6 +174,9 @@ fun MainTabView() {
                 },
                 bibleViewModel = bibleViewModel,
             )
+            Tab.PRAYERS -> RosaryScreen(
+                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+            )
             else -> PlaceholderScreen(tab = selectedTab)
         }
 
@@ -213,9 +219,8 @@ fun MainTabView() {
                                 .padding(14.dp),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Icon(
-                                imageVector = selectedTab.icon,
-                                contentDescription = stringResource(selectedTab.labelRes),
+                            TabIcon(
+                                tab = selectedTab,
                                 tint = SoftGold,
                                 modifier = Modifier.size(24.dp),
                             )
@@ -367,8 +372,7 @@ fun MainTabView() {
                                     Tab.entries.filter { it != Tab.SETTINGS }.forEach { tab ->
                                         val isSelected = selectedTab == tab
                                         ExpandedTabItem(
-                                            icon = tab.icon,
-                                            labelRes = tab.labelRes,
+                                            tab = tab,
                                             isSelected = isSelected,
                                             onClick = { selectedTab = tab },
                                             modifier = Modifier
@@ -492,9 +496,32 @@ fun MainTabView() {
 }
 
 @Composable
+private fun TabIcon(
+    tab: Tab,
+    tint: Color,
+    modifier: Modifier = Modifier,
+) {
+    val label = stringResource(tab.labelRes)
+    if (tab.iconRes != null) {
+        Icon(
+            painter = painterResource(tab.iconRes),
+            contentDescription = label,
+            tint = tint,
+            modifier = modifier,
+        )
+    } else if (tab.icon != null) {
+        Icon(
+            imageVector = tab.icon,
+            contentDescription = label,
+            tint = tint,
+            modifier = modifier,
+        )
+    }
+}
+
+@Composable
 private fun ExpandedTabItem(
-    icon: ImageVector,
-    @StringRes labelRes: Int,
+    tab: Tab,
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -516,16 +543,14 @@ private fun ExpandedTabItem(
             .padding(start = 4.dp, end = 4.dp, top = 7.dp, bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val label = stringResource(labelRes)
-        Icon(
-            imageVector = icon,
-            contentDescription = label,
+        TabIcon(
+            tab = tab,
             tint = tint,
             modifier = Modifier.size(24.dp),
         )
         Spacer(Modifier.height(2.dp))
         Text(
-            text = label,
+            text = stringResource(tab.labelRes),
             fontSize = 10.sp,
             fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
             color = tint,
@@ -666,11 +691,10 @@ private fun PlaceholderScreen(tab: Tab) {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                imageVector = tab.icon,
-                contentDescription = null,
+            TabIcon(
+                tab = tab,
                 tint = SoftGold.copy(alpha = 0.3f),
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(64.dp),
             )
             Spacer(Modifier.height(16.dp))
             Text(
