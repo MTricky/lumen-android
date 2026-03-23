@@ -1,0 +1,158 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Apostles' Creed",
+      "text": "I believe in God, the Father Almighty, Creator of heaven and earth; and in Jesus Christ, His only Son, our Lord; who was conceived by the Holy Spirit, born of the Virgin Mary; suffered under Pontius Pilate, was crucified, died and was buried. He descended into hell; the third day He rose again from the dead; He ascended into heaven, and sits at the right hand of God, the Father Almighty; from thence He shall come to judge the living and the dead. I believe in the Holy Spirit, the Holy Catholic Church, the communion of Saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen."
+    },
+    "ourFather": {
+      "title": "Our Father",
+      "text": "Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen."
+    },
+    "hailMary": {
+      "title": "Hail Mary",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    },
+    "gloryBe": {
+      "title": "Glory Be",
+      "text": "Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen."
+    },
+    "fatimaPrayer": {
+      "title": "Fatima Prayer",
+      "text": "O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to Heaven, especially those in most need of Thy mercy. Amen."
+    },
+    "hailHolyQueen": {
+      "title": "Hail Holy Queen",
+      "text": "Hail, Holy Queen, Mother of Mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us. And after this our exile, show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary. Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ. Amen."
+    },
+    "finalPrayer": {
+      "title": "Final Prayer",
+      "text": "O God, whose Only Begotten Son, by His life, Death, and Resurrection, has purchased for us the rewards of eternal life, grant, we beseech Thee, that while meditating on these mysteries of the most holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord. Amen."
+    },
+    "introHailMaryFaith": {
+      "title": "Hail Mary (for Faith)",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    },
+    "introHailMaryHope": {
+      "title": "Hail Mary (for Hope)",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    },
+    "introHailMaryCharity": {
+      "title": "Hail Mary (for Charity)",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    }
+  },
+  "mysteries": {
+    "joyful": [
+      {
+        "name": "The Annunciation",
+        "meditation": "The Angel Gabriel announces to Mary that she will conceive and bear the Son of God. Mary humbly accepts God's will, saying 'Behold, I am the handmaid of the Lord; let it be done to me according to your word.'",
+        "fruit": "Humility"
+      },
+      {
+        "name": "The Visitation",
+        "meditation": "Mary visits her cousin Elizabeth, who is pregnant with John the Baptist. Elizabeth is filled with the Holy Spirit and proclaims Mary blessed among women. Mary responds with the Magnificat.",
+        "fruit": "Love of Neighbor"
+      },
+      {
+        "name": "The Nativity",
+        "meditation": "Jesus is born in a stable in Bethlehem. The Savior of the world enters humanity in the most humble circumstances, wrapped in swaddling clothes and laid in a manger.",
+        "fruit": "Poverty of Spirit"
+      },
+      {
+        "name": "The Presentation",
+        "meditation": "Mary and Joseph present the infant Jesus in the Temple. Simeon recognizes Him as the Messiah and prophecies that a sword will pierce Mary's heart.",
+        "fruit": "Obedience"
+      },
+      {
+        "name": "The Finding in the Temple",
+        "meditation": "After three days of searching, Mary and Joseph find the twelve-year-old Jesus in the Temple, sitting among the teachers, listening and asking questions.",
+        "fruit": "Joy in Finding Jesus"
+      }
+    ],
+    "sorrowful": [
+      {
+        "name": "The Agony in the Garden",
+        "meditation": "Jesus prays in the Garden of Gethsemane, sweating blood in His anguish as He contemplates His coming Passion. He prays, 'Father, if it is possible, let this cup pass from me; yet not as I will, but as you will.'",
+        "fruit": "Sorrow for Sin"
+      },
+      {
+        "name": "The Scourging at the Pillar",
+        "meditation": "Jesus is brutally scourged by Roman soldiers. He endures this terrible suffering in silence, offering His pain for our redemption.",
+        "fruit": "Purity"
+      },
+      {
+        "name": "The Crowning with Thorns",
+        "meditation": "The soldiers mock Jesus as King, pressing a crown of thorns onto His head and striking Him. They spit on Him and kneel before Him in ridicule.",
+        "fruit": "Moral Courage"
+      },
+      {
+        "name": "The Carrying of the Cross",
+        "meditation": "Jesus carries His heavy cross through the streets of Jerusalem toward Calvary. He falls three times but continues, meeting His sorrowful Mother along the way.",
+        "fruit": "Patience"
+      },
+      {
+        "name": "The Crucifixion",
+        "meditation": "Jesus is nailed to the cross and dies after three hours of agony. He forgives His executioners and promises paradise to the repentant thief. He entrusts Mary to John and John to Mary.",
+        "fruit": "Perseverance"
+      }
+    ],
+    "glorious": [
+      {
+        "name": "The Resurrection",
+        "meditation": "On the third day, Jesus rises from the dead, conquering sin and death. The tomb is empty, and He appears to Mary Magdalene and the disciples.",
+        "fruit": "Faith"
+      },
+      {
+        "name": "The Ascension",
+        "meditation": "Forty days after His Resurrection, Jesus ascends into heaven in the presence of His disciples. He promises to send the Holy Spirit and to be with them always.",
+        "fruit": "Hope"
+      },
+      {
+        "name": "The Descent of the Holy Spirit",
+        "meditation": "On Pentecost, the Holy Spirit descends upon Mary and the Apostles as tongues of fire. They are filled with courage and begin to preach the Gospel.",
+        "fruit": "Love of God"
+      },
+      {
+        "name": "The Assumption",
+        "meditation": "At the end of her earthly life, Mary is assumed body and soul into heavenly glory. She is taken up to be with her Son forever.",
+        "fruit": "Grace of a Happy Death"
+      },
+      {
+        "name": "The Coronation",
+        "meditation": "Mary is crowned Queen of Heaven and Earth by her Son. She reigns with Christ and intercedes for all her children on earth.",
+        "fruit": "Trust in Mary's Intercession"
+      }
+    ],
+    "luminous": [
+      {
+        "name": "The Baptism in the Jordan",
+        "meditation": "Jesus is baptized by John in the Jordan River. The heavens open, the Spirit descends like a dove, and the Father's voice proclaims, 'This is my beloved Son.'",
+        "fruit": "Openness to the Holy Spirit"
+      },
+      {
+        "name": "The Wedding at Cana",
+        "meditation": "At Mary's request, Jesus performs His first miracle, changing water into wine. Mary tells the servants, 'Do whatever He tells you.'",
+        "fruit": "To Jesus Through Mary"
+      },
+      {
+        "name": "The Proclamation of the Kingdom",
+        "meditation": "Jesus proclaims the Kingdom of God and calls all to conversion. He teaches with authority and performs signs and wonders.",
+        "fruit": "Repentance and Trust in God"
+      },
+      {
+        "name": "The Transfiguration",
+        "meditation": "Jesus is transfigured on Mount Tabor before Peter, James, and John. His face shines like the sun and His garments become white as light.",
+        "fruit": "Desire for Holiness"
+      },
+      {
+        "name": "The Institution of the Eucharist",
+        "meditation": "At the Last Supper, Jesus institutes the Eucharist, giving His Body and Blood under the appearances of bread and wine. He commands His Apostles, 'Do this in memory of me.'",
+        "fruit": "Adoration"
+      }
+    ]
+  }
+}

@@ -130,6 +130,34 @@
     <string name="rosary_days_glorious">Wednesday, Sunday</string>
     <string name="rosary_days_luminous">Thursday</string>
     <string name="rosary_tap_to_start">Tap to start praying\u2026</string>
+    <string name="rosary_the_holy_rosary">THE HOLY ROSARY</string>
+    <string name="rosary_tap_to_begin">Tap to begin</string>
+    <string name="rosary_tap_to_continue">Tap anywhere to continue</string>
+    <string name="rosary_close">Close</string>
+    <string name="rosary_previous">Previous</string>
+    <string name="rosary_next">Next</string>
+    <string name="rosary_decade_of">Decade %1$d of %2$d</string>
+    <string name="rosary_hail_mary_of">Hail Mary %1$d of %2$d</string>
+    <string name="rosary_mystery_number">%1$d%2$s MYSTERY</string>
+    <string name="rosary_ordinal_1">st</string>
+    <string name="rosary_ordinal_2">nd</string>
+    <string name="rosary_ordinal_3">rd</string>
+    <string name="rosary_ordinal_other">th</string>
+    <string name="rosary_fruit">Fruit: %1$s</string>
+    <string name="rosary_completed">Rosary Complete</string>
+    <string name="rosary_completed_message">May the prayers you have offered bring you peace and draw you closer to God through the intercession of the Blessed Virgin Mary.</string>
+    <string name="rosary_done">Done</string>
+    <string name="rosary_progress_remaining">%1$d prayers remaining · %2$d%% complete</string>
+    <string name="rosary_almost_done">Almost done!</string>
+    <string name="rosary_section_sign_of_cross">Sign of the Cross</string>
+    <string name="rosary_section_apostles_creed">Apostles\' Creed</string>
+    <string name="rosary_section_our_father">Our Father</string>
+    <string name="rosary_section_hail_mary">Hail Mary</string>
+    <string name="rosary_section_glory_be">Glory Be</string>
+    <string name="rosary_section_fatima_prayer">Fatima Prayer</string>
+    <string name="rosary_section_mystery">Mystery</string>
+    <string name="rosary_section_hail_holy_queen">Hail Holy Queen</string>
+    <string name="rosary_section_final_prayer">Final Prayer</string>
 
     <!-- Placeholder -->
     <string name="coming_soon">Coming soon</string>

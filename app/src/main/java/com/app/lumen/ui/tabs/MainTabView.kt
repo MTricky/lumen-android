@@ -142,6 +142,11 @@ fun MainTabView() {
     var selectedBibleBook by remember { mutableStateOf<BibleBook?>(null) }
     var selectedBibleBookInfo by remember { mutableStateOf<BibleBookInfo?>(null) }
 
+    // Rosary prayer navigation state
+    val rosaryViewModel: com.app.lumen.features.rosary.viewmodel.RosaryViewModel = viewModel()
+    var showRosaryPrayer by remember { mutableStateOf(false) }
+    var showRosaryCompletion by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -176,6 +181,11 @@ fun MainTabView() {
             )
             Tab.PRAYERS -> RosaryScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                onMysterySelected = { mysteryType ->
+                    rosaryViewModel.loadPrayers()
+                    rosaryViewModel.startRosary(mysteryType)
+                    showRosaryPrayer = true
+                },
             )
             else -> PlaceholderScreen(tab = selectedTab)
         }
@@ -491,6 +501,46 @@ fun MainTabView() {
                     onBack = { showBibleReader = false },
                 )
             }
+        }
+
+        // Rosary prayer overlay — stays visible during completion to prevent flash
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showRosaryPrayer || showRosaryCompletion,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            com.app.lumen.features.rosary.ui.RosaryPrayerScreen(
+                viewModel = rosaryViewModel,
+                onBack = {
+                    showRosaryPrayer = false
+                    rosaryViewModel.reset()
+                },
+                onComplete = {
+                    showRosaryCompletion = true
+                },
+            )
+        }
+
+        // Rosary completion overlay — on top of prayer screen
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showRosaryCompletion,
+            enter = fadeIn(tween(300)),
+            exit = fadeOut(tween(300)),
+        ) {
+            com.app.lumen.features.rosary.ui.RosaryCompletionScreen(
+                viewModel = rosaryViewModel,
+                onDone = {
+                    showRosaryCompletion = false
+                    showRosaryPrayer = false
+                    rosaryViewModel.reset()
+                },
+            )
         }
     }
 }

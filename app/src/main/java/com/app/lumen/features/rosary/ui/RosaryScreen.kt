@@ -44,6 +44,7 @@ private val HeaderHeight = 460.dp
 @Composable
 fun RosaryScreen(
     bottomPadding: Dp = 100.dp,
+    onMysterySelected: (MysteryType) -> Unit = {},
 ) {
     val todaysMystery = remember { MysteryType.forToday() }
     val otherMysteries = remember {
@@ -71,11 +72,11 @@ fun RosaryScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 // Today's mystery - prominent card
-                TodaysMysteryCard(todaysMystery)
+                TodaysMysteryCard(todaysMystery, onMysterySelected)
 
                 // Other mysteries
                 otherMysteries.forEach { mysteryType ->
-                    MysteryCard(mysteryType)
+                    MysteryCard(mysteryType, onMysterySelected)
                 }
 
                 Spacer(Modifier.height(bottomPadding))
@@ -179,14 +180,14 @@ private fun HeaderSection(todaysMystery: MysteryType) {
 }
 
 @Composable
-private fun TodaysMysteryCard(mysteryType: MysteryType) {
+private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .background(CardBg)
-            .clickable { /* TODO: navigate to prayer */ }
+            .clickable { onMysterySelected(mysteryType) }
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -248,14 +249,14 @@ private fun TodaysMysteryCard(mysteryType: MysteryType) {
 }
 
 @Composable
-private fun MysteryCard(mysteryType: MysteryType) {
+private fun MysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .background(CardBg)
-            .clickable { /* TODO: navigate to prayer */ }
+            .clickable { onMysterySelected(mysteryType) }
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
