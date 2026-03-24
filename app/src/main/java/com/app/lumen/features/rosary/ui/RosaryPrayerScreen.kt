@@ -430,6 +430,7 @@ private fun MysteryAnnouncementScreen(
                     Text(
                         text = mystery.name,
                         fontSize = 28.sp,
+                        lineHeight = 34.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                         textAlign = TextAlign.Center,
