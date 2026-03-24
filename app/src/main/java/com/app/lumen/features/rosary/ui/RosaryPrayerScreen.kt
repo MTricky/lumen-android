@@ -39,12 +39,17 @@ import com.app.lumen.features.rosary.model.*
 import com.app.lumen.features.rosary.viewmodel.RosaryViewModel
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
+import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-private val GlassBg = Color(0xFF2E2A24).copy(alpha = 0.88f)
-private val GlassBorder = Color.White.copy(alpha = 0.15f)
+// Sacred Art mode: subtle warm glass with gold border
+private val GlassBg = Color(0xFF2A2A2E).copy(alpha = 0.86f)
+private val GlassBorder = SoftGold.copy(alpha = 0.20f)
+// Simple mode: cool dark glass that blends with NearBlack
+private val SimpleGlassBg = Color(0xFF1E1E32).copy(alpha = 0.85f)
+private val SimpleGlassBorder = Color.White.copy(alpha = 0.10f)
 private val ButtonGlassBg = Color.White.copy(alpha = 0.12f)
 private val ButtonGlassBorder = Color.White.copy(alpha = 0.20f)
 
@@ -76,10 +81,16 @@ fun RosaryPrayerScreen(
     val isIntro = step is RosaryPrayerStep.Intro
     val isMystery = step?.isMysteryAnnouncement == true
 
-    val backgroundRes = if (step != null && mysteryType != null) {
-        RosaryBackgroundManager.background(step, mysteryType)
-    } else {
+    val context = LocalContext.current
+    val visualMode = remember { RosaryVisualMode.current(context) }
+    val isSimple = visualMode == RosaryVisualMode.SIMPLE
+
+    val backgroundRes: Int? = if (step != null && mysteryType != null) {
+        RosaryBackgroundManager.background(step, mysteryType, visualMode)
+    } else if (!isSimple) {
         R.drawable.mystery_joyful
+    } else {
+        null
     }
 
     // When the step changes and contentVisible is false, wait one frame then show.
@@ -157,24 +168,26 @@ fun RosaryPrayerScreen(
             .fillMaxSize()
             .background(NearBlack),
     ) {
-        // Background image with crossfade
-        Crossfade(
-            targetState = backgroundRes,
-            animationSpec = tween(CROSSFADE_MS),
-            label = "bg_crossfade",
-        ) { bgRes ->
-            Box(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(bgRes),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize(),
-                )
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.35f)),
-                )
+        // Background: sacred art image with crossfade, or plain dark
+        if (backgroundRes != null) {
+            Crossfade(
+                targetState = backgroundRes,
+                animationSpec = tween(CROSSFADE_MS),
+                label = "bg_crossfade",
+            ) { bgRes ->
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Image(
+                        painter = painterResource(bgRes),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Black.copy(alpha = 0.25f)),
+                    )
+                }
             }
         }
 
@@ -185,12 +198,13 @@ fun RosaryPrayerScreen(
                 enter = fadeIn(tween(450, easing = FastOutSlowInEasing)),
                 exit = fadeOut(tween(350, easing = FastOutSlowInEasing)),
             ) {
-                IntroContent(mysteryType = mysteryType, onTap = onTapAdvance)
+                IntroContent(mysteryType = mysteryType, isSimple = isSimple, onTap = onTapAdvance)
             }
         } else if (isMystery) {
             MysteryAnnouncementScreen(
                 mystery = mystery,
                 decade = step?.getDecade() ?: 1,
+                isSimple = isSimple,
                 contentVisible = contentVisible,
                 enterAnim = enterAnim,
                 exitAnim = exitAnim,
@@ -200,6 +214,7 @@ fun RosaryPrayerScreen(
             PrayerScreen(
                 prayer = prayer,
                 progress = progress,
+                isSimple = isSimple,
                 contentVisible = contentVisible,
                 enterAnim = enterAnim,
                 exitAnim = exitAnim,
@@ -282,12 +297,14 @@ fun RosaryPrayerScreen(
     }
 }
 
-private fun Modifier.glassBackground(cornerRadius: Float = 20f): Modifier {
+private fun Modifier.glassBackground(cornerRadius: Float = 20f, isSimple: Boolean = false): Modifier {
     val shape = RoundedCornerShape(cornerRadius.dp)
+    val bg = if (isSimple) SimpleGlassBg else GlassBg
+    val border = if (isSimple) SimpleGlassBorder else GlassBorder
     return this
         .clip(shape)
-        .background(GlassBg)
-        .border(0.5.dp, GlassBorder, shape)
+        .background(bg)
+        .border(0.5.dp, border, shape)
 }
 
 // --- Standard Prayer ---
@@ -296,6 +313,7 @@ private fun Modifier.glassBackground(cornerRadius: Float = 20f): Modifier {
 private fun PrayerScreen(
     prayer: Prayer?,
     progress: RosaryProgress?,
+    isSimple: Boolean,
     contentVisible: Boolean,
     enterAnim: EnterTransition,
     exitAnim: ExitTransition,
@@ -313,6 +331,7 @@ private fun PrayerScreen(
         // Progress panel — scrolls with content
         RosaryProgressPanel(
             progress = progress,
+            isSimple = isSimple,
             modifier = Modifier.padding(horizontal = 20.dp),
         )
 
@@ -326,7 +345,7 @@ private fun PrayerScreen(
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 if (prayer != null) {
-                    PrayerTextContent(prayer = prayer)
+                    PrayerTextContent(prayer = prayer, isSimple = isSimple)
                 }
 
                 Spacer(Modifier.height(16.dp))
@@ -349,6 +368,7 @@ private fun PrayerScreen(
 private fun MysteryAnnouncementScreen(
     mystery: Mystery?,
     decade: Int,
+    isSimple: Boolean,
     contentVisible: Boolean,
     enterAnim: EnterTransition,
     exitAnim: ExitTransition,
@@ -359,28 +379,31 @@ private fun MysteryAnnouncementScreen(
             .fillMaxSize()
             .tapToAdvance(onTap),
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.55f)
-                .align(Alignment.BottomCenter)
-                .background(
-                    Brush.verticalGradient(
-                        colorStops = arrayOf(
-                            0.0f to Color.Black.copy(alpha = 0f),
-                            0.2f to Color.Black.copy(alpha = 0.25f),
-                            0.5f to Color.Black.copy(alpha = 0.5f),
-                            1.0f to Color.Black.copy(alpha = 0.7f),
+        // Gradient overlay only needed for Sacred Art mode
+        if (!isSimple) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.55f)
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        Brush.verticalGradient(
+                            colorStops = arrayOf(
+                                0.0f to Color.Black.copy(alpha = 0f),
+                                0.2f to Color.Black.copy(alpha = 0.25f),
+                                0.5f to Color.Black.copy(alpha = 0.5f),
+                                1.0f to Color.Black.copy(alpha = 0.7f),
+                            )
                         )
-                    )
-                ),
-        )
+                    ),
+            )
+        }
 
         AnimatedVisibility(
             visible = contentVisible,
             enter = enterAnim,
             exit = exitAnim,
-            modifier = Modifier.align(Alignment.BottomCenter),
+            modifier = Modifier.align(if (isSimple) Alignment.Center else Alignment.BottomCenter),
         ) {
             if (mystery != null) {
                 Column(
@@ -448,6 +471,7 @@ private fun MysteryAnnouncementScreen(
 @Composable
 private fun IntroContent(
     mysteryType: MysteryType?,
+    isSimple: Boolean,
     onTap: () -> Unit,
 ) {
     Box(
@@ -455,28 +479,31 @@ private fun IntroContent(
             .fillMaxSize()
             .tapToAdvance(onTap),
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.5f)
-                .align(Alignment.BottomCenter)
-                .background(
-                    Brush.verticalGradient(
-                        colorStops = arrayOf(
-                            0.0f to Color.Black.copy(alpha = 0f),
-                            0.3f to Color.Black.copy(alpha = 0.3f),
-                            0.6f to Color.Black.copy(alpha = 0.6f),
-                            1.0f to Color.Black.copy(alpha = 0.85f),
+        // Gradient overlay only for Sacred Art
+        if (!isSimple) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.5f)
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        Brush.verticalGradient(
+                            colorStops = arrayOf(
+                                0.0f to Color.Black.copy(alpha = 0f),
+                                0.3f to Color.Black.copy(alpha = 0.3f),
+                                0.6f to Color.Black.copy(alpha = 0.6f),
+                                1.0f to Color.Black.copy(alpha = 0.85f),
+                            )
                         )
-                    )
-                ),
-        )
+                    ),
+            )
+        }
 
         Column(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
+                .align(if (isSimple) Alignment.Center else Alignment.BottomCenter)
                 .padding(horizontal = 32.dp)
-                .padding(bottom = 80.dp),
+                .then(if (!isSimple) Modifier.padding(bottom = 80.dp) else Modifier),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
@@ -540,11 +567,11 @@ private fun Modifier.tapToAdvance(onTap: () -> Unit) = this.clickable(
 )
 
 @Composable
-private fun PrayerTextContent(prayer: Prayer) {
+private fun PrayerTextContent(prayer: Prayer, isSimple: Boolean = false) {
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
-            .glassBackground(cornerRadius = 20f)
+            .glassBackground(cornerRadius = 20f, isSimple = isSimple)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),

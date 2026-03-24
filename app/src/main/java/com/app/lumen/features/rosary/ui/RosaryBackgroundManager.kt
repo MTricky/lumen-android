@@ -1,14 +1,35 @@
 package com.app.lumen.features.rosary.ui
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import com.app.lumen.R
 import com.app.lumen.features.rosary.model.MysteryType
 import com.app.lumen.features.rosary.model.RosaryPrayerStep
 
+enum class RosaryVisualMode(val key: String, val displayName: String) {
+    SACRED_ART("Sacred Art", "Sacred Art"),
+    SIMPLE("Simple", "Simple");
+
+    companion object {
+        private const val PREFS_NAME = "rosary_prefs"
+        private const val KEY = "visual_style"
+
+        fun current(context: Context): RosaryVisualMode {
+            val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val stored = prefs.getString(KEY, SACRED_ART.key) ?: SACRED_ART.key
+            return entries.firstOrNull { it.key == stored } ?: SACRED_ART
+        }
+    }
+}
+
 object RosaryBackgroundManager {
 
+    /**
+     * Returns the background drawable for the current prayer step, or null if visual mode is Simple.
+     */
     @DrawableRes
-    fun background(step: RosaryPrayerStep, mysteryType: MysteryType?): Int {
+    fun background(step: RosaryPrayerStep, mysteryType: MysteryType?, visualMode: RosaryVisualMode = RosaryVisualMode.SACRED_ART): Int? {
+        if (visualMode == RosaryVisualMode.SIMPLE) return null
         val type = mysteryType ?: return introImage(MysteryType.JOYFUL)
 
         return when (step) {

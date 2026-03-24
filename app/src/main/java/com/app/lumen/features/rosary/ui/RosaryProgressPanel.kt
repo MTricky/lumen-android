@@ -21,8 +21,12 @@ import com.app.lumen.features.rosary.model.RosaryPrayerStep
 import com.app.lumen.features.rosary.model.RosaryProgress
 import com.app.lumen.ui.theme.SoftGold
 
-private val PanelBg = Color(0xFF2E2A24).copy(alpha = 0.88f)
-private val PanelBorder = Color.White.copy(alpha = 0.15f)
+// Sacred Art mode: subtle warm glass with gold border
+private val PanelBg = Color(0xFF2A2A2E).copy(alpha = 0.86f)
+private val PanelBorder = SoftGold.copy(alpha = 0.20f)
+// Simple mode: cool dark glass matching NearBlack
+private val SimplePanelBg = Color(0xFF1E1E32).copy(alpha = 0.85f)
+private val SimplePanelBorder = Color.White.copy(alpha = 0.10f)
 private val ProgressTrack = Color.White.copy(alpha = 0.15f)
 
 private val PanelShape = RoundedCornerShape(16.dp)
@@ -30,6 +34,7 @@ private val PanelShape = RoundedCornerShape(16.dp)
 @Composable
 fun RosaryProgressPanel(
     progress: RosaryProgress?,
+    isSimple: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
     if (progress == null) return
@@ -38,12 +43,15 @@ fun RosaryProgressPanel(
     val decade = step.getDecade()
     val hailMaryCount = step.getHailMaryCount()
 
+    val bg = if (isSimple) SimplePanelBg else PanelBg
+    val border = if (isSimple) SimplePanelBorder else PanelBorder
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .clip(PanelShape)
-            .background(PanelBg)
-            .border(0.5.dp, PanelBorder, PanelShape)
+            .background(bg)
+            .border(0.5.dp, border, PanelShape)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {

@@ -50,6 +50,7 @@ import com.app.lumen.features.bible.ui.BibleScreen
 import com.app.lumen.features.bible.service.BibleBookInfo
 import com.app.lumen.features.bible.viewmodel.BibleViewModel
 import com.app.lumen.features.rosary.ui.RosaryScreen
+import com.app.lumen.features.settings.ui.SettingsScreen
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -186,6 +187,9 @@ fun MainTabView() {
                     rosaryViewModel.startRosary(mysteryType)
                     showRosaryPrayer = true
                 },
+            )
+            Tab.SETTINGS -> SettingsScreen(
+                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
             )
             else -> PlaceholderScreen(tab = selectedTab)
         }

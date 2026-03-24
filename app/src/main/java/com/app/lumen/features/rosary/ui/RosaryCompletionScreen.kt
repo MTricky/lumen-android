@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import com.app.lumen.R
 import com.app.lumen.features.rosary.viewmodel.RosaryViewModel
 import com.app.lumen.ui.theme.NearBlack
@@ -40,27 +42,30 @@ fun RosaryCompletionScreen(
 ) {
     val mysteryType by viewModel.selectedMysteryType.collectAsState()
 
-    // Dedicated rosary completion background (same as iOS)
-    val backgroundRes = R.drawable.rosary_completion_bg
+    val context = LocalContext.current
+    val visualMode = remember { RosaryVisualMode.current(context) }
+    val isSimple = visualMode == RosaryVisualMode.SIMPLE
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(NearBlack),
     ) {
-        // Background image
-        Image(
-            painter = painterResource(backgroundRes),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize(),
-        )
-        // Dark overlay
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.3f)),
-        )
+        // Background image (only for Sacred Art mode)
+        if (!isSimple) {
+            Image(
+                painter = painterResource(R.drawable.rosary_completion_bg),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+            )
+            // Dark overlay
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.3f)),
+            )
+        }
 
         Column(
             modifier = Modifier
