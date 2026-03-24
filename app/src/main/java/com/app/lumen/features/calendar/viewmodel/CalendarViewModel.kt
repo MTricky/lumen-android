@@ -46,6 +46,13 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     private val _notesLoading = MutableStateFlow(true)
     val notesLoading: StateFlow<Boolean> = _notesLoading.asStateFlow()
 
+    // Dates that have notes or reminders (for calendar indicators)
+    private val _noteDates = MutableStateFlow<Set<Long>>(emptySet())
+    val noteDates: StateFlow<Set<Long>> = _noteDates.asStateFlow()
+
+    private val _reminderDates = MutableStateFlow<Set<Long>>(emptySet())
+    val reminderDates: StateFlow<Set<Long>> = _reminderDates.asStateFlow()
+
     // Day detail data
     private val _dayNotes = MutableStateFlow<List<Note>>(emptyList())
     val dayNotes: StateFlow<List<Note>> = _dayNotes.asStateFlow()
@@ -152,6 +159,16 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
             _allNotes.value = storageService.allNotes()
             _upcomingReminders.value = storageService.upcomingReminders()
             storageService.cleanupPastReminders()
+
+            // Load date sets for calendar indicators
+            val cal = Calendar.getInstance()
+            cal.add(Calendar.YEAR, -1)
+            val from = cal.time
+            cal.add(Calendar.YEAR, 3)
+            val to = cal.time
+            _noteDates.value = storageService.datesWithNotes(from, to)
+            _reminderDates.value = storageService.datesWithReminders(from, to)
+
             _notesLoading.value = false
         }
     }

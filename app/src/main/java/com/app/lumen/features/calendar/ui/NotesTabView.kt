@@ -8,6 +8,8 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -332,12 +334,15 @@ private fun NoteDateHeader(date: Date) {
 
 // MARK: - Reminder Row
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ReminderRow(
     reminder: Reminder,
     onTap: () -> Unit,
     onDelete: () -> Unit
 ) {
+    var showMenu by remember { mutableStateOf(false) }
+
     val cal = Calendar.getInstance()
     val today = Calendar.getInstance()
 
@@ -361,72 +366,101 @@ private fun ReminderRow(
         else -> SimpleDateFormat("d MMM", Locale.getDefault()).format(reminder.date)
     }
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onTap)
-            .padding(horizontal = 20.dp, vertical = 14.dp)
-    ) {
-        ReminderTypeIcon(
-            type = reminder.type,
-            tint = SoftGold,
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.width(14.dp))
-
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = reminder.title,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.White,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+    Box {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .combinedClickable(
+                    onClick = onTap,
+                    onLongClick = { showMenu = true }
+                )
+                .padding(horizontal = 20.dp, vertical = 14.dp)
+        ) {
+            ReminderTypeIcon(
+                type = reminder.type,
+                tint = SoftGold,
+                modifier = Modifier.size(24.dp)
             )
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Spacer(modifier = Modifier.width(14.dp))
+
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = dateLabel,
-                    fontSize = 12.sp,
-                    color = if (isToday) SoftGold else Slate
+                    text = reminder.title,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                Icon(
-                    imageVector = Icons.Filled.Schedule,
-                    contentDescription = null,
-                    tint = Slate,
-                    modifier = Modifier.size(12.dp)
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = reminder.formattedTime(),
-                    fontSize = 12.sp,
-                    color = Slate
-                )
-                if (!reminder.notes.isNullOrBlank()) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = dateLabel,
+                        fontSize = 12.sp,
+                        color = if (isToday) SoftGold else Slate
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Icon(
-                        imageVector = Icons.Filled.Description,
+                        imageVector = Icons.Filled.Schedule,
                         contentDescription = null,
-                        tint = Slate.copy(alpha = 0.8f),
+                        tint = Slate,
                         modifier = Modifier.size(12.dp)
                     )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = reminder.formattedTime(),
+                        fontSize = 12.sp,
+                        color = Slate
+                    )
+                    if (!reminder.notes.isNullOrBlank()) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(
+                            imageVector = Icons.Filled.Description,
+                            contentDescription = null,
+                            tint = Slate.copy(alpha = 0.8f),
+                            modifier = Modifier.size(12.dp)
+                        )
+                    }
                 }
             }
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = null,
+                tint = Slate,
+                modifier = Modifier.size(16.dp)
+            )
         }
 
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-            contentDescription = null,
-            tint = Slate,
-            modifier = Modifier.size(16.dp)
-        )
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false },
+            containerColor = CardBackground
+        ) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.edit), color = Color.White) },
+                leadingIcon = { Icon(Icons.Filled.Edit, contentDescription = null, tint = SoftGold) },
+                onClick = {
+                    showMenu = false
+                    onTap()
+                }
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.delete), color = Color.Red) },
+                leadingIcon = { Icon(Icons.Filled.Delete, contentDescription = null, tint = Color.Red) },
+                onClick = {
+                    showMenu = false
+                    onDelete()
+                }
+            )
+        }
     }
 }
 
 // MARK: - Note Row
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun NoteRow(
     note: Note,
@@ -434,89 +468,119 @@ private fun NoteRow(
     onTap: () -> Unit,
     onDelete: () -> Unit
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onTap)
-            .padding(horizontal = 20.dp, vertical = 14.dp)
-    ) {
-        Icon(
-            imageVector = noteTypeIcon(note.type),
-            contentDescription = null,
-            tint = SoftGold,
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.width(14.dp))
+    var showMenu by remember { mutableStateOf(false) }
 
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = note.title,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.White,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+    Box {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .combinedClickable(
+                    onClick = onTap,
+                    onLongClick = { showMenu = true }
+                )
+                .padding(horizontal = 20.dp, vertical = 14.dp)
+        ) {
+            Icon(
+                imageVector = noteTypeIcon(note.type),
+                contentDescription = null,
+                tint = SoftGold,
+                modifier = Modifier.size(24.dp)
             )
+            Spacer(modifier = Modifier.width(14.dp))
 
-            if (!note.content.isNullOrBlank()) {
-                Spacer(modifier = Modifier.height(2.dp))
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = note.content,
-                    fontSize = 12.sp,
-                    color = Slate,
+                    text = note.title,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
-            }
 
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                // Type badge
-                Text(
-                    text = noteTypeLabel(note.type),
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Slate,
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(50))
-                        .background(Color.White.copy(alpha = 0.1f))
-                        .padding(horizontal = 8.dp, vertical = 3.dp)
-                )
+                if (!note.content.isNullOrBlank()) {
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = note.content,
+                        fontSize = 12.sp,
+                        color = Slate,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
 
-                // Liturgical season badge
-                if (liturgicalDay != null) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    // Type badge
+                    Text(
+                        text = noteTypeLabel(note.type),
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Slate,
                         modifier = Modifier
                             .clip(RoundedCornerShape(50))
                             .background(Color.White.copy(alpha = 0.1f))
-                            .padding(horizontal = 6.dp, vertical = 3.dp)
-                    ) {
-                        Box(
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+
+                    // Liturgical season badge
+                    if (liturgicalDay != null) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
-                                .size(6.dp)
-                                .clip(CircleShape)
-                                .background(liturgicalDay.color.color)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = liturgicalDay.season.rawValue,
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Medium,
-                            color = Slate
-                        )
+                                .clip(RoundedCornerShape(50))
+                                .background(Color.White.copy(alpha = 0.1f))
+                                .padding(horizontal = 6.dp, vertical = 3.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(6.dp)
+                                    .clip(CircleShape)
+                                    .background(liturgicalDay.color.color)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = liturgicalDay.season.rawValue,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Slate
+                            )
+                        }
                     }
                 }
             }
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = null,
+                tint = Slate,
+                modifier = Modifier.size(16.dp)
+            )
         }
 
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-            contentDescription = null,
-            tint = Slate,
-            modifier = Modifier.size(16.dp)
-        )
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false },
+            containerColor = CardBackground
+        ) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.edit), color = Color.White) },
+                leadingIcon = { Icon(Icons.Filled.Edit, contentDescription = null, tint = SoftGold) },
+                onClick = {
+                    showMenu = false
+                    onTap()
+                }
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.delete), color = Color.Red) },
+                leadingIcon = { Icon(Icons.Filled.Delete, contentDescription = null, tint = Color.Red) },
+                onClick = {
+                    showMenu = false
+                    onDelete()
+                }
+            )
+        }
     }
 }
 

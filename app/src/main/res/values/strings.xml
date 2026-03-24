@@ -205,6 +205,7 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="set">Set</string>
+    <string name="edit">Edit</string>
     <string name="delete">Delete</string>
 
     <!-- Note types -->
@@ -234,6 +235,7 @@
     <string name="note_field_content">Notes (optional)</string>
     <string name="note_delete_title">Delete Note</string>
     <string name="note_delete_message">Are you sure you want to delete this note?</string>
+    <string name="note_delete_action">Delete Note</string>
     <string name="notes_search_placeholder">Search notes</string>
     <string name="notes_section_plans">Future Plans</string>
     <string name="notes_section_notes">Notes</string>

@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
@@ -38,6 +39,7 @@ fun NoteSheet(
     noteType: NoteType,
     existingNote: Note?,
     onSave: (NoteType, Date, String, String?) -> Unit,
+    onDelete: (() -> Unit)? = null,
     onDismiss: () -> Unit
 ) {
     val isEditing = existingNote != null
@@ -47,6 +49,29 @@ fun NoteSheet(
     var title by remember { mutableStateOf(existingNote?.title ?: "") }
     var content by remember { mutableStateOf(existingNote?.content ?: "") }
     var isSaving by remember { mutableStateOf(false) }
+    var showDeleteConfirmation by remember { mutableStateOf(false) }
+
+    if (showDeleteConfirmation && onDelete != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteConfirmation = false },
+            title = { Text(stringResource(R.string.note_delete_title)) },
+            text = { Text(stringResource(R.string.note_delete_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteConfirmation = false
+                        onDelete()
+                    },
+                    colors = ButtonDefaults.textButtonColors(contentColor = Color.Red)
+                ) { Text(stringResource(R.string.delete)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteConfirmation = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            }
+        )
+    }
 
     val canSave = title.isNotBlank() && !isSaving
 
@@ -272,6 +297,27 @@ fun NoteSheet(
                     text = stringResource(R.string.save),
                     fontWeight = FontWeight.SemiBold
                 )
+            }
+        }
+
+        // Delete button (editing only)
+        if (isEditing && onDelete != null) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(0.5.dp)
+                    .background(Color.White.copy(alpha = 0.12f))
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            TextButton(
+                onClick = { showDeleteConfirmation = true },
+                colors = ButtonDefaults.textButtonColors(contentColor = Color.Red),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(stringResource(R.string.note_delete_action), fontWeight = FontWeight.Medium)
             }
         }
     }

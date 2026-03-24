@@ -15,6 +15,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.ui.res.stringResource
@@ -79,6 +81,8 @@ fun CalendarScreen(
     val notesLoading by viewModel.notesLoading.collectAsState()
     val dayNotes by viewModel.dayNotes.collectAsState()
     val dayReminders by viewModel.dayReminders.collectAsState()
+    val noteDates by viewModel.noteDates.collectAsState()
+    val reminderDates by viewModel.reminderDates.collectAsState()
 
     // Bottom sheet state
     var selectedDay by remember { mutableStateOf<CalendarDayDisplay?>(null) }
@@ -265,6 +269,13 @@ fun CalendarScreen(
                     showNoteSheet = false
                     editingNote = null
                 },
+                onDelete = if (editingNote != null) {
+                    {
+                        viewModel.deleteNote(editingNote!!)
+                        showNoteSheet = false
+                        editingNote = null
+                    }
+                } else null,
                 onDismiss = {
                     showNoteSheet = false
                     editingNote = null
@@ -402,6 +413,8 @@ fun CalendarScreen(
                                 ) { _, monthData ->
                                     MonthContentView(
                                         monthData = monthData,
+                                        noteDates = noteDates,
+                                        reminderDates = reminderDates,
                                         onDayTapped = { day -> selectedDay = day }
                                     )
                                 }
@@ -696,7 +709,7 @@ private fun CalendarSegmentedPicker(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .padding(bottom = 8.dp)
+            .padding(bottom = 12.dp)
             .height(36.dp)
             .clip(RoundedCornerShape(50))
             .background(Color.White.copy(alpha = 0.08f)),
@@ -724,7 +737,7 @@ private fun CalendarSegmentedPicker(
                     text = stringResource(tab.labelRes),
                     fontSize = 13.sp,
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-                    color = if (isSelected) NearBlack else Color.White
+                    color = Color.White
                 )
             }
         }
@@ -808,6 +821,8 @@ private fun CalendarStickyHeader(
 @Composable
 private fun MonthContentView(
     monthData: MonthData,
+    noteDates: Set<Long>,
+    reminderDates: Set<Long>,
     onDayTapped: (CalendarDayDisplay) -> Unit
 ) {
     val cellHeight = 54.dp
@@ -857,8 +872,19 @@ private fun MonthContentView(
                         if (dayIndex < monthData.days.size) {
                             val day = monthData.days[dayIndex]
                             if (!day.isPlaceholder) {
+                                val dayStart = remember(day.id) {
+                                    val cal = Calendar.getInstance()
+                                    cal.time = day.date
+                                    cal.set(Calendar.HOUR_OF_DAY, 0)
+                                    cal.set(Calendar.MINUTE, 0)
+                                    cal.set(Calendar.SECOND, 0)
+                                    cal.set(Calendar.MILLISECOND, 0)
+                                    cal.timeInMillis
+                                }
                                 CalendarDayCell(
                                     day = day,
+                                    hasNote = dayStart in noteDates,
+                                    hasReminder = dayStart in reminderDates,
                                     onTap = { onDayTapped(day) }
                                 )
                             }
@@ -878,11 +904,22 @@ private fun MonthContentView(
 @Composable
 private fun CalendarDayCell(
     day: CalendarDayDisplay,
+    hasNote: Boolean = false,
+    hasReminder: Boolean = false,
     onTap: () -> Unit
 ) {
     val indicatorColor = day.color.color
     val isSolemnity = day.rank == CelebrationRank.SOLEMNITY
     val isFeastOfTheLord = day.rank == CelebrationRank.FEAST_OF_THE_LORD
+    val isFutureDate = remember(day.date) {
+        val cal = Calendar.getInstance()
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        day.date.after(cal.time)
+    }
+    val iconColor = if (day.isToday) Color.Black else SoftGold
 
     Box(
         modifier = Modifier
@@ -923,12 +960,41 @@ private fun CalendarDayCell(
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            Box(
-                modifier = Modifier
-                    .size(6.dp)
-                    .clip(CircleShape)
-                    .background(if (day.isToday) Color.Black.copy(alpha = 0.5f) else indicatorColor)
-            )
+            // Indicators row: liturgical dot + note/reminder icons
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.height(8.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(6.dp)
+                        .clip(CircleShape)
+                        .background(indicatorColor)
+                )
+
+                // Note icon (for past/today dates)
+                if (hasNote && !isFutureDate) {
+                    Spacer(modifier = Modifier.width(2.dp))
+                    Icon(
+                        imageVector = Icons.Filled.Description,
+                        contentDescription = null,
+                        modifier = Modifier.size(7.dp),
+                        tint = iconColor
+                    )
+                }
+
+                // Reminder icon (for future dates)
+                if (hasReminder && isFutureDate) {
+                    Spacer(modifier = Modifier.width(2.dp))
+                    Icon(
+                        imageVector = Icons.Filled.Notifications,
+                        contentDescription = null,
+                        modifier = Modifier.size(7.dp),
+                        tint = iconColor
+                    )
+                }
+            }
         }
     }
 }

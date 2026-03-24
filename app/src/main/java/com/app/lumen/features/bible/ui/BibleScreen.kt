@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -221,7 +222,12 @@ fun BibleScreen(
     onBookSelected: (BibleBook) -> Unit = {},
     bibleViewModel: BibleViewModel = viewModel(),
 ) {
-    var selectedTestament by remember { mutableStateOf(Testament.OLD) }
+    val context = LocalContext.current
+    val prefs = remember { context.getSharedPreferences("bible_prefs", android.content.Context.MODE_PRIVATE) }
+    var selectedTestament by remember {
+        val saved = prefs.getString("last_testament", Testament.NEW.name)
+        mutableStateOf(Testament.valueOf(saved ?: Testament.NEW.name))
+    }
     var showTranslationPicker by remember { mutableStateOf(false) }
     var isSearching by remember { mutableStateOf(false) }
     var searchText by remember { mutableStateOf("") }
@@ -364,7 +370,10 @@ fun BibleScreen(
                             // Old / New picker
                             TestamentPicker(
                                 selected = currentTestament,
-                                onSelect = { selectedTestament = it },
+                                onSelect = {
+                                    selectedTestament = it
+                                    prefs.edit().putString("last_testament", it.name).apply()
+                                },
                             )
 
                             Spacer(Modifier.weight(1f))
