@@ -14,10 +14,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
@@ -25,6 +23,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.lumen.features.calendar.model.*
 import com.app.lumen.features.calendar.viewmodel.CalendarViewModel
+import com.app.lumen.ui.components.GlassButtonSize
+import com.app.lumen.ui.components.GlassIconButton
 import com.app.lumen.ui.theme.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -71,6 +73,13 @@ fun CalendarScreen(
     var selectedTab by remember { mutableStateOf(CalendarTabMode.CALENDAR) }
     var previousTabOrdinal by remember { mutableIntStateOf(0) }
 
+    // Notes & Reminders state
+    val allNotes by viewModel.allNotes.collectAsState()
+    val upcomingReminders by viewModel.upcomingReminders.collectAsState()
+    val notesLoading by viewModel.notesLoading.collectAsState()
+    val dayNotes by viewModel.dayNotes.collectAsState()
+    val dayReminders by viewModel.dayReminders.collectAsState()
+
     // Bottom sheet state
     var selectedDay by remember { mutableStateOf<CalendarDayDisplay?>(null) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -79,9 +88,28 @@ fun CalendarScreen(
     var showInfoSheet by remember { mutableStateOf(false) }
     val infoSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
+    // Note/Reminder sub-sheets
+    var showNoteSheet by remember { mutableStateOf(false) }
+    var noteSheetDate by remember { mutableStateOf(Date()) }
+    var noteSheetType by remember { mutableStateOf(NoteType.CUSTOM) }
+    var editingNote by remember { mutableStateOf<Note?>(null) }
+
+    var showReminderSheet by remember { mutableStateOf(false) }
+    var reminderSheetDate by remember { mutableStateOf(Date()) }
+    var reminderSheetType by remember { mutableStateOf(ReminderType.CUSTOM) }
+    var editingReminder by remember { mutableStateOf<Reminder?>(null) }
+    var reminderSheetLiturgicalDay by remember { mutableStateOf<LiturgicalDay?>(null) }
+
     // Re-read region from SharedPreferences each time screen appears
     LaunchedEffect(Unit) {
         viewModel.refreshRegionFromPrefs()
+    }
+
+    // Reload notes data when switching to the Notes tab
+    LaunchedEffect(selectedTab) {
+        if (selectedTab == CalendarTabMode.NOTES) {
+            viewModel.loadNotesData()
+        }
     }
 
     // Always scroll to current month when data is ready
@@ -140,12 +168,20 @@ fun CalendarScreen(
         }
     }
 
-    // Bottom sheet
+    // Load day data when a day is selected
+    LaunchedEffect(selectedDay) {
+        selectedDay?.let { viewModel.loadDayData(it.date) }
+    }
+
+    // Day detail bottom sheet
     if (selectedDay != null) {
         ModalBottomSheet(
             onDismissRequest = { selectedDay = null },
             sheetState = sheetState,
             containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
             dragHandle = {
                 Box(
                     modifier = Modifier
@@ -158,19 +194,153 @@ fun CalendarScreen(
             },
         ) {
             selectedDay?.let { day ->
-                DayQuickActionsSheet(day = day)
+                DayDetailSheet(
+                    day = day,
+                    existingReminders = dayReminders,
+                    existingNotes = dayNotes,
+                    onSetReminder = { type ->
+                        reminderSheetDate = day.date
+                        reminderSheetType = type
+                        reminderSheetLiturgicalDay = day.liturgicalDay
+                        editingReminder = null
+                        showReminderSheet = true
+                    },
+                    onEditReminder = { reminder ->
+                        reminderSheetDate = reminder.date
+                        reminderSheetType = reminder.type
+                        reminderSheetLiturgicalDay = day.liturgicalDay
+                        editingReminder = reminder
+                        showReminderSheet = true
+                    },
+                    onAddNote = { type ->
+                        noteSheetDate = day.date
+                        noteSheetType = type
+                        editingNote = null
+                        showNoteSheet = true
+                    },
+                    onEditNote = { note ->
+                        noteSheetDate = note.date
+                        noteSheetType = note.type
+                        editingNote = note
+                        showNoteSheet = true
+                    }
+                )
             }
         }
     }
 
-    Column(
+    // Note sheet
+    if (showNoteSheet) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                showNoteSheet = false
+                editingNote = null
+            },
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.White.copy(alpha = 0.3f))
+                )
+            },
+        ) {
+            NoteSheet(
+                date = noteSheetDate,
+                noteType = noteSheetType,
+                existingNote = editingNote,
+                onSave = { type, date, title, content ->
+                    if (editingNote != null) {
+                        viewModel.updateNote(editingNote!!.id, title, content)
+                    } else {
+                        viewModel.createNote(type, date, title, content)
+                    }
+                    showNoteSheet = false
+                    editingNote = null
+                },
+                onDismiss = {
+                    showNoteSheet = false
+                    editingNote = null
+                }
+            )
+        }
+    }
+
+    // Reminder sheet
+    if (showReminderSheet) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                showReminderSheet = false
+                editingReminder = null
+            },
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.White.copy(alpha = 0.3f))
+                )
+            },
+        ) {
+            SetReminderSheet(
+                date = reminderSheetDate,
+                reminderType = reminderSheetType,
+                liturgicalDay = reminderSheetLiturgicalDay,
+                existingReminder = editingReminder,
+                initialTriggerTime = viewModel.reminderPreferences.triggerTime(reminderSheetDate, reminderSheetType),
+                onSave = { title, message, triggerTime, notes ->
+                    if (editingReminder != null) {
+                        viewModel.updateReminder(editingReminder!!.id, title, message, triggerTime, notes)
+                    } else {
+                        viewModel.createReminder(reminderSheetDate, reminderSheetType, title, message, triggerTime, notes)
+                    }
+                    showReminderSheet = false
+                    editingReminder = null
+                },
+                onDelete = if (editingReminder != null) {
+                    {
+                        viewModel.deleteReminder(editingReminder!!)
+                        showReminderSheet = false
+                        editingReminder = null
+                    }
+                } else null,
+                onDismiss = {
+                    showReminderSheet = false
+                    editingReminder = null
+                }
+            )
+        }
+    }
+
+    var showAddMenu by remember { mutableStateOf(false) }
+
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(NearBlack)
     ) {
-        // Toolbar with title and info button
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Toolbar with title and context-dependent button
         CalendarToolbar(
-            onInfoTapped = { showInfoSheet = true }
+            selectedTab = selectedTab,
+            onInfoTapped = { showInfoSheet = true },
+            onPlusTapped = { showAddMenu = true }
         )
 
         // Segmented picker
@@ -252,180 +422,265 @@ fun CalendarScreen(
                     }
                 }
                 CalendarTabMode.NOTES -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = stringResource(R.string.coming_soon), color = Slate, fontSize = 16.sp)
-                    }
+                    NotesTabView(
+                        notes = allNotes,
+                        reminders = upcomingReminders,
+                        isLoading = notesLoading,
+                        getLiturgicalDay = { date -> viewModel.getLiturgicalDay(date) },
+                        onReminderTap = { reminder ->
+                            reminderSheetDate = reminder.date
+                            reminderSheetType = reminder.type
+                            reminderSheetLiturgicalDay = null
+                            editingReminder = reminder
+                            showReminderSheet = true
+                        },
+                        onNoteTap = { note ->
+                            noteSheetDate = note.date
+                            noteSheetType = note.type
+                            editingNote = note
+                            showNoteSheet = true
+                        },
+                        onDeleteReminder = { viewModel.deleteReminder(it) },
+                        onDeleteNote = { viewModel.deleteNote(it) }
+                    )
                 }
             }
         }
-    }
-}
+    } // end Column
 
-private val GlassBg = Color(0xFF191927)
-
-// MARK: - Day Quick Actions Sheet
-
-@Composable
-private fun DayQuickActionsSheet(day: CalendarDayDisplay) {
-    val isFutureDate = remember(day.date) {
-        val cal = Calendar.getInstance()
-        val today = Calendar.getInstance()
-        cal.time = day.date
-        cal.set(Calendar.HOUR_OF_DAY, 0); cal.set(Calendar.MINUTE, 0); cal.set(Calendar.SECOND, 0); cal.set(Calendar.MILLISECOND, 0)
-        today.set(Calendar.HOUR_OF_DAY, 0); today.set(Calendar.MINUTE, 0); today.set(Calendar.SECOND, 0); today.set(Calendar.MILLISECOND, 0)
-        cal.timeInMillis > today.timeInMillis
-    }
-
-    val celebrationName = day.liturgicalDay?.localizedCelebrationName() ?: ""
-    val isObligatory = day.rank == CelebrationRank.SOLEMNITY ||
-            day.liturgicalDay?.isHolyDayOfObligation == true
-    val dateFormatted = remember(day.date) {
-        SimpleDateFormat("d MMM yyyy", Locale.getDefault()).format(day.date)
-    }
-    val liturgicalColor = day.color.color
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .padding(bottom = 32.dp)
+    // Add menu overlay (scrim + panel, must be sibling to Column inside the top-level Box)
+    AnimatedVisibility(
+        visible = showAddMenu,
+        enter = fadeIn(tween(200)),
+        exit = fadeOut(tween(150)),
+        modifier = Modifier.fillMaxSize(),
     ) {
-        // Header: colored dot + celebration name
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(10.dp)
-                    .clip(CircleShape)
-                    .background(liturgicalColor)
-            )
-            Spacer(modifier = Modifier.width(10.dp))
-            Text(
-                text = celebrationName,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-
-        // Subtitle: obligatory badge + date
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            if (isObligatory) {
-                Text(
-                    text = "\u2605",
-                    fontSize = 12.sp,
-                    color = SoftGold
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = stringResource(R.string.calendar_day_obligatory),
-                    fontSize = 13.sp,
-                    color = SoftGold
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = "\u2022",
-                    fontSize = 13.sp,
-                    color = Slate
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-            }
-            Text(
-                text = dateFormatted,
-                fontSize = 13.sp,
-                color = Slate
-            )
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Divider
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(0.5.dp)
-                .background(Color.White.copy(alpha = 0.12f))
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.2f))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                    onClick = { showAddMenu = false },
+                ),
         )
+    }
 
-        Spacer(modifier = Modifier.height(8.dp))
+    AnimatedVisibility(
+        visible = showAddMenu,
+        enter = fadeIn(tween(150)) + scaleIn(
+            initialScale = 0.4f,
+            transformOrigin = TransformOrigin(0.9f, 0f),
+            animationSpec = tween(150),
+        ),
+        exit = fadeOut(tween(100)) + scaleOut(
+            targetScale = 0.4f,
+            transformOrigin = TransformOrigin(0.9f, 0f),
+            animationSpec = tween(100),
+        ),
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .statusBarsPadding()
+                    .padding(top = 52.dp, end = 16.dp)
+                    .width(220.dp)
+                    .shadow(16.dp, RoundedCornerShape(14.dp))
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(MenuPanelBg)
+                    .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(14.dp)),
+            ) {
+                // Section header: Add Note
+                Text(
+                    text = stringResource(R.string.menu_add_note).uppercase(),
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Slate,
+                    letterSpacing = 0.5.sp,
+                    modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 4.dp)
+                )
 
-        // Action row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp))
-                .clickable { /* TODO: handle action */ }
-                .padding(vertical = 14.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = if (isFutureDate) Icons.Filled.Notifications else Icons.Filled.Edit,
-                contentDescription = null,
-                tint = SoftGold,
-                modifier = Modifier.size(22.dp)
-            )
-            Spacer(modifier = Modifier.width(12.dp))
-            Text(
-                text = stringResource(if (isFutureDate) R.string.calendar_day_set_reminder else R.string.calendar_day_add_note),
-                fontSize = 16.sp,
-                color = Color.White,
-                modifier = Modifier.weight(1f)
-            )
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null,
-                tint = Slate,
-                modifier = Modifier.size(20.dp)
-            )
+                AddMenuItem(
+                    icon = { Icon(noteTypeIcon(NoteType.MASS), null, tint = SoftGold, modifier = Modifier.size(18.dp)) },
+                    label = noteTypeLabel(NoteType.MASS),
+                    onClick = {
+                        showAddMenu = false
+                        noteSheetDate = Date()
+                        noteSheetType = NoteType.MASS
+                        editingNote = null
+                        showNoteSheet = true
+                    }
+                )
+                AddMenuDivider()
+                AddMenuItem(
+                    icon = { Icon(noteTypeIcon(NoteType.CONFESSION), null, tint = SoftGold, modifier = Modifier.size(18.dp)) },
+                    label = noteTypeLabel(NoteType.CONFESSION),
+                    onClick = {
+                        showAddMenu = false
+                        noteSheetDate = Date()
+                        noteSheetType = NoteType.CONFESSION
+                        editingNote = null
+                        showNoteSheet = true
+                    }
+                )
+                AddMenuDivider()
+                AddMenuItem(
+                    icon = { Icon(noteTypeIcon(NoteType.CUSTOM), null, tint = SoftGold, modifier = Modifier.size(18.dp)) },
+                    label = noteTypeLabel(NoteType.CUSTOM),
+                    onClick = {
+                        showAddMenu = false
+                        noteSheetDate = Date()
+                        noteSheetType = NoteType.CUSTOM
+                        editingNote = null
+                        showNoteSheet = true
+                    }
+                )
+
+                // Section divider
+                HorizontalDivider(
+                    color = Color.White.copy(alpha = 0.12f),
+                    modifier = Modifier.padding(vertical = 4.dp)
+                )
+
+                // Section header: Add Reminder
+                Text(
+                    text = stringResource(R.string.menu_add_reminder).uppercase(),
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Slate,
+                    letterSpacing = 0.5.sp,
+                    modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 4.dp)
+                )
+
+                val reminderTypes = listOf(
+                    ReminderType.MASS, ReminderType.CONFESSION, ReminderType.FASTING,
+                    ReminderType.PRAYER, ReminderType.FIRST_FRIDAY, ReminderType.CUSTOM
+                )
+                reminderTypes.forEachIndexed { index, type ->
+                    AddMenuItem(
+                        icon = { ReminderTypeIcon(type = type, tint = SoftGold, modifier = Modifier.size(18.dp)) },
+                        label = reminderTypeLabel(type),
+                        onClick = {
+                            showAddMenu = false
+                            reminderSheetDate = Date()
+                            reminderSheetType = type
+                            reminderSheetLiturgicalDay = null
+                            editingReminder = null
+                            showReminderSheet = true
+                        }
+                    )
+                    if (index < reminderTypes.size - 1) {
+                        AddMenuDivider()
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+            }
         }
     }
+
+    } // end outer Box
 }
 
 // MARK: - Toolbar
 
+private val GlassBg = Color(0xFF191927)
+private val MenuPanelBg = Color(0xFF23233D)
+
 @Composable
 private fun CalendarToolbar(
-    onInfoTapped: () -> Unit
+    selectedTab: CalendarTabMode,
+    onInfoTapped: () -> Unit,
+    onPlusTapped: () -> Unit
 ) {
+    val title = when (selectedTab) {
+        CalendarTabMode.NOTES -> stringResource(R.string.calendar_tab_notes)
+        else -> stringResource(R.string.tab_calendar)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(horizontal = 16.dp)
-            .padding(top = 8.dp, bottom = 12.dp),
+            .padding(top = 8.dp, bottom = 16.dp)
+            .defaultMinSize(minHeight = 34.dp),
+        contentAlignment = Alignment.Center
     ) {
         Text(
-            text = stringResource(R.string.tab_calendar),
+            text = title,
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
             color = Color.White,
             modifier = Modifier.align(Alignment.Center)
         )
 
-        IconButton(
-            onClick = onInfoTapped,
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .size(34.dp),
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Info,
-                contentDescription = stringResource(R.string.cd_calendar_info),
-                tint = SoftGold,
-                modifier = Modifier.size(26.dp),
-            )
+        when (selectedTab) {
+            CalendarTabMode.NOTES -> {
+                GlassIconButton(
+                    onClick = onPlusTapped,
+                    size = GlassButtonSize.SMALL,
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = stringResource(R.string.calendar_day_add_note),
+                        tint = Color.White,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+            else -> {
+                IconButton(
+                    onClick = onInfoTapped,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .size(34.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = stringResource(R.string.cd_calendar_info),
+                        tint = SoftGold,
+                        modifier = Modifier.size(26.dp),
+                    )
+                }
+            }
         }
     }
+}
+
+@Composable
+private fun AddMenuItem(
+    icon: @Composable () -> Unit,
+    label: String,
+    onClick: () -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 11.dp)
+    ) {
+        icon()
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(
+            text = label,
+            fontSize = 15.sp,
+            color = Color.White,
+        )
+    }
+}
+
+@Composable
+private fun AddMenuDivider() {
+    HorizontalDivider(
+        color = Color.White.copy(alpha = 0.08f),
+        modifier = Modifier.padding(horizontal = 16.dp),
+    )
 }
 
 // MARK: - Segmented Picker

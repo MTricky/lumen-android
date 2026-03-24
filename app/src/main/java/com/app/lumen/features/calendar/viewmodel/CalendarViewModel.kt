@@ -6,7 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.lumen.features.calendar.model.*
 import com.app.lumen.features.calendar.service.LiturgicalCalendarService
-import com.app.lumen.features.calendar.service.LiturgicalSeasonCalculator
+import com.app.lumen.features.calendar.service.LumenNotificationManager
+import com.app.lumen.features.calendar.service.NotesStorageService
+import com.app.lumen.features.calendar.service.ReminderPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,6 +23,9 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     private val calendarService = LiturgicalCalendarService(application)
     private val prefs = application.getSharedPreferences("calendar_settings", Context.MODE_PRIVATE)
+    val storageService = NotesStorageService(application)
+    val reminderPreferences = ReminderPreferences(application)
+    val notificationManager = LumenNotificationManager(application)
 
     private val _monthsData = MutableStateFlow<List<MonthData>>(emptyList())
     val monthsData: StateFlow<List<MonthData>> = _monthsData.asStateFlow()
@@ -30,6 +35,23 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     private val _region = MutableStateFlow(loadRegion())
     val region: StateFlow<LiturgicalRegion> = _region.asStateFlow()
+
+    // Notes & Reminders state
+    private val _allNotes = MutableStateFlow<List<Note>>(emptyList())
+    val allNotes: StateFlow<List<Note>> = _allNotes.asStateFlow()
+
+    private val _upcomingReminders = MutableStateFlow<List<Reminder>>(emptyList())
+    val upcomingReminders: StateFlow<List<Reminder>> = _upcomingReminders.asStateFlow()
+
+    private val _notesLoading = MutableStateFlow(true)
+    val notesLoading: StateFlow<Boolean> = _notesLoading.asStateFlow()
+
+    // Day detail data
+    private val _dayNotes = MutableStateFlow<List<Note>>(emptyList())
+    val dayNotes: StateFlow<List<Note>> = _dayNotes.asStateFlow()
+
+    private val _dayReminders = MutableStateFlow<List<Reminder>>(emptyList())
+    val dayReminders: StateFlow<List<Reminder>> = _dayReminders.asStateFlow()
 
     // Months before = current month index + 11 (back to Jan of previous year)
     private val monthsBefore: Int
@@ -44,6 +66,7 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     init {
         loadCalendarData()
+        loadNotesData()
     }
 
     fun loadCalendarData() {
@@ -118,6 +141,93 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
             _region.value = current
             calendarService.clearCache()
             loadCalendarData()
+        }
+    }
+
+    // MARK: - Notes & Reminders
+
+    fun loadNotesData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _notesLoading.value = true
+            _allNotes.value = storageService.allNotes()
+            _upcomingReminders.value = storageService.upcomingReminders()
+            storageService.cleanupPastReminders()
+            _notesLoading.value = false
+        }
+    }
+
+    fun loadDayData(date: Date) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _dayNotes.value = storageService.notesForDate(date)
+            _dayReminders.value = storageService.remindersForDate(date)
+        }
+    }
+
+    fun createNote(type: NoteType, date: Date, title: String, content: String?) {
+        viewModelScope.launch(Dispatchers.IO) {
+            storageService.createNote(date, type, title, content)
+            loadNotesData()
+            loadDayData(date)
+        }
+    }
+
+    fun updateNote(id: String, title: String, content: String?) {
+        viewModelScope.launch(Dispatchers.IO) {
+            storageService.updateNote(id, title, content)
+            loadNotesData()
+        }
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            storageService.deleteNote(note.id)
+            loadNotesData()
+        }
+    }
+
+    fun createReminder(
+        date: Date,
+        type: ReminderType,
+        title: String,
+        message: String?,
+        triggerTime: Date,
+        notes: String?
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val reminder = storageService.createReminder(date, type, title, message, triggerTime, notes)
+            reminderPreferences.saveLastUsedTime(triggerTime, type)
+            notificationManager.scheduleNotification(reminder)
+            loadNotesData()
+            loadDayData(date)
+        }
+    }
+
+    fun updateReminder(
+        id: String,
+        title: String,
+        message: String?,
+        triggerTime: Date,
+        notes: String?
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val updated = storageService.updateReminder(id, title, message, triggerTime, notes)
+            if (updated != null) {
+                reminderPreferences.saveLastUsedTime(triggerTime, updated.type)
+                notificationManager.updateNotification(updated)
+            }
+            loadNotesData()
+        }
+    }
+
+    fun getLiturgicalDay(date: Date): LiturgicalDay? {
+        return calendarService.getLiturgicalDay(date, _region.value)
+    }
+
+    fun deleteReminder(reminder: Reminder) {
+        viewModelScope.launch(Dispatchers.IO) {
+            storageService.deleteReminder(reminder.id)
+            notificationManager.cancelNotification(reminder.notificationId)
+            loadNotesData()
         }
     }
 
