@@ -79,7 +79,7 @@ fun RosaryScreen(
                     MysteryCard(mysteryType, onMysterySelected)
                 }
 
-                Spacer(Modifier.height(bottomPadding))
+                Spacer(Modifier.height(bottomPadding - 40.dp))
             }
         }
     }

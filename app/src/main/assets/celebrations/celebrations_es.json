@@ -1,0 +1,1354 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "language": "es"
+  },
+  "fixed": {
+    "universal": [
+      {
+        "month": 1, "day": 1,
+        "key": "maryMotherOfGod",
+        "name": "Santa María, Madre de Dios",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 1, "day": 2,
+        "key": "stsBasilGregory",
+        "name": "Santos Basilio Magno y Gregorio Nacianceno",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 6,
+        "key": "epiphany",
+        "name": "La Epifanía del Señor",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 1, "day": 17,
+        "key": "stAnthonyAbbot",
+        "name": "San Antonio Abad",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 21,
+        "key": "stAgnes",
+        "name": "Santa Inés, Virgen y Mártir",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 1, "day": 25,
+        "key": "conversionOfStPaul",
+        "name": "La Conversión de San Pablo Apóstol",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 26,
+        "key": "stsTimothyTitus",
+        "name": "Santos Timoteo y Tito, Obispos",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 28,
+        "key": "stThomasAquinas",
+        "name": "Santo Tomás de Aquino, Presbítero y Doctor",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 31,
+        "key": "stJohnBosco",
+        "name": "San Juan Bosco, Presbítero",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 2,
+        "key": "presentationOfTheLord",
+        "name": "La Presentación del Señor",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 3,
+        "key": "stBlase",
+        "name": "San Blas, Obispo y Mártir",
+        "rank": "optionalMemorial",
+        "color": "red"
+      },
+      {
+        "month": 2, "day": 5,
+        "key": "stAgatha",
+        "name": "Santa Águeda, Virgen y Mártir",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 2, "day": 10,
+        "key": "stScholastica",
+        "name": "Santa Escolástica, Virgen",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 11,
+        "key": "ourLadyOfLourdes",
+        "name": "Nuestra Señora de Lourdes",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 14,
+        "key": "stsCyrilMethodius",
+        "name": "Santos Cirilo y Metodio",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 22,
+        "key": "chairOfStPeter",
+        "name": "La Cátedra de San Pedro Apóstol",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 3, "day": 19,
+        "key": "stJoseph",
+        "name": "San José, Esposo de la Virgen María",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 3, "day": 25,
+        "key": "annunciation",
+        "name": "La Anunciación del Señor",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 4, "day": 25,
+        "key": "stMark",
+        "name": "San Marcos, Evangelista",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 4, "day": 29,
+        "key": "stCatherineOfSiena",
+        "name": "Santa Catalina de Siena, Virgen y Doctora",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 5, "day": 1,
+        "key": "stJosephWorker",
+        "name": "San José Obrero",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 5, "day": 3,
+        "key": "stsPhilipJames",
+        "name": "Santos Felipe y Santiago, Apóstoles",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 5, "day": 14,
+        "key": "stMatthias",
+        "name": "San Matías, Apóstol",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 5, "day": 31,
+        "key": "visitation",
+        "name": "La Visitación de la Virgen María",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 11,
+        "key": "stBarnabas",
+        "name": "San Bernabé, Apóstol",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 6, "day": 24,
+        "key": "birthOfJohnBaptist",
+        "name": "La Natividad de San Juan Bautista",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 29,
+        "key": "stsPeterPaul",
+        "name": "Santos Pedro y Pablo, Apóstoles",
+        "rank": "solemnity",
+        "color": "red",
+        "isHolyDay": true
+      },
+      {
+        "month": 7, "day": 3,
+        "key": "stThomas",
+        "name": "Santo Tomás, Apóstol",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 7, "day": 22,
+        "key": "stMaryMagdalene",
+        "name": "Santa María Magdalena",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 7, "day": 25,
+        "key": "stJamesApostle",
+        "name": "Santiago, Apóstol",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 7, "day": 29,
+        "key": "stsMarthaMartyLazarus",
+        "name": "Santos Marta, María y Lázaro",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 6,
+        "key": "transfiguration",
+        "name": "La Transfiguración del Señor",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 10,
+        "key": "stLawrence",
+        "name": "San Lorenzo, Diácono y Mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 8, "day": 15,
+        "key": "assumption",
+        "name": "La Asunción de la Virgen María",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 8, "day": 22,
+        "key": "queenshipOfMary",
+        "name": "Santa María Virgen, Reina",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 24,
+        "key": "stBartholomew",
+        "name": "San Bartolomé, Apóstol",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 8, "day": 28,
+        "key": "stAugustine",
+        "name": "San Agustín, Obispo y Doctor",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 29,
+        "key": "martyrdomJohnBaptist",
+        "name": "El Martirio de San Juan Bautista",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 9, "day": 8,
+        "key": "nativityOfMary",
+        "name": "La Natividad de la Virgen María",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 14,
+        "key": "exaltationOfCross",
+        "name": "La Exaltación de la Santa Cruz",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 9, "day": 15,
+        "key": "ourLadyOfSorrows",
+        "name": "Nuestra Señora de los Dolores",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 21,
+        "key": "stMatthew",
+        "name": "San Mateo, Apóstol y Evangelista",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 9, "day": 29,
+        "key": "archangels",
+        "name": "Santos Miguel, Gabriel y Rafael, Arcángeles",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 2,
+        "key": "guardianAngels",
+        "name": "Los Santos Ángeles Custodios",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 4,
+        "key": "stFrancisOfAssisi",
+        "name": "San Francisco de Asís",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 7,
+        "key": "ourLadyOfRosary",
+        "name": "Nuestra Señora del Rosario",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 15,
+        "key": "stTeresaOfAvila",
+        "name": "Santa Teresa de Jesús, Virgen y Doctora",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 18,
+        "key": "stLuke",
+        "name": "San Lucas, Evangelista",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 10, "day": 28,
+        "key": "stsSimonJude",
+        "name": "Santos Simón y Judas, Apóstoles",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 11, "day": 1,
+        "key": "allSaints",
+        "name": "Todos los Santos",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 11, "day": 2,
+        "key": "allSouls",
+        "name": "La Conmemoración de los Fieles Difuntos",
+        "rank": "feast",
+        "color": "purple"
+      },
+      {
+        "month": 11, "day": 9,
+        "key": "lateranBasilica",
+        "name": "La Dedicación de la Basílica de Letrán",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 21,
+        "key": "presentationOfMary",
+        "name": "La Presentación de la Virgen María",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 30,
+        "key": "stAndrew",
+        "name": "San Andrés, Apóstol",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConception",
+        "name": "La Inmaculada Concepción de la Virgen María",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 12, "day": 12,
+        "key": "ourLadyOfGuadalupe",
+        "name": "Nuestra Señora de Guadalupe",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 25,
+        "key": "christmas",
+        "name": "La Natividad del Señor (Navidad)",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 12, "day": 26,
+        "key": "stStephen",
+        "name": "San Esteban, Protomártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 12, "day": 27,
+        "key": "stJohnApostle",
+        "name": "San Juan, Apóstol y Evangelista",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 28,
+        "key": "holyInnocents",
+        "name": "Los Santos Inocentes, Mártires",
+        "rank": "feast",
+        "color": "red"
+      }
+    ],
+    "spain": [
+      {
+        "month": 7, "day": 25,
+        "key": "stJamesSpain",
+        "name": "Santiago, Apóstol, Patrón de España",
+        "rank": "solemnity",
+        "color": "red",
+        "isHolyDay": true
+      },
+      {
+        "month": 10, "day": 12,
+        "key": "ourLadyOfPilar",
+        "name": "Nuestra Señora del Pilar",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 15,
+        "key": "stTeresaOfAvilaSpain",
+        "name": "Santa Teresa de Jesús, Virgen, Doctora y Patrona de España",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionSpain",
+        "name": "Inmaculada Concepción, Patrona de España",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "poland": [
+      {
+        "month": 4, "day": 23,
+        "key": "stWojciech",
+        "name": "San Adalberto (Wojciech), Obispo y Mártir",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 5, "day": 3,
+        "key": "ourLadyQueenOfPoland",
+        "name": "Nuestra Señora, Reina de Polonia",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 5, "day": 8,
+        "key": "stStanislaus",
+        "name": "San Estanislao, Obispo y Mártir",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 5, "day": 16,
+        "key": "stAndrzejBobola",
+        "name": "San Andrés Bobola, Presbítero y Mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 8, "day": 14,
+        "key": "stMaximilianKolbe",
+        "name": "San Maximiliano Kolbe, Presbítero y Mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 8, "day": 26,
+        "key": "ourLadyOfCzestochowa",
+        "name": "Nuestra Señora de Częstochowa",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 17,
+        "key": "stStanislausKostka",
+        "name": "San Estanislao de Kostka",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 5,
+        "key": "stFaustina",
+        "name": "Santa Faustina Kowalska, Virgen",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 22,
+        "key": "stJohnPaulII",
+        "name": "San Juan Pablo II, Papa",
+        "rank": "feast",
+        "color": "white"
+      }
+    ],
+    "brazil": [
+      {
+        "month": 1, "day": 20,
+        "key": "stSebastian",
+        "name": "San Sebastián, Mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 6, "day": 9,
+        "key": "stJoseDeAnchieta",
+        "name": "San José de Anchieta, Presbítero",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 13,
+        "key": "stAnthonyOfPadua",
+        "name": "San Antonio de Padua, Presbítero y Doctor",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 12,
+        "key": "ourLadyOfAparecida",
+        "name": "Nuestra Señora de Aparecida, Patrona de Brasil",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "usa": [
+      {
+        "month": 1, "day": 4,
+        "key": "stElizabethAnnSeton",
+        "name": "Santa Isabel Ana Seton, Religiosa",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 5,
+        "key": "stJohnNeumann",
+        "name": "San Juan Neumann, Obispo",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 7, "day": 14,
+        "key": "stKateriTekakwitha",
+        "name": "Santa Kateri Tekakwitha, Virgen",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 9,
+        "key": "stPeterClaver",
+        "name": "San Pedro Claver, Presbítero",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 9,
+        "key": "stsJohnDeBrebeuf",
+        "name": "Santos Juan de Brébeuf, Isaac Jogues y Compañeros, Mártires",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 11, "day": 13,
+        "key": "stFrancesCabrini",
+        "name": "Santa Francisca Javier Cabrini, Virgen",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionUSA",
+        "name": "Inmaculada Concepción, Solemnidad Patronal",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "portugal": [
+      {
+        "month": 5, "day": 13,
+        "key": "ourLadyOfFatima",
+        "name": "Nuestra Señora de Fátima",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 10,
+        "key": "blessedNunoAlvares",
+        "name": "Beato Nuno Álvares Pereira, Religioso",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 13,
+        "key": "stAnthonyOfLisbonPortugal",
+        "name": "San Antonio de Lisboa, Presbítero y Doctor",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionPortugal",
+        "name": "Inmaculada Concepción, Patrona de Portugal",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "ireland": [
+      {
+        "month": 2, "day": 1,
+        "key": "stBrigid",
+        "name": "Santa Brígida de Kildare, Virgen",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 3, "day": 17,
+        "key": "stPatrick",
+        "name": "San Patricio, Obispo, Patrón de Irlanda",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 6, "day": 9,
+        "key": "stColumba",
+        "name": "San Columba (Colmcille), Abad",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 7, "day": 11,
+        "key": "stBenedict",
+        "name": "San Benito, Abad, Patrón de Europa",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 6,
+        "key": "allSaintsOfIreland",
+        "name": "Todos los Santos de Irlanda",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 6,
+        "key": "allSaintsOfIrelandNov",
+        "name": "Todos los Santos Mártires de Irlanda",
+        "rank": "optionalMemorial",
+        "color": "red"
+      },
+      {
+        "month": 11, "day": 9,
+        "key": "dedicationLateranIreland",
+        "name": "Dedicación de la Basílica de Letrán",
+        "rank": "feast",
+        "color": "white"
+      }
+    ],
+    "philippines": [
+      {
+        "month": 1, "day": 9,
+        "key": "blackNazarene",
+        "name": "Fiesta del Nazareno Negro",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 4, "day": 28,
+        "key": "stPedroCalungsod",
+        "name": "San Pedro Calungsod, Mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 9, "day": 28,
+        "key": "stLorenzoRuiz",
+        "name": "San Lorenzo Ruiz y Compañeros, Mártires",
+        "rank": "obligatoryMemorial",
+        "color": "red"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionPhilippines",
+        "name": "Inmaculada Concepción, Patrona de Filipinas",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 12, "day": 16,
+        "key": "simbanggabi",
+        "name": "Inicio del Simbang Gabi (Misa de Gallo)",
+        "rank": "weekday",
+        "color": "purple"
+      }
+    ],
+    "australia": [
+      {
+        "month": 5, "day": 24,
+        "key": "ourLadyHelpOfChristians",
+        "name": "Nuestra Señora Auxiliadora, Patrona de Australia",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 7, "day": 8,
+        "key": "stMaryMacKillop",
+        "name": "Santa María de la Cruz MacKillop, Virgen",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 2,
+        "key": "blessedPeterToRot",
+        "name": "Beato Pedro To Rot, Mártir",
+        "rank": "optionalMemorial",
+        "color": "red"
+      }
+    ],
+    "uk": [
+      {
+        "month": 4, "day": 23,
+        "key": "stGeorge",
+        "name": "San Jorge, Mártir, Patrón de Inglaterra",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 6, "day": 22,
+        "key": "stsJohnFisherThomasMore",
+        "name": "Santos Juan Fisher y Tomás Moro, Mártires",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 8, "day": 26,
+        "key": "blessedDominicBarberi",
+        "name": "Beato Domingo Barberi, Presbítero",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 13,
+        "key": "stEdwardConfessor",
+        "name": "San Eduardo el Confesor, Rey",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 25,
+        "key": "fortyMartyrsEnglandWales",
+        "name": "Cuarenta Mártires de Inglaterra y Gales",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 11, "day": 30,
+        "key": "stAndrewScotland",
+        "name": "San Andrés, Apóstol, Patrón de Escocia",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 12, "day": 29,
+        "key": "stThomasBecket",
+        "name": "Santo Tomás Becket, Obispo y Mártir",
+        "rank": "feast",
+        "color": "red"
+      }
+    ],
+    "canada": [
+      {
+        "month": 3, "day": 19,
+        "key": "stJosephCanada",
+        "name": "San José, Esposo de la Virgen María, Patrón de Canadá",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 7, "day": 26,
+        "key": "stsAnneJoachim",
+        "name": "Santos Ana y Joaquín, Padres de la Virgen María",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 15,
+        "key": "ourLadyOfTheCape",
+        "name": "Nuestra Señora del Cabo",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 26,
+        "key": "canadianMartyrs",
+        "name": "Mártires Canadienses (Santos Juan de Brébeuf, Isaac Jogues y Compañeros)",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 10, "day": 16,
+        "key": "stMargueriteDYouville",
+        "name": "Santa Margarita d'Youville, Religiosa",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 12,
+        "key": "stMargueriteBourgeoys",
+        "name": "Santa Margarita Bourgeoys, Virgen",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 12,
+        "key": "ourLadyOfGuadalupeCanada",
+        "name": "Nuestra Señora de Guadalupe, Patrona de las Américas",
+        "rank": "feast",
+        "color": "white"
+      }
+    ],
+    "mexico": [
+      {
+        "month": 1, "day": 6,
+        "key": "epiphanyMexico",
+        "name": "La Epifanía del Señor (Día de Reyes)",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 2, "day": 2,
+        "key": "candlemasMexico",
+        "name": "La Presentación del Señor (Día de la Candelaria)",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 24,
+        "key": "stJuanDiego",
+        "name": "San Juan Diego Cuauhtlatoatzin",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 7, "day": 31,
+        "key": "stIgnatiusOfLoyolaMexico",
+        "name": "San Ignacio de Loyola, Presbítero",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 2,
+        "key": "allSoulsMexico",
+        "name": "Día de los Fieles Difuntos (Día de los Muertos)",
+        "rank": "feast",
+        "color": "purple"
+      },
+      {
+        "month": 12, "day": 9,
+        "key": "stJuanDiegoFeast",
+        "name": "San Juan Diego Cuauhtlatoatzin",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 12,
+        "key": "ourLadyOfGuadalupeMexico",
+        "name": "Nuestra Señora de Guadalupe, Patrona de las Américas",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "argentina": [
+      {
+        "month": 5, "day": 8,
+        "key": "ourLadyOfLujan",
+        "name": "Nuestra Señora de Luján, Patrona de Argentina",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 8, "day": 17,
+        "key": "stRochArgentina",
+        "name": "San Roque, Patrono contra las Epidemias",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 24,
+        "key": "ourLadyOfMercy",
+        "name": "Nuestra Señora de la Merced",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 8,
+        "key": "ourLadyOfRosaryArgentina",
+        "name": "Nuestra Señora del Rosario de San Nicolás",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionArgentina",
+        "name": "Inmaculada Concepción, Patrona de Argentina",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 12, "day": 12,
+        "key": "ourLadyOfGuadalupeArgentina",
+        "name": "Nuestra Señora de Guadalupe, Patrona de las Américas",
+        "rank": "feast",
+        "color": "white"
+      }
+    ],
+    "chile": [
+      {
+        "month": 7, "day": 16,
+        "key": "ourLadyOfCarmel",
+        "name": "Nuestra Señora del Carmen, Patrona de Chile",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 10, "day": 31,
+        "key": "stAlbertoHurtado",
+        "name": "San Alberto Hurtado, Presbítero",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionChile",
+        "name": "Inmaculada Concepción, Patrona de Chile",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "colombia": [
+      {
+        "month": 9, "day": 9,
+        "key": "stPeterClaverColombia",
+        "name": "San Pedro Claver, Patrono de Colombia",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 11,
+        "key": "ourLadyOfChiquinquira",
+        "name": "Nuestra Señora de Chiquinquirá, Patrona de Colombia",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionColombia",
+        "name": "Inmaculada Concepción",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "peru": [
+      {
+        "month": 8, "day": 23,
+        "key": "stRoseOfLima",
+        "name": "Santa Rosa de Lima, Patrona del Perú y las Américas",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      },
+      {
+        "month": 10, "day": 18,
+        "key": "lordOfMiracles",
+        "name": "Señor de los Milagros",
+        "rank": "solemnity",
+        "color": "purple"
+      },
+      {
+        "month": 11, "day": 3,
+        "key": "stMartinDePorres",
+        "name": "San Martín de Porres, Religioso",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 12, "day": 8,
+        "key": "immaculateConceptionPeru",
+        "name": "Inmaculada Concepción, Patrona del Perú",
+        "rank": "solemnity",
+        "color": "white",
+        "isHolyDay": true
+      }
+    ],
+    "france": [
+      {
+        "month": 1, "day": 3,
+        "key": "stGenevieve",
+        "name": "Santa Genoveva, virgen, Patrona de París",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 2, "day": 11,
+        "key": "ourLadyOfLourdesFrance",
+        "name": "Nuestra Señora de Lourdes",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 5, "day": 30,
+        "key": "stJoanOfArc",
+        "name": "Santa Juana de Arco, virgen, Patrona secundaria de Francia",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 8, "day": 9,
+        "key": "stTeresaBenedicta",
+        "name": "Santa Teresa Benedicta de la Cruz (Edith Stein), virgen y mártir, Patrona de Europa",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 10, "day": 1,
+        "key": "stThereseOfLisieux",
+        "name": "Santa Teresa del Niño Jesús, virgen y doctora, Patrona secundaria de Francia",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 11,
+        "key": "stMartinOfTours",
+        "name": "San Martín de Tours, obispo",
+        "rank": "feast",
+        "color": "white"
+      }
+    ],
+    "germany": [
+      {
+        "month": 1, "day": 7,
+        "key": "stValentineOfRaetia",
+        "name": "San Valentín de Recia, obispo",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 8,
+        "key": "stSeverinusOfNoricum",
+        "name": "San Severino de Nórico, monje",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 6, "day": 5,
+        "key": "stBonifaceGermany",
+        "name": "San Bonifacio, obispo y mártir, Apóstol de Alemania",
+        "rank": "solemnity",
+        "color": "red"
+      },
+      {
+        "month": 9, "day": 25,
+        "key": "stNicholasOfFlue",
+        "name": "San Nicolás de Flüe, ermitaño",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 28,
+        "key": "stLeoba",
+        "name": "Santa Leoba, virgen",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 16,
+        "key": "stGall",
+        "name": "San Galo, monje y ermitaño",
+        "rank": "optionalMemorial",
+        "color": "white"
+      }
+    ],
+    "austria": [
+      {
+        "month": 1, "day": 7,
+        "key": "stValentineOfRaetia",
+        "name": "San Valentín de Recia, obispo",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 1, "day": 8,
+        "key": "stSeverinusOfNoricum",
+        "name": "San Severino de Nórico, monje",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 5, "day": 4,
+        "key": "stFlorian",
+        "name": "San Florián, mártir",
+        "rank": "optionalMemorial",
+        "color": "red"
+      },
+      {
+        "month": 6, "day": 5,
+        "key": "stBonifaceAustria",
+        "name": "San Bonifacio, obispo y mártir",
+        "rank": "feast",
+        "color": "red"
+      },
+      {
+        "month": 6, "day": 27,
+        "key": "stHemmaOfGurk",
+        "name": "Santa Ema de Gurk",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 24,
+        "key": "stRupertOfSalzburg",
+        "name": "San Ruperto, obispo de Salzburgo",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 9, "day": 25,
+        "key": "stNicholasOfFlue",
+        "name": "San Nicolás de Flüe, ermitaño",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 16,
+        "key": "stGall",
+        "name": "San Galo, monje y ermitaño",
+        "rank": "optionalMemorial",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 15,
+        "key": "stLeopoldIII",
+        "name": "San Leopoldo III, margrave, Patrono de Austria",
+        "rank": "solemnity",
+        "color": "white"
+      }
+    ],
+    "italy": [
+      {
+        "month": 4, "day": 29,
+        "key": "stCatherineOfSienaItaly",
+        "name": "Santa Catalina de Siena, virgen y doctora, Patrona de Italia",
+        "rank": "feast",
+        "color": "white"
+      },
+      {
+        "month": 10, "day": 4,
+        "key": "stFrancisOfAssisiItaly",
+        "name": "San Francisco de Asís, Patrono de Italia",
+        "rank": "solemnity",
+        "color": "white"
+      },
+      {
+        "month": 11, "day": 4,
+        "key": "stCharlesBorromeo",
+        "name": "San Carlos Borromeo, obispo",
+        "rank": "obligatoryMemorial",
+        "color": "white"
+      }
+    ]
+  },
+  "moveable": [
+    {
+      "key": "ashWednesday",
+      "name": "Miércoles de Ceniza",
+      "daysFromEaster": -46,
+      "rank": "weekday",
+      "color": "purple"
+    },
+    {
+      "key": "palmSunday",
+      "name": "Domingo de Ramos en la Pasión del Señor",
+      "daysFromEaster": -7,
+      "rank": "solemnity",
+      "color": "red"
+    },
+    {
+      "key": "holyThursday",
+      "name": "Jueves Santo (Misa de la Cena del Señor)",
+      "daysFromEaster": -3,
+      "rank": "solemnity",
+      "color": "white"
+    },
+    {
+      "key": "goodFriday",
+      "name": "Viernes Santo de la Pasión del Señor",
+      "daysFromEaster": -2,
+      "rank": "solemnity",
+      "color": "red"
+    },
+    {
+      "key": "holySaturday",
+      "name": "Sábado Santo",
+      "daysFromEaster": -1,
+      "rank": "solemnity",
+      "color": "white"
+    },
+    {
+      "key": "easterSunday",
+      "name": "Domingo de Pascua de la Resurrección del Señor",
+      "daysFromEaster": 0,
+      "rank": "solemnity",
+      "color": "white",
+      "isHolyDay": true
+    },
+    {
+      "key": "divineMercySunday",
+      "name": "Segundo Domingo de Pascua (Domingo de la Divina Misericordia)",
+      "daysFromEaster": 7,
+      "rank": "solemnity",
+      "color": "white"
+    },
+    {
+      "key": "ascension",
+      "name": "La Ascensión del Señor",
+      "daysFromEaster": 39,
+      "rank": "solemnity",
+      "color": "white",
+      "isHolyDay": true,
+      "transferToSunday": ["usa", "brazil"]
+    },
+    {
+      "key": "pentecost",
+      "name": "Domingo de Pentecostés",
+      "daysFromEaster": 49,
+      "rank": "solemnity",
+      "color": "red",
+      "isHolyDay": true
+    },
+    {
+      "key": "trinitySunday",
+      "name": "La Santísima Trinidad",
+      "daysFromEaster": 56,
+      "rank": "solemnity",
+      "color": "white"
+    },
+    {
+      "key": "corpusChristi",
+      "name": "El Cuerpo y la Sangre de Cristo",
+      "daysFromEaster": 60,
+      "rank": "solemnity",
+      "color": "white",
+      "isHolyDay": true,
+      "transferToSunday": ["usa", "brazil"]
+    },
+    {
+      "key": "sacredHeart",
+      "name": "Sagrado Corazón de Jesús",
+      "daysFromEaster": 68,
+      "rank": "solemnity",
+      "color": "white"
+    },
+    {
+      "key": "immaculateHeart",
+      "name": "Inmaculado Corazón de la Virgen María",
+      "daysFromEaster": 69,
+      "rank": "obligatoryMemorial",
+      "color": "white"
+    },
+    {
+      "key": "christTheKing",
+      "name": "Nuestro Señor Jesucristo, Rey del Universo",
+      "daysFromEaster": 0,
+      "rank": "solemnity",
+      "color": "white",
+      "specialCalculation": "lastSundayBeforeAdvent"
+    }
+  ],
+  "seasons": {
+    "advent": "Adviento",
+    "christmas": "Navidad",
+    "lent": "Cuaresma",
+    "easter": "Pascua",
+    "ordinaryTime": "Tiempo Ordinario"
+  },
+  "weekdays": {
+    "sunday": "Domingo",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado"
+  },
+  "seasonWeekFormat": {
+    "advent": "{weekday} de la {ordinal} Semana de Adviento",
+    "christmas": "{weekday} del Tiempo de Navidad",
+    "lent": "{weekday} de la {ordinal} Semana de Cuaresma",
+    "lentAshWeek": "{weekday} después del Miércoles de Ceniza",
+    "easter": "{weekday} de la {ordinal} Semana de Pascua",
+    "ordinaryTime": "{weekday} de la {ordinal} Semana del Tiempo Ordinario"
+  }
+}

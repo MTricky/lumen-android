@@ -49,6 +49,7 @@ import com.app.lumen.features.bible.ui.BibleReaderScreen
 import com.app.lumen.features.bible.ui.BibleScreen
 import com.app.lumen.features.bible.service.BibleBookInfo
 import com.app.lumen.features.bible.viewmodel.BibleViewModel
+import com.app.lumen.features.calendar.ui.CalendarScreen
 import com.app.lumen.features.rosary.ui.RosaryScreen
 import com.app.lumen.features.settings.ui.SettingsScreen
 import androidx.compose.ui.res.painterResource
@@ -125,7 +126,7 @@ fun MainTabView() {
 
     val showAccessory = currentReading != null
     // Only allow inline mode on scrollable screens (Liturgy)
-    val isInline = scrollState.isInline && selectedTab == Tab.LITURGY
+    val isInline = scrollState.isInline && selectedTab != Tab.SETTINGS
 
     // Readings detail navigation state
     var showReadings by remember { mutableStateOf(false) }
@@ -142,6 +143,9 @@ fun MainTabView() {
     var showBibleReader by remember { mutableStateOf(false) }
     var selectedBibleBook by remember { mutableStateOf<BibleBook?>(null) }
     var selectedBibleBookInfo by remember { mutableStateOf<BibleBookInfo?>(null) }
+
+    // Calendar state (hoisted to preserve scroll position across tab switches)
+    val calendarViewModel: com.app.lumen.features.calendar.viewmodel.CalendarViewModel = viewModel()
 
     // Rosary prayer navigation state
     val rosaryViewModel: com.app.lumen.features.rosary.viewmodel.RosaryViewModel = viewModel()
@@ -172,7 +176,6 @@ fun MainTabView() {
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
                 onBookSelected = { book ->
                     selectedBibleBook = book
-                    // Find matching BibleBookInfo from ViewModel
                     val books = bibleViewModel.books.value
                     selectedBibleBookInfo = books.find { it.id == book.id }
                         ?: BibleBookInfo(id = book.id, abbreviation = book.abbreviation, name = book.name)
@@ -188,10 +191,10 @@ fun MainTabView() {
                     showRosaryPrayer = true
                 },
             )
+            Tab.CALENDAR -> CalendarScreen(calendarViewModel = calendarViewModel)
             Tab.SETTINGS -> SettingsScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
             )
-            else -> PlaceholderScreen(tab = selectedTab)
         }
 
         // Tab bar

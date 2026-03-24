@@ -159,6 +159,45 @@
     <string name="rosary_section_hail_holy_queen">Hail Holy Queen</string>
     <string name="rosary_section_final_prayer">Final Prayer</string>
 
+    <!-- Calendar -->
+    <string name="calendar_title">Calendar</string>
+    <string name="calendar_tab_calendar">Calendar</string>
+    <string name="calendar_tab_routine">Routine</string>
+    <string name="calendar_tab_notes">Notes</string>
+    <string name="calendar_info_title">About the Calendar</string>
+    <string name="calendar_info_region_title">Liturgical Region</string>
+    <string name="calendar_info_region_description">The calendar displays celebrations for your selected region: %1$s. Different regions may have unique feast days and holy days of obligation.</string>
+    <string name="calendar_info_colors_title">Liturgical Colors</string>
+    <string name="calendar_info_colors_description">Colors indicate the liturgical season and celebration type:</string>
+    <string name="calendar_info_color_green_name">Green</string>
+    <string name="calendar_info_color_green_desc">Ordinary Time</string>
+    <string name="calendar_info_color_violet_name">Violet</string>
+    <string name="calendar_info_color_violet_desc">Advent &amp; Lent</string>
+    <string name="calendar_info_color_white_name">White</string>
+    <string name="calendar_info_color_white_desc">Christmas, Easter, Feasts</string>
+    <string name="calendar_info_color_red_name">Red</string>
+    <string name="calendar_info_color_red_desc">Martyrs &amp; Pentecost</string>
+    <string name="calendar_info_color_rose_name">Rose</string>
+    <string name="calendar_info_color_rose_desc">Gaudete &amp; Laetare Sundays</string>
+    <string name="calendar_info_ranks_title">Celebration Ranks</string>
+    <string name="calendar_info_ranks_description">Celebrations have different levels of importance:</string>
+    <string name="calendar_info_rank_solemnity">Highest rank</string>
+    <string name="calendar_info_rank_feast">Important celebrations</string>
+    <string name="calendar_info_rank_memorial">Commemorations of saints</string>
+    <string name="calendar_info_rank_weekday">Ordinary days</string>
+    <string name="calendar_info_rank_solemnity_name">Solemnity</string>
+    <string name="calendar_info_rank_feast_name">Feast</string>
+    <string name="calendar_info_rank_memorial_name">Memorial</string>
+    <string name="calendar_info_rank_weekday_name">Weekday</string>
+    <string name="calendar_info_holydays_title">Holy Days of Obligation</string>
+    <string name="calendar_info_holydays_description">Days marked with a star are Holy Days of Obligation. Catholics are required to attend Mass on these days, just like Sundays.</string>
+    <string name="calendar_info_howto_title">How to Use</string>
+    <string name="calendar_info_howto_description">Tap any day to see its details and track your Mass attendance. Use the context menu (long press) for quick actions like marking Mass attended.</string>
+    <string name="calendar_day_obligatory">Obligatory</string>
+    <string name="calendar_day_set_reminder">Set Reminder</string>
+    <string name="calendar_day_add_note">Add Note</string>
+    <string name="cd_calendar_info">Calendar Info</string>
+
     <!-- Placeholder -->
     <string name="coming_soon">Coming soon</string>
 

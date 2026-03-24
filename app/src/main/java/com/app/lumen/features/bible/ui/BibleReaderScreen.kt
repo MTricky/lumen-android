@@ -306,7 +306,7 @@ fun BibleReaderScreen(
                                     .fillMaxSize()
                                     .verticalScroll(scrollState)
                                     .padding(horizontal = 16.dp)
-                                    .padding(bottom = 100.dp),
+                                    .padding(bottom = 120.dp),
                             ) {
                                 BibleChapterText(
                                     html = cachedChapter.content,

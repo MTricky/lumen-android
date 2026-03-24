@@ -276,20 +276,20 @@ fun RosaryPrayerScreen(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                GlassCircleButton(onClick = onTapBack, size = 54, enabled = currentStepIndex > 0) {
+                GlassCircleButton(onClick = onTapBack, size = 46, enabled = currentStepIndex > 0) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                         contentDescription = stringResource(R.string.rosary_previous),
                         tint = if (currentStepIndex > 0) Color.White else Color.White.copy(alpha = 0.3f),
-                        modifier = Modifier.size(28.dp),
+                        modifier = Modifier.size(24.dp),
                     )
                 }
-                GlassCircleButton(onClick = onTapAdvance, size = 54) {
+                GlassCircleButton(onClick = onTapAdvance, size = 46) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                         contentDescription = stringResource(R.string.rosary_next),
                         tint = Color.White,
-                        modifier = Modifier.size(28.dp),
+                        modifier = Modifier.size(24.dp),
                     )
                 }
             }
