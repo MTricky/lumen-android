@@ -1,5 +1,9 @@
 package com.app.lumen.features.calendar.ui
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -36,8 +40,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.app.lumen.features.calendar.data.WeeklyRoutineEntity
 import com.app.lumen.features.calendar.model.*
 import com.app.lumen.features.calendar.viewmodel.CalendarViewModel
+import com.app.lumen.features.calendar.viewmodel.RoutineViewModel
+import com.app.lumen.features.calendar.viewmodel.UnifiedRoutineItem
 import com.app.lumen.ui.components.GlassButtonSize
 import com.app.lumen.ui.components.GlassIconButton
 import com.app.lumen.ui.theme.*
@@ -103,6 +110,43 @@ fun CalendarScreen(
     var reminderSheetType by remember { mutableStateOf(ReminderType.CUSTOM) }
     var editingReminder by remember { mutableStateOf<Reminder?>(null) }
     var reminderSheetLiturgicalDay by remember { mutableStateOf<LiturgicalDay?>(null) }
+
+    // Routine state
+    val routineViewModel: RoutineViewModel = viewModel()
+    var showCreateRoutineSheet by remember { mutableStateOf(false) }
+    var showFirstFridaySetupSheet by remember { mutableStateOf(false) }
+    var showRoutineDetailSheet by remember { mutableStateOf(false) }
+    var showEditRoutineSheet by remember { mutableStateOf(false) }
+    var selectedRoutineItem by remember { mutableStateOf<UnifiedRoutineItem?>(null) }
+    var createRoutinePreselectedType by remember { mutableStateOf<RoutineItemType?>(null) }
+    var createRoutinePreselectedSuggestion by remember { mutableStateOf<RoutineSuggestion?>(null) }
+
+    // Notification permission launcher
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        // Permission result received, routines will be created regardless
+    }
+
+    // Request notification permission on first visit to Routine tab
+    var hasRequestedPermission by remember { mutableStateOf(false) }
+    LaunchedEffect(selectedTab) {
+        if (selectedTab == CalendarTabMode.ROUTINE && !hasRequestedPermission) {
+            hasRequestedPermission = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (!viewModel.notificationManager.hasNotificationPermission()) {
+                    notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+        }
+    }
+
+    // Reload routines when switching to Routine tab
+    LaunchedEffect(selectedTab) {
+        if (selectedTab == CalendarTabMode.ROUTINE) {
+            routineViewModel.loadRoutines()
+        }
+    }
 
     // Re-read region from SharedPreferences each time screen appears
     LaunchedEffect(Unit) {
@@ -337,6 +381,205 @@ fun CalendarScreen(
         }
     }
 
+    // Create Routine sheet
+    if (showCreateRoutineSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showCreateRoutineSheet = false },
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.White.copy(alpha = 0.3f))
+                )
+            },
+        ) {
+            CreateRoutineSheet(
+                preselectedType = createRoutinePreselectedType,
+                preselectedSuggestion = createRoutinePreselectedSuggestion,
+                onDismiss = { showCreateRoutineSheet = false },
+                onCreate = { title, type, days, hour, minute, notifEnabled, loggingEnabled, leadTime ->
+                    routineViewModel.createRoutine(
+                        title = title,
+                        type = type,
+                        selectedDays = days,
+                        hour = hour,
+                        minute = minute,
+                        isNotificationEnabled = notifEnabled,
+                        isLoggingEnabled = loggingEnabled,
+                        notificationLeadTimeMinutes = leadTime
+                    )
+                    showCreateRoutineSheet = false
+                }
+            )
+        }
+    }
+
+    // First Friday Setup sheet
+    if (showFirstFridaySetupSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showFirstFridaySetupSheet = false },
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.White.copy(alpha = 0.3f))
+                )
+            },
+        ) {
+            FirstFridaySetupSheet(
+                onDismiss = { showFirstFridaySetupSheet = false },
+                onCreate = { notifEnabled, hour, minute, leadTime, initialCount ->
+                    routineViewModel.createFirstFridayRoutine(
+                        isNotificationEnabled = notifEnabled,
+                        notificationHour = hour,
+                        notificationMinute = minute,
+                        notificationLeadTimeMinutes = leadTime,
+                        initialConsecutiveCount = initialCount
+                    )
+                    showFirstFridaySetupSheet = false
+                }
+            )
+        }
+    }
+
+    // Routine Detail sheet
+    if (showRoutineDetailSheet && selectedRoutineItem != null) {
+        var routineDeleteConfirm by remember { mutableStateOf(false) }
+
+        if (routineDeleteConfirm) {
+            val title = when (val item = selectedRoutineItem) {
+                is UnifiedRoutineItem.Weekly -> item.entity.title
+                is UnifiedRoutineItem.FirstFriday -> "First Friday Devotion"
+                null -> ""
+            }
+            AlertDialog(
+                onDismissRequest = { routineDeleteConfirm = false },
+                title = { Text("Delete Routine") },
+                text = { Text("Are you sure you want to delete \"$title\"? This will also remove all completion history.") },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            selectedRoutineItem?.let { routineViewModel.deleteRoutine(it) }
+                            routineDeleteConfirm = false
+                            showRoutineDetailSheet = false
+                            selectedRoutineItem = null
+                        },
+                        colors = ButtonDefaults.textButtonColors(contentColor = Color.Red)
+                    ) { Text("Delete") }
+                },
+                dismissButton = {
+                    TextButton(onClick = { routineDeleteConfirm = false }) {
+                        Text("Cancel")
+                    }
+                }
+            )
+        }
+
+        ModalBottomSheet(
+            onDismissRequest = {
+                showRoutineDetailSheet = false
+                selectedRoutineItem = null
+            },
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false),
+            containerColor = CardBackground,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 24.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.White.copy(alpha = 0.3f))
+                )
+            },
+        ) {
+            RoutineDetailSheet(
+                item = selectedRoutineItem!!,
+                viewModel = routineViewModel,
+                onDismiss = {
+                    showRoutineDetailSheet = false
+                    selectedRoutineItem = null
+                },
+                onEdit = {
+                    showRoutineDetailSheet = false
+                    showEditRoutineSheet = true
+                },
+                onDelete = {
+                    routineDeleteConfirm = true
+                }
+            )
+        }
+    }
+
+    // Edit Routine sheet
+    if (showEditRoutineSheet && selectedRoutineItem != null) {
+        val weeklyItem = selectedRoutineItem as? UnifiedRoutineItem.Weekly
+        if (weeklyItem != null) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    showEditRoutineSheet = false
+                    selectedRoutineItem = null
+                },
+                sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+                containerColor = CardBackground,
+                modifier = Modifier
+                    .statusBarsPadding()
+                    .padding(top = 24.dp),
+                dragHandle = {
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 12.dp, bottom = 8.dp)
+                            .width(36.dp)
+                            .height(4.dp)
+                            .clip(RoundedCornerShape(2.dp))
+                            .background(Color.White.copy(alpha = 0.3f))
+                    )
+                },
+            ) {
+                EditRoutineSheet(
+                    routine = weeklyItem.entity,
+                    onDismiss = {
+                        showEditRoutineSheet = false
+                        selectedRoutineItem = null
+                    },
+                    onSave = { title, days, hour, minute, notifEnabled, loggingEnabled, leadTime ->
+                        routineViewModel.updateRoutine(
+                            routine = weeklyItem.entity,
+                            title = title,
+                            selectedDays = days,
+                            hour = hour,
+                            minute = minute,
+                            isNotificationEnabled = notifEnabled,
+                            isLoggingEnabled = loggingEnabled,
+                            notificationLeadTimeMinutes = leadTime
+                        )
+                        showEditRoutineSheet = false
+                        selectedRoutineItem = null
+                    }
+                )
+            }
+        }
+    }
+
     var showAddMenu by remember { mutableStateOf(false) }
 
     Box(
@@ -351,7 +594,14 @@ fun CalendarScreen(
         CalendarToolbar(
             selectedTab = selectedTab,
             onInfoTapped = { showInfoSheet = true },
-            onPlusTapped = { showAddMenu = true }
+            onPlusTapped = {
+                if (selectedTab == CalendarTabMode.ROUTINE) {
+                    createRoutinePreselectedType = null
+                    showCreateRoutineSheet = true
+                } else {
+                    showAddMenu = true
+                }
+            }
         )
 
         // Segmented picker
@@ -427,12 +677,30 @@ fun CalendarScreen(
                     }
                 }
                 CalendarTabMode.ROUTINE -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = stringResource(R.string.coming_soon), color = Slate, fontSize = 16.sp)
-                    }
+                    RoutineTab(
+                        viewModel = routineViewModel,
+                        onCreateRoutine = {
+                            createRoutinePreselectedType = null
+                            createRoutinePreselectedSuggestion = null
+                            showCreateRoutineSheet = true
+                        },
+                        onSuggestionTap = { suggestion ->
+                            createRoutinePreselectedType = null
+                            createRoutinePreselectedSuggestion = suggestion
+                            showCreateRoutineSheet = true
+                        },
+                        onRoutineDetail = { item ->
+                            selectedRoutineItem = item
+                            showRoutineDetailSheet = true
+                        },
+                        onEditRoutine = { item ->
+                            selectedRoutineItem = item
+                            showEditRoutineSheet = true
+                        },
+                        onFirstFridaySetup = {
+                            showFirstFridaySetupSheet = true
+                        }
+                    )
                 }
                 CalendarTabMode.NOTES -> {
                     NotesTabView(
@@ -611,6 +879,7 @@ private fun CalendarToolbar(
 ) {
     val title = when (selectedTab) {
         CalendarTabMode.NOTES -> stringResource(R.string.calendar_tab_notes)
+        CalendarTabMode.ROUTINE -> stringResource(R.string.calendar_tab_routine)
         else -> stringResource(R.string.tab_calendar)
     }
 
@@ -632,7 +901,7 @@ private fun CalendarToolbar(
         )
 
         when (selectedTab) {
-            CalendarTabMode.NOTES -> {
+            CalendarTabMode.NOTES, CalendarTabMode.ROUTINE -> {
                 GlassIconButton(
                     onClick = onPlusTapped,
                     size = GlassButtonSize.SMALL,

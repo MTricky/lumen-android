@@ -95,6 +95,7 @@ dependencies {
 
     // Room (local database - equivalent of SwiftData on iOS)
     // TODO: Re-enable Room + KSP when compatible with AGP 9.x built-in Kotlin
+    // Requires Kotlin 2.3.0+ and KSP 2.3.4+
     // implementation(libs.room.runtime)
     // implementation(libs.room.ktx)
     // ksp(libs.room.compiler)

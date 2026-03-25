@@ -299,6 +299,115 @@
     <string name="day_detail_existing_notes">Notes</string>
     <string name="day_detail_add_note">Add Note</string>
 
+    <!-- Routine types -->
+    <string name="routine_type_mass">Holy Mass</string>
+    <string name="routine_type_morning_prayer">Morning Prayer</string>
+    <string name="routine_type_evening_prayer">Evening Prayer</string>
+    <string name="routine_type_rosary">Rosary</string>
+    <string name="routine_type_adoration">Adoration</string>
+    <string name="routine_type_angelus">Angelus</string>
+    <string name="routine_type_divine_mercy">Divine Mercy</string>
+    <string name="routine_type_custom">Custom</string>
+    <string name="routine_type_prayer_routine">Prayer Routine</string>
+
+    <!-- Routine default titles -->
+    <string name="routine_default_sunday_mass">Sunday Mass</string>
+    <string name="routine_default_morning_offering">Morning Offering</string>
+    <string name="routine_default_evening_reflection">Evening Reflection</string>
+    <string name="routine_default_daily_rosary">Daily Rosary</string>
+    <string name="routine_default_divine_mercy_chaplet">Divine Mercy Chaplet</string>
+    <string name="routine_default_weekly_adoration">Weekly Adoration</string>
+
+    <!-- Routine notification messages -->
+    <string name="routine_notif_mass">Time to prepare for Holy Mass</string>
+    <string name="routine_notif_morning">Start your day with the Morning Offering</string>
+    <string name="routine_notif_evening">End your day with reflection and prayer</string>
+    <string name="routine_notif_rosary">Time to meditate with Mary through the mysteries</string>
+    <string name="routine_notif_adoration">Time for Eucharistic Adoration</string>
+    <string name="routine_notif_angelus">The Angel of the Lord declared unto Mary</string>
+    <string name="routine_notif_divine_mercy">Time to pray the Chaplet of Divine Mercy</string>
+    <string name="routine_notif_custom">Time for your prayer routine</string>
+
+    <!-- Routine suggestions -->
+    <string name="routine_suggestion_mass_subtitle">Weekly reminder for Holy Mass</string>
+    <string name="routine_suggestion_rosary_subtitle">Meditate with Mary through the mysteries</string>
+    <string name="routine_suggestion_morning_subtitle">Start your day with the Morning Offering</string>
+    <string name="routine_suggestion_evening_subtitle">End your day with reflection and prayer</string>
+    <string name="routine_suggestion_divine_mercy_subtitle">Pray the Chaplet at the Hour of Mercy</string>
+    <string name="routine_suggestion_adoration_subtitle">Visit Jesus in the Blessed Sacrament</string>
+    <string name="routine_suggestion_angelus_subtitle">Traditional noon prayer</string>
+
+    <!-- Routine empty state -->
+    <string name="routine_empty_title">Start Your Prayer Routine</string>
+    <string name="routine_empty_subtitle">Choose a routine to build your daily prayer habit</string>
+
+    <!-- Routine sections -->
+    <string name="routine_section_active">ACTIVE ROUTINES</string>
+    <string name="routine_section_paused">PAUSED</string>
+    <string name="routine_section_suggested">SUGGESTED FOR YOU</string>
+
+    <!-- Routine actions -->
+    <string name="routine_add">Add</string>
+    <string name="routine_mark_completed">Mark as completed</string>
+    <string name="routine_completed_today">Completed today</string>
+    <string name="routine_pause">Pause</string>
+    <string name="routine_resume">Resume</string>
+    <string name="routine_delete_title">Delete Routine</string>
+    <string name="routine_delete_message">Are you sure you want to delete \"%1$s\"? This will also remove all completion history.</string>
+
+    <!-- Routine detail -->
+    <string name="routine_close">Close</string>
+    <string name="routine_options">Options</string>
+    <string name="routine_schedule">Schedule</string>
+    <string name="routine_progress">Progress</string>
+    <string name="routine_settings">Settings</string>
+    <string name="routine_track_completion">Track completion</string>
+    <string name="routine_day_streak">Day Streak</string>
+    <string name="routine_this_month">This Month</string>
+    <string name="routine_created_date">Created %1$s</string>
+    <string name="routine_month_count">%1$d of %2$d this month</string>
+
+    <!-- Routine create/edit -->
+    <string name="routine_new_title">New Routine</string>
+    <string name="routine_new_subtitle">Choose a spiritual habit</string>
+    <string name="routine_edit_title">Edit Routine</string>
+    <string name="routine_quick_start">Quick Start</string>
+    <string name="routine_field_title">Title</string>
+    <string name="routine_field_title_placeholder">Enter a title</string>
+    <string name="routine_field_days">Days</string>
+    <string name="routine_field_time">Time</string>
+    <string name="routine_days_every_day">Every day</string>
+    <string name="routine_days_weekdays">Weekdays</string>
+    <string name="routine_days_weekends">Weekends</string>
+    <string name="routine_notifications">Notifications</string>
+    <string name="routine_remind_me">Remind me</string>
+    <string name="routine_back">Back</string>
+    <string name="routine_enabled">Enabled</string>
+    <string name="routine_disabled">Disabled</string>
+
+    <!-- Routine lead times -->
+    <string name="routine_lead_at_time">At time of event</string>
+    <string name="routine_lead_5min">5 minutes before</string>
+    <string name="routine_lead_15min">15 minutes before</string>
+    <string name="routine_lead_30min">30 minutes before</string>
+    <string name="routine_lead_1hour">1 hour before</string>
+    <string name="routine_lead_2hours">2 hours before</string>
+    <string name="routine_lead_1day">1 day before</string>
+
+    <!-- First Friday -->
+    <string name="first_friday_title">First Friday Devotion</string>
+    <string name="first_friday_subtitle">Yearly tracking</string>
+    <string name="first_friday_schedule">First Friday of each month</string>
+
+    <!-- Day abbreviations -->
+    <string name="day_abbrev_mon">M</string>
+    <string name="day_abbrev_tue">T</string>
+    <string name="day_abbrev_wed">W</string>
+    <string name="day_abbrev_thu">T</string>
+    <string name="day_abbrev_fri">F</string>
+    <string name="day_abbrev_sat">S</string>
+    <string name="day_abbrev_sun">S</string>
+
     <!-- Errors -->
     <string name="error_no_liturgy">No liturgy available for this day</string>
     <string name="error_load_failed">Failed to load liturgy: %1$s</string>

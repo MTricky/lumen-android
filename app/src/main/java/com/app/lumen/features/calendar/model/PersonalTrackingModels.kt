@@ -1,6 +1,193 @@
 package com.app.lumen.features.calendar.model
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.serialization.Serializable
+
+// MARK: - Routine Item Type
+
+enum class RoutineItemType(val rawValue: String) {
+    MASS("mass"),
+    MORNING_PRAYER("morningPrayer"),
+    EVENING_PRAYER("eveningPrayer"),
+    ROSARY("rosary"),
+    ADORATION("adoration"),
+    ANGELUS("angelus"),
+    DIVINE_MERCY("divineMercy"),
+    CUSTOM("custom");
+
+    val displayName: String
+        get() = when (this) {
+            MASS -> "Holy Mass"
+            MORNING_PRAYER -> "Morning Prayer"
+            EVENING_PRAYER -> "Evening Prayer"
+            ROSARY -> "Rosary"
+            ADORATION -> "Adoration"
+            ANGELUS -> "Angelus"
+            DIVINE_MERCY -> "Divine Mercy"
+            CUSTOM -> "Custom"
+        }
+
+    val icon: ImageVector
+        get() = when (this) {
+            MASS -> Icons.Filled.AccountBalance
+            MORNING_PRAYER -> Icons.Filled.WbSunny
+            EVENING_PRAYER -> Icons.Filled.NightsStay
+            ROSARY -> Icons.Filled.AutoAwesome
+            ADORATION -> Icons.Filled.AutoAwesome
+            ANGELUS -> Icons.Filled.Notifications
+            DIVINE_MERCY -> Icons.Filled.Favorite
+            CUSTOM -> Icons.Filled.Star
+        }
+
+    val defaultHour: Int
+        get() = when (this) {
+            MASS -> 9
+            MORNING_PRAYER -> 7
+            EVENING_PRAYER -> 20
+            ROSARY -> 18
+            ADORATION -> 17
+            ANGELUS -> 12
+            DIVINE_MERCY -> 15
+            CUSTOM -> 9
+        }
+
+    val defaultMinute: Int get() = 0
+
+    val defaultTitle: String
+        get() = when (this) {
+            MASS -> "Sunday Mass"
+            MORNING_PRAYER -> "Morning Offering"
+            EVENING_PRAYER -> "Evening Reflection"
+            ROSARY -> "Daily Rosary"
+            ADORATION -> "Adoration"
+            ANGELUS -> "Angelus"
+            DIVINE_MERCY -> "Divine Mercy Chaplet"
+            CUSTOM -> ""
+        }
+
+    val notificationTitle: String
+        get() = when (this) {
+            MASS -> "Holy Mass"
+            MORNING_PRAYER -> "Morning Prayer"
+            EVENING_PRAYER -> "Evening Prayer"
+            ROSARY -> "Rosary"
+            ADORATION -> "Adoration"
+            ANGELUS -> "Angelus"
+            DIVINE_MERCY -> "Divine Mercy"
+            CUSTOM -> "Prayer Routine"
+        }
+
+    val notificationMessage: String
+        get() = when (this) {
+            MASS -> "Time to prepare for Holy Mass"
+            MORNING_PRAYER -> "Start your day with the Morning Offering"
+            EVENING_PRAYER -> "End your day with reflection and prayer"
+            ROSARY -> "Time to meditate with Mary through the mysteries"
+            ADORATION -> "Time for Eucharistic Adoration"
+            ANGELUS -> "The Angel of the Lord declared unto Mary"
+            DIVINE_MERCY -> "Time to pray the Chaplet of Divine Mercy"
+            CUSTOM -> "Time for your prayer routine"
+        }
+
+    companion object {
+        fun fromRawValue(value: String): RoutineItemType =
+            entries.find { it.rawValue == value } ?: CUSTOM
+    }
+}
+
+// MARK: - Routine Suggestion
+
+data class RoutineSuggestion(
+    val type: RoutineItemType,
+    val title: String,
+    val subtitle: String,
+    val defaultDays: Set<Int>, // 1=Sun..7=Sat (Calendar.SUNDAY=1)
+    val defaultHour: Int,
+    val defaultMinute: Int = 0
+) {
+    companion object {
+        val sundayMass = RoutineSuggestion(
+            type = RoutineItemType.MASS,
+            title = "Sunday Mass",
+            subtitle = "Weekly reminder for Holy Mass",
+            defaultDays = setOf(1), // Sunday
+            defaultHour = 9
+        )
+
+        val dailyRosary = RoutineSuggestion(
+            type = RoutineItemType.ROSARY,
+            title = "Daily Rosary",
+            subtitle = "Meditate with Mary through the mysteries",
+            defaultDays = setOf(1, 2, 3, 4, 5, 6, 7),
+            defaultHour = 18
+        )
+
+        val morningOffering = RoutineSuggestion(
+            type = RoutineItemType.MORNING_PRAYER,
+            title = "Morning Offering",
+            subtitle = "Start your day with the Morning Offering",
+            defaultDays = setOf(1, 2, 3, 4, 5, 6, 7),
+            defaultHour = 7
+        )
+
+        val eveningReflection = RoutineSuggestion(
+            type = RoutineItemType.EVENING_PRAYER,
+            title = "Evening Reflection",
+            subtitle = "End your day with reflection and prayer",
+            defaultDays = setOf(1, 2, 3, 4, 5, 6, 7),
+            defaultHour = 21
+        )
+
+        val divineMercy = RoutineSuggestion(
+            type = RoutineItemType.DIVINE_MERCY,
+            title = "Divine Mercy Chaplet",
+            subtitle = "Pray the Chaplet at the Hour of Mercy",
+            defaultDays = setOf(1, 2, 3, 4, 5, 6, 7),
+            defaultHour = 15
+        )
+
+        val adorationWeekly = RoutineSuggestion(
+            type = RoutineItemType.ADORATION,
+            title = "Weekly Adoration",
+            subtitle = "Visit Jesus in the Blessed Sacrament",
+            defaultDays = setOf(5), // Thursday
+            defaultHour = 18
+        )
+
+        val angelusTraditional = RoutineSuggestion(
+            type = RoutineItemType.ANGELUS,
+            title = "Angelus",
+            subtitle = "Traditional noon prayer",
+            defaultDays = setOf(1, 2, 3, 4, 5, 6, 7),
+            defaultHour = 12
+        )
+
+        val all = listOf(sundayMass, dailyRosary, morningOffering, eveningReflection, divineMercy, adorationWeekly, angelusTraditional)
+    }
+}
+
+// MARK: - Lead Time Options
+
+data class LeadTimeOption(val label: String, val minutes: Int)
+
+val leadTimeOptions = listOf(
+    LeadTimeOption("At time of event", 0),
+    LeadTimeOption("5 minutes before", 5),
+    LeadTimeOption("15 minutes before", 15),
+    LeadTimeOption("30 minutes before", 30),
+    LeadTimeOption("1 hour before", 60),
+    LeadTimeOption("2 hours before", 120)
+)
+
+val firstFridayLeadTimeOptions = listOf(
+    LeadTimeOption("At time of event", 0),
+    LeadTimeOption("30 minutes before", 30),
+    LeadTimeOption("1 hour before", 60),
+    LeadTimeOption("2 hours before", 120),
+    LeadTimeOption("1 day before", 1440)
+)
 
 // MARK: - Note Type
 
