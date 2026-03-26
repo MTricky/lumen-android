@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.app.lumen"
+        applicationId = "com.bajpro.lumen"
         minSdk = 28
         targetSdk = 36
         versionCode = 1
