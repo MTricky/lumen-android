@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.lumen.features.subscription.PaywallSheet
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +54,8 @@ fun SettingsScreen(
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
+
+    var showPaywall by remember { mutableStateOf(false) }
 
     // Bible font size state (synced with BibleReaderScreen prefs)
     val prefs = remember { context.getSharedPreferences(BIBLE_READER_PREFS, Context.MODE_PRIVATE) }
@@ -112,7 +115,7 @@ fun SettingsScreen(
                             )
                         )
                     )
-                    .clickable { /* TODO: open paywall */ }
+                    .clickable { showPaywall = true }
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -500,6 +503,11 @@ fun SettingsScreen(
             },
             onDismiss = { showRegionPicker = false },
         )
+    }
+
+    // ── Paywall Sheet ────────────────────────────────────────────
+    if (showPaywall) {
+        PaywallSheet(onDismiss = { showPaywall = false })
     }
 
     // ── Visual Style Picker Dialog ────────────────────────────────
