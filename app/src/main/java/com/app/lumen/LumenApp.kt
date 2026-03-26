@@ -5,6 +5,7 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.google.firebase.FirebaseApp
 import com.revenuecat.purchases.LogLevel
 import com.revenuecat.purchases.Purchases
@@ -18,6 +19,7 @@ class LumenApp : Application(), ImageLoaderFactory {
         Purchases.configure(
             PurchasesConfiguration.Builder(this, "goog_hPMfptKVUNVLpYgDXuRtqjJtHHV").build()
         )
+        SubscriptionManager.initialize(this)
     }
 
     override fun newImageLoader(): ImageLoader {

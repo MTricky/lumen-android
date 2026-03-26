@@ -1,5 +1,7 @@
 package com.app.lumen.features.subscription
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.revenuecat.purchases.CustomerInfo
 import com.revenuecat.purchases.Package
@@ -7,23 +9,36 @@ import com.revenuecat.purchases.PackageType
 import com.revenuecat.purchases.Purchases
 import com.revenuecat.purchases.PurchasesError
 import com.revenuecat.purchases.getOfferingsWith
+import com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener
 import com.revenuecat.purchases.purchaseWith
 import com.revenuecat.purchases.restorePurchasesWith
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.Currency
+import java.util.Date
+import java.util.Locale
 
 object SubscriptionManager {
     private const val TAG = "RevenueCat"
-    private const val ENTITLEMENT_ID = "lumen-premium"
+    // No specific entitlement ID — any active entitlement grants pro access
+
+    private const val PREFS_NAME = "subscription_prefs"
+    private const val KEY_IS_PREMIUM = "is_premium"
+    private const val KEY_EXPIRATION_DATE = "expiration_date"
+
+    private lateinit var prefs: SharedPreferences
 
     private val _availablePackages = MutableStateFlow<List<Package>>(emptyList())
     val availablePackages: StateFlow<List<Package>> = _availablePackages.asStateFlow()
 
     private val _hasProAccess = MutableStateFlow(false)
     val hasProAccess: StateFlow<Boolean> = _hasProAccess.asStateFlow()
+
+    private val _expirationDate = MutableStateFlow<Date?>(null)
+    val expirationDate: StateFlow<Date?> = _expirationDate.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -33,6 +48,49 @@ object SubscriptionManager {
 
     val yearlyPackage: Package?
         get() = _availablePackages.value.firstOrNull { it.packageType == PackageType.ANNUAL }
+
+    /**
+     * Initialize with context to load cached state and listen for updates.
+     * Call this from Application.onCreate() after Purchases.configure().
+     */
+    fun initialize(context: Context) {
+        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        // Seed from cache immediately to prevent UI flicker
+        _hasProAccess.value = prefs.getBoolean(KEY_IS_PREMIUM, false)
+        val cachedExpiry = prefs.getLong(KEY_EXPIRATION_DATE, 0L)
+        if (cachedExpiry > 0L) {
+            _expirationDate.value = Date(cachedExpiry)
+        }
+        Log.d(TAG, "Initialized from cache - premium: ${_hasProAccess.value}, expiry: ${_expirationDate.value}")
+
+        // Listen for RevenueCat customer info updates (purchases, renewals, etc.)
+        Purchases.sharedInstance.updatedCustomerInfoListener = UpdatedCustomerInfoListener { customerInfo ->
+            Log.d(TAG, "Customer info updated via listener")
+            updateFromCustomerInfo(customerInfo)
+        }
+
+        // Fetch latest state from RevenueCat
+        checkProAccess()
+    }
+
+    private fun updateFromCustomerInfo(customerInfo: CustomerInfo) {
+        val activeEntitlement = customerInfo.entitlements.active.values.firstOrNull()
+        val hasAccess = customerInfo.entitlements.active.isNotEmpty()
+        val expiry = activeEntitlement?.expirationDate
+
+        _hasProAccess.value = hasAccess
+        _expirationDate.value = expiry
+
+        // Persist to local cache
+        prefs.edit()
+            .putBoolean(KEY_IS_PREMIUM, hasAccess)
+            .putLong(KEY_EXPIRATION_DATE, expiry?.time ?: 0L)
+            .apply()
+
+        Log.d(TAG, "Updated state - premium: $hasAccess, expiry: $expiry")
+        Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")
+    }
 
     fun fetchOfferings() {
         _isLoading.value = true
@@ -53,7 +111,6 @@ object SubscriptionManager {
                         Log.d(TAG, "    Package: ${pkg.identifier} (${pkg.packageType})")
                         Log.d(TAG, "      Product: ${pkg.product.id}")
                         Log.d(TAG, "      Price: ${pkg.product.price.formatted}")
-                        Log.d(TAG, "      SubscriptionOptions: ${pkg.product.subscriptionOptions}")
                     }
                 }
                 offerings.current?.availablePackages?.let { packages ->
@@ -69,10 +126,7 @@ object SubscriptionManager {
         Purchases.sharedInstance.getCustomerInfo(
             callback = object : com.revenuecat.purchases.interfaces.ReceiveCustomerInfoCallback {
                 override fun onReceived(customerInfo: CustomerInfo) {
-                    val hasAccess = customerInfo.entitlements[ENTITLEMENT_ID]?.isActive == true
-                    Log.d(TAG, "Pro access: $hasAccess")
-                    Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")
-                    _hasProAccess.value = hasAccess
+                    updateFromCustomerInfo(customerInfo)
                 }
                 override fun onError(error: PurchasesError) {
                     Log.e(TAG, "Error checking pro access: ${error.message}")
@@ -102,7 +156,7 @@ object SubscriptionManager {
             },
             onSuccess = { _, customerInfo ->
                 Log.d(TAG, "Purchase successful")
-                _hasProAccess.value = customerInfo.entitlements[ENTITLEMENT_ID]?.isActive == true
+                updateFromCustomerInfo(customerInfo)
                 onSuccess()
             },
         )
@@ -119,10 +173,8 @@ object SubscriptionManager {
                 onError(error.message)
             },
             onSuccess = { customerInfo ->
-                val hasAccess = customerInfo.entitlements[ENTITLEMENT_ID]?.isActive == true
-                Log.d(TAG, "Restore result - hasAccess: $hasAccess")
-                _hasProAccess.value = hasAccess
-                onSuccess(hasAccess)
+                updateFromCustomerInfo(customerInfo)
+                onSuccess(_hasProAccess.value)
             },
         )
     }
@@ -140,5 +192,10 @@ object SubscriptionManager {
         } catch (e: Exception) {
             null
         }
+    }
+
+    fun formatExpirationDate(date: Date): String {
+        val formatter = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
+        return formatter.format(date)
     }
 }

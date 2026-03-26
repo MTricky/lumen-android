@@ -11,11 +11,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -47,7 +48,6 @@ private val GlassBg = Color(0xFF2A2A2E).copy(alpha = 0.86f)
 private val SelectedBorder = SoftGold
 private val UnselectedBorder = Color.White.copy(alpha = 0.2f)
 
-// Translucent glass style matching Rosary prayer buttons
 private val CloseButtonBg = Color.White.copy(alpha = 0.12f)
 private val CloseButtonBorder = Color.White.copy(alpha = 0.20f)
 
@@ -61,12 +61,13 @@ fun PaywallSheet(
 
     var selectedPackageId by remember { mutableStateOf<String?>(null) }
     var isLoading by remember { mutableStateOf(false) }
-    var showError by remember { mutableStateOf(false) }
-    var errorMessage by remember { mutableStateOf("") }
 
     val packages by SubscriptionManager.availablePackages.collectAsState()
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     val monthlyPkg = SubscriptionManager.monthlyPackage
     val yearlyPkg = SubscriptionManager.yearlyPackage
+    // Users who already have an active subscription are not eligible for free trials
+    val isEligibleForTrial = !isPremium
 
     LaunchedEffect(packages) {
         if (packages.isNotEmpty() && selectedPackageId == null) {
@@ -94,7 +95,6 @@ fun PaywallSheet(
                 .fillMaxSize()
                 .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)),
         ) {
-            // Background — fills everything including behind nav bar
             Image(
                 painter = painterResource(R.drawable.paywall_bg),
                 contentDescription = null,
@@ -118,7 +118,6 @@ fun PaywallSheet(
                     ),
             )
 
-            // Content
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -129,7 +128,6 @@ fun PaywallSheet(
 
                 Spacer(Modifier.weight(0.5f))
 
-                // Features — edge to edge
                 FeatureCarousel()
 
                 Spacer(Modifier.weight(1f))
@@ -145,20 +143,25 @@ fun PaywallSheet(
                         )
                     } else {
                         monthlyPkg?.let { pkg ->
-                            val trialText = pkg.product.subscriptionOptions
-                                ?.freeTrial?.freePhase?.billingPeriod
+                            val trialText = if (isEligibleForTrial) {
+                                pkg.product.subscriptionOptions?.freeTrial?.freePhase?.billingPeriod
+                            } else null
                             val title = if (trialText != null) {
-                                "${formatTrialPeriod(trialText)} free trial"
+                                stringResource(R.string.paywall_trial_free, formatTrialPeriod(trialText))
                             } else {
-                                "Monthly"
+                                stringResource(R.string.paywall_plan_monthly)
                             }
                             val priceStr = pkg.product.price.formatted
-                            val subtitle = if (trialText != null) "then $priceStr/month" else "$priceStr/month"
+                            val subtitle = if (trialText != null) {
+                                stringResource(R.string.paywall_price_then_per_month, priceStr)
+                            } else {
+                                stringResource(R.string.paywall_price_per_month, priceStr)
+                            }
                             val weeklyPrice = SubscriptionManager.formatWeeklyPrice(pkg, 4)
                             PlanCard(
                                 title = title,
                                 subtitle = subtitle,
-                                weeklyPrice = weeklyPrice?.let { "$it/week" },
+                                weeklyPrice = weeklyPrice?.let { stringResource(R.string.paywall_price_per_week, it) },
                                 isSelected = selectedPackageId == pkg.identifier,
                                 onClick = { selectedPackageId = pkg.identifier },
                             )
@@ -166,20 +169,25 @@ fun PaywallSheet(
                         }
 
                         yearlyPkg?.let { pkg ->
-                            val trialText = pkg.product.subscriptionOptions
-                                ?.freeTrial?.freePhase?.billingPeriod
+                            val trialText = if (isEligibleForTrial) {
+                                pkg.product.subscriptionOptions?.freeTrial?.freePhase?.billingPeriod
+                            } else null
                             val title = if (trialText != null) {
-                                "${formatTrialPeriod(trialText)} free trial"
+                                stringResource(R.string.paywall_trial_free, formatTrialPeriod(trialText))
                             } else {
-                                "Annual"
+                                stringResource(R.string.paywall_plan_annual)
                             }
                             val priceStr = pkg.product.price.formatted
-                            val subtitle = if (trialText != null) "then $priceStr/year" else "$priceStr/year"
+                            val subtitle = if (trialText != null) {
+                                stringResource(R.string.paywall_price_then_per_year, priceStr)
+                            } else {
+                                stringResource(R.string.paywall_price_per_year, priceStr)
+                            }
                             val weeklyPrice = SubscriptionManager.formatWeeklyPrice(pkg, 52)
                             PlanCard(
                                 title = title,
                                 subtitle = subtitle,
-                                weeklyPrice = weeklyPrice?.let { "$it/week" },
+                                weeklyPrice = weeklyPrice?.let { stringResource(R.string.paywall_price_per_week, it) },
                                 isSelected = selectedPackageId == pkg.identifier,
                                 onClick = { selectedPackageId = pkg.identifier },
                             )
@@ -191,8 +199,8 @@ fun PaywallSheet(
 
                 // CTA Button
                 Column(modifier = Modifier.padding(horizontal = 20.dp)) {
-                    val hasFreeTrial = selectedPkg?.product?.subscriptionOptions
-                        ?.freeTrial?.freePhase != null
+                    val hasFreeTrial = isEligibleForTrial &&
+                        selectedPkg?.product?.subscriptionOptions?.freeTrial?.freePhase != null
                     Button(
                         onClick = {
                             val pkg = selectedPkg ?: return@Button
@@ -205,10 +213,9 @@ fun PaywallSheet(
                                     isLoading = false
                                     onDismiss()
                                 },
-                                onError = { msg ->
+                                onError = { _ ->
                                     isLoading = false
-                                    errorMessage = msg
-                                    showError = true
+                                    // Native Google Play sheet already shows errors
                                 },
                                 onCancelled = {
                                     isLoading = false
@@ -228,13 +235,14 @@ fun PaywallSheet(
                     ) {
                         if (isLoading) {
                             CircularProgressIndicator(
-                                color = Color.Black,
+                                color = Color.White,
                                 strokeWidth = 2.dp,
                                 modifier = Modifier.size(20.dp),
                             )
                         } else {
                             Text(
-                                text = if (hasFreeTrial) "Start Free Trial" else "Subscribe Now",
+                                text = if (hasFreeTrial) stringResource(R.string.paywall_button_start_trial)
+                                       else stringResource(R.string.paywall_button_subscribe),
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 16.sp,
                             )
@@ -254,7 +262,7 @@ fun PaywallSheet(
                             Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/intl/en_us/about/play-terms/")),
                         )
                     }) {
-                        Text("Terms", fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
+                        Text(stringResource(R.string.paywall_terms), fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
                     }
                     Text("•", fontSize = 12.sp, color = Color.White.copy(alpha = 0.3f))
                     TextButton(onClick = {
@@ -262,7 +270,7 @@ fun PaywallSheet(
                             Intent(Intent.ACTION_VIEW, Uri.parse("https://maranatha.app/privacy")),
                         )
                     }) {
-                        Text("Privacy", fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
+                        Text(stringResource(R.string.paywall_privacy), fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
                     }
                     Text("•", fontSize = 12.sp, color = Color.White.copy(alpha = 0.3f))
                     TextButton(onClick = {
@@ -270,21 +278,15 @@ fun PaywallSheet(
                         SubscriptionManager.restorePurchases(
                             onSuccess = { hasAccess ->
                                 isLoading = false
-                                if (hasAccess) {
-                                    onDismiss()
-                                } else {
-                                    errorMessage = "No active subscription found."
-                                    showError = true
-                                }
+                                if (hasAccess) onDismiss()
                             },
-                            onError = { msg ->
+                            onError = { _ ->
                                 isLoading = false
-                                errorMessage = msg
-                                showError = true
+                                // Native Google Play sheet already shows errors
                             },
                         )
                     }) {
-                        Text("Restore", fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
+                        Text(stringResource(R.string.paywall_restore), fontSize = 12.sp, color = Color.White.copy(alpha = 0.5f))
                     }
                 }
 
@@ -309,7 +311,7 @@ fun PaywallSheet(
             ) {
                 Icon(
                     imageVector = Icons.Filled.Close,
-                    contentDescription = "Close",
+                    contentDescription = stringResource(R.string.paywall_close),
                     tint = Color.White,
                     modifier = Modifier.size(18.dp),
                 )
@@ -317,21 +319,7 @@ fun PaywallSheet(
         }
     }
 
-    if (showError) {
-        AlertDialog(
-            onDismissRequest = { showError = false },
-            title = { Text("Error") },
-            text = { Text(errorMessage) },
-            confirmButton = {
-                TextButton(onClick = { showError = false }) {
-                    Text("OK", color = SoftGold)
-                }
-            },
-            containerColor = Color(0xFF1E1E32),
-            titleContentColor = Color.White,
-            textContentColor = Color.White,
-        )
-    }
+    // Error alerts removed — native Google Play sheet handles error display
 }
 
 // ── Header ──────────────────────────────────────────────────
@@ -341,13 +329,13 @@ private fun HeaderSection() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row {
             Text(
-                text = "Lumen",
+                text = stringResource(R.string.paywall_title_lumen),
                 fontSize = 42.sp,
                 fontWeight = FontWeight.Bold,
                 color = SoftGold,
             )
             Text(
-                text = " Pro",
+                text = stringResource(R.string.paywall_title_pro),
                 fontSize = 42.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -355,7 +343,7 @@ private fun HeaderSection() {
         }
         Spacer(Modifier.height(12.dp))
         Text(
-            text = "Unlock the Full\nSpiritual Experience",
+            text = stringResource(R.string.paywall_subtitle),
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
@@ -366,22 +354,20 @@ private fun HeaderSection() {
 }
 
 // ── Feature Carousel ────────────────────────────────────────
-// Uses LazyRow with virtual infinite items (Int.MAX_VALUE / 2 centered)
-// and frame-based auto-scrolling via scrollBy — the standard Android pattern.
 
 private data class PaywallFeature(
     val icon: ImageVector,
-    val title: String,
-    val description: String,
+    val titleRes: Int,
+    val descriptionRes: Int,
 )
 
 private val features = listOf(
-    PaywallFeature(Icons.AutoMirrored.Filled.VolumeUp, "Audio", "Listen to readings and prayers"),
-    PaywallFeature(Icons.Filled.FormatQuote, "Daily Reflections", "Spiritual insights for each day"),
-    PaywallFeature(Icons.Filled.Book, "Full Bible Access", "All books of the Old & New Testament"),
-    PaywallFeature(Icons.Filled.FrontHand, "All Prayers", "Rosary, chaplets & litanies"),
-    PaywallFeature(Icons.Filled.Widgets, "Widgets", "Daily verse on your home screen"),
-    PaywallFeature(Icons.Filled.Lightbulb, "Shape the App", "Suggest new features & ideas"),
+    PaywallFeature(Icons.AutoMirrored.Filled.VolumeUp, R.string.paywall_feature_audio, R.string.paywall_feature_audio_desc),
+    PaywallFeature(Icons.Filled.FormatQuote, R.string.paywall_feature_reflections, R.string.paywall_feature_reflections_desc),
+    PaywallFeature(Icons.Filled.Book, R.string.paywall_feature_bible, R.string.paywall_feature_bible_desc),
+    PaywallFeature(Icons.Filled.FrontHand, R.string.paywall_feature_prayers, R.string.paywall_feature_prayers_desc),
+    PaywallFeature(Icons.Filled.Widgets, R.string.paywall_feature_widgets, R.string.paywall_feature_widgets_desc),
+    PaywallFeature(Icons.Filled.Lightbulb, R.string.paywall_feature_suggestions, R.string.paywall_feature_suggestions_desc),
 )
 
 private const val CARD_WIDTH_DP = 280f
@@ -395,10 +381,8 @@ private fun FeatureCarousel() {
     val singleRow = screenHeightDp < 750
 
     if (singleRow) {
-        // Small devices: all 6 features in one row
         AutoScrollRow(items = features, scrollRight = true)
     } else {
-        // Normal devices: two rows scrolling in opposite directions
         val row1 = features.take(3)
         val row2 = features.drop(3)
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -416,7 +400,6 @@ private fun AutoScrollRow(
     val density = LocalDensity.current
     val speedPx = with(density) { SCROLL_SPEED_DP_PER_SEC.dp.toPx() }
 
-    // Start in the middle of virtual range to allow scrolling in both directions
     val startIndex = (Int.MAX_VALUE / 2) - ((Int.MAX_VALUE / 2) % items.size)
     val listState = rememberLazyListState(initialFirstVisibleItemIndex = startIndex)
 
@@ -431,7 +414,6 @@ private fun AutoScrollRow(
                 lastFrameMs = frameMs
             }
             if (deltaMs > 0L) {
-                // Time-based scrolling: same speed regardless of frame rate
                 val px = speedPx * (deltaMs / 1000f)
                 listState.scrollBy(if (scrollRight) -px else px)
             }
@@ -489,14 +471,14 @@ private fun FeatureCard(
 
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = feature.title,
+                text = stringResource(feature.titleRes),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
                 maxLines = 1,
             )
             Text(
-                text = feature.description,
+                text = stringResource(feature.descriptionRes),
                 fontSize = 13.sp,
                 color = Color.White.copy(alpha = 0.6f),
                 maxLines = 2,
@@ -594,15 +576,16 @@ private fun PlanCard(
 
 // ── Helpers ─────────────────────────────────────────────────
 
+@Composable
 private fun formatTrialPeriod(period: com.revenuecat.purchases.models.Period?): String {
     if (period == null) return ""
     val value = period.value
     val unit = period.unit
     return when (unit) {
-        com.revenuecat.purchases.models.Period.Unit.DAY -> "$value days"
-        com.revenuecat.purchases.models.Period.Unit.WEEK -> "${value * 7} days"
-        com.revenuecat.purchases.models.Period.Unit.MONTH -> "$value months"
-        com.revenuecat.purchases.models.Period.Unit.YEAR -> "$value years"
+        com.revenuecat.purchases.models.Period.Unit.DAY -> stringResource(R.string.paywall_trial_days, value)
+        com.revenuecat.purchases.models.Period.Unit.WEEK -> stringResource(R.string.paywall_trial_days, value * 7)
+        com.revenuecat.purchases.models.Period.Unit.MONTH -> stringResource(R.string.paywall_trial_months, value)
+        com.revenuecat.purchases.models.Period.Unit.YEAR -> stringResource(R.string.paywall_trial_years, value)
         else -> ""
     }
 }

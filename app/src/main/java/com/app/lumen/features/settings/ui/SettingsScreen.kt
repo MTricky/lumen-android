@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.features.subscription.PaywallSheet
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
 import kotlinx.coroutines.Dispatchers
@@ -101,6 +102,9 @@ fun SettingsScreen(
         )
 
         // ── Premium Section ──────────────────────────────────────
+        val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+        val expiryDate by SubscriptionManager.expirationDate.collectAsState()
+
         SectionHeader("Premium")
         SettingsCard {
             Row(
@@ -119,7 +123,7 @@ fun SettingsScreen(
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                // Gold circle with checkmark
+                // Icon circle
                 Box(
                     modifier = Modifier
                         .size(44.dp)
@@ -132,7 +136,7 @@ fun SettingsScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.Verified,
+                        imageVector = if (isPremium) Icons.Filled.Verified else Icons.Filled.WorkspacePremium,
                         contentDescription = null,
                         tint = NearBlack,
                         modifier = Modifier.size(24.dp),
@@ -141,13 +145,18 @@ fun SettingsScreen(
                 Spacer(Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Lumen Pro",
+                        text = if (isPremium) "Lumen Pro" else "Go Premium",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,
                     )
                     Text(
-                        text = "Renews 20 Mar 2027",
+                        text = if (isPremium) {
+                            expiryDate?.let { "Renews ${SubscriptionManager.formatExpirationDate(it)}" }
+                                ?: "Active"
+                        } else {
+                            "Unlock all features"
+                        },
                         fontSize = 12.sp,
                         color = SecondaryTextColor,
                     )

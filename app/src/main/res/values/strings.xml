@@ -408,6 +408,43 @@
     <string name="day_abbrev_sat">S</string>
     <string name="day_abbrev_sun">S</string>
 
+    <!-- Paywall -->
+    <string name="paywall_title_lumen">Lumen</string>
+    <string name="paywall_title_pro"> Pro</string>
+    <string name="paywall_subtitle">Unlock the Full\nSpiritual Experience</string>
+    <string name="paywall_close">Close</string>
+    <string name="paywall_feature_audio">Audio</string>
+    <string name="paywall_feature_audio_desc">Listen to readings and prayers</string>
+    <string name="paywall_feature_reflections">Daily Reflections</string>
+    <string name="paywall_feature_reflections_desc">Spiritual insights for each day</string>
+    <string name="paywall_feature_bible">Full Bible Access</string>
+    <string name="paywall_feature_bible_desc">All books of the Old &amp; New Testament</string>
+    <string name="paywall_feature_prayers">All Prayers</string>
+    <string name="paywall_feature_prayers_desc">Rosary, chaplets &amp; litanies</string>
+    <string name="paywall_feature_widgets">Widgets</string>
+    <string name="paywall_feature_widgets_desc">Daily verse on your home screen</string>
+    <string name="paywall_feature_suggestions">Shape the App</string>
+    <string name="paywall_feature_suggestions_desc">Suggest new features &amp; ideas</string>
+    <string name="paywall_plan_monthly">Monthly</string>
+    <string name="paywall_plan_annual">Annual</string>
+    <string name="paywall_trial_free">%1$s free trial</string>
+    <string name="paywall_price_per_month">%1$s/month</string>
+    <string name="paywall_price_per_year">%1$s/year</string>
+    <string name="paywall_price_per_week">%1$s/week</string>
+    <string name="paywall_price_then_per_month">then %1$s/month</string>
+    <string name="paywall_price_then_per_year">then %1$s/year</string>
+    <string name="paywall_trial_days">%1$d days</string>
+    <string name="paywall_trial_months">%1$d months</string>
+    <string name="paywall_trial_years">%1$d years</string>
+    <string name="paywall_button_start_trial">Start Free Trial</string>
+    <string name="paywall_button_subscribe">Subscribe Now</string>
+    <string name="paywall_terms">Terms</string>
+    <string name="paywall_privacy">Privacy</string>
+    <string name="paywall_restore">Restore</string>
+    <string name="paywall_error_title">Error</string>
+    <string name="paywall_error_ok">OK</string>
+    <string name="paywall_error_no_subscription">No active subscription found.</string>
+
     <!-- Errors -->
     <string name="error_no_liturgy">No liturgy available for this day</string>
     <string name="error_load_failed">Failed to load liturgy: %1$s</string>
