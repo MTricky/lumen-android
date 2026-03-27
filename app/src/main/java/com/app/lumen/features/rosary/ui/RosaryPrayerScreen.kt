@@ -1,5 +1,6 @@
 package com.app.lumen.features.rosary.ui
 
+import android.content.Context
 import android.view.HapticFeedbackConstants
 import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -26,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,12 +38,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.rosary.model.*
+import com.app.lumen.features.rosary.service.RosaryAudioPlayer
+import com.app.lumen.features.rosary.service.RosaryAudioService
 import com.app.lumen.features.rosary.viewmodel.RosaryViewModel
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
-import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 
 // Sacred Art mode: subtle warm glass with gold border
@@ -85,6 +90,44 @@ fun RosaryPrayerScreen(
     val visualMode = remember { RosaryVisualMode.current(context) }
     val isSimple = visualMode == RosaryVisualMode.SIMPLE
 
+    // Audio state — reactive
+    val audioPlayer = remember { RosaryAudioPlayer.getInstance(context) }
+    val audioService = remember { RosaryAudioService.getInstance(context) }
+    val isAudioDownloaded = remember { audioService.isAudioDownloaded("en") }
+    val audioIsPlaying by audioPlayer.isPlaying.collectAsState()
+    val audioIsAutoAdvancing by audioPlayer.isAutoAdvancing.collectAsState()
+
+    val rosaryPrefs = remember { context.getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE) }
+    var isAudioEnabled by remember { mutableStateOf(rosaryPrefs.getBoolean("audio_enabled", false)) }
+    var audioSpeed by remember { mutableFloatStateOf(rosaryPrefs.getFloat("audio_speed", 1.0f)) }
+    var isAutoAdvanceEnabled by remember { mutableStateOf(rosaryPrefs.getBoolean("auto_advance", false)) }
+
+    // Audio controls panel state
+    var showAudioControls by remember { mutableStateOf(false) }
+    // Track if audio was toggled on while panel was open (defer playback until dismiss)
+    var audioWasReEnabled by remember { mutableStateOf(false) }
+
+    // Load audio config on appear
+    LaunchedEffect(Unit) {
+        if (isAudioDownloaded) {
+            withContext(Dispatchers.IO) {
+                val config = audioService.fetchAudioConfig("en")
+                if (config != null) {
+                    withContext(Dispatchers.Main) {
+                        audioPlayer.configure(config, "en")
+                    }
+                }
+            }
+        }
+    }
+
+    // Teardown audio on dispose
+    DisposableEffect(Unit) {
+        onDispose {
+            audioPlayer.teardown()
+        }
+    }
+
     val backgroundRes: Int? = if (step != null && mysteryType != null) {
         RosaryBackgroundManager.background(step, mysteryType, visualMode)
     } else if (!isSimple) {
@@ -106,10 +149,23 @@ fun RosaryPrayerScreen(
     val scope = rememberCoroutineScope()
     val view = LocalView.current
 
+    fun triggerAudioForCurrentStep() {
+        if (isAudioEnabled && isAudioDownloaded) {
+            viewModel.currentStep?.let { currentStep ->
+                audioPlayer.playAudio(currentStep, mysteryType) {
+                    // auto-advance callback — will be called from animateTransition
+                }
+            }
+        }
+    }
+
     fun animateTransition(direction: Int) {
         if (isTransitioning) return
         if (direction == -1 && currentStepIndex == 0) return
         view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+
+        // Stop current audio before transitioning
+        audioPlayer.stopCurrentPlayback()
 
         val nextIsMystery = if (direction == 1) viewModel.peekNextStep()?.isMysteryAnnouncement == true else false
         transitionFromIntro = isIntro
@@ -138,6 +194,15 @@ fun RosaryPrayerScreen(
             val fadeInMs = if (isSlowTransition) 450L else 200L
             delay(fadeInMs)
             isTransitioning = false
+
+            // Trigger audio for the new step
+            if (isAudioEnabled && isAudioDownloaded) {
+                viewModel.currentStep?.let { newStep ->
+                    audioPlayer.playAudio(newStep, mysteryType) {
+                        animateTransition(1) // auto-advance
+                    }
+                }
+            }
         }
     }
 
@@ -222,23 +287,23 @@ fun RosaryPrayerScreen(
             )
         }
 
-        // Top bar
-        if (!isIntro) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .statusBarsPadding()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                GlassCircleButton(onClick = onBack, size = 40) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                        contentDescription = stringResource(R.string.rosary_close),
-                        tint = Color.White,
-                        modifier = Modifier.size(22.dp),
-                    )
-                }
+        // Top bar — always show back button + audio button (including on intro)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            GlassCircleButton(onClick = onBack, size = 40) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                    contentDescription = stringResource(R.string.rosary_close),
+                    tint = Color.White,
+                    modifier = Modifier.size(22.dp),
+                )
+            }
+            if (!isIntro) {
                 Text(
                     text = mysteryType?.let { stringResource(it.labelRes) } ?: "",
                     fontSize = 17.sp,
@@ -247,22 +312,18 @@ fun RosaryPrayerScreen(
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(1f),
                 )
-                Spacer(Modifier.size(40.dp))
+            } else {
+                Spacer(Modifier.weight(1f))
             }
-        } else {
-            Box(
-                modifier = Modifier
-                    .statusBarsPadding()
-                    .padding(start = 16.dp, top = 8.dp),
-            ) {
-                GlassCircleButton(onClick = onBack, size = 40) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                        contentDescription = stringResource(R.string.rosary_close),
-                        tint = Color.White,
-                        modifier = Modifier.size(22.dp),
+            if (isAudioDownloaded) {
+                GlassCircleButton(onClick = { showAudioControls = true }, size = 40) {
+                    AudioBarsView(
+                        isAnimating = isAudioEnabled && (audioIsPlaying || audioIsAutoAdvancing),
+                        color = if (isAudioEnabled) Color.White else Color.White.copy(alpha = 0.4f),
                     )
                 }
+            } else {
+                Spacer(Modifier.size(40.dp))
             }
         }
 
@@ -294,6 +355,47 @@ fun RosaryPrayerScreen(
                 }
             }
         }
+
+        // Audio controls panel overlay
+        AudioControlsPanel(
+            isPresented = showAudioControls,
+            isSimple = isSimple,
+            onDismiss = {
+                showAudioControls = false
+                // Start playing only after menu is dismissed, if audio was toggled on
+                if (audioWasReEnabled && isAudioEnabled && !audioIsPlaying) {
+                    viewModel.currentStep?.let { currentStep ->
+                        audioPlayer.playAudio(currentStep, mysteryType) {
+                            animateTransition(1)
+                        }
+                    }
+                }
+                audioWasReEnabled = false
+            },
+            isAudioEnabled = isAudioEnabled,
+            onAudioEnabledChange = { enabled ->
+                isAudioEnabled = enabled
+                rosaryPrefs.edit().putBoolean("audio_enabled", enabled).apply()
+                if (!enabled) {
+                    audioPlayer.stopAll()
+                    audioWasReEnabled = false
+                } else {
+                    // Track that audio was toggled on — playback deferred until dismiss
+                    audioWasReEnabled = true
+                }
+            },
+            audioSpeed = audioSpeed,
+            onAudioSpeedChange = { speed ->
+                audioSpeed = speed
+                rosaryPrefs.edit().putFloat("audio_speed", speed).apply()
+                audioPlayer.updatePlaybackSpeed()
+            },
+            isAutoAdvanceEnabled = isAutoAdvanceEnabled,
+            onAutoAdvanceChange = { enabled ->
+                isAutoAdvanceEnabled = enabled
+                rosaryPrefs.edit().putBoolean("auto_advance", enabled).apply()
+            },
+        )
     }
 }
 

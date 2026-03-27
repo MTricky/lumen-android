@@ -27,6 +27,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.app.lumen.R
+import com.app.lumen.features.rosary.service.RosaryAudioService
 import com.app.lumen.features.subscription.PaywallSheet
 import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
@@ -73,6 +76,12 @@ fun SettingsScreen(
     var showVisualStylePicker by remember { mutableStateOf(false) }
     var isAudioEnabled by remember { mutableStateOf(rosaryPrefs.getBoolean("audio_enabled", false)) }
 
+    // Audio download state
+    val audioService = remember { RosaryAudioService.getInstance(context) }
+    val isDownloadingAudio by audioService.isDownloading.collectAsState()
+    val audioDownloadProgress by audioService.downloadProgress.collectAsState()
+    var isAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded("en")) }
+
     // Bible cache size
     var cacheSizeBytes by remember { mutableLongStateOf(0L) }
     var isClearing by remember { mutableStateOf(false) }
@@ -94,7 +103,7 @@ fun SettingsScreen(
     ) {
         // Title
         Text(
-            text = "Settings",
+            text = stringResource(R.string.settings_title),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
@@ -105,7 +114,7 @@ fun SettingsScreen(
         val isPremium by SubscriptionManager.hasProAccess.collectAsState()
         val expiryDate by SubscriptionManager.expirationDate.collectAsState()
 
-        SectionHeader("Premium")
+        SectionHeader(stringResource(R.string.settings_section_premium))
         SettingsCard {
             Row(
                 modifier = Modifier
@@ -145,17 +154,17 @@ fun SettingsScreen(
                 Spacer(Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = if (isPremium) "Lumen Pro" else "Go Premium",
+                        text = if (isPremium) stringResource(R.string.settings_premium_lumen_pro) else stringResource(R.string.settings_premium_go_premium),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,
                     )
                     Text(
                         text = if (isPremium) {
-                            expiryDate?.let { "Renews ${SubscriptionManager.formatExpirationDate(it)}" }
-                                ?: "Active"
+                            expiryDate?.let { stringResource(R.string.settings_premium_renews, SubscriptionManager.formatExpirationDate(it)) }
+                                ?: stringResource(R.string.settings_premium_active)
                         } else {
-                            "Unlock all features"
+                            stringResource(R.string.settings_premium_unlock)
                         },
                         fontSize = 12.sp,
                         color = SecondaryTextColor,
@@ -173,11 +182,11 @@ fun SettingsScreen(
         Spacer(Modifier.height(24.dp))
 
         // ── Calendar Section ──────────────────────────────────────
-        SectionHeader("Calendar")
+        SectionHeader(stringResource(R.string.settings_section_calendar))
         SettingsCard {
             SettingsRow(
                 icon = Icons.Filled.Language,
-                title = "Calendar Region",
+                title = stringResource(R.string.settings_calendar_region),
                 trailing = {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -199,12 +208,12 @@ fun SettingsScreen(
                 },
             )
         }
-        FooterText("Determines which regional feast days and holy days of obligation are shown.")
+        FooterText(stringResource(R.string.settings_calendar_region_footer))
 
         Spacer(Modifier.height(24.dp))
 
         // ── Bible Section ──────────────────────────────────────
-        SectionHeader("Bible")
+        SectionHeader(stringResource(R.string.settings_section_bible))
         SettingsCard {
             // Font Size
             Column(modifier = Modifier.padding(16.dp)) {
@@ -226,7 +235,7 @@ fun SettingsScreen(
                     )
                     Spacer(Modifier.width(12.dp))
                     Text(
-                        text = "Font Size",
+                        text = stringResource(R.string.settings_bible_font_size),
                         fontSize = 15.sp,
                         color = Color.White,
                         modifier = Modifier.weight(1f),
@@ -287,7 +296,7 @@ fun SettingsScreen(
                 }
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Clear Bible Cache",
+                    text = stringResource(R.string.settings_bible_clear_cache),
                     fontSize = 15.sp,
                     color = Color.White,
                     modifier = Modifier.weight(1f),
@@ -299,17 +308,17 @@ fun SettingsScreen(
                 )
             }
         }
-        FooterText("Cached chapters are automatically removed after 30 days.")
+        FooterText(stringResource(R.string.settings_bible_cache_footer))
 
         Spacer(Modifier.height(24.dp))
 
         // ── Prayer Section ──────────────────────────────────────
-        SectionHeader("Prayer")
+        SectionHeader(stringResource(R.string.settings_section_prayer))
         SettingsCard {
             // Visual Style
             SettingsRow(
                 icon = Icons.Filled.Palette,
-                title = "Visual Style",
+                title = stringResource(R.string.settings_prayer_visual_style),
                 trailing = {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -348,16 +357,24 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Audio",
+                    text = stringResource(R.string.rosary_audio_label),
                     fontSize = 15.sp,
                     color = Color.White,
                     modifier = Modifier.weight(1f),
                 )
                 Switch(
                     checked = isAudioEnabled,
-                    onCheckedChange = {
-                        isAudioEnabled = it
-                        rosaryPrefs.edit().putBoolean("audio_enabled", it).apply()
+                    onCheckedChange = { enabled ->
+                        isAudioEnabled = enabled
+                        rosaryPrefs.edit().putBoolean("audio_enabled", enabled).apply()
+                        if (enabled && !isAudioDownloaded) {
+                            scope.launch {
+                                withContext(Dispatchers.IO) {
+                                    audioService.downloadAudio("en")
+                                }
+                                isAudioDownloaded = audioService.isAudioDownloaded("en")
+                            }
+                        }
                     },
                     colors = SwitchDefaults.colors(
                         checkedThumbColor = Color.White,
@@ -368,13 +385,56 @@ fun SettingsScreen(
                     ),
                 )
             }
+
+            // Download progress
+            if (isDownloadingAudio) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Text(
+                            text = stringResource(R.string.rosary_audio_downloading),
+                            fontSize = 12.sp,
+                            color = SecondaryTextColor,
+                        )
+                        Text(
+                            text = "${(audioDownloadProgress * 100).roundToInt()}%",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = SoftGold,
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(4.dp)
+                            .clip(RoundedCornerShape(2.dp))
+                            .background(Color.White.copy(alpha = 0.15f)),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .fillMaxWidth(audioDownloadProgress.toFloat().coerceIn(0f, 1f))
+                                .clip(RoundedCornerShape(2.dp))
+                                .background(SoftGold),
+                        )
+                    }
+                }
+            }
         }
-        FooterText("Sacred Art shows paintings for each mystery. Simple uses a dark background. Audio plays narrated prayers.")
+        FooterText(stringResource(R.string.settings_prayer_footer))
 
         Spacer(Modifier.height(24.dp))
 
         // ── Support Section ──────────────────────────────────────
-        SectionHeader("Support")
+        SectionHeader(stringResource(R.string.settings_section_support))
         SettingsCard {
             // Share the App
             Row(
@@ -401,7 +461,7 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Share the App",
+                    text = stringResource(R.string.settings_support_share),
                     fontSize = 15.sp,
                     color = Color.White,
                 )
@@ -430,7 +490,7 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Contact Support",
+                    text = stringResource(R.string.settings_support_contact),
                     fontSize = 15.sp,
                     color = Color.White,
                 )
@@ -440,7 +500,7 @@ fun SettingsScreen(
         Spacer(Modifier.height(24.dp))
 
         // ── Legal Section ──────────────────────────────────────
-        SectionHeader("Legal")
+        SectionHeader(stringResource(R.string.settings_section_legal))
         SettingsCard {
             // Privacy Policy
             Row(
@@ -461,7 +521,7 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Privacy Policy",
+                    text = stringResource(R.string.settings_legal_privacy),
                     fontSize = 15.sp,
                     color = Color.White,
                 )
@@ -491,7 +551,7 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.width(12.dp))
                 Text(
-                    text = "Terms of Use",
+                    text = stringResource(R.string.settings_legal_terms),
                     fontSize = 15.sp,
                     color = Color.White,
                 )
@@ -626,7 +686,7 @@ private fun RegionPickerDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("Calendar Region", color = Color.White)
+            Text(stringResource(R.string.settings_calendar_region), color = Color.White)
         },
         text = {
             Column(
@@ -665,7 +725,7 @@ private fun RegionPickerDialog(
         confirmButton = {},
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = SoftGold)
+                Text(stringResource(R.string.cancel), color = SoftGold)
             }
         },
         containerColor = CardBg,
@@ -704,7 +764,7 @@ private fun VisualStylePickerDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("Visual Style", color = Color.White)
+            Text(stringResource(R.string.settings_prayer_visual_style), color = Color.White)
         },
         text = {
             Column {
@@ -739,7 +799,7 @@ private fun VisualStylePickerDialog(
         confirmButton = {},
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel", color = SoftGold)
+                Text(stringResource(R.string.cancel), color = SoftGold)
             }
         },
         containerColor = CardBg,

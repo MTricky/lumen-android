@@ -159,6 +159,13 @@
     <string name="rosary_section_hail_holy_queen">Hail Holy Queen</string>
     <string name="rosary_section_final_prayer">Final Prayer</string>
 
+    <!-- Rosary Audio -->
+    <string name="rosary_audio_label">Audio</string>
+    <string name="rosary_audio_playback_speed">Playback Speed</string>
+    <string name="rosary_audio_speed_format">%.1f×</string>
+    <string name="rosary_audio_auto_advance">Auto-advance</string>
+    <string name="rosary_audio_downloading">Downloading audio…</string>
+
     <!-- Calendar -->
     <string name="calendar_title">Calendar</string>
     <string name="calendar_tab_calendar">Calendar</string>
@@ -407,6 +414,33 @@
     <string name="day_abbrev_fri">F</string>
     <string name="day_abbrev_sat">S</string>
     <string name="day_abbrev_sun">S</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_premium">Premium</string>
+    <string name="settings_premium_lumen_pro">Lumen Pro</string>
+    <string name="settings_premium_go_premium">Go Premium</string>
+    <string name="settings_premium_renews">Renews %1$s</string>
+    <string name="settings_premium_active">Active</string>
+    <string name="settings_premium_unlock">Unlock all features</string>
+    <string name="settings_section_calendar">Calendar</string>
+    <string name="settings_calendar_region">Calendar Region</string>
+    <string name="settings_calendar_region_footer">Determines which regional feast days and holy days of obligation are shown.</string>
+    <string name="settings_section_bible">Bible</string>
+    <string name="settings_bible_font_size">Font Size</string>
+    <string name="settings_bible_clear_cache">Clear Bible Cache</string>
+    <string name="settings_bible_cache_footer">Cached chapters are automatically removed after 30 days.</string>
+    <string name="settings_section_prayer">Prayer</string>
+    <string name="settings_prayer_visual_style">Visual Style</string>
+    <string name="settings_prayer_visual_sacred_art">Sacred Art</string>
+    <string name="settings_prayer_visual_simple">Simple</string>
+    <string name="settings_prayer_footer">Sacred Art shows paintings for each mystery. Simple uses a dark background. Audio plays narrated prayers.</string>
+    <string name="settings_section_support">Support</string>
+    <string name="settings_support_share">Share the App</string>
+    <string name="settings_support_contact">Contact Support</string>
+    <string name="settings_section_legal">Legal</string>
+    <string name="settings_legal_privacy">Privacy Policy</string>
+    <string name="settings_legal_terms">Terms of Use</string>
 
     <!-- Paywall -->
     <string name="paywall_title_lumen">Lumen</string>
