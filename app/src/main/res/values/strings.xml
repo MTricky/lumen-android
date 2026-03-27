@@ -166,6 +166,77 @@
     <string name="rosary_audio_auto_advance">Auto-advance</string>
     <string name="rosary_audio_downloading">Downloading audio…</string>
 
+    <!-- Prayer Audio Download Sheet -->
+    <string name="prayer_audio_available">Audio Available</string>
+    <string name="prayer_audio_enable">Enable Audio</string>
+    <string name="prayer_audio_listen">Listen while you pray</string>
+    <string name="prayer_audio_ready">Audio ready to use</string>
+    <string name="prayer_audio_downloading">Downloading audio\u2026</string>
+    <string name="prayer_audio_download_complete">Download complete</string>
+    <string name="prayer_audio_continue">Continue</string>
+    <string name="prayer_audio_settings_note">You can change this anytime in Settings</string>
+
+    <!-- Chaplets -->
+    <string name="chaplets_header_title">Chaplets</string>
+    <string name="chaplets_header_subtitle">Devotional Prayers</string>
+    <string name="chaplets_header_description">Traditional Catholic devotional prayers</string>
+
+    <!-- Chaplet Types -->
+    <string name="chaplet_divine_mercy_title">Divine Mercy</string>
+    <string name="chaplet_divine_mercy_subtitle">Pray for God\'s mercy</string>
+    <string name="chaplet_divine_mercy_duration">5 decades</string>
+    <string name="chaplet_st_michael_title">St. Michael</string>
+    <string name="chaplet_st_michael_subtitle">Honor the nine choirs of angels</string>
+    <string name="chaplet_st_michael_duration">9 salutations</string>
+    <string name="chaplet_seven_sorrows_title">Seven Sorrows</string>
+    <string name="chaplet_seven_sorrows_subtitle">Meditate on Mary\'s sorrows</string>
+    <string name="chaplet_seven_sorrows_duration">7 sorrows</string>
+
+    <!-- Chaplet Progress -->
+    <string name="chaplet_decade_of">Decade %1$d of %2$d</string>
+    <string name="chaplet_for_the_sake_of">For the Sake %1$d of %2$d</string>
+    <string name="chaplet_holy_god_of">Holy God %1$d of %2$d</string>
+    <string name="chaplet_salutation_of">Salutation %1$d of %2$d</string>
+    <string name="chaplet_archangel_prayer_of">Archangel Prayer %1$d of %2$d</string>
+    <string name="chaplet_hail_mary_of">Hail Mary %1$d of %2$d</string>
+    <string name="chaplet_sorrow_of">Sorrow %1$d of %2$d</string>
+    <string name="chaplet_invocation_of">Invocation %1$d of %2$d</string>
+
+    <!-- Chaplet Announcement Labels -->
+    <string name="chaplet_decade_number">%1$d%2$s DECADE</string>
+    <string name="chaplet_salutation_number">%1$d%2$s SALUTATION</string>
+    <string name="chaplet_archangel_number">%1$d%2$s ARCHANGEL PRAYER</string>
+    <string name="chaplet_sorrow_number">%1$d%2$s SORROW</string>
+    <string name="chaplet_choir_of">Choir of %1$s</string>
+
+    <!-- Chaplet Section Labels -->
+    <string name="chaplet_section_opening_prayer">Opening Prayer</string>
+    <string name="chaplet_section_eternal_father">Eternal Father</string>
+    <string name="chaplet_section_for_the_sake">For the Sake of His Sorrowful Passion</string>
+    <string name="chaplet_section_holy_god">Holy God</string>
+    <string name="chaplet_section_closing_prayer">Closing Prayer</string>
+    <string name="chaplet_section_decade">Decade</string>
+    <string name="chaplet_section_salutation">Salutation</string>
+    <string name="chaplet_section_archangel_prayer">Archangel Prayer</string>
+    <string name="chaplet_section_introductory_prayer">Introductory Prayer</string>
+    <string name="chaplet_section_act_of_contrition">Act of Contrition</string>
+    <string name="chaplet_section_sorrowful_mother">Most Merciful Mother</string>
+    <string name="chaplet_section_sorrow">Sorrow</string>
+    <string name="chaplet_section_final_invocation">Final Invocation</string>
+    <string name="chaplet_section_versicle">Versicle</string>
+    <string name="chaplet_section_response">Response</string>
+    <string name="chaplet_section_concluding_prayer">Concluding Prayer</string>
+
+    <!-- Prayer Type Menu -->
+    <string name="chaplet_prayer_type_menu">Prayer type</string>
+    <string name="prayer_type_rosary">Rosary</string>
+    <string name="prayer_type_chaplets">Chaplets</string>
+    <string name="prayer_type_litanies">Litanies</string>
+
+    <!-- Chaplet Completion -->
+    <string name="chaplet_completed">Chaplet Complete</string>
+    <string name="chaplet_completed_message">May the prayers you have offered bring you peace and draw you closer to God through His infinite mercy and love.</string>
+
     <!-- Calendar -->
     <string name="calendar_title">Calendar</string>
     <string name="calendar_tab_calendar">Calendar</string>

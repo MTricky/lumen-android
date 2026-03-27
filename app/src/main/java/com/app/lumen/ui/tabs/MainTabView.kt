@@ -51,6 +51,9 @@ import com.app.lumen.features.bible.service.BibleBookInfo
 import com.app.lumen.features.bible.viewmodel.BibleViewModel
 import com.app.lumen.features.calendar.ui.CalendarScreen
 import com.app.lumen.features.rosary.ui.RosaryScreen
+import com.app.lumen.features.chaplets.model.ChapletType
+import com.app.lumen.features.chaplets.model.PrayerType
+import com.app.lumen.features.chaplets.ui.*
 import com.app.lumen.features.settings.ui.SettingsScreen
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -147,10 +150,29 @@ fun MainTabView() {
     // Calendar state (hoisted to preserve scroll position across tab switches)
     val calendarViewModel: com.app.lumen.features.calendar.viewmodel.CalendarViewModel = viewModel()
 
+    // Prayer type state (Rosary vs Chaplets) — persisted
+    val prayerPrefs = remember { context.getSharedPreferences("prayer_prefs", android.content.Context.MODE_PRIVATE) }
+    var prayerType by remember {
+        val saved = prayerPrefs.getString("prayer_type", PrayerType.ROSARY.name)
+        mutableStateOf(PrayerType.entries.find { it.name == saved } ?: PrayerType.ROSARY)
+    }
+    var showPrayerTypeMenu by remember { mutableStateOf(false) }
+    LaunchedEffect(prayerType) {
+        prayerPrefs.edit().putString("prayer_type", prayerType.name).apply()
+    }
+
     // Rosary prayer navigation state
     val rosaryViewModel: com.app.lumen.features.rosary.viewmodel.RosaryViewModel = viewModel()
     var showRosaryPrayer by remember { mutableStateOf(false) }
     var showRosaryCompletion by remember { mutableStateOf(false) }
+
+    // Chaplet navigation state
+    val divineMercyViewModel: com.app.lumen.features.chaplets.viewmodel.DivineMercyViewModel = viewModel()
+    val stMichaelViewModel: com.app.lumen.features.chaplets.viewmodel.StMichaelViewModel = viewModel()
+    val sevenSorrowsViewModel: com.app.lumen.features.chaplets.viewmodel.SevenSorrowsViewModel = viewModel()
+    var showChapletPrayer by remember { mutableStateOf(false) }
+    var showChapletCompletion by remember { mutableStateOf(false) }
+    var activeChapletType by remember { mutableStateOf<ChapletType?>(null) }
 
     Box(
         modifier = Modifier
@@ -183,17 +205,58 @@ fun MainTabView() {
                 },
                 bibleViewModel = bibleViewModel,
             )
-            Tab.PRAYERS -> RosaryScreen(
-                bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
-                onMysterySelected = { mysteryType ->
-                    rosaryViewModel.loadPrayers()
-                    rosaryViewModel.startRosary(mysteryType)
-                    showRosaryPrayer = true
-                },
-            )
+            Tab.PRAYERS -> Crossfade(
+                targetState = prayerType,
+                animationSpec = tween(400),
+                label = "prayer_type_crossfade",
+            ) { currentPrayerType ->
+                when (currentPrayerType) {
+                    PrayerType.ROSARY -> RosaryScreen(
+                        bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                        onMysterySelected = { mysteryType ->
+                            rosaryViewModel.loadPrayers()
+                            rosaryViewModel.startRosary(mysteryType)
+                            showRosaryPrayer = true
+                        },
+                        onMenuClick = { showPrayerTypeMenu = true },
+                    )
+                    PrayerType.CHAPLETS -> ChapletsScreen(
+                        bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                        onMenuClick = { showPrayerTypeMenu = true },
+                        onChapletSelected = { chapletType ->
+                            activeChapletType = chapletType
+                            when (chapletType) {
+                                ChapletType.DIVINE_MERCY -> {
+                                    divineMercyViewModel.loadPrayers()
+                                    divineMercyViewModel.startChaplet()
+                                }
+                                ChapletType.ST_MICHAEL -> {
+                                    stMichaelViewModel.loadPrayers()
+                                    stMichaelViewModel.startChaplet()
+                                }
+                                ChapletType.SEVEN_SORROWS -> {
+                                    sevenSorrowsViewModel.loadPrayers()
+                                    sevenSorrowsViewModel.startChaplet()
+                                }
+                            }
+                            showChapletPrayer = true
+                        },
+                    )
+                }
+            }
             Tab.CALENDAR -> CalendarScreen(calendarViewModel = calendarViewModel)
             Tab.SETTINGS -> SettingsScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+            )
+        }
+
+        // Prayer type menu overlay (same pattern as AudioControlsPanel)
+        if (selectedTab == Tab.PRAYERS) {
+            PrayerTypePanel(
+                isPresented = showPrayerTypeMenu,
+                onDismiss = { showPrayerTypeMenu = false },
+                currentPrayerType = prayerType,
+                onPrayerTypeSelected = { prayerType = it },
             )
         }
 
@@ -548,6 +611,69 @@ fun MainTabView() {
                     rosaryViewModel.reset()
                 },
             )
+        }
+
+        // Chaplet prayer overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showChapletPrayer || showChapletCompletion,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            when (activeChapletType) {
+                ChapletType.DIVINE_MERCY -> DivineMercyPrayerScreen(
+                    viewModel = divineMercyViewModel,
+                    onBack = {
+                        showChapletPrayer = false
+                        divineMercyViewModel.reset()
+                    },
+                    onComplete = { showChapletCompletion = true },
+                )
+                ChapletType.ST_MICHAEL -> StMichaelPrayerScreen(
+                    viewModel = stMichaelViewModel,
+                    onBack = {
+                        showChapletPrayer = false
+                        stMichaelViewModel.reset()
+                    },
+                    onComplete = { showChapletCompletion = true },
+                )
+                ChapletType.SEVEN_SORROWS -> SevenSorrowsPrayerScreen(
+                    viewModel = sevenSorrowsViewModel,
+                    onBack = {
+                        showChapletPrayer = false
+                        sevenSorrowsViewModel.reset()
+                    },
+                    onComplete = { showChapletCompletion = true },
+                )
+                null -> {}
+            }
+        }
+
+        // Chaplet completion overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showChapletCompletion,
+            enter = fadeIn(tween(300)),
+            exit = fadeOut(tween(300)),
+        ) {
+            activeChapletType?.let { chapletType ->
+                ChapletCompletionScreen(
+                    chapletType = chapletType,
+                    onDone = {
+                        showChapletCompletion = false
+                        showChapletPrayer = false
+                        when (chapletType) {
+                            ChapletType.DIVINE_MERCY -> divineMercyViewModel.reset()
+                            ChapletType.ST_MICHAEL -> stMichaelViewModel.reset()
+                            ChapletType.SEVEN_SORROWS -> sevenSorrowsViewModel.reset()
+                        }
+                    },
+                )
+            }
         }
     }
 }

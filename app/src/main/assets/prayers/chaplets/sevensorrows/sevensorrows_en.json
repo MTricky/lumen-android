@@ -1,0 +1,103 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "introductoryPrayer": {
+      "title": "Introductory Prayer",
+      "text": "My God, I offer You this Rosary for Your glory, so I can honor your Holy Mother, the Blessed Virgin, so I can share and meditate upon her suffering. I humbly beg you to give me true repentance for all my sins. Give me wisdom and humility, so that I may receive all the indulgences contained in this prayer."
+    },
+    "actOfContrition": {
+      "title": "Act of Contrition",
+      "text": "O my God, I am heartily sorry for having offended You, and I detest all my sins because I dread the loss of Heaven and the pains of hell; but most of all because they offend You, my God, You Who are all good and deserving of all my love. I firmly resolve, with the help of Your grace, to confess my sins, to do penance, and to amend my life. Amen."
+    },
+    "ourFather": {
+      "title": "Our Father",
+      "text": "Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen."
+    },
+    "hailMary": {
+      "title": "Hail Mary",
+      "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+    },
+    "gloryBe": {
+      "title": "Glory Be",
+      "text": "Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Most Merciful Mother",
+      "text": "Most Merciful Mother, remind us always about the Sorrows of your Son, Jesus."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "Queen of Martyrs, your heart suffered so much. I beg you, by the merits of the tears you shed in these terrible and sorrowful times, to obtain for me and all the sinners of the world the grace of complete sincerity and repentance. Amen."
+    },
+    "finalInvocation": {
+      "title": "Final Invocation",
+      "text": "Mary, who was conceived without sin and who suffered for us, pray for us."
+    },
+    "versicle": {
+      "title": "Versicle",
+      "text": "Pray for us, O most sorrowful Virgin."
+    },
+    "response": {
+      "title": "Response",
+      "text": "That we may be made worthy of the promises of Christ."
+    },
+    "concludingPrayer": {
+      "title": "Concluding Prayer",
+      "text": "Let intercession be made for us, we beseech Thee, O Lord Jesus Christ, now and at the hour of our death, before the throne of Thy mercy, by the Blessed Virgin Mary, Thy Mother, whose most holy soul was pierced by a sword of sorrow in the hour of Thy bitter Passion. Through Thee, Jesus Christ, Savior of the world, Who with the Father and the Holy Spirit lives and reigns, world without end. Amen."
+    }
+  },
+  "sorrows": [
+    {
+      "title": "The First Sorrow",
+      "name": "The Prophecy of Simeon",
+      "scripture": "Luke 2:34-35",
+      "meditation": "I grieve for you, O Mary most sorrowful, in the affliction of your tender heart at the prophecy of the holy and aged Simeon. Dear Mother, by your heart so afflicted, obtain for me the virtue of humility and the gift of the holy fear of God.",
+      "fruit": "Humility and the gift of the holy fear of God"
+    },
+    {
+      "title": "The Second Sorrow",
+      "name": "The Flight into Egypt",
+      "scripture": "Matthew 2:13-15",
+      "meditation": "I grieve for you, O Mary most sorrowful, in the anguish of your most affectionate heart during the flight into Egypt and your sojourn there. Dear Mother, by your heart so troubled, obtain for me the virtue of generosity, especially toward the poor, and the gift of piety.",
+      "fruit": "Generosity toward the poor and the gift of piety"
+    },
+    {
+      "title": "The Third Sorrow",
+      "name": "The Loss of the Child Jesus in the Temple",
+      "scripture": "Luke 2:41-50",
+      "meditation": "I grieve for you, O Mary most sorrowful, in those anxieties which tried your troubled heart at the loss of your dear Jesus. Dear Mother, by your heart so full of anguish, obtain for me the virtue of chastity and the gift of knowledge.",
+      "fruit": "Chastity and the gift of knowledge"
+    },
+    {
+      "title": "The Fourth Sorrow",
+      "name": "Mary Meets Jesus Carrying the Cross",
+      "scripture": "Luke 23:27-31",
+      "meditation": "I grieve for you, O Mary most sorrowful, in the consternation of your heart at meeting Jesus as He carried His Cross. Dear Mother, by your heart so troubled, obtain for me the virtue of patience and the gift of fortitude.",
+      "fruit": "Patience and the gift of fortitude"
+    },
+    {
+      "title": "The Fifth Sorrow",
+      "name": "The Crucifixion and Death of Jesus",
+      "scripture": "John 19:25-30",
+      "meditation": "I grieve for you, O Mary most sorrowful, in the martyrdom which your generous heart endured in standing near Jesus in His agony. Dear Mother, by your afflicted heart, obtain for me the virtue of temperance and the gift of counsel.",
+      "fruit": "Temperance and the gift of counsel"
+    },
+    {
+      "title": "The Sixth Sorrow",
+      "name": "Mary Receives the Body of Jesus",
+      "scripture": "John 19:38-40",
+      "meditation": "I grieve for you, O Mary most sorrowful, in the wounding of your compassionate heart, when the side of Jesus was struck by the lance and His body was taken down from the Cross. Dear Mother, by your heart thus transfixed, obtain for me the virtue of fraternal charity and the gift of understanding.",
+      "fruit": "Fraternal charity and the gift of understanding"
+    },
+    {
+      "title": "The Seventh Sorrow",
+      "name": "The Burial of Jesus",
+      "scripture": "John 19:41-42",
+      "meditation": "I grieve for you, O Mary most sorrowful, for the pangs that wrenched your most loving heart at the burial of Jesus. Dear Mother, by your heart sunk in the bitterness of desolation, obtain for me the virtue of diligence and the gift of wisdom.",
+      "fruit": "Diligence and the gift of wisdom"
+    }
+  ]
+}

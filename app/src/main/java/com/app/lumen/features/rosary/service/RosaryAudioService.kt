@@ -34,6 +34,16 @@ class RosaryAudioService private constructor(private val context: Context) {
     private val _isDownloading = MutableStateFlow(false)
     val isDownloading: StateFlow<Boolean> = _isDownloading
 
+    // Chaplet download state (separate from rosary so they don't interfere)
+    private var currentChapletDownloadJob: Job? = null
+    private val cachedChapletConfigs = mutableMapOf<String, RosaryAudioConfig>()
+
+    private val _chapletDownloadProgress = MutableStateFlow(0.0)
+    val chapletDownloadProgress: StateFlow<Double> = _chapletDownloadProgress
+
+    private val _isChapletDownloading = MutableStateFlow(false)
+    val isChapletDownloading: StateFlow<Boolean> = _isChapletDownloading
+
     /** Max concurrent file downloads */
     private val maxConcurrentDownloads = 6
 
@@ -122,6 +132,144 @@ class RosaryAudioService private constructor(private val context: Context) {
     /** Delete downloaded audio for a language. */
     fun deleteAudio(language: String) {
         languageDirectory(language).deleteRecursively()
+    }
+
+    // MARK: - Chaplet Audio API
+
+    /** Fetch the audio config from Firestore for a chaplet type and language. */
+    suspend fun fetchChapletAudioConfig(language: String, chapletType: String): RosaryAudioConfig? {
+        val cacheKey = "${chapletType}_$language"
+        cachedChapletConfigs[cacheKey]?.let { return it }
+
+        return try {
+            val document = firestore.collection("chapletAudio")
+                .document(chapletType)
+                .collection("languages")
+                .document(language)
+                .get().await()
+            if (!document.exists()) return null
+
+            val data = document.data?.toMutableMap() ?: return null
+            data.remove("createdAt")
+            data.remove("updatedAt")
+
+            val jsonString = Json.encodeToString(
+                kotlinx.serialization.json.JsonElement.serializer(),
+                toJsonElement(data)
+            )
+            val config = json.decodeFromString<RosaryAudioConfig>(jsonString)
+            cachedChapletConfigs[cacheKey] = config
+            config
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    /** Check if chaplet audio has been fully downloaded. */
+    fun isChapletAudioDownloaded(language: String, chapletType: String): Boolean {
+        val manifestFile = File(chapletDirectory(language, chapletType), "_manifest.json")
+        return manifestFile.exists()
+    }
+
+    /** Download all audio files for a chaplet with progress reporting. */
+    suspend fun downloadChapletAudio(language: String, chapletType: String) {
+        currentChapletDownloadJob?.cancel()
+        _isChapletDownloading.value = true
+        _chapletDownloadProgress.value = 0.0
+
+        currentChapletDownloadJob = CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val config = fetchChapletAudioConfig(language, chapletType) ?: run {
+                    _isChapletDownloading.value = false
+                    return@launch
+                }
+
+                val chapletDir = chapletDirectory(language, chapletType)
+                chapletDir.mkdirs()
+
+                downloadChapletFilesInParallel(config.files, chapletDir, config.totalSize)
+
+                writeChapletManifest(language, chapletType, config.version)
+
+                _chapletDownloadProgress.value = 1.0
+                _isChapletDownloading.value = false
+            } catch (e: CancellationException) {
+                _isChapletDownloading.value = false
+                throw e
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _isChapletDownloading.value = false
+            }
+        }
+
+        currentChapletDownloadJob?.join()
+    }
+
+    /** Get the local file for a chaplet audio storage path. */
+    fun chapletLocalFile(storagePath: String, language: String, chapletType: String): File? {
+        // Try chaplet directory first
+        val chapletDir = chapletDirectory(language, chapletType)
+        val chapletFile = File(chapletDir, localFileName(storagePath))
+        if (chapletFile.exists()) return chapletFile
+
+        // Fall back to rosary directory for shared prayers
+        val rosaryDir = languageDirectory(language)
+        val rosaryFile = File(rosaryDir, localFileName(storagePath))
+        return if (rosaryFile.exists()) rosaryFile else null
+    }
+
+    private fun chapletDirectory(language: String, chapletType: String) =
+        File(baseDirectory, "chaplets/$chapletType/$language")
+
+    private fun writeChapletManifest(language: String, chapletType: String, version: Int) {
+        val manifest = """{"version":$version,"downloadedAt":"${System.currentTimeMillis()}"}"""
+        File(chapletDirectory(language, chapletType), "_manifest.json").writeText(manifest)
+    }
+
+    private suspend fun downloadChapletFilesInParallel(
+        files: List<RosaryAudioFile>,
+        directory: File,
+        totalSize: Int,
+    ) = coroutineScope {
+        val totalSizeDouble = totalSize.toDouble()
+        val semaphore = Semaphore(maxConcurrentDownloads)
+        var cumulativeBytes = 0.0
+
+        val filesToDownload = mutableListOf<Pair<RosaryAudioFile, File>>()
+        for (file in files) {
+            val localFile = File(directory, localFileName(file.storagePath))
+            if (localFile.exists()) {
+                cumulativeBytes += file.size.toDouble()
+                _chapletDownloadProgress.value = if (totalSizeDouble > 0) cumulativeBytes / totalSizeDouble else 0.0
+            } else {
+                filesToDownload.add(file to localFile)
+            }
+        }
+
+        if (filesToDownload.isEmpty()) return@coroutineScope
+
+        filesToDownload.map { it.second.parentFile }.toSet().forEach { it?.mkdirs() }
+
+        val jobs = filesToDownload.map { (audioFile, localFile) ->
+            async {
+                semaphore.acquire()
+                try {
+                    if (!isActive) return@async
+                    val data = URL(audioFile.downloadUrl).readBytes()
+                    localFile.writeBytes(data)
+                    synchronized(this@RosaryAudioService) {
+                        cumulativeBytes += audioFile.size.toDouble()
+                        _chapletDownloadProgress.value =
+                            if (totalSizeDouble > 0) (cumulativeBytes / totalSizeDouble).coerceAtMost(1.0) else 0.0
+                    }
+                } finally {
+                    semaphore.release()
+                }
+            }
+        }
+
+        jobs.awaitAll()
     }
 
     // MARK: - Parallel Download
