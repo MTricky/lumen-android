@@ -334,6 +334,7 @@ private fun HeaderSection() {
                 fontWeight = FontWeight.Bold,
                 color = SoftGold,
             )
+            Spacer(Modifier.width(8.dp))
             Text(
                 text = stringResource(R.string.paywall_title_pro),
                 fontSize = 42.sp,

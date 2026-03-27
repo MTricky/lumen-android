@@ -559,11 +559,13 @@
 
     <!-- Paywall -->
     <string name="paywall_title_lumen">Lumen</string>
-    <string name="paywall_title_pro"> Pro</string>
+    <string name="paywall_title_pro">Pro</string>
     <string name="paywall_subtitle">Unlock the Full\nSpiritual Experience</string>
     <string name="paywall_close">Close</string>
     <string name="paywall_feature_audio">Audio</string>
     <string name="paywall_feature_audio_desc">Listen to readings and prayers</string>
+    <string name="badge_pro">PRO</string>
+    <string name="unlock_full_reflection">Unlock Full Reflection</string>
     <string name="paywall_feature_reflections">Daily Reflections</string>
     <string name="paywall_feature_reflections_desc">Spiritual insights for each day</string>
     <string name="paywall_feature_bible">Full Bible Access</string>

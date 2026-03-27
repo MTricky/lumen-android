@@ -14,6 +14,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.chaplets.model.PrayerType
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.features.chaplets.ui.PrayerTypeMenuButton
 import com.app.lumen.features.litany.model.LitanyType
 import com.app.lumen.ui.theme.NearBlack
@@ -45,6 +48,8 @@ fun LitaniesScreen(
     onLitanySelected: (LitanyType) -> Unit = {},
     onMenuClick: () -> Unit = {},
 ) {
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +71,7 @@ fun LitaniesScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 LitanyType.entries.forEach { litanyType ->
-                    LitanyCard(litanyType, onLitanySelected)
+                    LitanyCard(litanyType, onLitanySelected, isPremium)
                 }
 
                 Spacer(Modifier.height(bottomPadding - 40.dp))
@@ -98,10 +103,8 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
                     Brush.verticalGradient(
                         colorStops = arrayOf(
                             0.0f to NearBlack.copy(alpha = 0.0f),
-                            0.25f to NearBlack.copy(alpha = 0.15f),
-                            0.5f to NearBlack.copy(alpha = 0.45f),
-                            0.7f to NearBlack.copy(alpha = 0.75f),
-                            0.85f to NearBlack.copy(alpha = 0.92f),
+                            0.3f to NearBlack.copy(alpha = 0.15f),
+                            0.6f to NearBlack.copy(alpha = 0.5f),
                             1.0f to NearBlack,
                         )
                     )
@@ -151,7 +154,7 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
 }
 
 @Composable
-private fun LitanyCard(litanyType: LitanyType, onLitanySelected: (LitanyType) -> Unit) {
+private fun LitanyCard(litanyType: LitanyType, onLitanySelected: (LitanyType) -> Unit, isPremium: Boolean) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -207,7 +210,7 @@ private fun LitanyCard(litanyType: LitanyType, onLitanySelected: (LitanyType) ->
         }
 
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            imageVector = if (isPremium) Icons.AutoMirrored.Filled.KeyboardArrowRight else Icons.Filled.Lock,
             contentDescription = null,
             tint = SoftGold,
             modifier = Modifier.size(24.dp),

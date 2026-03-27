@@ -28,6 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.app.lumen.features.subscription.PaywallSheet
+import com.app.lumen.features.subscription.SubscriptionManager
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -67,6 +69,8 @@ fun LiturgyScreen(
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
     val daySelection by viewModel.daySelection.collectAsStateWithLifecycle()
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+    var showPaywall by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     val audioPlayer = remember { AudioPlayerManager.getInstance(context) }
@@ -267,21 +271,24 @@ fun LiturgyScreen(
 
                     // First Reading
                     item {
+                        val firstReadingLabel = stringResource(R.string.section_first_reading_title)
                         ReadingCard(
                             icon = Icons.Filled.LooksOne,
-                            label = "First Reading",
+                            label = firstReadingLabel,
                             reference = lit.readings.firstReading.reference,
                             previewText = lit.readings.firstReading.text,
                             audioUrl = lit.audioUrls?.firstReading,
                             isPlayingThis = isPlaying && currentReading == ReadingType.FIRST_READING,
+                            isPremium = isPremium,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                             onClick = { onOpenReadings(lit, verse, ReadingSection.FIRST_READING) },
                             onPlayClick = {
+                                if (!isPremium) { showPaywall = true; return@ReadingCard }
                                 val url = lit.audioUrls?.firstReading ?: return@ReadingCard
                                 if (currentReading == ReadingType.FIRST_READING) {
                                     audioPlayer.togglePlayPause()
                                 } else {
-                                    audioPlayer.play(url, ReadingType.FIRST_READING, "First Reading")
+                                    audioPlayer.play(url, ReadingType.FIRST_READING, firstReadingLabel)
                                 }
                             },
                         )
@@ -289,21 +296,24 @@ fun LiturgyScreen(
 
                     // Psalm
                     item {
+                        val psalmLabel = stringResource(R.string.section_psalm_title)
                         ReadingCard(
                             icon = Icons.Filled.MusicNote,
-                            label = "Responsorial Psalm",
+                            label = psalmLabel,
                             reference = lit.readings.psalm.reference,
                             previewText = lit.readings.psalm.response,
                             audioUrl = lit.audioUrls?.psalm,
                             isPlayingThis = isPlaying && currentReading == ReadingType.PSALM,
+                            isPremium = isPremium,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                             onClick = { onOpenReadings(lit, verse, ReadingSection.PSALM) },
                             onPlayClick = {
+                                if (!isPremium) { showPaywall = true; return@ReadingCard }
                                 val url = lit.audioUrls?.psalm ?: return@ReadingCard
                                 if (currentReading == ReadingType.PSALM) {
                                     audioPlayer.togglePlayPause()
                                 } else {
-                                    audioPlayer.play(url, ReadingType.PSALM, "Responsorial Psalm")
+                                    audioPlayer.play(url, ReadingType.PSALM, psalmLabel)
                                 }
                             },
                         )
@@ -312,21 +322,24 @@ fun LiturgyScreen(
                     // Second Reading
                     if (lit.readings.secondReading != null) {
                         item {
+                            val secondReadingLabel = stringResource(R.string.section_second_reading_title)
                             ReadingCard(
                                 icon = Icons.Filled.LooksTwo,
-                                label = "Second Reading",
+                                label = secondReadingLabel,
                                 reference = lit.readings.secondReading.reference,
                                 previewText = lit.readings.secondReading.text,
                                 audioUrl = lit.audioUrls?.secondReading,
                                 isPlayingThis = isPlaying && currentReading == ReadingType.SECOND_READING,
+                                isPremium = isPremium,
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                                 onClick = { onOpenReadings(lit, verse, ReadingSection.SECOND_READING) },
                                 onPlayClick = {
+                                    if (!isPremium) { showPaywall = true; return@ReadingCard }
                                     val url = lit.audioUrls?.secondReading ?: return@ReadingCard
                                     if (currentReading == ReadingType.SECOND_READING) {
                                         audioPlayer.togglePlayPause()
                                     } else {
-                                        audioPlayer.play(url, ReadingType.SECOND_READING, "Second Reading")
+                                        audioPlayer.play(url, ReadingType.SECOND_READING, secondReadingLabel)
                                     }
                                 },
                             )
@@ -335,22 +348,25 @@ fun LiturgyScreen(
 
                     // Gospel (prominent)
                     item {
+                        val gospelLabel = stringResource(R.string.section_gospel_title)
                         ReadingCard(
                             icon = Icons.Filled.AutoStories,
-                            label = "Gospel",
+                            label = gospelLabel,
                             reference = lit.readings.gospel.reference,
                             previewText = lit.readings.gospel.text,
                             prominent = true,
                             audioUrl = lit.audioUrls?.gospel,
                             isPlayingThis = isPlaying && currentReading == ReadingType.GOSPEL,
+                            isPremium = isPremium,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                             onClick = { onOpenReadings(lit, verse, ReadingSection.GOSPEL) },
                             onPlayClick = {
+                                if (!isPremium) { showPaywall = true; return@ReadingCard }
                                 val url = lit.audioUrls?.gospel ?: return@ReadingCard
                                 if (currentReading == ReadingType.GOSPEL) {
                                     audioPlayer.togglePlayPause()
                                 } else {
-                                    audioPlayer.play(url, ReadingType.GOSPEL, "Gospel")
+                                    audioPlayer.play(url, ReadingType.GOSPEL, gospelLabel)
                                 }
                             },
                         )
@@ -361,8 +377,12 @@ fun LiturgyScreen(
                         item {
                             ReflectionCard(
                                 text = lit.sermon,
+                                isPremium = isPremium,
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
-                                onClick = { onOpenReadings(lit, verse, ReadingSection.REFLECTION) },
+                                onClick = {
+                                    if (!isPremium) { showPaywall = true; return@ReflectionCard }
+                                    onOpenReadings(lit, verse, ReadingSection.REFLECTION)
+                                },
                             )
                         }
                     }
@@ -407,6 +427,10 @@ fun LiturgyScreen(
                 }
             }
             } // end else (not loading)
+        }
+
+        if (showPaywall) {
+            PaywallSheet(onDismiss = { showPaywall = false })
         }
     }
 }

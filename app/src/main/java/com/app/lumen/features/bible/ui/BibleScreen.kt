@@ -30,6 +30,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
@@ -59,6 +60,7 @@ import com.app.lumen.R
 import com.app.lumen.features.bible.service.BibleBookInfo
 import com.app.lumen.features.bible.viewmodel.BibleViewModel
 import com.app.lumen.features.bible.viewmodel.LoadingState
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -88,6 +90,8 @@ enum class BibleBookSection(
     GENERAL_EPISTLES(R.string.section_general_epistles, Icons.Filled.Email, Testament.NEW),
     PROPHECY(R.string.section_prophecy, Icons.Filled.AutoAwesome, Testament.NEW),
 }
+
+private val freeSections = setOf(BibleBookSection.LAW, BibleBookSection.GOSPELS)
 
 // ── Bible Book ──────────────────────────────────────────────────────
 data class BibleBook(
@@ -222,6 +226,7 @@ fun BibleScreen(
     onBookSelected: (BibleBook) -> Unit = {},
     bibleViewModel: BibleViewModel = viewModel(),
 ) {
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("bible_prefs", android.content.Context.MODE_PRIVATE) }
     var selectedTestament by remember {
@@ -457,13 +462,16 @@ fun BibleScreen(
                         if (sectionBooks.isNotEmpty()) {
                             val topPad = if (sectionIndex == 0) 0.dp else 20.dp
                             sectionIndex++
+                            val isSectionFree = section in freeSections
+                            val sectionLocked = !isPremium && !isSectionFree
+
                             // Section header
                             item(key = "header_${section.name}") {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(horizontal = 20.dp)
-                                        .padding(top = topPad, bottom = 10.dp),
+                                        .padding(top = topPad, bottom = 12.dp),
                                     verticalAlignment = Alignment.CenterVertically,
                                 ) {
                                     Icon(
@@ -479,6 +487,29 @@ fun BibleScreen(
                                         fontWeight = FontWeight.Medium,
                                         color = Slate,
                                     )
+                                    if (sectionLocked) {
+                                        Spacer(Modifier.weight(1f))
+                                        Row(
+                                            modifier = Modifier
+                                                .background(SoftGold, RoundedCornerShape(50))
+                                                .padding(horizontal = 10.dp, vertical = 0.5.dp),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Filled.Lock,
+                                                contentDescription = null,
+                                                tint = NearBlack,
+                                                modifier = Modifier.size(11.dp),
+                                            )
+                                            Text(
+                                                text = stringResource(R.string.badge_pro),
+                                                fontSize = 11.sp,
+                                                fontWeight = FontWeight.ExtraBold,
+                                                color = NearBlack,
+                                            )
+                                        }
+                                    }
                                 }
                             }
 
@@ -495,6 +526,7 @@ fun BibleScreen(
                                     row.forEach { book ->
                                         BookCard(
                                             book = book,
+                                            isLocked = sectionLocked,
                                             onClick = { onBookSelected(book) },
                                             modifier = Modifier.weight(1f),
                                         )
@@ -534,6 +566,7 @@ fun BibleScreen(
                 searchText = searchText,
                 onSearchTextChange = { searchText = it },
                 searchResults = searchResults,
+                isPremium = isPremium,
                 onBookSelected = { book ->
                     searchText = ""
                     isSearching = false
@@ -554,6 +587,7 @@ private fun BibleSearchOverlay(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     searchResults: List<BibleBook>,
+    isPremium: Boolean,
     onBookSelected: (BibleBook) -> Unit,
     onClose: () -> Unit,
 ) {
@@ -711,8 +745,10 @@ private fun BibleSearchOverlay(
                 }
             } else {
                 items(searchResults, key = { it.id }) { book ->
+                    val bookLocked = !isPremium && book.section !in freeSections
                     SearchResultRow(
                         book = book,
+                        isLocked = bookLocked,
                         onClick = { onBookSelected(book) },
                     )
                 }
@@ -728,11 +764,13 @@ private fun BibleSearchOverlay(
 @Composable
 private fun SearchResultRow(
     book: BibleBook,
+    isLocked: Boolean = false,
     onClick: () -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .alpha(if (isLocked) 0.7f else 1f)
             .clip(RoundedCornerShape(14.dp))
             .background(BookCardBg)
             .border(1.dp, BookCardBorder, RoundedCornerShape(14.dp))
@@ -760,14 +798,25 @@ private fun SearchResultRow(
 
         // Book name + section info
         Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = book.name,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color.White,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = book.name,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                if (isLocked) {
+                    Spacer(Modifier.width(4.dp))
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = SoftGold.copy(alpha = 0.6f),
+                        modifier = Modifier.size(13.dp),
+                    )
+                }
+            }
             Spacer(Modifier.height(3.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -795,20 +844,22 @@ private fun SearchResultRow(
 
         Spacer(Modifier.width(8.dp))
 
-        // Abbreviation + chevron
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        // Abbreviation + lock
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
             Text(
                 text = book.abbreviation,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = SoftGold,
             )
-            Spacer(Modifier.width(4.dp))
             Icon(
-                imageVector = Icons.Filled.ChevronRight,
+                imageVector = if (isLocked) Icons.Filled.Lock else Icons.Filled.ChevronRight,
                 contentDescription = null,
-                tint = Color.White.copy(alpha = 0.3f),
-                modifier = Modifier.size(16.dp),
+                tint = if (isLocked) SoftGold.copy(alpha = 0.6f) else Color.White.copy(alpha = 0.3f),
+                modifier = Modifier.size(if (isLocked) 13.dp else 16.dp),
             )
         }
     }
@@ -865,6 +916,7 @@ private fun TestamentPicker(
 @Composable
 private fun BookCard(
     book: BibleBook,
+    isLocked: Boolean = false,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -877,17 +929,30 @@ private fun BookCard(
             .padding(vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = book.abbreviation,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            color = SoftGold,
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            if (isLocked) {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = null,
+                    tint = SoftGold.copy(alpha = 0.7f),
+                    modifier = Modifier.size(13.dp),
+                )
+            }
+            Text(
+                text = book.abbreviation,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = SoftGold.copy(alpha = if (isLocked) 0.7f else 1f),
+            )
+        }
         Spacer(Modifier.height(4.dp))
         Text(
             text = book.name,
             fontSize = 13.sp,
-            color = Color.White.copy(alpha = 0.7f),
+            color = Color.White.copy(alpha = if (isLocked) 0.55f else 0.7f),
         )
     }
 }

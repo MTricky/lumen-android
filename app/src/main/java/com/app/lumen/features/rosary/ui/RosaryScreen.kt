@@ -14,6 +14,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.chaplets.ui.PrayerTypeMenuButton
 import com.app.lumen.features.rosary.model.MysteryType
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -45,6 +48,7 @@ fun RosaryScreen(
     onMysterySelected: (MysteryType) -> Unit = {},
     onMenuClick: () -> Unit = {},
 ) {
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     val todaysMystery = remember { MysteryType.forToday() }
     val otherMysteries = remember {
         MysteryType.entries.filter { !it.isTodaysMystery }
@@ -71,11 +75,11 @@ fun RosaryScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 // Today's mystery - prominent card
-                TodaysMysteryCard(todaysMystery, onMysterySelected)
+                TodaysMysteryCard(todaysMystery, onMysterySelected, isPremium)
 
                 // Other mysteries
                 otherMysteries.forEach { mysteryType ->
-                    MysteryCard(mysteryType, onMysterySelected)
+                    MysteryCard(mysteryType, onMysterySelected, isPremium)
                 }
 
                 Spacer(Modifier.height(bottomPadding - 40.dp))
@@ -168,7 +172,7 @@ private fun HeaderSection(todaysMystery: MysteryType, onMenuClick: () -> Unit) {
 }
 
 @Composable
-private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit) {
+private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit, isPremium: Boolean) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -228,7 +232,7 @@ private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (Myst
         }
 
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            imageVector = if (isPremium) Icons.AutoMirrored.Filled.KeyboardArrowRight else Icons.Filled.Lock,
             contentDescription = null,
             tint = SoftGold,
             modifier = Modifier.size(24.dp),
@@ -237,7 +241,7 @@ private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (Myst
 }
 
 @Composable
-private fun MysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit) {
+private fun MysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryType) -> Unit, isPremium: Boolean) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -279,6 +283,14 @@ private fun MysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryTyp
                     fontWeight = FontWeight.SemiBold,
                     color = Color.White,
                 )
+                if (!isPremium) {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = SoftGold.copy(alpha = 0.6f),
+                        modifier = Modifier.size(10.dp),
+                    )
+                }
             }
 
             Row(
@@ -300,9 +312,9 @@ private fun MysteryCard(mysteryType: MysteryType, onMysterySelected: (MysteryTyp
         }
 
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            imageVector = if (isPremium) Icons.AutoMirrored.Filled.KeyboardArrowRight else Icons.Filled.Lock,
             contentDescription = null,
-            tint = Slate,
+            tint = if (isPremium) Slate else SoftGold.copy(alpha = 0.6f),
             modifier = Modifier.size(20.dp),
         )
     }

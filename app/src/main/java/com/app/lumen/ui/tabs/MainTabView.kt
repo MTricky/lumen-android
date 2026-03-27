@@ -55,6 +55,8 @@ import com.app.lumen.features.chaplets.model.ChapletType
 import com.app.lumen.features.chaplets.model.PrayerType
 import com.app.lumen.features.chaplets.ui.*
 import com.app.lumen.features.settings.ui.SettingsScreen
+import com.app.lumen.features.subscription.PaywallSheet
+import com.app.lumen.features.subscription.SubscriptionManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -180,6 +182,10 @@ fun MainTabView() {
     var showLitanyCompletion by remember { mutableStateOf(false) }
     var activeLitanyType by remember { mutableStateOf<com.app.lumen.features.litany.model.LitanyType?>(null) }
 
+    // Premium / Paywall state
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+    var showPaywall by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -203,6 +209,12 @@ fun MainTabView() {
             Tab.BIBLE -> BibleScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
                 onBookSelected = { book ->
+                    val bookIsFree = book.section == com.app.lumen.features.bible.ui.BibleBookSection.LAW ||
+                            book.section == com.app.lumen.features.bible.ui.BibleBookSection.GOSPELS
+                    if (!isPremium && !bookIsFree) {
+                        showPaywall = true
+                        return@BibleScreen
+                    }
                     selectedBibleBook = book
                     val books = bibleViewModel.books.value
                     selectedBibleBookInfo = books.find { it.id == book.id }
@@ -220,6 +232,10 @@ fun MainTabView() {
                     PrayerType.ROSARY -> RosaryScreen(
                         bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
                         onMysterySelected = { mysteryType ->
+                            if (!isPremium) {
+                                showPaywall = true
+                                return@RosaryScreen
+                            }
                             rosaryViewModel.loadPrayers()
                             rosaryViewModel.startRosary(mysteryType)
                             showRosaryPrayer = true
@@ -230,6 +246,10 @@ fun MainTabView() {
                         bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
                         onMenuClick = { showPrayerTypeMenu = true },
                         onChapletSelected = { chapletType ->
+                            if (!isPremium) {
+                                showPaywall = true
+                                return@ChapletsScreen
+                            }
                             activeChapletType = chapletType
                             when (chapletType) {
                                 ChapletType.DIVINE_MERCY -> {
@@ -252,6 +272,10 @@ fun MainTabView() {
                         bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
                         onMenuClick = { showPrayerTypeMenu = true },
                         onLitanySelected = { litanyType ->
+                            if (!isPremium) {
+                                showPaywall = true
+                                return@LitaniesScreen
+                            }
                             activeLitanyType = litanyType
                             litanyViewModel.loadPrayers(litanyType)
                             litanyViewModel.startLitany()
@@ -740,6 +764,11 @@ fun MainTabView() {
                     },
                 )
             }
+        }
+
+        // Paywall sheet
+        if (showPaywall) {
+            PaywallSheet(onDismiss = { showPaywall = false })
         }
     }
 }

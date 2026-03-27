@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
 
@@ -70,6 +71,7 @@ fun ReadingCard(
     prominent: Boolean = false,
     audioUrl: String? = null,
     isPlayingThis: Boolean = false,
+    isPremium: Boolean = true,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     onPlayClick: () -> Unit = {},
@@ -102,16 +104,42 @@ fun ReadingCard(
             )
             if (audioUrl != null) {
                 Spacer(Modifier.weight(1f))
-                IconButton(
-                    onClick = onPlayClick,
-                    modifier = Modifier.size(32.dp),
-                ) {
-                    Icon(
-                        imageVector = if (isPlayingThis) Icons.Filled.PauseCircle else Icons.Filled.PlayCircle,
-                        contentDescription = stringResource(if (isPlayingThis) R.string.cd_pause else R.string.cd_play),
-                        tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.6f),
-                        modifier = Modifier.size(28.dp),
-                    )
+                if (isPremium) {
+                    IconButton(
+                        onClick = onPlayClick,
+                        modifier = Modifier.size(32.dp),
+                    ) {
+                        Icon(
+                            imageVector = if (isPlayingThis) Icons.Filled.PauseCircle else Icons.Filled.PlayCircle,
+                            contentDescription = stringResource(if (isPlayingThis) R.string.cd_pause else R.string.cd_play),
+                            tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.6f),
+                            modifier = Modifier.size(28.dp),
+                        )
+                    }
+                } else {
+                    Row(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(50))
+                            .background(Color.White.copy(alpha = 0.08f))
+                            .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(50))
+                            .clickable(onClick = onPlayClick)
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Lock,
+                            contentDescription = null,
+                            tint = SoftGold,
+                            modifier = Modifier.size(13.dp),
+                        )
+                        Text(
+                            text = stringResource(R.string.listen),
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = SoftGold,
+                        )
+                    }
                 }
             }
         }
@@ -121,7 +149,7 @@ fun ReadingCard(
         Text(
             text = reference,
             fontSize = 14.sp,
-            color = if (prominent) SoftGold else ReferenceBlue,
+            color = ReferenceBlue,
             fontWeight = FontWeight.Medium
         )
 
@@ -132,7 +160,7 @@ fun ReadingCard(
             fontSize = 15.sp,
             color = Color.White.copy(alpha = 0.8f),
             lineHeight = 22.sp,
-            maxLines = 3,
+            maxLines = if (prominent) 4 else 3,
             overflow = TextOverflow.Ellipsis
         )
 
@@ -217,6 +245,7 @@ fun SaintCard(
 @Composable
 fun ReflectionCard(
     text: String,
+    isPremium: Boolean = true,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
 ) {
@@ -243,6 +272,29 @@ fun ReflectionCard(
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
             )
+            if (!isPremium) {
+                Spacer(Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .background(SoftGold, RoundedCornerShape(50))
+                        .padding(horizontal = 10.dp, vertical = 0.5.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = NearBlack,
+                        modifier = Modifier.size(11.dp),
+                    )
+                    Text(
+                        text = stringResource(R.string.badge_pro),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = NearBlack,
+                    )
+                }
+            }
         }
 
         Spacer(Modifier.height(12.dp))

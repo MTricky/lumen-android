@@ -41,6 +41,8 @@ import com.app.lumen.features.liturgy.model.DailyLiturgy
 import com.app.lumen.features.liturgy.model.DailyVerse
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
+import com.app.lumen.features.subscription.PaywallSheet
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -98,6 +100,8 @@ fun ReadingsScreen(
     val audioPlayer = remember { AudioPlayerManager.getInstance(context) }
     val isPlaying by audioPlayer.isPlaying.collectAsState()
     val currentReading by audioPlayer.currentReadingType.collectAsState()
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+    var showPaywall by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(isPlaying) {
@@ -245,12 +249,16 @@ fun ReadingsScreen(
                         readingType = ReadingType.FIRST_READING,
                         isPlaying = isPlaying && currentReading == ReadingType.FIRST_READING,
                         audioPlayer = audioPlayer,
+                        isPremium = isPremium,
+                        onLockedClick = { showPaywall = true },
                         fontSize = fontSize,
                     )
                     ReadingSection.PSALM -> PsalmContent(
                         liturgy = liturgy,
                         isPlaying = isPlaying && currentReading == ReadingType.PSALM,
                         audioPlayer = audioPlayer,
+                        isPremium = isPremium,
+                        onLockedClick = { showPaywall = true },
                         fontSize = fontSize,
                     )
                     ReadingSection.SECOND_READING -> ReadingContent(
@@ -262,6 +270,8 @@ fun ReadingsScreen(
                         readingType = ReadingType.SECOND_READING,
                         isPlaying = isPlaying && currentReading == ReadingType.SECOND_READING,
                         audioPlayer = audioPlayer,
+                        isPremium = isPremium,
+                        onLockedClick = { showPaywall = true },
                         fontSize = fontSize,
                     )
                     ReadingSection.GOSPEL -> ReadingContent(
@@ -274,9 +284,16 @@ fun ReadingsScreen(
                         readingType = ReadingType.GOSPEL,
                         isPlaying = isPlaying && currentReading == ReadingType.GOSPEL,
                         audioPlayer = audioPlayer,
+                        isPremium = isPremium,
+                        onLockedClick = { showPaywall = true },
                         fontSize = fontSize,
                     )
-                    ReadingSection.REFLECTION -> ReflectionContent(liturgy, fontSize)
+                    ReadingSection.REFLECTION -> ReflectionContent(
+                        liturgy = liturgy,
+                        isPremium = isPremium,
+                        onLockedClick = { showPaywall = true },
+                        fontSize = fontSize,
+                    )
                 }
             }
         }
@@ -440,6 +457,9 @@ fun ReadingsScreen(
             }
         }
     }
+    if (showPaywall) {
+        PaywallSheet(onDismiss = { showPaywall = false })
+    }
     } // end outer Box
 }
 
@@ -516,8 +536,9 @@ private fun SaintContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize) {
         Spacer(Modifier.width(10.dp))
         Text(
             text = stringResource(R.string.section_saint_title),
-            fontSize = 15.sp,
-            color = Slate,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White.copy(alpha = 0.5f),
         )
     }
 
@@ -553,6 +574,8 @@ private fun ReadingContent(
     readingType: ReadingType,
     isPlaying: Boolean,
     audioPlayer: AudioPlayerManager,
+    isPremium: Boolean = true,
+    onLockedClick: () -> Unit = {},
     fontSize: ReadingFontSize = ReadingFontSize.MEDIUM,
 ) {
     // Header
@@ -569,16 +592,20 @@ private fun ReadingContent(
         Spacer(Modifier.width(10.dp))
         Text(
             text = title,
-            fontSize = 15.sp,
-            color = Slate,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = if (prominent) SoftGold else Color.White.copy(alpha = 0.5f),
         )
         Spacer(Modifier.weight(1f))
         if (audioUrl != null) {
             ListenButton(
                 isPlaying = isPlaying,
                 prominent = prominent,
+                isPremium = isPremium,
                 onClick = {
-                    if (isPlaying) {
+                    if (!isPremium) {
+                        onLockedClick()
+                    } else if (isPlaying) {
                         audioPlayer.togglePlayPause()
                     } else {
                         audioPlayer.play(audioUrl, readingType, title)
@@ -594,7 +621,7 @@ private fun ReadingContent(
         text = reference,
         fontSize = 15.sp,
         fontWeight = FontWeight.SemiBold,
-        color = if (prominent) SoftGold else ReferenceBlue,
+        color = ReferenceBlue,
     )
 
     Spacer(Modifier.height(12.dp))
@@ -614,6 +641,8 @@ private fun PsalmContent(
     liturgy: DailyLiturgy,
     isPlaying: Boolean,
     audioPlayer: AudioPlayerManager,
+    isPremium: Boolean = true,
+    onLockedClick: () -> Unit = {},
     fontSize: ReadingFontSize = ReadingFontSize.MEDIUM,
 ) {
     val psalm = liturgy.readings.psalm
@@ -632,8 +661,9 @@ private fun PsalmContent(
         Spacer(Modifier.width(10.dp))
         Text(
             text = stringResource(R.string.section_psalm_title),
-            fontSize = 15.sp,
-            color = Slate,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White.copy(alpha = 0.5f),
         )
         Spacer(Modifier.weight(1f))
         if (liturgy.audioUrls?.psalm != null) {
@@ -641,8 +671,11 @@ private fun PsalmContent(
             ListenButton(
                 isPlaying = isPlaying,
                 prominent = false,
+                isPremium = isPremium,
                 onClick = {
-                    if (isPlaying) {
+                    if (!isPremium) {
+                        onLockedClick()
+                    } else if (isPlaying) {
                         audioPlayer.togglePlayPause()
                     } else {
                         audioPlayer.play(liturgy.audioUrls.psalm!!, ReadingType.PSALM, psalmLabel)
@@ -704,10 +737,18 @@ private fun PsalmContent(
 }
 
 @Composable
-private fun ReflectionContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize = ReadingFontSize.MEDIUM) {
+private fun ReflectionContent(
+    liturgy: DailyLiturgy,
+    isPremium: Boolean = true,
+    onLockedClick: () -> Unit = {},
+    fontSize: ReadingFontSize = ReadingFontSize.MEDIUM,
+) {
     val sermon = liturgy.sermon ?: return
 
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
         Icon(
             imageVector = Icons.Filled.FormatListBulleted,
             contentDescription = null,
@@ -717,52 +758,144 @@ private fun ReflectionContent(liturgy: DailyLiturgy, fontSize: ReadingFontSize =
         Spacer(Modifier.width(10.dp))
         Text(
             text = stringResource(R.string.section_reflection_title),
-            fontSize = 15.sp,
-            color = Slate,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White.copy(alpha = 0.5f),
         )
+        if (!isPremium) {
+            Spacer(Modifier.weight(1f))
+            Row(
+                modifier = Modifier
+                    .background(SoftGold, RoundedCornerShape(50))
+                    .padding(horizontal = 10.dp, vertical = 0.5.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = null,
+                    tint = NearBlack,
+                    modifier = Modifier.size(11.dp),
+                )
+                Text(
+                    text = stringResource(R.string.badge_pro),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = NearBlack,
+                )
+            }
+        }
     }
 
     Spacer(Modifier.height(16.dp))
     HorizontalDivider(color = DividerColor)
     Spacer(Modifier.height(16.dp))
 
-    Text(
-        text = sermon,
-        fontSize = fontSize.bodySize.sp,
-        color = Color.White.copy(alpha = 0.85f),
-        lineHeight = fontSize.lineHeight.sp,
-    )
+    if (isPremium) {
+        Text(
+            text = sermon,
+            fontSize = fontSize.bodySize.sp,
+            color = Color.White.copy(alpha = 0.85f),
+            lineHeight = fontSize.lineHeight.sp,
+        )
+    } else {
+        Text(
+            text = sermon,
+            fontSize = fontSize.bodySize.sp,
+            color = Color.White.copy(alpha = 0.85f),
+            lineHeight = fontSize.lineHeight.sp,
+            maxLines = 8,
+            overflow = TextOverflow.Ellipsis,
+        )
+
+        Spacer(Modifier.height(20.dp))
+
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Row(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(Color.White.copy(alpha = 0.08f))
+                    .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(50))
+                    .clickable(onClick = onLockedClick)
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = null,
+                    tint = SoftGold,
+                    modifier = Modifier.size(16.dp),
+                )
+                Text(
+                    text = stringResource(R.string.unlock_full_reflection),
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = SoftGold,
+                )
+            }
+        }
+    }
 }
 
 @Composable
 private fun ListenButton(
     isPlaying: Boolean,
     prominent: Boolean,
+    isPremium: Boolean = true,
     onClick: () -> Unit,
 ) {
-    val tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.7f)
-
-    Row(
-        modifier = Modifier
-            .clip(RoundedCornerShape(50))
-            .background(Color.White.copy(alpha = 0.08f))
-            .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(50))
-            .clickable(onClick = onClick)
-            .padding(horizontal = 14.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Icon(
-            imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-            contentDescription = null,
-            tint = tint,
-            modifier = Modifier.size(16.dp),
-        )
-        Spacer(Modifier.width(6.dp))
-        Text(
-            text = stringResource(if (isPlaying) R.string.pause else R.string.listen),
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Medium,
-            color = tint,
-        )
+    if (isPremium) {
+        val tint = if (prominent) SoftGold else Color.White.copy(alpha = 0.7f)
+        Row(
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(Color.White.copy(alpha = 0.08f))
+                .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(50))
+                .clickable(onClick = onClick)
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                contentDescription = null,
+                tint = tint,
+                modifier = Modifier.size(16.dp),
+            )
+            Spacer(Modifier.width(6.dp))
+            Text(
+                text = stringResource(if (isPlaying) R.string.pause else R.string.listen),
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+                color = tint,
+            )
+        }
+    } else {
+        Row(
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(Color.White.copy(alpha = 0.08f))
+                .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(50))
+                .clickable(onClick = onClick)
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(5.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Lock,
+                contentDescription = null,
+                tint = SoftGold,
+                modifier = Modifier.size(13.dp),
+            )
+            Text(
+                text = stringResource(R.string.listen),
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+                color = SoftGold,
+            )
+        }
     }
 }

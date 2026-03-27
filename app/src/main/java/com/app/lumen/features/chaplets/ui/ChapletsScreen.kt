@@ -14,6 +14,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.chaplets.model.ChapletType
 import com.app.lumen.features.chaplets.model.PrayerType
+import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -44,6 +47,8 @@ fun ChapletsScreen(
     onChapletSelected: (ChapletType) -> Unit = {},
     onMenuClick: () -> Unit = {},
 ) {
+    val isPremium by SubscriptionManager.hasProAccess.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +70,7 @@ fun ChapletsScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 ChapletType.entries.forEach { chapletType ->
-                    ChapletCard(chapletType, onChapletSelected)
+                    ChapletCard(chapletType, onChapletSelected, isPremium)
                 }
 
                 Spacer(Modifier.height(bottomPadding - 40.dp))
@@ -148,7 +153,7 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
 }
 
 @Composable
-private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletType) -> Unit) {
+private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletType) -> Unit, isPremium: Boolean) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -210,7 +215,7 @@ private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletTyp
         }
 
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            imageVector = if (isPremium) Icons.AutoMirrored.Filled.KeyboardArrowRight else Icons.Filled.Lock,
             contentDescription = null,
             tint = SoftGold,
             modifier = Modifier.size(24.dp),
