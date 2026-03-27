@@ -46,6 +46,8 @@ fun AudioControlsPanel(
     isAutoAdvanceEnabled: Boolean,
     onAutoAdvanceChange: (Boolean) -> Unit,
     isSimple: Boolean = false,
+    responseDelay: Float? = null,
+    onResponseDelayChange: ((Float) -> Unit)? = null,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Subtle scrim — fades independently with softer timing
@@ -122,6 +124,17 @@ fun AudioControlsPanel(
                     onToggle = onAutoAdvanceChange,
                     audioEnabled = isAudioEnabled,
                 )
+
+                // Response delay row (litanies only)
+                if (responseDelay != null && onResponseDelayChange != null) {
+                    HorizontalDivider(thickness = 0.5.dp, color = PanelDivider)
+
+                    ResponseDelayRow(
+                        delay = responseDelay,
+                        onDelayChange = onResponseDelayChange,
+                        enabled = isAudioEnabled && isAutoAdvanceEnabled,
+                    )
+                }
             }
             }
         }
@@ -275,6 +288,68 @@ private fun AutoAdvanceRow(
                 disabledUncheckedTrackColor = Color.White.copy(alpha = 0.08f),
             ),
             modifier = Modifier.height(24.dp),
+        )
+    }
+}
+
+@Composable
+private fun ResponseDelayRow(
+    delay: Float,
+    onDelayChange: (Float) -> Unit,
+    enabled: Boolean,
+) {
+    val tintColor = if (enabled) SoftGold else DisabledColor
+    val textColor = if (enabled) Color.White else DisabledColor
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Timer,
+                contentDescription = null,
+                tint = tintColor,
+                modifier = Modifier.size(20.dp),
+            )
+            Spacer(Modifier.width(12.dp))
+            Text(
+                text = stringResource(R.string.litany_audio_response_delay),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                color = textColor,
+                modifier = Modifier.weight(1f),
+            )
+            Text(
+                text = String.format("%.1fs", delay),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = tintColor,
+            )
+        }
+        Spacer(Modifier.height(8.dp))
+        Slider(
+            value = delay,
+            onValueChange = onDelayChange,
+            valueRange = 1.0f..5.0f,
+            steps = 7,
+            enabled = enabled,
+            colors = SliderDefaults.colors(
+                thumbColor = Color.White,
+                activeTrackColor = SoftGold,
+                activeTickColor = SoftGold,
+                inactiveTrackColor = Color.White.copy(alpha = 0.15f),
+                inactiveTickColor = Color.White.copy(alpha = 0.3f),
+                disabledThumbColor = DisabledColor,
+                disabledActiveTrackColor = DisabledColor,
+                disabledActiveTickColor = DisabledColor,
+                disabledInactiveTrackColor = Color.White.copy(alpha = 0.08f),
+                disabledInactiveTickColor = Color.White.copy(alpha = 0.1f),
+            ),
         )
     }
 }

@@ -1,0 +1,476 @@
+{
+  "id": "saints",
+  "title": "Litany of the Saints",
+  "subtitle": "The Great Intercession of the Church",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "O God, whose glory the blessed citizens of heaven proclaim, grant, we pray, that through the intercession of all your Saints, we may obtain your abundant mercy. Through Christ our Lord. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Lord, have mercy.",
+          "response": "Lord, have mercy."
+        },
+        {
+          "text": "Christ, have mercy.",
+          "response": "Christ, have mercy."
+        },
+        {
+          "text": "Lord, have mercy.",
+          "response": "Lord, have mercy."
+        },
+        {
+          "text": "Christ, hear us.",
+          "response": "Christ, graciously hear us."
+        }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        {
+          "text": "God, the Father of heaven,"
+        },
+        {
+          "text": "God the Son, Redeemer of the world,"
+        },
+        {
+          "text": "God the Holy Spirit,"
+        },
+        {
+          "text": "Holy Trinity, one God,"
+        }
+      ]
+    },
+    {
+      "title": "Holy Mary",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "Holy Mary,"
+        },
+        {
+          "text": "Holy Mother of God,"
+        },
+        {
+          "text": "Holy Virgin of virgins,"
+        }
+      ]
+    },
+    {
+      "title": "Angels and Prophets",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "St. Michael,"
+        },
+        {
+          "text": "St. Gabriel,"
+        },
+        {
+          "text": "St. Raphael,"
+        },
+        {
+          "text": "All holy angels and archangels,"
+        },
+        {
+          "text": "All holy orders of blessed spirits,"
+        },
+        {
+          "text": "St. John the Baptist,"
+        },
+        {
+          "text": "St. Joseph,"
+        },
+        {
+          "text": "All holy patriarchs and prophets,"
+        }
+      ]
+    },
+    {
+      "title": "Apostles and Evangelists",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "St. Peter,"
+        },
+        {
+          "text": "St. Paul,"
+        },
+        {
+          "text": "St. Andrew,"
+        },
+        {
+          "text": "St. James,"
+        },
+        {
+          "text": "St. John,"
+        },
+        {
+          "text": "St. Thomas,"
+        },
+        {
+          "text": "St. James,"
+        },
+        {
+          "text": "St. Philip,"
+        },
+        {
+          "text": "St. Bartholomew,"
+        },
+        {
+          "text": "St. Matthew,"
+        },
+        {
+          "text": "St. Simon,"
+        },
+        {
+          "text": "St. Thaddeus,"
+        },
+        {
+          "text": "St. Matthias,"
+        },
+        {
+          "text": "St. Barnabas,"
+        },
+        {
+          "text": "St. Luke,"
+        },
+        {
+          "text": "St. Mark,"
+        },
+        {
+          "text": "All holy apostles and evangelists,"
+        },
+        {
+          "text": "All holy disciples of the Lord,"
+        }
+      ]
+    },
+    {
+      "title": "Martyrs",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "All holy Innocents,"
+        },
+        {
+          "text": "St. Stephen,"
+        },
+        {
+          "text": "St. Lawrence,"
+        },
+        {
+          "text": "St. Vincent,"
+        },
+        {
+          "text": "Sts. Fabian and Sebastian,"
+        },
+        {
+          "text": "Sts. John and Paul,"
+        },
+        {
+          "text": "Sts. Cosmas and Damian,"
+        },
+        {
+          "text": "Sts. Gervase and Protase,"
+        },
+        {
+          "text": "All holy martyrs,"
+        }
+      ]
+    },
+    {
+      "title": "Bishops and Doctors",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "St. Sylvester,"
+        },
+        {
+          "text": "St. Gregory,"
+        },
+        {
+          "text": "St. Ambrose,"
+        },
+        {
+          "text": "St. Augustine,"
+        },
+        {
+          "text": "St. Jerome,"
+        },
+        {
+          "text": "St. Martin,"
+        },
+        {
+          "text": "St. Nicholas,"
+        },
+        {
+          "text": "All holy bishops and confessors,"
+        },
+        {
+          "text": "All holy doctors,"
+        }
+      ]
+    },
+    {
+      "title": "Priests and Religious",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "St. Anthony,"
+        },
+        {
+          "text": "St. Benedict,"
+        },
+        {
+          "text": "St. Bernard,"
+        },
+        {
+          "text": "St. Dominic,"
+        },
+        {
+          "text": "St. Francis,"
+        },
+        {
+          "text": "All holy priests and levites,"
+        },
+        {
+          "text": "All holy monks and hermits,"
+        }
+      ]
+    },
+    {
+      "title": "Holy Women",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        {
+          "text": "St. Mary Magdalene,"
+        },
+        {
+          "text": "St. Agatha,"
+        },
+        {
+          "text": "St. Lucy,"
+        },
+        {
+          "text": "St. Agnes,"
+        },
+        {
+          "text": "St. Cecilia,"
+        },
+        {
+          "text": "St. Catherine of Alexandria,"
+        },
+        {
+          "text": "St. Anastasia,"
+        },
+        {
+          "text": "All holy virgins and widows,"
+        },
+        {
+          "text": "All holy saints of God,"
+        }
+      ]
+    },
+    {
+      "title": "Mercy",
+      "type": "propitius",
+      "invocations": [
+        {
+          "text": "Be merciful,",
+          "response": "spare us, O Lord."
+        },
+        {
+          "text": "Be merciful,",
+          "response": "graciously hear us, O Lord."
+        }
+      ]
+    },
+    {
+      "title": "Deliverance",
+      "type": "petition",
+      "response": "deliver us, O Lord.",
+      "invocations": [
+        {
+          "text": "From all evil,"
+        },
+        {
+          "text": "From all sin,"
+        },
+        {
+          "text": "From your wrath,"
+        },
+        {
+          "text": "From sudden and unprovided death,"
+        },
+        {
+          "text": "From the snares of the devil,"
+        },
+        {
+          "text": "From anger, hatred, and all ill will,"
+        },
+        {
+          "text": "From the spirit of fornication,"
+        },
+        {
+          "text": "From lightning and tempest,"
+        },
+        {
+          "text": "From the scourge of earthquake,"
+        },
+        {
+          "text": "From plague, famine, and war,"
+        },
+        {
+          "text": "From everlasting death,"
+        }
+      ]
+    },
+    {
+      "title": "By the Mysteries of Christ",
+      "type": "petition",
+      "response": "deliver us, O Lord.",
+      "invocations": [
+        {
+          "text": "By the mystery of your holy Incarnation,"
+        },
+        {
+          "text": "By your coming,"
+        },
+        {
+          "text": "By your Nativity,"
+        },
+        {
+          "text": "By your Baptism and holy fasting,"
+        },
+        {
+          "text": "By your Cross and Passion,"
+        },
+        {
+          "text": "By your Death and Burial,"
+        },
+        {
+          "text": "By your holy Resurrection,"
+        },
+        {
+          "text": "By your admirable Ascension,"
+        },
+        {
+          "text": "By the coming of the Holy Spirit, the Paraclete,"
+        },
+        {
+          "text": "On the day of judgment,"
+        }
+      ]
+    },
+    {
+      "title": "Petitions",
+      "type": "petition",
+      "response": "we beseech thee, hear us.",
+      "invocations": [
+        {
+          "text": "That you would spare us,"
+        },
+        {
+          "text": "That you would pardon us,"
+        },
+        {
+          "text": "That you would bring us to true penance,"
+        },
+        {
+          "text": "That you would govern and preserve your holy Church,"
+        },
+        {
+          "text": "That you would preserve our Holy Father and all orders of the Church in holy religion,"
+        },
+        {
+          "text": "That you would humble the enemies of holy Church,"
+        },
+        {
+          "text": "That you would give peace and true concord to Christian kings and princes,"
+        },
+        {
+          "text": "That you would grant peace and unity to the whole Christian world,"
+        },
+        {
+          "text": "That you would restore to the unity of the Church all who have strayed from the truth,"
+        },
+        {
+          "text": "That you would bring all unbelievers to the light of the Gospel,"
+        },
+        {
+          "text": "That you would strengthen and preserve us in your holy service,"
+        },
+        {
+          "text": "That you would lift up our minds to heavenly desires,"
+        },
+        {
+          "text": "That you would render eternal blessings to all our benefactors,"
+        },
+        {
+          "text": "That you would deliver our souls and the souls of our brethren from eternal damnation,"
+        },
+        {
+          "text": "That you would give and preserve the fruits of the earth,"
+        },
+        {
+          "text": "That you would grant eternal rest to all the faithful departed,"
+        },
+        {
+          "text": "That you would graciously hear us,"
+        },
+        {
+          "text": "Son of God,"
+        }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "spare us, O Lord."
+        },
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "graciously hear us, O Lord."
+        },
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "have mercy on us."
+        }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Christ, hear us.",
+          "response": "Christ, graciously hear us."
+        }
+      ]
+    }
+  ]
+}

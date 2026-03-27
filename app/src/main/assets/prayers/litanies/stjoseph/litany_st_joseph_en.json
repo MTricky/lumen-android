@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Litany of Saint Joseph",
+  "subtitle": "Guardian of the Holy Family",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "O God, who in your inexpressible providence were pleased to choose Saint Joseph as spouse of your most holy Mother, grant, we pray, that we, who revere him as our protector on earth, may be worthy of his heavenly intercession. Who live and reign for ever and ever. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, have mercy.", "response": "Christ, have mercy." },
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, hear us.", "response": "Christ, graciously hear us." }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "God the Father in heaven," },
+        { "text": "God the Son, Redeemer of the world," },
+        { "text": "God the Holy Spirit," },
+        { "text": "Holy Trinity, one God," }
+      ]
+    },
+    {
+      "title": "Holy Mary",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Holy Mary," },
+        { "text": "Saint Joseph," }
+      ]
+    },
+    {
+      "title": "Titles of St. Joseph",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Illustrious son of David," },
+        { "text": "Light of Patriarchs," },
+        { "text": "Spouse of the Mother of God," },
+        { "text": "Guardian of the Redeemer," },
+        { "text": "Pure Guardian of the Virgin," },
+        { "text": "Provider for the Son of God," },
+        { "text": "Zealous defender of Christ," },
+        { "text": "Servant of Christ," },
+        { "text": "Minister of salvation," },
+        { "text": "Head of the Holy Family," }
+      ]
+    },
+    {
+      "title": "Virtues",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Joseph, most just," },
+        { "text": "Joseph, most chaste," },
+        { "text": "Joseph, most prudent," },
+        { "text": "Joseph, most brave," },
+        { "text": "Joseph, most obedient," },
+        { "text": "Joseph, most loyal," }
+      ]
+    },
+    {
+      "title": "Titles of Honor",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Mirror of patience," },
+        { "text": "Lover of poverty," },
+        { "text": "Model for workers," },
+        { "text": "Glory of family life," },
+        { "text": "Guardian of virgins," },
+        { "text": "Cornerstone of families," }
+      ]
+    },
+    {
+      "title": "Patronages",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Support in difficulties," },
+        { "text": "Comfort of the sorrowing," },
+        { "text": "Hope of the sick," },
+        { "text": "Patron of exiles," },
+        { "text": "Patron of the afflicted," },
+        { "text": "Patron of the poor," },
+        { "text": "Patron of the dying," },
+        { "text": "Terror of demons," },
+        { "text": "Protector of the Holy Church," }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamb of God, you take away the sins of the world,", "response": "spare us, O Lord." },
+        { "text": "Lamb of God, you take away the sins of the world,", "response": "hear us, O Lord." },
+        { "text": "Lamb of God, you take away the sins of the world,", "response": "have mercy on us." }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        { "text": "He made him master of his house,", "response": "And ruler of all his possessions." }
+      ]
+    }
+  ]
+}

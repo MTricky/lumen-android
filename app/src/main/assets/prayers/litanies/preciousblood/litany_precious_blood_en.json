@@ -1,0 +1,200 @@
+{
+  "id": "preciousBlood",
+  "title": "Litany of the Most Precious Blood of Jesus",
+  "subtitle": "The Price of Our Salvation",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "Almighty and eternal God, you have appointed your only-begotten Son the Redeemer of the world, and willed to be appeased by his Blood. Grant, we beg of you, that we may worthily adore this price of our salvation, and through its power be safeguarded from the evils of the present life, so that we may rejoice in its fruits forever in heaven. Through the same Christ our Lord. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Lord, have mercy.",
+          "response": "Lord, have mercy."
+        },
+        {
+          "text": "Christ, have mercy.",
+          "response": "Christ, have mercy."
+        },
+        {
+          "text": "Lord, have mercy.",
+          "response": "Lord, have mercy."
+        },
+        {
+          "text": "Jesus, hear us.",
+          "response": "Jesus, graciously hear us."
+        }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        {
+          "text": "God, the Father of heaven,"
+        },
+        {
+          "text": "God the Son, Redeemer of the world,"
+        },
+        {
+          "text": "God the Holy Spirit,"
+        },
+        {
+          "text": "Holy Trinity, one God,"
+        }
+      ]
+    },
+    {
+      "title": "Divine Origin",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, only-begotten Son of the Eternal Father,"
+        },
+        {
+          "text": "Blood of Christ, Incarnate Word of God,"
+        },
+        {
+          "text": "Blood of Christ, of the New and Eternal Testament,"
+        }
+      ]
+    },
+    {
+      "title": "The Passion",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, falling upon the earth in the Agony,"
+        },
+        {
+          "text": "Blood of Christ, shed profusely in the Scourging,"
+        },
+        {
+          "text": "Blood of Christ, flowing forth in the Crowning with Thorns,"
+        },
+        {
+          "text": "Blood of Christ, poured out on the Cross,"
+        }
+      ]
+    },
+    {
+      "title": "Redemption",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, price of our salvation,"
+        },
+        {
+          "text": "Blood of Christ, without which there is no forgiveness,"
+        },
+        {
+          "text": "Blood of Christ, Eucharistic drink and refreshment of souls,"
+        }
+      ]
+    },
+    {
+      "title": "Power and Holiness",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, stream of mercy,"
+        },
+        {
+          "text": "Blood of Christ, victor over demons,"
+        },
+        {
+          "text": "Blood of Christ, courage of Martyrs,"
+        },
+        {
+          "text": "Blood of Christ, strength of Confessors,"
+        }
+      ]
+    },
+    {
+      "title": "Protection",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, bringing forth Virgins,"
+        },
+        {
+          "text": "Blood of Christ, help of those in peril,"
+        },
+        {
+          "text": "Blood of Christ, relief of the burdened,"
+        },
+        {
+          "text": "Blood of Christ, solace in sorrow,"
+        }
+      ]
+    },
+    {
+      "title": "Hope and Glory",
+      "type": "petition",
+      "response": "save us.",
+      "invocations": [
+        {
+          "text": "Blood of Christ, hope of the penitent,"
+        },
+        {
+          "text": "Blood of Christ, consolation of the dying,"
+        },
+        {
+          "text": "Blood of Christ, peace and tenderness of hearts,"
+        },
+        {
+          "text": "Blood of Christ, pledge of eternal life,"
+        },
+        {
+          "text": "Blood of Christ, freeing souls from purgatory,"
+        },
+        {
+          "text": "Blood of Christ, most worthy of all glory and honor,"
+        }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "spare us, O Lord."
+        },
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "graciously hear us, O Lord."
+        },
+        {
+          "text": "Lamb of God, who takes away the sins of the world,",
+          "response": "have mercy on us."
+        }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "You have redeemed us, O Lord, in your Blood.",
+          "response": "And made us, for our God, a kingdom."
+        }
+      ]
+    }
+  ]
+}

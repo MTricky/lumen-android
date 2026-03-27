@@ -237,6 +237,50 @@
     <string name="chaplet_completed">Chaplet Complete</string>
     <string name="chaplet_completed_message">May the prayers you have offered bring you peace and draw you closer to God through His infinite mercy and love.</string>
 
+    <!-- Litanies -->
+    <string name="litanies_header_title">Litanies</string>
+    <string name="litanies_header_subtitle">Sacred Prayers</string>
+    <string name="litanies_header_description">Ancient prayers of petition and devotion</string>
+
+    <string name="litany_blessed_virgin_mary_title">Litany of the Blessed Virgin Mary</string>
+    <string name="litany_blessed_virgin_mary_subtitle">Loreto</string>
+    <string name="litany_blessed_virgin_mary_duration">~10 min</string>
+
+    <string name="litany_sacred_heart_title">Litany of the Sacred Heart of Jesus</string>
+    <string name="litany_sacred_heart_subtitle">Sacred Heart</string>
+    <string name="litany_sacred_heart_duration">~8 min</string>
+
+    <string name="litany_st_joseph_title">Litany of St. Joseph</string>
+    <string name="litany_st_joseph_subtitle">St. Joseph</string>
+    <string name="litany_st_joseph_duration">~7 min</string>
+
+    <string name="litany_saints_title">Litany of the Saints</string>
+    <string name="litany_saints_subtitle">All Saints</string>
+    <string name="litany_saints_duration">~12 min</string>
+
+    <string name="litany_holy_name_title">Litany of the Holy Name of Jesus</string>
+    <string name="litany_holy_name_subtitle">Holy Name</string>
+    <string name="litany_holy_name_duration">~8 min</string>
+
+    <string name="litany_precious_blood_title">Litany of the Precious Blood</string>
+    <string name="litany_precious_blood_subtitle">Precious Blood</string>
+    <string name="litany_precious_blood_duration">~8 min</string>
+
+    <string name="litany_navigation_title">Litany</string>
+    <string name="litany_tap_to_begin">Tap to begin</string>
+
+    <string name="litany_step_sign_of_cross">Sign of the Cross</string>
+    <string name="litany_step_closing_prayer">Closing Prayer</string>
+    <string name="litany_step_invocation">Invocation</string>
+
+    <string name="litany_progress_almost_done">Almost done!</string>
+    <string name="litany_progress_remaining">%1$d prayers remaining</string>
+
+    <string name="litany_completed">Litany Complete</string>
+    <string name="litany_completed_message">May your prayers be heard and may God\'s blessings be upon you.</string>
+
+    <string name="litany_audio_response_delay">Response Delay</string>
+
     <!-- Calendar -->
     <string name="calendar_title">Calendar</string>
     <string name="calendar_tab_calendar">Calendar</string>

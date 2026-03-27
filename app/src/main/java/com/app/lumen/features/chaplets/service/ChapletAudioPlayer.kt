@@ -8,6 +8,7 @@ import android.media.MediaPlayer
 import com.app.lumen.features.chaplets.model.DivineMercyPrayerStep
 import com.app.lumen.features.chaplets.model.SevenSorrowsPrayerStep
 import com.app.lumen.features.chaplets.model.StMichaelPrayerStep
+import com.app.lumen.features.litany.model.LitanyPrayerStep
 import com.app.lumen.features.rosary.model.RosaryAudioConfig
 import com.app.lumen.features.rosary.model.RosaryAudioFile
 import com.app.lumen.features.rosary.service.RosaryAudioService
@@ -38,6 +39,9 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
     private val _isAutoAdvancing = MutableStateFlow(false)
     val isAutoAdvancing: StateFlow<Boolean> = _isAutoAdvancing
 
+    // Litany-specific: tracks whether current step is an invocation (for response delay)
+    private var isLitanyInvocationStep = false
+
     // Audio focus
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private var audioFocusRequest: AudioFocusRequest? = null
@@ -53,6 +57,9 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
 
     val isAutoAdvanceEnabled: Boolean
         get() = rosaryPrefs.getBoolean("auto_advance", false)
+
+    val litanyResponseDelay: Float
+        get() = rosaryPrefs.getFloat("litany_response_delay", 2.5f)
 
     // MARK: - Configuration
 
@@ -87,6 +94,7 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
     fun playAudio(step: DivineMercyPrayerStep, onFinished: () -> Unit) {
         stopCurrentPlayback()
         _isAutoAdvancing.value = false
+        isLitanyInvocationStep = false
 
         if (!isAudioEnabled) return
 
@@ -117,6 +125,7 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
     fun playAudio(step: StMichaelPrayerStep, onFinished: () -> Unit) {
         stopCurrentPlayback()
         _isAutoAdvancing.value = false
+        isLitanyInvocationStep = false
 
         if (!isAudioEnabled) return
 
@@ -146,6 +155,7 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
     fun playAudio(step: SevenSorrowsPrayerStep, onFinished: () -> Unit) {
         stopCurrentPlayback()
         _isAutoAdvancing.value = false
+        isLitanyInvocationStep = false
 
         if (!isAudioEnabled) return
 
@@ -231,8 +241,15 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
 
         _isAutoAdvancing.value = true
 
+        // Litany invocations use configurable response delay; other steps use 0.6s
+        val delayMs = if (isLitanyInvocationStep) {
+            (litanyResponseDelay * 1000).toLong()
+        } else {
+            600L
+        }
+
         autoAdvanceJob = scope.launch {
-            delay(600) // Natural prayer rhythm pause
+            delay(delayMs)
             if (!isActive) {
                 _isAutoAdvancing.value = false
                 return@launch
@@ -380,6 +397,45 @@ class ChapletAudioPlayer private constructor(private val context: Context) {
             is SevenSorrowsPrayerStep.SorrowAnnouncement -> {
                 val sorrowNum = step.sorrow
                 randomVariant(config.prayers["sorrows_$sorrowNum"])
+            }
+        }
+    }
+
+    // MARK: - Playback (Litany)
+
+    fun playLitanyAudio(step: LitanyPrayerStep, onFinished: () -> Unit) {
+        stopCurrentPlayback()
+        _isAutoAdvancing.value = false
+        isLitanyInvocationStep = step.isInvocation
+
+        if (!isAudioEnabled) return
+
+        val file = resolveLitanyAudioFile(step)
+        if (file == null) return
+
+        playFile(file, onFinished)
+    }
+
+    // MARK: - Litany step resolution
+
+    private fun resolveLitanyAudioFile(step: LitanyPrayerStep): RosaryAudioFile? {
+        val config = audioConfig ?: return null
+        val rosary = rosaryAudioConfig
+
+        return when (step) {
+            is LitanyPrayerStep.Intro -> null
+
+            is LitanyPrayerStep.SignOfTheCross,
+            is LitanyPrayerStep.ClosingSignOfTheCross ->
+                randomVariant(config.prayers["signOfTheCross"])
+                    ?: rosary?.let { randomVariant(it.prayers["signOfTheCross"]) }
+
+            is LitanyPrayerStep.ClosingPrayer ->
+                randomVariant(config.prayers["closingPrayer"])
+
+            is LitanyPrayerStep.Invocation -> {
+                val key = "inv_${step.sectionIndex}_${step.invocationIndex}"
+                randomVariant(config.prayers[key])
             }
         }
     }

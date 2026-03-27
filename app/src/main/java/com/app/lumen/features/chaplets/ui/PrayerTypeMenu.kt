@@ -43,6 +43,7 @@ private val ToolbarGlassBg = Color(0xFF121212).copy(alpha = 0.50f)
 fun PrayerTypeMenuButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    currentPrayerType: PrayerType = PrayerType.ROSARY,
 ) {
     Box(
         modifier = modifier
@@ -53,12 +54,26 @@ fun PrayerTypeMenuButton(
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(
-            painter = painterResource(R.drawable.ic_rosary),
-            contentDescription = stringResource(R.string.chaplet_prayer_type_menu),
-            tint = SoftGold,
-            modifier = Modifier.size(23.dp),
-        )
+        when (currentPrayerType) {
+            PrayerType.ROSARY -> Icon(
+                painter = painterResource(R.drawable.ic_rosary),
+                contentDescription = stringResource(R.string.chaplet_prayer_type_menu),
+                tint = SoftGold,
+                modifier = Modifier.size(23.dp),
+            )
+            PrayerType.CHAPLETS -> Icon(
+                imageVector = Icons.Filled.AutoAwesome,
+                contentDescription = stringResource(R.string.chaplet_prayer_type_menu),
+                tint = SoftGold,
+                modifier = Modifier.size(23.dp),
+            )
+            PrayerType.LITANIES -> Icon(
+                imageVector = Icons.AutoMirrored.Filled.MenuBook,
+                contentDescription = stringResource(R.string.chaplet_prayer_type_menu),
+                tint = SoftGold,
+                modifier = Modifier.size(23.dp),
+            )
+        }
     }
 }
 
@@ -164,14 +179,16 @@ fun PrayerTypePanel(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.MenuBook,
                                 contentDescription = null,
-                                tint = Color.White.copy(alpha = 0.4f),
+                                tint = if (currentPrayerType == PrayerType.LITANIES) SoftGold else Color.White.copy(alpha = 0.7f),
                                 modifier = Modifier.size(22.dp),
                             )
                         },
                         label = stringResource(R.string.prayer_type_litanies),
-                        isSelected = false,
-                        enabled = false,
-                        onClick = onDismiss,
+                        isSelected = currentPrayerType == PrayerType.LITANIES,
+                        onClick = {
+                            onDismiss()
+                            onPrayerTypeSelected(PrayerType.LITANIES)
+                        },
                     )
                 }
             }

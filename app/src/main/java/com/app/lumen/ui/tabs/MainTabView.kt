@@ -174,6 +174,12 @@ fun MainTabView() {
     var showChapletCompletion by remember { mutableStateOf(false) }
     var activeChapletType by remember { mutableStateOf<ChapletType?>(null) }
 
+    // Litany navigation state
+    val litanyViewModel: com.app.lumen.features.litany.viewmodel.LitanyViewModel = viewModel()
+    var showLitanyPrayer by remember { mutableStateOf(false) }
+    var showLitanyCompletion by remember { mutableStateOf(false) }
+    var activeLitanyType by remember { mutableStateOf<com.app.lumen.features.litany.model.LitanyType?>(null) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -240,6 +246,16 @@ fun MainTabView() {
                                 }
                             }
                             showChapletPrayer = true
+                        },
+                    )
+                    PrayerType.LITANIES -> com.app.lumen.features.litany.ui.LitaniesScreen(
+                        bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
+                        onMenuClick = { showPrayerTypeMenu = true },
+                        onLitanySelected = { litanyType ->
+                            activeLitanyType = litanyType
+                            litanyViewModel.loadPrayers(litanyType)
+                            litanyViewModel.startLitany()
+                            showLitanyPrayer = true
                         },
                     )
                 }
@@ -671,6 +687,56 @@ fun MainTabView() {
                             ChapletType.ST_MICHAEL -> stMichaelViewModel.reset()
                             ChapletType.SEVEN_SORROWS -> sevenSorrowsViewModel.reset()
                         }
+                    },
+                )
+            }
+        }
+
+        // Litany prayer overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showLitanyPrayer || showLitanyCompletion,
+            enter = slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+            exit = slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(300),
+            ),
+        ) {
+            activeLitanyType?.let { litanyType ->
+                com.app.lumen.features.litany.ui.LitanyPrayerScreen(
+                    viewModel = litanyViewModel,
+                    litanyType = litanyType,
+                    onBack = {
+                        showLitanyPrayer = false
+                    },
+                    onComplete = { showLitanyCompletion = true },
+                )
+            }
+        }
+
+        // Reset litany VM after exit animation completes
+        LaunchedEffect(showLitanyPrayer) {
+            if (!showLitanyPrayer && !showLitanyCompletion) {
+                delay(350)
+                litanyViewModel.reset()
+            }
+        }
+
+        // Litany completion overlay
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showLitanyCompletion,
+            enter = fadeIn(tween(300)),
+            exit = fadeOut(tween(300)),
+        ) {
+            activeLitanyType?.let { litanyType ->
+                com.app.lumen.features.litany.ui.LitanyCompletionScreen(
+                    litanyType = litanyType,
+                    litanyTitle = litanyViewModel.prayerData.value?.title,
+                    onDone = {
+                        showLitanyCompletion = false
+                        showLitanyPrayer = false
                     },
                 )
             }

@@ -1,0 +1,143 @@
+{
+  "id": "blessedVirginMary",
+  "title": "Litany of the Blessed Virgin Mary",
+  "subtitle": "Litany of Loreto",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "Grant, we beseech Thee, O Lord God, that we Thy servants may enjoy perpetual health of mind and body, and by the glorious intercession of the Blessed Mary, ever Virgin, be delivered from present sorrow and enjoy eternal happiness. Through Christ our Lord. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, have mercy.", "response": "Christ, have mercy." },
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, hear us.", "response": "Christ, graciously hear us." }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "God, the Father of heaven," },
+        { "text": "God the Son, Redeemer of the world," },
+        { "text": "God the Holy Spirit," },
+        { "text": "Holy Trinity, one God," }
+      ]
+    },
+    {
+      "title": "Holy Mary",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Holy Mary," },
+        { "text": "Holy Mother of God," },
+        { "text": "Holy Virgin of virgins," }
+      ]
+    },
+    {
+      "title": "Mother",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Mother of Christ," },
+        { "text": "Mother of the Church," },
+        { "text": "Mother of Mercy," },
+        { "text": "Mother of divine grace," },
+        { "text": "Mother of Hope," },
+        { "text": "Mother most pure," },
+        { "text": "Mother most chaste," },
+        { "text": "Mother inviolate," },
+        { "text": "Mother undefiled," },
+        { "text": "Mother most amiable," },
+        { "text": "Mother most admirable," },
+        { "text": "Mother of good counsel," },
+        { "text": "Mother of our Creator," },
+        { "text": "Mother of our Saviour," }
+      ]
+    },
+    {
+      "title": "Virgin",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Virgin most prudent," },
+        { "text": "Virgin most venerable," },
+        { "text": "Virgin most renowned," },
+        { "text": "Virgin most powerful," },
+        { "text": "Virgin most merciful," },
+        { "text": "Virgin most faithful," }
+      ]
+    },
+    {
+      "title": "Symbolic Titles",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Mirror of justice," },
+        { "text": "Seat of wisdom," },
+        { "text": "Cause of our joy," },
+        { "text": "Spiritual vessel," },
+        { "text": "Vessel of honour," },
+        { "text": "Singular vessel of devotion," },
+        { "text": "Mystical rose," },
+        { "text": "Tower of David," },
+        { "text": "Tower of ivory," },
+        { "text": "House of gold," },
+        { "text": "Ark of the covenant," },
+        { "text": "Gate of heaven," },
+        { "text": "Morning star," },
+        { "text": "Health of the sick," },
+        { "text": "Refuge of sinners," },
+        { "text": "Solace of migrants," },
+        { "text": "Comfort of the afflicted," },
+        { "text": "Help of Christians," }
+      ]
+    },
+    {
+      "title": "Queen",
+      "type": "petition",
+      "response": "pray for us.",
+      "invocations": [
+        { "text": "Queen of Angels," },
+        { "text": "Queen of Patriarchs," },
+        { "text": "Queen of Prophets," },
+        { "text": "Queen of Apostles," },
+        { "text": "Queen of Martyrs," },
+        { "text": "Queen of Confessors," },
+        { "text": "Queen of Virgins," },
+        { "text": "Queen of all Saints," },
+        { "text": "Queen conceived without original sin," },
+        { "text": "Queen assumed into heaven," },
+        { "text": "Queen of the most holy Rosary," },
+        { "text": "Queen of families," },
+        { "text": "Queen of peace," }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "spare us, O Lord." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "graciously hear us, O Lord." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "have mercy on us." }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Pray for us, O holy Mother of God.", "response": "That we may be made worthy of the promises of Christ." }
+      ]
+    }
+  ]
+}

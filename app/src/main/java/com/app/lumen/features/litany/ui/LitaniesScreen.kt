@@ -1,4 +1,4 @@
-package com.app.lumen.features.chaplets.ui
+package com.app.lumen.features.litany.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,8 +28,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
-import com.app.lumen.features.chaplets.model.ChapletType
 import com.app.lumen.features.chaplets.model.PrayerType
+import com.app.lumen.features.chaplets.ui.PrayerTypeMenuButton
+import com.app.lumen.features.litany.model.LitanyType
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -39,9 +40,9 @@ private val CardBg = Color(0xFF1E1E2B)
 private val HeaderHeight = 460.dp
 
 @Composable
-fun ChapletsScreen(
+fun LitaniesScreen(
     bottomPadding: Dp = 100.dp,
-    onChapletSelected: (ChapletType) -> Unit = {},
+    onLitanySelected: (LitanyType) -> Unit = {},
     onMenuClick: () -> Unit = {},
 ) {
     Box(
@@ -57,15 +58,15 @@ fun ChapletsScreen(
             // Header with background image
             HeaderSection(onMenuClick = onMenuClick)
 
-            // Chaplet cards
+            // Litany cards
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .offset(y = (-60).dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                ChapletType.entries.forEach { chapletType ->
-                    ChapletCard(chapletType, onChapletSelected)
+                LitanyType.entries.forEach { litanyType ->
+                    LitanyCard(litanyType, onLitanySelected)
                 }
 
                 Spacer(Modifier.height(bottomPadding - 40.dp))
@@ -83,7 +84,7 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
     ) {
         // Background image
         Image(
-            painter = painterResource(R.drawable.chaplet_header_bg),
+            painter = painterResource(R.drawable.litany_header_bg),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -97,8 +98,10 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
                     Brush.verticalGradient(
                         colorStops = arrayOf(
                             0.0f to NearBlack.copy(alpha = 0.0f),
-                            0.3f to NearBlack.copy(alpha = 0.15f),
-                            0.6f to NearBlack.copy(alpha = 0.5f),
+                            0.25f to NearBlack.copy(alpha = 0.15f),
+                            0.5f to NearBlack.copy(alpha = 0.45f),
+                            0.7f to NearBlack.copy(alpha = 0.75f),
+                            0.85f to NearBlack.copy(alpha = 0.92f),
                             1.0f to NearBlack,
                         )
                     )
@@ -108,7 +111,7 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
         // Top-trailing prayer type menu button
         PrayerTypeMenuButton(
             onClick = onMenuClick,
-            currentPrayerType = PrayerType.CHAPLETS,
+            currentPrayerType = PrayerType.LITANIES,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .statusBarsPadding()
@@ -124,21 +127,21 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = stringResource(R.string.chaplets_header_subtitle),
+                text = stringResource(R.string.litanies_header_subtitle),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = SoftGold,
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = stringResource(R.string.chaplets_header_title),
+                text = stringResource(R.string.litanies_header_title),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = stringResource(R.string.chaplets_header_description),
+                text = stringResource(R.string.litanies_header_description),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color.White.copy(alpha = 0.8f),
@@ -148,21 +151,21 @@ private fun HeaderSection(onMenuClick: () -> Unit) {
 }
 
 @Composable
-private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletType) -> Unit) {
+private fun LitanyCard(litanyType: LitanyType, onLitanySelected: (LitanyType) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .background(CardBg)
-            .clickable { onChapletSelected(chapletType) }
+            .clickable { onLitanySelected(litanyType) }
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         // Preview image
         Image(
-            painter = painterResource(chapletType.previewImageRes),
+            painter = painterResource(litanyType.previewImageRes),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -180,13 +183,13 @@ private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletTyp
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
             ) {
                 Icon(
-                    imageVector = chapletIcon(chapletType),
+                    imageVector = litanyIcon(litanyType),
                     contentDescription = null,
                     tint = SoftGold,
                     modifier = Modifier.size(12.dp),
                 )
                 Text(
-                    text = stringResource(chapletType.subtitleRes),
+                    text = stringResource(litanyType.subtitleRes),
                     fontSize = 12.sp,
                     lineHeight = 16.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -196,16 +199,10 @@ private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletTyp
             }
 
             Text(
-                text = stringResource(chapletType.titleRes),
+                text = stringResource(litanyType.titleRes),
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
-            )
-
-            Text(
-                text = "•• " + stringResource(chapletType.durationRes),
-                fontSize = 12.sp,
-                color = Slate,
             )
         }
 
@@ -218,8 +215,11 @@ private fun ChapletCard(chapletType: ChapletType, onChapletSelected: (ChapletTyp
     }
 }
 
-private fun chapletIcon(chapletType: ChapletType): ImageVector = when (chapletType) {
-    ChapletType.DIVINE_MERCY -> Icons.Filled.Favorite
-    ChapletType.ST_MICHAEL -> Icons.Filled.Shield
-    ChapletType.SEVEN_SORROWS -> Icons.Filled.WaterDrop
+private fun litanyIcon(litanyType: LitanyType): ImageVector = when (litanyType) {
+    LitanyType.BLESSED_VIRGIN_MARY -> Icons.Filled.Star
+    LitanyType.SACRED_HEART -> Icons.Filled.Favorite
+    LitanyType.ST_JOSEPH -> Icons.Filled.Person
+    LitanyType.SAINTS -> Icons.Filled.Groups
+    LitanyType.HOLY_NAME -> Icons.Filled.MenuBook
+    LitanyType.PRECIOUS_BLOOD -> Icons.Filled.WaterDrop
 }

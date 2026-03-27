@@ -702,7 +702,7 @@ private fun IntroContent(
 // --- Shared ---
 
 @Composable
-private fun GlassCircleButton(
+internal fun GlassCircleButton(
     onClick: () -> Unit,
     size: Int,
     enabled: Boolean = true,

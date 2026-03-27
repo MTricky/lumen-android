@@ -1,0 +1,170 @@
+{
+  "id": "holyName",
+  "title": "Litany of the Holy Name of Jesus",
+  "subtitle": "In Praise of the Most Sacred Name",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "O Lord Jesus Christ, who hast said: Ask, and you shall receive; seek, and you shall find; knock, and it shall be opened unto you; grant, we beseech thee, the gift of thy most divine love, that we may ever love thee with our whole heart, in word and deed, and never cease praising thee. Make us, O Lord, to have a perpetual fear and love of thy Holy Name; for thou never failest to govern those whom thou dost solidly establish in thy love. Who livest and reignest, world without end. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, have mercy.", "response": "Christ, have mercy." },
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Jesus, hear us.", "response": "Jesus, graciously hear us." }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "God, the Father of heaven," },
+        { "text": "God the Son, Redeemer of the world," },
+        { "text": "God the Holy Spirit," },
+        { "text": "Holy Trinity, one God," }
+      ]
+    },
+    {
+      "title": "Divine Glory",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Jesus, Son of the living God," },
+        { "text": "Jesus, splendor of the Father," },
+        { "text": "Jesus, brightness of everlasting light," },
+        { "text": "Jesus, King of glory," },
+        { "text": "Jesus, sun of justice," },
+        { "text": "Jesus, Son of the Virgin Mary," }
+      ]
+    },
+    {
+      "title": "Divine Attributes",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Jesus, most amiable," },
+        { "text": "Jesus, most admirable," },
+        { "text": "Jesus, mighty God," },
+        { "text": "Jesus, Father of the world to come," },
+        { "text": "Jesus, Angel of great counsel," },
+        { "text": "Jesus, most powerful," },
+        { "text": "Jesus, most patient," },
+        { "text": "Jesus, most obedient," },
+        { "text": "Jesus, meek and humble of heart," }
+      ]
+    },
+    {
+      "title": "Love and Virtue",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Jesus, lover of chastity," },
+        { "text": "Jesus, lover of us," },
+        { "text": "Jesus, God of peace," },
+        { "text": "Jesus, author of life," },
+        { "text": "Jesus, example of virtues," },
+        { "text": "Jesus, zealous lover of souls," },
+        { "text": "Jesus, our God," },
+        { "text": "Jesus, our refuge," }
+      ]
+    },
+    {
+      "title": "Mercy and Light",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Jesus, father of the poor," },
+        { "text": "Jesus, treasure of the faithful," },
+        { "text": "Jesus, Good Shepherd," },
+        { "text": "Jesus, the true light," },
+        { "text": "Jesus, eternal wisdom," },
+        { "text": "Jesus, infinite goodness," },
+        { "text": "Jesus, our way and our life," }
+      ]
+    },
+    {
+      "title": "Glory of the Saints",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Jesus, joy of angels," },
+        { "text": "Jesus, King of patriarchs," },
+        { "text": "Jesus, Master of apostles," },
+        { "text": "Jesus, Teacher of evangelists," },
+        { "text": "Jesus, strength of martyrs," },
+        { "text": "Jesus, light of confessors," },
+        { "text": "Jesus, purity of virgins," },
+        { "text": "Jesus, crown of all saints," }
+      ]
+    },
+    {
+      "title": "Mercy",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Be merciful,", "response": "spare us, O Jesus." },
+        { "text": "Be merciful,", "response": "graciously hear us, O Jesus." }
+      ]
+    },
+    {
+      "title": "Deliverance",
+      "type": "petition",
+      "response": "deliver us, O Jesus.",
+      "invocations": [
+        { "text": "From all evil," },
+        { "text": "From all sin," },
+        { "text": "From your wrath," },
+        { "text": "From the snares of the devil," },
+        { "text": "From the spirit of fornication," },
+        { "text": "From everlasting death," },
+        { "text": "From the neglect of your inspirations," }
+      ]
+    },
+    {
+      "title": "By the Mysteries of Christ",
+      "type": "petition",
+      "response": "deliver us, O Jesus.",
+      "invocations": [
+        { "text": "Through the mystery of your holy Incarnation," },
+        { "text": "Through your Nativity," },
+        { "text": "Through your Infancy," },
+        { "text": "Through your most divine life," },
+        { "text": "Through your labors," },
+        { "text": "Through your agony and Passion," },
+        { "text": "Through your Cross and dereliction," },
+        { "text": "Through your faintness and weariness," },
+        { "text": "Through your Death and Burial," },
+        { "text": "Through your Resurrection," },
+        { "text": "Through your Ascension," },
+        { "text": "Through your institution of the Most Holy Eucharist," },
+        { "text": "Through your joys," },
+        { "text": "Through your glory," }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "spare us, O Jesus." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "graciously hear us, O Jesus." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "have mercy on us, O Jesus." }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Jesus, hear us.", "response": "Jesus, graciously hear us." }
+      ]
+    }
+  ]
+}

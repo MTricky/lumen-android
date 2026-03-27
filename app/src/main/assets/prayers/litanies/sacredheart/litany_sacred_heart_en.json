@@ -1,0 +1,129 @@
+{
+  "id": "sacredHeart",
+  "title": "Litany of the Sacred Heart of Jesus",
+  "subtitle": "Devotion to the Heart of Our Lord",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sign of the Cross",
+      "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Closing Prayer",
+      "text": "Grant, we pray, almighty God, that we, who glory in the Heart of your beloved Son and recall the wonders of his love for us, may be made worthy to receive an overflowing measure of grace from that fount of heavenly gifts. Through Christ our Lord. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, have mercy.", "response": "Christ, have mercy." },
+        { "text": "Lord, have mercy.", "response": "Lord, have mercy." },
+        { "text": "Christ, hear us.", "response": "Christ, graciously hear us." }
+      ]
+    },
+    {
+      "title": "Holy Trinity",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "God, the Father of heaven," },
+        { "text": "God the Son, Redeemer of the world," },
+        { "text": "God the Holy Spirit," },
+        { "text": "Holy Trinity, one God," }
+      ]
+    },
+    {
+      "title": "Divine Nature",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, Son of the eternal Father," },
+        { "text": "Heart of Jesus, formed by the Holy Spirit in the womb of the Virgin Mother," },
+        { "text": "Heart of Jesus, one with the eternal Word," },
+        { "text": "Heart of Jesus, infinite in majesty," },
+        { "text": "Heart of Jesus, holy temple of God," },
+        { "text": "Heart of Jesus, tabernacle of the Most High," },
+        { "text": "Heart of Jesus, house of God and gate of heaven," }
+      ]
+    },
+    {
+      "title": "Love and Virtue",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, aflame with love for us," },
+        { "text": "Heart of Jesus, source of justice and love," },
+        { "text": "Heart of Jesus, full of goodness and love," },
+        { "text": "Heart of Jesus, well-spring of all virtue," },
+        { "text": "Heart of Jesus, worthy of all praise," }
+      ]
+    },
+    {
+      "title": "Wisdom and Glory",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, king and center of all hearts," },
+        { "text": "Heart of Jesus, treasure-house of wisdom and knowledge," },
+        { "text": "Heart of Jesus, in whom there dwells the fullness of God," },
+        { "text": "Heart of Jesus, in whom the Father is well pleased," },
+        { "text": "Heart of Jesus, from whose fullness we have all received," }
+      ]
+    },
+    {
+      "title": "Mercy and Holiness",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, desire of the eternal hills," },
+        { "text": "Heart of Jesus, patient and full of mercy," },
+        { "text": "Heart of Jesus, generous to all who turn to you," },
+        { "text": "Heart of Jesus, fountain of life and holiness," },
+        { "text": "Heart of Jesus, atonement for our sins," }
+      ]
+    },
+    {
+      "title": "Suffering",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, overwhelmed with insults," },
+        { "text": "Heart of Jesus, broken for our sins," },
+        { "text": "Heart of Jesus, obedient even to death," },
+        { "text": "Heart of Jesus, pierced by a lance," }
+      ]
+    },
+    {
+      "title": "Life and Salvation",
+      "type": "petition",
+      "response": "have mercy on us.",
+      "invocations": [
+        { "text": "Heart of Jesus, source of all consolation," },
+        { "text": "Heart of Jesus, our life and resurrection," },
+        { "text": "Heart of Jesus, our peace and reconciliation," },
+        { "text": "Heart of Jesus, victim of our sins," },
+        { "text": "Heart of Jesus, salvation of all who trust in you," },
+        { "text": "Heart of Jesus, hope of all who die in you," },
+        { "text": "Heart of Jesus, delight of all the saints," }
+      ]
+    },
+    {
+      "title": "Lamb of God",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "spare us, O Lord." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "graciously hear us, O Lord." },
+        { "text": "Lamb of God, who takes away the sins of the world,", "response": "have mercy on us." }
+      ]
+    },
+    {
+      "title": "Versicle",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Jesus, gentle and humble of heart,", "response": "Touch our hearts and make them like your own." }
+      ]
+    }
+  ]
+}
