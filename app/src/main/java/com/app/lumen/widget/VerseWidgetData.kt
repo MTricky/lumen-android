@@ -32,9 +32,11 @@ data class VerseWidgetData(
     companion object {
         private const val PREFS_NAME = "verse_widget_prefs"
         private const val KEY_VERSE_DATA = "verse_widget_data"
+        private const val KEY_YESTERDAY_VERSE_DATA = "verse_widget_yesterday_data"
         private const val KEY_IS_PREMIUM = "is_premium_user"
         private const val IMAGE_FILENAME = "widget_background.jpg"
         private const val IMAGE_BLURRED_FILENAME = "widget_background_blurred.jpg"
+        private const val YESTERDAY_IMAGE_FILENAME = "widget_background_yesterday.jpg"
 
         private val json = Json { ignoreUnknownKeys = true }
 
@@ -51,6 +53,40 @@ data class VerseWidgetData(
             val jsonStr = prefs(context).getString(KEY_VERSE_DATA, null) ?: return null
             return try {
                 json.decodeFromString<VerseWidgetData>(jsonStr)
+            } catch (_: Exception) {
+                null
+            }
+        }
+
+        fun saveYesterday(context: Context, data: VerseWidgetData) {
+            prefs(context).edit()
+                .putString(KEY_YESTERDAY_VERSE_DATA, json.encodeToString(data))
+                .apply()
+        }
+
+        fun loadYesterday(context: Context): VerseWidgetData? {
+            val jsonStr = prefs(context).getString(KEY_YESTERDAY_VERSE_DATA, null) ?: return null
+            return try {
+                json.decodeFromString<VerseWidgetData>(jsonStr)
+            } catch (_: Exception) {
+                null
+            }
+        }
+
+        fun saveYesterdayBackgroundImage(context: Context, bitmap: Bitmap) {
+            try {
+                val file = File(context.cacheDir, YESTERDAY_IMAGE_FILENAME)
+                file.outputStream().use { out ->
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 85, out)
+                }
+            } catch (_: Exception) { }
+        }
+
+        fun loadYesterdayBackgroundImage(context: Context): Bitmap? {
+            return try {
+                val file = File(context.cacheDir, YESTERDAY_IMAGE_FILENAME)
+                if (!file.exists()) return null
+                BitmapFactory.decodeFile(file.absolutePath)
             } catch (_: Exception) {
                 null
             }

@@ -5,6 +5,7 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.subscription.SubscriptionManager
 import com.google.firebase.FirebaseApp
 import com.revenuecat.purchases.LogLevel
@@ -20,6 +21,7 @@ class LumenApp : Application(), ImageLoaderFactory {
             PurchasesConfiguration.Builder(this, "goog_hPMfptKVUNVLpYgDXuRtqjJtHHV").build()
         )
         SubscriptionManager.initialize(this)
+        OnboardingManager.initialize(this)
     }
 
     override fun newImageLoader(): ImageLoader {

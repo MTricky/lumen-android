@@ -608,4 +608,134 @@
     <string name="widget_large_description">Full verse with beautiful imagery</string>
     <string name="widget_loading">Loading\u2026</string>
     <string name="widget_unlock">Unlock</string>
+
+    <!-- Onboarding - Common -->
+    <string name="onboarding_continue">Continue</string>
+
+    <!-- Onboarding - Welcome -->
+    <string name="onboarding_welcome_subtitle">Light for Your Spiritual Journey</string>
+    <string name="onboarding_welcome_body">Grow in faith with the Bible, daily readings, guided prayers, and spiritual routines.</string>
+    <string name="onboarding_get_started">Get Started</string>
+
+    <!-- Onboarding - Bible Quotes -->
+    <string name="onboarding_quote_john_8_12">\"I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life.\"</string>
+    <string name="onboarding_quote_john_8_12_source">John 8:12</string>
+    <string name="onboarding_quote_psalm_27_1">\"The Lord is my light and my salvation\u2014whom shall I fear?\"</string>
+    <string name="onboarding_quote_psalm_27_1_source">Psalm 27:1</string>
+    <string name="onboarding_quote_psalm_119_105">\"Your word is a lamp for my feet, a light on my path.\"</string>
+    <string name="onboarding_quote_psalm_119_105_source">Psalm 119:105</string>
+    <string name="onboarding_quote_ephesians_5_8">\"For you were once darkness, but now you are light in the Lord. Live as children of light.\"</string>
+    <string name="onboarding_quote_ephesians_5_8_source">Ephesians 5:8</string>
+    <string name="onboarding_quote_matthew_5_14">\"You are the light of the world. A town built on a hill cannot be hidden.\"</string>
+    <string name="onboarding_quote_matthew_5_14_source">Matthew 5:14</string>
+    <string name="onboarding_quote_isaiah_60_1">\"Arise, shine, for your light has come, and the glory of the Lord rises upon you.\"</string>
+    <string name="onboarding_quote_isaiah_60_1_source">Isaiah 60:1</string>
+
+    <!-- Onboarding - Features -->
+    <string name="onboarding_features_title">Everything You Need</string>
+    <string name="onboarding_features_subtitle">For your spiritual journey</string>
+    <string name="onboarding_features_bible">The Bible</string>
+    <string name="onboarding_features_readings">Daily Readings</string>
+    <string name="onboarding_features_prayers">Guided Prayers</string>
+    <string name="onboarding_features_calendar">Liturgical Calendar</string>
+    <string name="onboarding_features_routines">Prayer Routines</string>
+    <string name="onboarding_features_and_more">and more\u2026</string>
+
+    <!-- Onboarding - Bible -->
+    <string name="onboarding_bible_title">Bible Language</string>
+    <string name="onboarding_bible_subtitle">Select your preferred language\nfor reading the Bible.</string>
+    <string name="onboarding_bible_selected_language">Selected Language</string>
+    <string name="onboarding_bible_change_language">Change Language</string>
+
+    <!-- Onboarding - Region -->
+    <string name="onboarding_region_title">Your Region</string>
+    <string name="onboarding_region_subtitle">We\'ll show you the correct feast days and holy days of obligation for your location.</string>
+    <string name="onboarding_region_selected">Selected Region</string>
+    <string name="onboarding_region_change">Change Region</string>
+
+    <!-- Onboarding - Notifications -->
+    <string name="onboarding_notifications_title">Stay on Track</string>
+    <string name="onboarding_notifications_subtitle">Get gentle reminders for your prayer routines and important liturgical events.</string>
+    <string name="onboarding_notifications_benefit_reminders">Timely prayer reminders</string>
+    <string name="onboarding_notifications_benefit_morning_evening">Morning and evening prayers</string>
+    <string name="onboarding_notifications_benefit_holy_days">Holy days of obligation alerts</string>
+    <string name="onboarding_notifications_benefit_control">You control what and when</string>
+    <string name="onboarding_notifications_enable">Enable Notifications</string>
+
+    <!-- Onboarding - Rosary -->
+    <string name="onboarding_rosary_title">Prayer Experience</string>
+    <string name="onboarding_rosary_subtitle">Customize how you experience your prayers</string>
+    <string name="onboarding_rosary_description">Sacred Art displays paintings as backgrounds. Simple uses a dark background. You can change this anytime in Settings.</string>
+    <string name="onboarding_rosary_enable_audio">Enable Audio</string>
+    <string name="onboarding_rosary_audio_guided">Audio guided rosary prayers</string>
+    <string name="onboarding_rosary_audio_ready">Audio ready to use</string>
+    <string name="onboarding_rosary_audio_downloading">Downloading\u2026 %1$d%%</string>
+    <string name="onboarding_rosary_audio_will_download">Audio will be downloaded</string>
+    <string name="onboarding_rosary_audio_preview">Hail Mary - Preview</string>
+
+    <!-- Onboarding - Routine Intro -->
+    <string name="onboarding_routine_intro_title">Build Your Routine</string>
+    <string name="onboarding_routine_intro_subtitle">Spiritual growth happens through daily practice. Set up prayer times that fit your schedule.</string>
+    <string name="onboarding_routine_intro_benefit_reminders">Scheduled reminders keep you consistent</string>
+    <string name="onboarding_routine_intro_benefit_progress">Track your progress and streaks</string>
+    <string name="onboarding_routine_intro_benefit_habits">Build lasting spiritual habits</string>
+    <string name="onboarding_routine_intro_button">Set Up Routines</string>
+
+    <!-- Onboarding - Routine Setup -->
+    <string name="onboarding_routine_setup_title">Choose Your Routines</string>
+    <string name="onboarding_routine_setup_subtitle">Tap to select, then customize the time</string>
+    <string name="onboarding_routine_setup_suggested">Suggested</string>
+    <string name="onboarding_routine_setup_custom">Custom</string>
+    <string name="onboarding_routine_setup_add_custom">Add Custom Routine</string>
+    <string name="onboarding_routine_setup_count">%1$d routine(s) selected</string>
+    <string name="onboarding_routine_setup_skip">Skip for Now</string>
+    <string name="onboarding_routine_setup_dialog_title">New Custom Routine</string>
+    <string name="onboarding_routine_setup_dialog_placeholder">Routine name</string>
+    <string name="onboarding_routine_setup_dialog_add">Add</string>
+    <string name="onboarding_routine_setup_first_fridays">First Fridays</string>
+    <string name="onboarding_routine_setup_yearly_tracking">Yearly tracking</string>
+
+    <!-- Onboarding - Routine Edit Sheet -->
+    <string name="onboarding_routine_edit_title">Edit Routine</string>
+    <string name="onboarding_routine_edit_days">DAYS</string>
+    <string name="onboarding_routine_edit_every_day">Every day</string>
+    <string name="onboarding_routine_edit_weekdays">Weekdays</string>
+    <string name="onboarding_routine_edit_weekends">Weekends</string>
+    <string name="onboarding_routine_edit_time">TIME</string>
+    <string name="onboarding_routine_edit_notifications">Notifications</string>
+    <string name="onboarding_routine_edit_remind_me">Remind me</string>
+    <string name="onboarding_routine_edit_delete">Delete Routine</string>
+    <string name="onboarding_routine_edit_done">Done</string>
+
+    <!-- Onboarding - First Friday Edit Sheet -->
+    <string name="onboarding_first_friday_title">First Fridays</string>
+    <string name="onboarding_first_friday_subtitle">Track your First Friday devotion throughout the year</string>
+    <string name="onboarding_first_friday_question">How many consecutive First Fridays do you already have?</string>
+    <string name="onboarding_first_friday_month">month</string>
+    <string name="onboarding_first_friday_months">months</string>
+    <string name="onboarding_first_friday_tracking_note">This helps us continue tracking your devotion streak</string>
+
+    <!-- Onboarding - Loading -->
+    <string name="onboarding_loading_step_1">Saving your preferences</string>
+    <string name="onboarding_loading_step_2">Preparing your content</string>
+    <string name="onboarding_loading_step_3">Setting up prayers</string>
+    <string name="onboarding_loading_step_4">Almost ready</string>
+    <string name="onboarding_loading_ready">Ready to begin!</string>
+    <string name="onboarding_loading_begin">Begin Your Journey</string>
+    <string name="onboarding_loading_preparing">Preparing\u2026</string>
+
+    <!-- Onboarding - Widgets -->
+    <string name="onboarding_widgets_title">Home Screen Widgets</string>
+    <string name="onboarding_widgets_subtitle">Fresh verse and beautiful imagery every day</string>
+
+    <!-- Onboarding - Completion -->
+    <string name="onboarding_completion_title">You\'re All Set!</string>
+    <string name="onboarding_completion_subtitle">Your spiritual journey begins now</string>
+    <string name="onboarding_completion_routines">%1$d Prayer Routine(s)</string>
+    <string name="onboarding_completion_routines_subtitle">Scheduled with reminders</string>
+    <string name="onboarding_completion_bible_subtitle">Your Bible translation</string>
+    <string name="onboarding_completion_region_subtitle">Liturgical calendar region</string>
+    <string name="onboarding_completion_notifications_title">Notifications Enabled</string>
+    <string name="onboarding_completion_notifications_subtitle">You\'ll receive prayer reminders</string>
+    <string name="onboarding_completion_done">Done</string>
 </resources>
