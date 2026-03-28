@@ -3,6 +3,7 @@ package com.app.lumen.features.subscription
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.app.lumen.widget.VerseWidgetData
 import com.revenuecat.purchases.CustomerInfo
 import com.revenuecat.purchases.Package
 import com.revenuecat.purchases.PackageType
@@ -12,9 +13,13 @@ import com.revenuecat.purchases.getOfferingsWith
 import com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener
 import com.revenuecat.purchases.purchaseWith
 import com.revenuecat.purchases.restorePurchasesWith
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Currency
@@ -30,6 +35,8 @@ object SubscriptionManager {
     private const val KEY_EXPIRATION_DATE = "expiration_date"
 
     private lateinit var prefs: SharedPreferences
+    private lateinit var appContext: Context
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val _availablePackages = MutableStateFlow<List<Package>>(emptyList())
     val availablePackages: StateFlow<List<Package>> = _availablePackages.asStateFlow()
@@ -54,6 +61,7 @@ object SubscriptionManager {
      * Call this from Application.onCreate() after Purchases.configure().
      */
     fun initialize(context: Context) {
+        appContext = context.applicationContext
         prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         // Seed from cache immediately to prevent UI flicker
@@ -90,6 +98,12 @@ object SubscriptionManager {
 
         Log.d(TAG, "Updated state - premium: $hasAccess, expiry: $expiry")
         Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")
+
+        // Sync premium status to widgets
+        if (::appContext.isInitialized) {
+            VerseWidgetData.savePremiumStatus(appContext, hasAccess)
+            scope.launch { VerseWidgetData.updateAllWidgets(appContext) }
+        }
     }
 
     fun fetchOfferings() {

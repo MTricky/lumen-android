@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark background matching app theme -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FF1A1A2E" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: category badge top-left -->
+    <item
+        android:left="16dp"
+        android:top="16dp"
+        android:bottom="220dp"
+        android:right="180dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#33FFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 1 -->
+    <item
+        android:left="16dp"
+        android:top="56dp"
+        android:right="16dp"
+        android:bottom="180dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1AFFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 2 -->
+    <item
+        android:left="16dp"
+        android:top="80dp"
+        android:right="40dp"
+        android:bottom="156dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1AFFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 3 -->
+    <item
+        android:left="16dp"
+        android:top="104dp"
+        android:right="60dp"
+        android:bottom="132dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1AFFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 4 (faded) -->
+    <item
+        android:left="16dp"
+        android:top="128dp"
+        android:right="100dp"
+        android:bottom="108dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0DFFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: reference badge bottom-right -->
+    <item
+        android:left="170dp"
+        android:top="228dp"
+        android:right="16dp"
+        android:bottom="12dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#14FFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</layer-list>

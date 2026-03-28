@@ -27,6 +27,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.Lumen.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,6 +65,32 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
+        </receiver>
+
+        <!-- Verse Medium Widget -->
+        <receiver
+            android:name="com.app.lumen.widget.VerseMediumWidgetReceiver"
+            android:label="@string/widget_medium_label"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/verse_medium_widget_info" />
+        </receiver>
+
+        <!-- Verse Large Widget -->
+        <receiver
+            android:name="com.app.lumen.widget.VerseLargeWidgetReceiver"
+            android:label="@string/widget_large_label"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/verse_large_widget_info" />
         </receiver>
 
     </application>

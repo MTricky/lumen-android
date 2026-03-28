@@ -48,6 +48,12 @@ accompanist = "0.36.0"
 # Media3 (audio playback)
 media3 = "1.5.0"
 
+# Glance (App Widgets with Compose)
+glance = "1.1.1"
+
+# WorkManager
+workManager = "2.10.0"
+
 # Splash Screen
 splashScreen = "1.0.1"
 
@@ -118,6 +124,13 @@ datastore-preferences = { group = "androidx.datastore", name = "datastore-prefer
 media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
 media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
+
+# Glance (App Widgets)
+glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
+glance-material3 = { group = "androidx.glance", name = "glance-material3", version.ref = "glance" }
+
+# WorkManager
+work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workManager" }
 
 # Splash Screen
 splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }

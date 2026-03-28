@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.features.audio.AudioPlayerManager
 import com.app.lumen.features.audio.ReadingType
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
 import com.app.lumen.features.liturgy.ui.LiturgyScreen
 import com.app.lumen.features.liturgy.ui.ReadingSection
 import com.app.lumen.features.liturgy.ui.ReadingsScreen
@@ -116,7 +118,12 @@ fun rememberTabBarScrollState(threshold: Dp = 50.dp): TabBarScrollState {
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun MainTabView() {
+fun MainTabView(
+    openPaywall: Boolean = false,
+    onPaywallConsumed: () -> Unit = {},
+    openVerseDetail: Boolean = false,
+    onVerseDetailConsumed: () -> Unit = {},
+) {
     var selectedTab by remember { mutableStateOf(Tab.LITURGY) }
     val scrollState = rememberTabBarScrollState()
     val context = LocalContext.current
@@ -185,6 +192,27 @@ fun MainTabView() {
     // Premium / Paywall state
     val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     var showPaywall by remember { mutableStateOf(false) }
+
+    // Open paywall when launched from locked widget
+    LaunchedEffect(openPaywall) {
+        if (openPaywall && !isPremium) {
+            showPaywall = true
+            onPaywallConsumed()
+        }
+    }
+
+    // Open verse detail when launched from unlocked widget
+    val liturgyViewModel: LiturgyViewModel = viewModel()
+    LaunchedEffect(openVerseDetail) {
+        if (openVerseDetail) {
+            val verse = liturgyViewModel.verse.value
+            if (verse != null) {
+                verseDetailData = verse
+                showVerseDetail = true
+            }
+            onVerseDetailConsumed()
+        }
+    }
 
     Box(
         modifier = Modifier

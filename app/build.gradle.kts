@@ -111,6 +111,13 @@ dependencies {
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
+    // Glance (App Widgets with Compose)
+    implementation(libs.glance.appwidget)
+    implementation(libs.glance.material3)
+
+    // WorkManager
+    implementation(libs.work.runtime)
+
     // Splash Screen
     implementation(libs.splash.screen)
 

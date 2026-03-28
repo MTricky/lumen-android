@@ -1,16 +1,22 @@
 package com.app.lumen.features.liturgy.viewmodel
 
 import android.app.Application
+import android.graphics.BitmapFactory
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.lumen.features.liturgy.model.*
 import com.app.lumen.features.liturgy.model.AudioUrls
 import com.app.lumen.services.CacheService
+import com.app.lumen.widget.VerseWidgetData
+import com.app.lumen.widget.VerseWidgetWorker
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -63,6 +69,8 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
             loadData()
         }
         prefetchTomorrow()
+        // Enqueue periodic widget updates
+        VerseWidgetWorker.enqueuePeriodicWork(application)
     }
 
     /**
@@ -198,6 +206,8 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
     }
 
     private suspend fun fetchFromNetwork(dateString: String, showLoading: Boolean) {
+        var liturgyImageUrl: String? = null
+
         try {
             val mainDoc = firestore.collection("dailyLiturgy")
                 .document(dateString)
@@ -205,6 +215,7 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
                 .await()
 
             val imageUrl = mainDoc.data?.get("imageUrl") as? String
+            liturgyImageUrl = imageUrl
 
             val contentDoc = firestore.collection("dailyLiturgy")
                 .document(dateString)
@@ -251,6 +262,11 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
                 }
                 if (getDateString() == dateString) {
                     _verse.value = parsed
+                }
+                // Update widget data (only for today's verse)
+                val todayDate = dateFormat.format(Calendar.getInstance().time)
+                if (dateString == todayDate) {
+                    updateWidgetData(data, dateString, liturgyImageUrl)
                 }
             }
         } catch (_: Exception) { }
@@ -313,6 +329,55 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
             sermon = data["sermon"] as? String,
             imageUrl = imageUrl,
         )
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun updateWidgetData(verseData: Map<String, Any>, dateString: String, imageUrl: String?) {
+        val app = getApplication<Application>()
+        val lang = getLanguageCode()
+        val category = verseData["category"] as? String ?: return
+        val versesData = verseData["verses"] as? Map<String, Any> ?: return
+        val localizedVerse = versesData[lang] as? Map<String, Any>
+            ?: versesData["en"] as? Map<String, Any>
+            ?: return
+
+        val text = localizedVerse["text"] as? String ?: return
+        val mediumText = localizedVerse["mediumText"] as? String ?: text.take(120) + "..."
+        val shortText = localizedVerse["shortText"] as? String ?: text.take(80) + "..."
+        val reference = localizedVerse["reference"] as? String ?: ""
+        val shortReference = localizedVerse["shortReference"] as? String ?: reference
+
+        val widgetData = VerseWidgetData(
+            date = dateString,
+            text = text,
+            mediumText = mediumText,
+            shortText = shortText,
+            reference = reference,
+            shortReference = shortReference,
+            category = category,
+            imageUrl = imageUrl,
+        )
+        VerseWidgetData.save(app, widgetData)
+
+        // Download image and update widgets
+        viewModelScope.launch {
+            if (imageUrl != null) {
+                withContext(Dispatchers.IO) {
+                    try {
+                        val connection = URL(imageUrl).openConnection()
+                        connection.connectTimeout = 10_000
+                        connection.readTimeout = 10_000
+                        connection.inputStream.use { stream ->
+                            val bitmap = BitmapFactory.decodeStream(stream)
+                            if (bitmap != null) {
+                                VerseWidgetData.saveBackgroundImage(app, bitmap)
+                            }
+                        }
+                    } catch (_: Exception) { }
+                }
+            }
+            VerseWidgetData.updateAllWidgets(app)
+        }
     }
 
     private fun getLanguageCode(): String {

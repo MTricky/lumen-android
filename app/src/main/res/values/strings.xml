@@ -599,4 +599,13 @@
     <!-- Errors -->
     <string name="error_no_liturgy">No liturgy available for this day</string>
     <string name="error_load_failed">Failed to load liturgy: %1$s</string>
+
+    <!-- Widgets -->
+    <string name="widget_verse_title">Verse of the Day</string>
+    <string name="widget_medium_label">Medium Widget</string>
+    <string name="widget_large_label">Large Widget</string>
+    <string name="widget_medium_description">Daily Scripture with reflection</string>
+    <string name="widget_large_description">Full verse with beautiful imagery</string>
+    <string name="widget_loading">Loading\u2026</string>
+    <string name="widget_unlock">Unlock</string>
 </resources>
