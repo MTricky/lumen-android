@@ -12,9 +12,11 @@ import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.Image
 import androidx.glance.ImageProvider
+import androidx.glance.LocalSize
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
+import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
@@ -38,6 +40,8 @@ import com.app.lumen.MainActivity
 import com.app.lumen.R
 
 class VerseMediumWidget : GlanceAppWidget() {
+
+    override val sizeMode = SizeMode.Exact
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val verseData = VerseWidgetData.load(context)
@@ -71,6 +75,26 @@ private fun VerseMediumContent(
 ) {
     val data = verseData ?: VerseWidgetData.placeholder
     val isLocked = !isPremium
+
+    // Responsive sizing based on actual widget dimensions
+    val size = LocalSize.current
+    val isCompact = size.width < 280.dp
+    val isNarrow = size.width < 220.dp
+
+    val contentPadding = if (isNarrow) 8.dp else if (isCompact) 10.dp else 12.dp
+    val verseFontSize = if (isNarrow) 14.sp else if (isCompact) 16.sp else 20.sp
+    val badgeFontSize = if (isNarrow) 10.sp else 12.sp
+    val refFontSize = if (isNarrow) 9.sp else 11.sp
+    val quoteIconSize = if (isNarrow) 20.dp else 26.dp
+    val badgeIconSize = if (isNarrow) 12.dp else 14.dp
+    val badgePaddingH = if (isNarrow) 7.dp else 10.dp
+    val badgePaddingV = if (isNarrow) 4.dp else 5.dp
+    val unlockFontSize = if (isNarrow) 13.sp else 15.sp
+    val unlockIconSize = if (isNarrow) 14.dp else 16.dp
+    val unlockPaddingH = if (isNarrow) 12.dp else 16.dp
+    val unlockPaddingV = if (isNarrow) 8.dp else 10.dp
+    val skeletonLineHeight = if (isNarrow) 12.dp else 16.dp
+    val skeletonLine2Width = if (isNarrow) 140.dp else 200.dp
 
     val intent = Intent(context, MainActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -112,7 +136,7 @@ private fun VerseMediumContent(
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
-                    .padding(12.dp),
+                    .padding(contentPadding),
             ) {
                 // Top: skeleton badge + skeleton quote icon
                 Row(
@@ -123,12 +147,12 @@ private fun VerseMediumContent(
                     Box(
                         modifier = GlanceModifier
                             .background(ImageProvider(categorySkeletonBadgeRes(data.category)))
-                            .padding(horizontal = 10.dp, vertical = 5.dp),
+                            .padding(horizontal = badgePaddingH, vertical = badgePaddingV),
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Box(
                                 modifier = GlanceModifier
-                                    .size(14.dp)
+                                    .size(badgeIconSize)
                                     .background(ImageProvider(R.drawable.widget_skeleton_line)),
                             ) {}
                             Spacer(modifier = GlanceModifier.width(5.dp))
@@ -147,7 +171,7 @@ private fun VerseMediumContent(
                     Image(
                         provider = ImageProvider(R.drawable.ic_widget_quote),
                         contentDescription = null,
-                        modifier = GlanceModifier.size(26.dp),
+                        modifier = GlanceModifier.size(quoteIconSize),
                         colorFilter = androidx.glance.ColorFilter.tint(
                             ColorProvider(Color.White.copy(alpha = 0.15f)),
                         ),
@@ -165,15 +189,15 @@ private fun VerseMediumContent(
                         Box(
                             modifier = GlanceModifier
                                 .fillMaxWidth()
-                                .height(16.dp)
+                                .height(skeletonLineHeight)
                                 .background(ImageProvider(R.drawable.widget_skeleton_line)),
                         ) {}
                         Spacer(modifier = GlanceModifier.height(8.dp))
-                        // Line 2 — 75% width
+                        // Line 2 — partial width
                         Box(
                             modifier = GlanceModifier
-                                .width(200.dp)
-                                .height(16.dp)
+                                .width(skeletonLine2Width)
+                                .height(skeletonLineHeight)
                                 .background(ImageProvider(R.drawable.widget_skeleton_line)),
                         ) {}
                     }
@@ -187,7 +211,7 @@ private fun VerseMediumContent(
                     Box(
                         modifier = GlanceModifier
                             .background(ImageProvider(R.drawable.widget_ref_bg))
-                            .padding(horizontal = 10.dp, vertical = 4.dp),
+                            .padding(horizontal = badgePaddingH, vertical = 4.dp),
                     ) {
                         Box(
                             modifier = GlanceModifier
@@ -207,20 +231,20 @@ private fun VerseMediumContent(
                 Box(
                     modifier = GlanceModifier
                         .background(ImageProvider(R.drawable.widget_unlock_bg))
-                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                        .padding(horizontal = unlockPaddingH, vertical = unlockPaddingV),
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
                             provider = ImageProvider(R.drawable.ic_widget_lock),
                             contentDescription = null,
-                            modifier = GlanceModifier.size(16.dp),
+                            modifier = GlanceModifier.size(unlockIconSize),
                         )
                         Spacer(modifier = GlanceModifier.width(6.dp))
                         Text(
                             text = context.getString(R.string.widget_unlock),
                             style = TextStyle(
                                 color = ColorProvider(Color.White),
-                                fontSize = 15.sp,
+                                fontSize = unlockFontSize,
                                 fontWeight = FontWeight.Bold,
                             ),
                         )
@@ -232,7 +256,7 @@ private fun VerseMediumContent(
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
-                    .padding(12.dp),
+                    .padding(contentPadding),
             ) {
                 Row(
                     modifier = GlanceModifier.fillMaxWidth(),
@@ -241,20 +265,20 @@ private fun VerseMediumContent(
                     Box(
                         modifier = GlanceModifier
                             .background(ImageProvider(R.drawable.widget_badge_bg))
-                            .padding(horizontal = 10.dp, vertical = 5.dp),
+                            .padding(horizontal = badgePaddingH, vertical = badgePaddingV),
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
                                 provider = ImageProvider(categoryIconRes(data.category)),
                                 contentDescription = null,
-                                modifier = GlanceModifier.size(14.dp),
+                                modifier = GlanceModifier.size(badgeIconSize),
                             )
                             Spacer(modifier = GlanceModifier.width(5.dp))
                             Text(
                                 text = categoryName(data.category),
                                 style = TextStyle(
                                     color = ColorProvider(Color.White),
-                                    fontSize = 12.sp,
+                                    fontSize = badgeFontSize,
                                     fontWeight = FontWeight.Bold,
                                 ),
                             )
@@ -266,7 +290,7 @@ private fun VerseMediumContent(
                     Image(
                         provider = ImageProvider(R.drawable.ic_widget_quote),
                         contentDescription = null,
-                        modifier = GlanceModifier.size(26.dp),
+                        modifier = GlanceModifier.size(quoteIconSize),
                         colorFilter = androidx.glance.ColorFilter.tint(
                             ColorProvider(Color.White.copy(alpha = 0.6f)),
                         ),
@@ -282,10 +306,10 @@ private fun VerseMediumContent(
                         text = data.mediumText,
                         style = TextStyle(
                             color = ColorProvider(Color.White),
-                            fontSize = 20.sp,
+                            fontSize = verseFontSize,
                             fontWeight = FontWeight.Medium,
                         ),
-                        maxLines = 3,
+                        maxLines = if (isNarrow) 4 else 3,
                         modifier = GlanceModifier.fillMaxWidth(),
                     )
                 }
@@ -297,13 +321,13 @@ private fun VerseMediumContent(
                     Box(
                         modifier = GlanceModifier
                             .background(ImageProvider(R.drawable.widget_ref_bg))
-                            .padding(horizontal = 10.dp, vertical = 4.dp),
+                            .padding(horizontal = badgePaddingH, vertical = 4.dp),
                     ) {
                         Text(
                             text = data.shortReference,
                             style = TextStyle(
                                 color = ColorProvider(Color.White),
-                                fontSize = 11.sp,
+                                fontSize = refFontSize,
                                 fontWeight = FontWeight.Bold,
                             ),
                         )

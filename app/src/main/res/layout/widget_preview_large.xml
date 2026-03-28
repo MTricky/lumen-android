@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF1A1A2E">
+    android:background="@color/near_black"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <ImageView
+    <!-- Top: badge skeleton -->
+    <FrameLayout
         android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_foreground"
-        android:contentDescription="@string/app_name" />
-</FrameLayout>
+        android:layout_height="28dp"
+        android:background="@drawable/widget_skeleton_badge_preview" />
+
+    <!-- Center: skeleton text lines (weighted to fill middle) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <!-- Skeleton text line 1 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Skeleton text line 2 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Skeleton text line 3 — shorter -->
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Skeleton text line 4 — even shorter -->
+        <FrameLayout
+            android:layout_width="140dp"
+            android:layout_height="20dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+    </LinearLayout>
+
+    <!-- Bottom: reference badge right-aligned -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="26dp"
+            android:background="@drawable/widget_ref_bg_preview" />
+    </LinearLayout>
+</LinearLayout>

@@ -264,7 +264,9 @@ data class VerseWidgetData(
                 largeIds.forEach { id ->
                     VerseLargeWidget().update(context, id)
                 }
-            } catch (_: Exception) { }
+            } catch (e: Exception) {
+                android.util.Log.e("VerseWidget", "Failed to update widgets", e)
+            }
         }
 
         val placeholder = VerseWidgetData(

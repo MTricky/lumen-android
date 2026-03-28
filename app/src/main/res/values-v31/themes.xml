@@ -1,0 +1,17 @@
+<resources>
+    <!-- Splash screen theme for Android 12+ (API 31+) -->
+    <!-- Native android: attributes are required for the system-managed splash screen -->
+    <style name="Theme.Lumen.Splash" parent="Theme.SplashScreen">
+        <!-- Compat library attributes (used by installSplashScreen()) -->
+        <item name="windowSplashScreenBackground">@color/near_black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.Lumen</item>
+
+        <!-- Native Android 12+ attributes (used by the system before app process starts) -->
+        <item name="android:windowSplashScreenBackground">@color/near_black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+
+        <!-- Window background with logo — shown when launched from widgets/notifications -->
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>

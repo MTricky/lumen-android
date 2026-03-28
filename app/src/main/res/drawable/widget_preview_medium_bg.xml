@@ -1,58 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Dark background matching app theme -->
+    <!-- Dark background matching widget -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FF1A1A2E" />
+            <solid android:color="#FF0F0F19" />
             <corners android:radius="16dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: category badge top-left -->
+    <!-- Skeleton: category badge top-left (faith purple) -->
     <item
-        android:left="14dp"
-        android:top="14dp"
-        android:bottom="76dp"
-        android:right="230dp">
+        android:left="12dp"
+        android:top="12dp"
+        android:right="220dp"
+        android:bottom="78dp">
         <shape android:shape="rectangle">
-            <solid android:color="#33FFFFFF" />
-            <corners android:radius="10dp" />
+            <solid android:color="#E66A1B9A" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 1 -->
+    <!-- Skeleton: quote icon top-right -->
+    <item
+        android:left="270dp"
+        android:top="12dp"
+        android:right="12dp"
+        android:bottom="74dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#15FFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 1 — full width -->
     <item
         android:left="14dp"
-        android:top="46dp"
+        android:top="42dp"
         android:right="14dp"
-        android:bottom="52dp">
+        android:bottom="56dp">
         <shape android:shape="rectangle">
-            <solid android:color="#1AFFFFFF" />
-            <corners android:radius="3dp" />
+            <solid android:color="#30FFFFFF" />
+            <corners android:radius="4dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 2 -->
+    <!-- Skeleton: text line 2 — 65% width -->
     <item
         android:left="14dp"
-        android:top="62dp"
-        android:right="50dp"
-        android:bottom="36dp">
-        <shape android:shape="rectangle">
-            <solid android:color="#1AFFFFFF" />
-            <corners android:radius="3dp" />
-        </shape>
-    </item>
-
-    <!-- Skeleton: text line 3 (faded) -->
-    <item
-        android:left="14dp"
-        android:top="78dp"
+        android:top="60dp"
         android:right="100dp"
-        android:bottom="20dp">
+        android:bottom="38dp">
         <shape android:shape="rectangle">
-            <solid android:color="#0DFFFFFF" />
-            <corners android:radius="3dp" />
+            <solid android:color="#30FFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: reference badge bottom-right -->
+    <item
+        android:left="210dp"
+        android:top="82dp"
+        android:right="12dp"
+        android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#14FFFFFF" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Unlock button: background -->
+    <item
+        android:left="95dp"
+        android:top="35dp"
+        android:right="95dp"
+        android:bottom="35dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#45D0D0D0" />
+            <stroke
+                android:width="1.5dp"
+                android:color="#70FFFFFF" />
+            <corners android:radius="24dp" />
         </shape>
     </item>
 </layer-list>

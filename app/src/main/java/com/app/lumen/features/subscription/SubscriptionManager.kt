@@ -99,10 +99,14 @@ object SubscriptionManager {
         Log.d(TAG, "Updated state - premium: $hasAccess, expiry: $expiry")
         Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")
 
-        // Sync premium status to widgets
+        // Sync premium status to widgets immediately
         if (::appContext.isInitialized) {
             VerseWidgetData.savePremiumStatus(appContext, hasAccess)
-            scope.launch { VerseWidgetData.updateAllWidgets(appContext) }
+            scope.launch(Dispatchers.IO) {
+                Log.d(TAG, "Refreshing widgets with premium=$hasAccess")
+                VerseWidgetData.updateAllWidgets(appContext)
+                Log.d(TAG, "Widgets refreshed successfully")
+            }
         }
     }
 

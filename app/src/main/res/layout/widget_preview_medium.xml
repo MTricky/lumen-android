@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF1A1A2E">
+    android:background="@color/near_black"
+    android:orientation="vertical"
+    android:padding="12dp">
 
-    <ImageView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_foreground"
-        android:contentDescription="@string/app_name" />
-</FrameLayout>
+    <!-- Top: badge skeleton -->
+    <FrameLayout
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:background="@drawable/widget_skeleton_badge_preview" />
+
+    <!-- Center: skeleton text lines (weighted to fill middle) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <!-- Skeleton text line 1 — full width -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <!-- Skeleton text line 2 — shorter -->
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="18dp"
+            android:background="@drawable/widget_skeleton_line_preview" />
+    </LinearLayout>
+
+    <!-- Bottom: reference badge right-aligned -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <FrameLayout
+            android:layout_width="65dp"
+            android:layout_height="22dp"
+            android:background="@drawable/widget_ref_bg_preview" />
+    </LinearLayout>
+</LinearLayout>

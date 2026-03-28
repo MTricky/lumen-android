@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Dark background matching app theme -->
+    <!-- Dark background matching widget -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FF1A1A2E" />
+            <solid android:color="#FF0F0F19" />
             <corners android:radius="16dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: category badge top-left -->
+    <!-- Skeleton: category badge top-left (faith purple) -->
     <item
         android:left="16dp"
         android:top="16dp"
-        android:bottom="220dp"
-        android:right="180dp">
+        android:right="180dp"
+        android:bottom="224dp">
         <shape android:shape="rectangle">
-            <solid android:color="#33FFFFFF" />
-            <corners android:radius="10dp" />
+            <solid android:color="#E66A1B9A" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 1 -->
+    <!-- Skeleton: quote icon top-right -->
+    <item
+        android:left="240dp"
+        android:top="14dp"
+        android:right="16dp"
+        android:bottom="218dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#15FFFFFF" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+
+    <!-- Skeleton: text line 1 — full width -->
     <item
         android:left="16dp"
         android:top="56dp"
         android:right="16dp"
         android:bottom="180dp">
         <shape android:shape="rectangle">
-            <solid android:color="#1AFFFFFF" />
+            <solid android:color="#30FFFFFF" />
             <corners android:radius="4dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 2 -->
+    <!-- Skeleton: text line 2 — full width -->
     <item
         android:left="16dp"
-        android:top="80dp"
-        android:right="40dp"
-        android:bottom="156dp">
+        android:top="82dp"
+        android:right="16dp"
+        android:bottom="154dp">
         <shape android:shape="rectangle">
-            <solid android:color="#1AFFFFFF" />
+            <solid android:color="#30FFFFFF" />
             <corners android:radius="4dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 3 -->
+    <!-- Skeleton: text line 3 — 85% width -->
     <item
         android:left="16dp"
-        android:top="104dp"
-        android:right="60dp"
-        android:bottom="132dp">
+        android:top="108dp"
+        android:right="50dp"
+        android:bottom="128dp">
         <shape android:shape="rectangle">
-            <solid android:color="#1AFFFFFF" />
+            <solid android:color="#30FFFFFF" />
             <corners android:radius="4dp" />
         </shape>
     </item>
 
-    <!-- Skeleton: text line 4 (faded) -->
+    <!-- Skeleton: text line 4 — 60% width -->
     <item
         android:left="16dp"
-        android:top="128dp"
-        android:right="100dp"
-        android:bottom="108dp">
+        android:top="134dp"
+        android:right="110dp"
+        android:bottom="102dp">
         <shape android:shape="rectangle">
-            <solid android:color="#0DFFFFFF" />
+            <solid android:color="#30FFFFFF" />
             <corners android:radius="4dp" />
         </shape>
     </item>
@@ -76,7 +88,22 @@
         android:bottom="12dp">
         <shape android:shape="rectangle">
             <solid android:color="#14FFFFFF" />
-            <corners android:radius="10dp" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Unlock button: background -->
+    <item
+        android:left="80dp"
+        android:top="105dp"
+        android:right="80dp"
+        android:bottom="105dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#45D0D0D0" />
+            <stroke
+                android:width="1.5dp"
+                android:color="#70FFFFFF" />
+            <corners android:radius="24dp" />
         </shape>
     </item>
 </layer-list>
