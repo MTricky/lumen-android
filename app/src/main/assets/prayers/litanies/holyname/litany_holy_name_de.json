@@ -1,0 +1,326 @@
+{
+  "id": "holyName",
+  "title": "Litanei vom Heiligsten Namen Jesu",
+  "subtitle": "Zur Ehre des Heiligsten Namens",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "Herr Jesus Christus, du hast gesagt: «Bittet, und ihr werdet empfangen; suchet, und ihr werdet finden; klopfet an, und es wird euch aufgetan.» Erhöre gnädig unser Flehen und schenke uns die Gnade deiner göttlichen Liebe, damit wir dich von ganzem Herzen lieben, in all unseren Worten und Werken, und nie aufhören, dich zu loben. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Christus, erbarme dich.",
+          "response": "Christus, erbarme dich."
+        },
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Jesus, höre uns.",
+          "response": "Jesus, erhöre uns."
+        }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Gott Vater im Himmel,"
+        },
+        {
+          "text": "Gott Sohn, Erlöser der Welt,"
+        },
+        {
+          "text": "Gott Heiliger Geist,"
+        },
+        {
+          "text": "Heiligste Dreifaltigkeit, ein einiger Gott,"
+        }
+      ]
+    },
+    {
+      "title": "Göttliche Herrlichkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Jesus, Sohn des lebendigen Gottes,"
+        },
+        {
+          "text": "Jesus, Abglanz des Vaters,"
+        },
+        {
+          "text": "Jesus, Glanz des ewigen Lichtes,"
+        },
+        {
+          "text": "Jesus, König der Herrlichkeit,"
+        },
+        {
+          "text": "Jesus, Sonne der Gerechtigkeit,"
+        },
+        {
+          "text": "Jesus, Sohn der Jungfrau Maria,"
+        }
+      ]
+    },
+    {
+      "title": "Göttliche Eigenschaften",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Jesus, du Liebenswürdigster,"
+        },
+        {
+          "text": "Jesus, du Bewunderungswürdigster,"
+        },
+        {
+          "text": "Jesus, du starker Gott,"
+        },
+        {
+          "text": "Jesus, Vater der zukünftigen Welt,"
+        },
+        {
+          "text": "Jesus, Engel des großen Ratschlusses,"
+        },
+        {
+          "text": "Jesus, du Allmächtiger,"
+        },
+        {
+          "text": "Jesus, du Geduldigster,"
+        },
+        {
+          "text": "Jesus, du Gehorsamster,"
+        },
+        {
+          "text": "Jesus, sanftmütig und demütig von Herzen,"
+        }
+      ]
+    },
+    {
+      "title": "Liebe und Tugend",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Jesus, Liebhaber der Keuschheit,"
+        },
+        {
+          "text": "Jesus, du unser Liebhaber,"
+        },
+        {
+          "text": "Jesus, Gott des Friedens,"
+        },
+        {
+          "text": "Jesus, Urheber des Lebens,"
+        },
+        {
+          "text": "Jesus, Vorbild der Tugenden,"
+        },
+        {
+          "text": "Jesus, Eiferer für die Seelen,"
+        },
+        {
+          "text": "Jesus, unser Gott,"
+        },
+        {
+          "text": "Jesus, unsere Zuflucht,"
+        }
+      ]
+    },
+    {
+      "title": "Barmherzigkeit und Licht",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Jesus, Vater der Armen,"
+        },
+        {
+          "text": "Jesus, Schatz der Gläubigen,"
+        },
+        {
+          "text": "Jesus, guter Hirt,"
+        },
+        {
+          "text": "Jesus, wahres Licht,"
+        },
+        {
+          "text": "Jesus, ewige Weisheit,"
+        },
+        {
+          "text": "Jesus, unendliche Güte,"
+        },
+        {
+          "text": "Jesus, unser Weg und unser Leben,"
+        }
+      ]
+    },
+    {
+      "title": "Herrlichkeit der Heiligen",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Jesus, Freude der Engel,"
+        },
+        {
+          "text": "Jesus, König der Patriarchen,"
+        },
+        {
+          "text": "Jesus, Meister der Apostel,"
+        },
+        {
+          "text": "Jesus, Lehrer der Evangelisten,"
+        },
+        {
+          "text": "Jesus, Stärke der Märtyrer,"
+        },
+        {
+          "text": "Jesus, Licht der Bekenner,"
+        },
+        {
+          "text": "Jesus, Reinheit der Jungfrauen,"
+        },
+        {
+          "text": "Jesus, Krone aller Heiligen,"
+        }
+      ]
+    },
+    {
+      "title": "Erbarmen",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Sei uns gnädig,",
+          "response": "verschone uns, o Jesus."
+        },
+        {
+          "text": "Sei uns gnädig,",
+          "response": "erhöre uns, o Jesus."
+        }
+      ]
+    },
+    {
+      "title": "Errettung",
+      "type": "petition",
+      "response": "erlöse uns, o Jesus.",
+      "invocations": [
+        {
+          "text": "Von allem Übel,"
+        },
+        {
+          "text": "Von aller Sünde,"
+        },
+        {
+          "text": "Von deinem Zorn,"
+        },
+        {
+          "text": "Von den Nachstellungen des Teufels,"
+        },
+        {
+          "text": "Vom Geist der Unreinheit,"
+        },
+        {
+          "text": "Vom ewigen Tod,"
+        },
+        {
+          "text": "Von der Missachtung deiner Eingebungen,"
+        }
+      ]
+    },
+    {
+      "title": "Durch die Geheimnisse Christi",
+      "type": "petition",
+      "response": "erlöse uns, o Jesus.",
+      "invocations": [
+        {
+          "text": "Durch das Geheimnis deiner heiligen Menschwerdung,"
+        },
+        {
+          "text": "Durch deine Geburt,"
+        },
+        {
+          "text": "Durch deine Kindheit,"
+        },
+        {
+          "text": "Durch dein göttliches Leben,"
+        },
+        {
+          "text": "Durch deine Mühen,"
+        },
+        {
+          "text": "Durch deine Todesangst und dein Leiden,"
+        },
+        {
+          "text": "Durch dein Kreuz und deine Verlassenheit,"
+        },
+        {
+          "text": "Durch deine Ohnmacht und Erschöpfung,"
+        },
+        {
+          "text": "Durch deinen Tod und dein Begräbnis,"
+        },
+        {
+          "text": "Durch deine Auferstehung,"
+        },
+        {
+          "text": "Durch deine Himmelfahrt,"
+        },
+        {
+          "text": "Durch die Einsetzung der heiligsten Eucharistie,"
+        },
+        {
+          "text": "Durch deine Freuden,"
+        },
+        {
+          "text": "Durch deine Herrlichkeit,"
+        }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "verschone uns, o Jesus."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erhöre uns, o Jesus."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erbarme dich unser."
+        }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Jesus, höre uns.",
+          "response": "Jesus, erhöre uns."
+        }
+      ]
+    }
+  ]
+}

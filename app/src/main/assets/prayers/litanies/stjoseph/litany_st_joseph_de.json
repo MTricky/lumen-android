@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Litanei zum heiligen Josef",
+  "subtitle": "Beschützer der Heiligen Familie",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "Gott, du hast in deiner unfassbaren Vorsehung den heiligen Josef zum Bräutigam der allerseligsten Jungfrau Maria erwählt. Wir bitten dich: Lass uns den, den wir als unseren Beschützer auf Erden verehren, auch als Fürsprecher im Himmel erfahren. Durch Christus, unseren Herrn. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, erbarme dich.", "response": "Christus, erbarme dich." },
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, höre uns.", "response": "Christus, erhöre uns." }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Gott Vater im Himmel," },
+        { "text": "Gott Sohn, Erlöser der Welt," },
+        { "text": "Gott Heiliger Geist," },
+        { "text": "Heiligste Dreifaltigkeit, ein einiger Gott," }
+      ]
+    },
+    {
+      "title": "Heilige Maria",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Heilige Maria," },
+        { "text": "Heiliger Josef," }
+      ]
+    },
+    {
+      "title": "Titel des heiligen Josef",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du Spross aus Davids Geschlecht," },
+        { "text": "Du Licht der Patriarchen," },
+        { "text": "Du Bräutigam der Mutter Gottes," },
+        { "text": "Du Behüter des Erlösers," },
+        { "text": "Du keuscher Hüter der Jungfrau," },
+        { "text": "Du Nährvater des Sohnes Gottes," },
+        { "text": "Du eifriger Beschützer Christi," },
+        { "text": "Du Diener Christi," },
+        { "text": "Du Werkzeug des Heiles," },
+        { "text": "Du Haupt der Heiligen Familie," }
+      ]
+    },
+    {
+      "title": "Tugenden",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Josef, du Gerechter," },
+        { "text": "Josef, du Keuscher," },
+        { "text": "Josef, du Kluger," },
+        { "text": "Josef, du Starker," },
+        { "text": "Josef, du Gehorsamer," },
+        { "text": "Josef, du Treuer," }
+      ]
+    },
+    {
+      "title": "Ehrentitel",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du Spiegel der Geduld," },
+        { "text": "Du Freund der Armut," },
+        { "text": "Du Vorbild der Arbeiter," },
+        { "text": "Du Zierde des häuslichen Lebens," },
+        { "text": "Du Beschützer der Jungfrauen," },
+        { "text": "Du Stütze der Familien," }
+      ]
+    },
+    {
+      "title": "Patronate",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du Halt in allen Nöten," },
+        { "text": "Du Trost der Elenden," },
+        { "text": "Du Patron der Vertriebenen," },
+        { "text": "Du Patron der Leidenden," },
+        { "text": "Du Patron der Armen," },
+        { "text": "Du Hoffnung der Kranken," },
+        { "text": "Du Patron der Sterbenden," },
+        { "text": "Du Schrecken der bösen Geister," },
+        { "text": "Du Beschützer der heiligen Kirche," }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "verschone uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erhöre uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erbarme dich unser." }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Er hat ihn zum Herrn seines Hauses bestellt.", "response": "Und zum Verwalter all seines Besitzes." }
+      ]
+    }
+  ]
+}

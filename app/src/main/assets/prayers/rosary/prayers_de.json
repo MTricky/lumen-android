@@ -1,0 +1,158 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Apostolisches Glaubensbekenntnis",
+      "text": "Ich glaube an Gott, den Vater, den Allmächtigen, den Schöpfer des Himmels und der Erde, und an Jesus Christus, seinen eingeborenen Sohn, unsern Herrn, empfangen durch den Heiligen Geist, geboren von der Jungfrau Maria, gelitten unter Pontius Pilatus, gekreuzigt, gestorben und begraben, hinabgestiegen in das Reich des Todes, am dritten Tage auferstanden von den Toten, aufgefahren in den Himmel; er sitzt zur Rechten Gottes, des allmächtigen Vaters; von dort wird er kommen, zu richten die Lebenden und die Toten. Ich glaube an den Heiligen Geist, die heilige katholische Kirche, Gemeinschaft der Heiligen, Vergebung der Sünden, Auferstehung der Toten und das ewige Leben. Amen."
+    },
+    "ourFather": {
+      "title": "Vater Unser",
+      "text": "Vater unser im Himmel, geheiligt werde dein Name. Dein Reich komme. Dein Wille geschehe, wie im Himmel so auf Erden. Unser tägliches Brot gib uns heute. Und vergib uns unsere Schuld, wie auch wir vergeben unsern Schuldigern. Und führe uns nicht in Versuchung, sondern erlöse uns von dem Bösen. Amen."
+    },
+    "hailMary": {
+      "title": "Gegrüßet Seist Du, Maria",
+      "text": "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder jetzt und in der Stunde unseres Todes. Amen."
+    },
+    "gloryBe": {
+      "title": "Ehre Sei dem Vater",
+      "text": "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist, wie im Anfang, so auch jetzt und alle Zeit und in Ewigkeit. Amen."
+    },
+    "fatimaPrayer": {
+      "title": "Fatima-Gebet",
+      "text": "O mein Jesus, verzeih uns unsere Sünden, bewahre uns vor dem Feuer der Hölle, führe alle Seelen in den Himmel, besonders jene, die deiner Barmherzigkeit am meisten bedürfen. Amen."
+    },
+    "hailHolyQueen": {
+      "title": "Salve Regina",
+      "text": "Sei gegrüßt, o Königin, Mutter der Barmherzigkeit, unser Leben, unsere Wonne und unsere Hoffnung, sei gegrüßt! Zu dir rufen wir verbannte Kinder Evas. Zu dir seufzen wir trauernd und weinend in diesem Tal der Tränen. Wohlan denn, unsere Fürsprecherin, wende deine barmherzigen Augen uns zu. Und nach diesem Elend zeige uns Jesus, die gebenedeite Frucht deines Leibes. O gütige, o milde, o süße Jungfrau Maria. Bitte für uns, heilige Gottesmutter, dass wir würdig werden der Verheißungen Christi. Amen."
+    },
+    "finalPrayer": {
+      "title": "Schlussgebet",
+      "text": "O Gott, dessen eingeborener Sohn uns durch sein Leben, seinen Tod und seine Auferstehung die Belohnungen des ewigen Lebens erworben hat, gewähre uns, wir bitten dich, dass wir, indem wir diese Geheimnisse des heiligsten Rosenkranzes der seligen Jungfrau Maria betrachten, nachahmen, was sie enthalten, und erlangen, was sie verheißen. Durch Christus, unseren Herrn. Amen."
+    },
+    "introHailMaryFaith": {
+      "title": "Gegrüßet Seist Du, Maria (für den Glauben)",
+      "text": "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder jetzt und in der Stunde unseres Todes. Amen."
+    },
+    "introHailMaryHope": {
+      "title": "Gegrüßet Seist Du, Maria (für die Hoffnung)",
+      "text": "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder jetzt und in der Stunde unseres Todes. Amen."
+    },
+    "introHailMaryCharity": {
+      "title": "Gegrüßet Seist Du, Maria (für die Liebe)",
+      "text": "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder jetzt und in der Stunde unseres Todes. Amen."
+    }
+  },
+  "mysteries": {
+    "joyful": [
+      {
+        "name": "Die Verkündigung",
+        "meditation": "Der Engel Gabriel verkündet Maria, dass sie den Sohn Gottes empfangen und gebären wird. Maria nimmt demütig Gottes Willen an und sagt: 'Siehe, ich bin die Magd des Herrn; mir geschehe nach deinem Wort.'",
+        "fruit": "Demut"
+      },
+      {
+        "name": "Die Heimsuchung",
+        "meditation": "Maria besucht ihre Cousine Elisabeth, die mit Johannes dem Täufer schwanger ist. Elisabeth, erfüllt vom Heiligen Geist, preist Maria als gesegnet unter den Frauen. Maria antwortet mit dem Magnificat.",
+        "fruit": "Nächstenliebe"
+      },
+      {
+        "name": "Die Geburt Jesu",
+        "meditation": "Jesus wird in einem Stall in Bethlehem geboren. Der Erlöser der Welt tritt in die Menschheit unter den demütigsten Umständen ein, in Windeln gewickelt und in eine Krippe gelegt.",
+        "fruit": "Armut im Geiste"
+      },
+      {
+        "name": "Die Darstellung im Tempel",
+        "meditation": "Maria und Josef bringen das Jesuskind in den Tempel. Simeon erkennt ihn als den Messias und prophezeit, dass ein Schwert die Seele Marias durchdringen wird.",
+        "fruit": "Gehorsam"
+      },
+      {
+        "name": "Die Auffindung im Tempel",
+        "meditation": "Nach drei Tagen der Suche finden Maria und Josef den zwölfjährigen Jesus im Tempel, wie er inmitten der Lehrer sitzt, ihnen zuhört und sie befragt.",
+        "fruit": "Freude am Finden Jesu"
+      }
+    ],
+    "sorrowful": [
+      {
+        "name": "Die Todesangst im Garten",
+        "meditation": "Jesus betet im Garten Getsemani und schwitzt Blut in seiner Angst, während er sein kommendes Leiden betrachtet. Er betet: 'Mein Vater, wenn es möglich ist, gehe dieser Kelch an mir vorüber; doch nicht wie ich will, sondern wie du willst.'",
+        "fruit": "Reue über die Sünden"
+      },
+      {
+        "name": "Die Geißelung",
+        "meditation": "Jesus wird von römischen Soldaten brutal gegeißelt. Er erträgt dieses schreckliche Leiden schweigend und opfert seinen Schmerz für unsere Erlösung auf.",
+        "fruit": "Reinheit"
+      },
+      {
+        "name": "Die Dornenkrönung",
+        "meditation": "Die Soldaten verspotten Jesus als König, drücken ihm eine Dornenkrone auf das Haupt und schlagen ihn. Sie spucken ihn an und knien spöttisch vor ihm nieder.",
+        "fruit": "Moralischer Mut"
+      },
+      {
+        "name": "Die Kreuztragung",
+        "meditation": "Jesus trägt sein schweres Kreuz durch die Straßen Jerusalems zum Kalvarienberg. Er fällt dreimal, geht aber weiter und begegnet unterwegs seiner trauernden Mutter.",
+        "fruit": "Geduld"
+      },
+      {
+        "name": "Die Kreuzigung",
+        "meditation": "Jesus wird ans Kreuz genagelt und stirbt nach drei Stunden der Qual. Er vergibt seinen Peinigern und verspricht dem reuigen Schächer das Paradies. Er vertraut Maria dem Johannes und Johannes der Maria an.",
+        "fruit": "Ausdauer"
+      }
+    ],
+    "glorious": [
+      {
+        "name": "Die Auferstehung",
+        "meditation": "Am dritten Tag ersteht Jesus von den Toten auf und besiegt Sünde und Tod. Das Grab ist leer, und er erscheint Maria Magdalena und den Jüngern.",
+        "fruit": "Glaube"
+      },
+      {
+        "name": "Die Himmelfahrt",
+        "meditation": "Vierzig Tage nach seiner Auferstehung fährt Jesus in den Himmel auf in Gegenwart seiner Jünger. Er verspricht, den Heiligen Geist zu senden und immer bei ihnen zu sein.",
+        "fruit": "Hoffnung"
+      },
+      {
+        "name": "Die Sendung des Heiligen Geistes",
+        "meditation": "An Pfingsten kommt der Heilige Geist auf Maria und die Apostel herab in Gestalt von Feuerzungen. Sie werden mit Mut erfüllt und beginnen, das Evangelium zu verkünden.",
+        "fruit": "Gottesliebe"
+      },
+      {
+        "name": "Die Aufnahme Mariens in den Himmel",
+        "meditation": "Am Ende ihres irdischen Lebens wird Maria mit Leib und Seele in die himmlische Herrlichkeit aufgenommen. Sie wird zu ihrem Sohn emporgehoben, um für immer bei ihm zu sein.",
+        "fruit": "Gnade eines guten Todes"
+      },
+      {
+        "name": "Die Krönung Mariens",
+        "meditation": "Maria wird von ihrem Sohn zur Königin des Himmels und der Erde gekrönt. Sie herrscht mit Christus und tritt für alle ihre Kinder auf Erden ein.",
+        "fruit": "Vertrauen auf Marias Fürsprache"
+      }
+    ],
+    "luminous": [
+      {
+        "name": "Die Taufe im Jordan",
+        "meditation": "Jesus wird von Johannes im Jordan getauft. Die Himmel öffnen sich, der Geist steigt wie eine Taube herab, und die Stimme des Vaters verkündet: 'Dies ist mein geliebter Sohn.'",
+        "fruit": "Offenheit für den Heiligen Geist"
+      },
+      {
+        "name": "Die Hochzeit zu Kana",
+        "meditation": "Auf Bitten Marias wirkt Jesus sein erstes Wunder und verwandelt Wasser in Wein. Maria sagt zu den Dienern: 'Was er euch sagt, das tut.'",
+        "fruit": "Zu Jesus durch Maria"
+      },
+      {
+        "name": "Die Verkündigung des Reiches Gottes",
+        "meditation": "Jesus verkündet das Reich Gottes und ruft alle zur Umkehr. Er lehrt mit Vollmacht und wirkt Zeichen und Wunder.",
+        "fruit": "Umkehr und Gottvertrauen"
+      },
+      {
+        "name": "Die Verklärung",
+        "meditation": "Jesus wird auf dem Berg Tabor vor Petrus, Jakobus und Johannes verklärt. Sein Angesicht leuchtet wie die Sonne und seine Kleider werden weiß wie das Licht.",
+        "fruit": "Verlangen nach Heiligkeit"
+      },
+      {
+        "name": "Die Einsetzung der Eucharistie",
+        "meditation": "Beim Letzten Abendmahl setzt Jesus die Eucharistie ein und gibt seinen Leib und sein Blut unter den Gestalten von Brot und Wein. Er befiehlt seinen Aposteln: 'Tut dies zu meinem Gedächtnis.'",
+        "fruit": "Anbetung"
+      }
+    ]
+  }
+}

@@ -1,0 +1,476 @@
+{
+  "id": "saints",
+  "title": "Allerheiligenlitanei",
+  "subtitle": "Die Große Fürbitte der Kirche",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "O Gott, dessen Herrlichkeit die seligen Bewohner des Himmels verkünden, gewähre uns, wir bitten dich, dass wir durch die Fürbitte aller deiner Heiligen dein reiches Erbarmen erlangen. Durch Christus, unseren Herrn. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Christus, erbarme dich.",
+          "response": "Christus, erbarme dich."
+        },
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Christus, höre uns.",
+          "response": "Christus, erhöre uns."
+        }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Gott Vater im Himmel,"
+        },
+        {
+          "text": "Gott Sohn, Erlöser der Welt,"
+        },
+        {
+          "text": "Gott Heiliger Geist,"
+        },
+        {
+          "text": "Heiligste Dreifaltigkeit, ein einiger Gott,"
+        }
+      ]
+    },
+    {
+      "title": "Heilige Maria",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heilige Maria,"
+        },
+        {
+          "text": "Heilige Gottesmutter,"
+        },
+        {
+          "text": "Heilige Jungfrau aller Jungfrauen,"
+        }
+      ]
+    },
+    {
+      "title": "Engel und Propheten",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heiliger Michael,"
+        },
+        {
+          "text": "Heiliger Gabriel,"
+        },
+        {
+          "text": "Heiliger Raphael,"
+        },
+        {
+          "text": "Alle heiligen Engel und Erzengel,"
+        },
+        {
+          "text": "Alle heiligen Ordnungen der seligen Geister,"
+        },
+        {
+          "text": "Heiliger Johannes der Täufer,"
+        },
+        {
+          "text": "Heiliger Josef,"
+        },
+        {
+          "text": "Alle heiligen Patriarchen und Propheten,"
+        }
+      ]
+    },
+    {
+      "title": "Apostel und Evangelisten",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heiliger Petrus,"
+        },
+        {
+          "text": "Heiliger Paulus,"
+        },
+        {
+          "text": "Heiliger Andreas,"
+        },
+        {
+          "text": "Heiliger Jakobus,"
+        },
+        {
+          "text": "Heiliger Johannes,"
+        },
+        {
+          "text": "Heiliger Thomas,"
+        },
+        {
+          "text": "Heiliger Jakobus,"
+        },
+        {
+          "text": "Heiliger Philippus,"
+        },
+        {
+          "text": "Heiliger Bartholomäus,"
+        },
+        {
+          "text": "Heiliger Matthäus,"
+        },
+        {
+          "text": "Heiliger Simon,"
+        },
+        {
+          "text": "Heiliger Thaddäus,"
+        },
+        {
+          "text": "Heiliger Matthias,"
+        },
+        {
+          "text": "Heiliger Barnabas,"
+        },
+        {
+          "text": "Heiliger Lukas,"
+        },
+        {
+          "text": "Heiliger Markus,"
+        },
+        {
+          "text": "Alle heiligen Apostel und Evangelisten,"
+        },
+        {
+          "text": "Alle heiligen Jünger des Herrn,"
+        }
+      ]
+    },
+    {
+      "title": "Märtyrer",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Alle heiligen unschuldigen Kinder,"
+        },
+        {
+          "text": "Heiliger Stephanus,"
+        },
+        {
+          "text": "Heiliger Laurentius,"
+        },
+        {
+          "text": "Heiliger Vinzenz,"
+        },
+        {
+          "text": "Heilige Fabian und Sebastian,"
+        },
+        {
+          "text": "Heilige Johannes und Paulus,"
+        },
+        {
+          "text": "Heilige Kosmas und Damian,"
+        },
+        {
+          "text": "Heilige Gervasius und Protasius,"
+        },
+        {
+          "text": "Alle heiligen Märtyrer,"
+        }
+      ]
+    },
+    {
+      "title": "Bischöfe und Kirchenlehrer",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heiliger Silvester,"
+        },
+        {
+          "text": "Heiliger Gregor,"
+        },
+        {
+          "text": "Heiliger Ambrosius,"
+        },
+        {
+          "text": "Heiliger Augustinus,"
+        },
+        {
+          "text": "Heiliger Hieronymus,"
+        },
+        {
+          "text": "Heiliger Martin,"
+        },
+        {
+          "text": "Heiliger Nikolaus,"
+        },
+        {
+          "text": "Alle heiligen Bischöfe und Bekenner,"
+        },
+        {
+          "text": "Alle heiligen Kirchenlehrer,"
+        }
+      ]
+    },
+    {
+      "title": "Priester und Ordensleute",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heiliger Antonius,"
+        },
+        {
+          "text": "Heiliger Benedikt,"
+        },
+        {
+          "text": "Heiliger Bernhard,"
+        },
+        {
+          "text": "Heiliger Dominikus,"
+        },
+        {
+          "text": "Heiliger Franziskus,"
+        },
+        {
+          "text": "Alle heiligen Priester und Leviten,"
+        },
+        {
+          "text": "Alle heiligen Mönche und Einsiedler,"
+        }
+      ]
+    },
+    {
+      "title": "Heilige Frauen",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        {
+          "text": "Heilige Maria Magdalena,"
+        },
+        {
+          "text": "Heilige Agatha,"
+        },
+        {
+          "text": "Heilige Lucia,"
+        },
+        {
+          "text": "Heilige Agnes,"
+        },
+        {
+          "text": "Heilige Cäcilia,"
+        },
+        {
+          "text": "Heilige Katharina von Alexandrien,"
+        },
+        {
+          "text": "Heilige Anastasia,"
+        },
+        {
+          "text": "Alle heiligen Jungfrauen und Witwen,"
+        },
+        {
+          "text": "Alle Heiligen Gottes,"
+        }
+      ]
+    },
+    {
+      "title": "Erbarmen",
+      "type": "propitius",
+      "invocations": [
+        {
+          "text": "Sei uns gnädig,",
+          "response": "verschone uns, o Herr."
+        },
+        {
+          "text": "Sei uns gnädig,",
+          "response": "erhöre uns, o Herr."
+        }
+      ]
+    },
+    {
+      "title": "Errettung",
+      "type": "petition",
+      "response": "erlöse uns, o Herr.",
+      "invocations": [
+        {
+          "text": "Von allem Übel,"
+        },
+        {
+          "text": "Von aller Sünde,"
+        },
+        {
+          "text": "Von deinem Zorn,"
+        },
+        {
+          "text": "Von einem plötzlichen und unvorhergesehenen Tod,"
+        },
+        {
+          "text": "Von den Nachstellungen des Teufels,"
+        },
+        {
+          "text": "Von Zorn, Hass und allem bösen Willen,"
+        },
+        {
+          "text": "Vom Geist der Unreinheit,"
+        },
+        {
+          "text": "Von Blitz und Unwetter,"
+        },
+        {
+          "text": "Von der Geißel des Erdbebens,"
+        },
+        {
+          "text": "Von Pest, Hunger und Krieg,"
+        },
+        {
+          "text": "Vom ewigen Tod,"
+        }
+      ]
+    },
+    {
+      "title": "Durch die Geheimnisse Christi",
+      "type": "petition",
+      "response": "erlöse uns, o Herr.",
+      "invocations": [
+        {
+          "text": "Durch das Geheimnis deiner heiligen Menschwerdung,"
+        },
+        {
+          "text": "Durch deine Ankunft,"
+        },
+        {
+          "text": "Durch deine Geburt,"
+        },
+        {
+          "text": "Durch deine Taufe und dein heiliges Fasten,"
+        },
+        {
+          "text": "Durch dein Kreuz und Leiden,"
+        },
+        {
+          "text": "Durch deinen Tod und dein Begräbnis,"
+        },
+        {
+          "text": "Durch deine heilige Auferstehung,"
+        },
+        {
+          "text": "Durch deine wunderbare Himmelfahrt,"
+        },
+        {
+          "text": "Durch die Herabkunft des Heiligen Geistes, des Trösters,"
+        },
+        {
+          "text": "Am Tag des Gerichtes,"
+        }
+      ]
+    },
+    {
+      "title": "Bitten",
+      "type": "petition",
+      "response": "wir bitten dich, erhöre uns.",
+      "invocations": [
+        {
+          "text": "Dass du uns verschonest,"
+        },
+        {
+          "text": "Dass du uns verzeihest,"
+        },
+        {
+          "text": "Dass du uns zu wahrer Buße führest,"
+        },
+        {
+          "text": "Dass du deine heilige Kirche regieren und erhalten wollest,"
+        },
+        {
+          "text": "Dass du den Heiligen Vater und alle Stände der Kirche in der heiligen Religion erhalten wollest,"
+        },
+        {
+          "text": "Dass du die Feinde der heiligen Kirche demütigen wollest,"
+        },
+        {
+          "text": "Dass du den christlichen Königen und Fürsten Frieden und wahre Eintracht geben wollest,"
+        },
+        {
+          "text": "Dass du der ganzen Christenheit Frieden und Einheit verleihen wollest,"
+        },
+        {
+          "text": "Dass du alle Irrenden zur Einheit der Kirche zurückführen wollest,"
+        },
+        {
+          "text": "Dass du alle Ungläubigen mit dem Licht des Evangeliums erleuchten wollest,"
+        },
+        {
+          "text": "Dass du uns in deinem heiligen Dienst stärken und bewahren wollest,"
+        },
+        {
+          "text": "Dass du unseren Sinn zu himmlischem Verlangen erheben wollest,"
+        },
+        {
+          "text": "Dass du allen unseren Wohltätern ewige Güter vergelten wollest,"
+        },
+        {
+          "text": "Dass du unsere Seelen und die Seelen unserer Brüder von der ewigen Verdammnis erretten wollest,"
+        },
+        {
+          "text": "Dass du die Früchte der Erde geben und erhalten wollest,"
+        },
+        {
+          "text": "Dass du allen verstorbenen Gläubigen die ewige Ruhe geben wollest,"
+        },
+        {
+          "text": "Dass du uns gnädig erhören wollest,"
+        },
+        {
+          "text": "Sohn Gottes,"
+        }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "verschone uns, o Herr."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erhöre uns, o Herr."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erbarme dich unser."
+        }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Christus, höre uns.",
+          "response": "Christus, erhöre uns."
+        }
+      ]
+    }
+  ]
+}

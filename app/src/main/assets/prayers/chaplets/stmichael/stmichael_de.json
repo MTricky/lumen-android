@@ -1,0 +1,97 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "openingPrayer": {
+      "title": "Eröffnungsgebet",
+      "text": "O Gott, komm mir zu Hilfe. Herr, eile mir zu helfen. Ehre sei dem Vater und dem Sohn und dem Heiligen Geist, wie im Anfang, so auch jetzt und alle Zeit und in Ewigkeit. Amen."
+    },
+    "ourFather": {
+      "title": "Vater Unser",
+      "text": "Vater unser im Himmel, geheiligt werde dein Name. Dein Reich komme. Dein Wille geschehe, wie im Himmel so auf Erden. Unser tägliches Brot gib uns heute. Und vergib uns unsere Schuld, wie auch wir vergeben unsern Schuldigern. Und führe uns nicht in Versuchung, sondern erlöse uns von dem Bösen. Amen."
+    },
+    "hailMary": {
+      "title": "Gegrüßet Seist Du, Maria",
+      "text": "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder jetzt und in der Stunde unseres Todes. Amen."
+    },
+    "gloryBe": {
+      "title": "Ehre Sei dem Vater",
+      "text": "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist, wie im Anfang, so auch jetzt und alle Zeit und in Ewigkeit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Schlussgebet",
+      "text": "O glorreicher Fürst, heiliger Michael, Haupt und Anführer der himmlischen Heerscharen, Hüter der Seelen, Bezwinger der abtrünnigen Geister, Diener im Haus des göttlichen Königs und unser bewundernswerter Führer, du, der du an Vorzüglichkeit und übermenschlicher Tugend erstrahlst, befreie uns von allem Übel, die wir uns vertrauensvoll an dich wenden, und befähige uns durch deinen gnädigen Schutz, Gott jeden Tag treuer zu dienen."
+    },
+    "finalPrayer": {
+      "title": "Abschlussgebet",
+      "text": "Allmächtiger und ewiger Gott, der Du durch ein Wunder der Güte und durch das barmherzige Verlangen nach dem Heil aller Menschen den ruhmreichsten Erzengel Michael zum Fürsten Deiner Kirche bestellt hast, mache uns würdig, wir bitten Dich, von allen unseren Feinden befreit zu werden, damit keiner von ihnen uns in der Stunde des Todes bedränge, sondern dass wir von ihm in Deine Gegenwart geführt werden. Darum bitten wir durch die Verdienste Jesu Christi, unseres Herrn. Amen."
+    }
+  },
+  "salutations": [
+    {
+      "title": "Erste Anrufung",
+      "choir": "Seraphim",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Seraphim möge der Herr uns würdig machen, vom Feuer der vollkommenen Liebe zu brennen. Amen."
+    },
+    {
+      "title": "Zweite Anrufung",
+      "choir": "Cherubim",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Cherubim möge der Herr uns die Gnade gewähren, die Wege der Sünde zu verlassen und auf den Pfaden der christlichen Vollkommenheit zu wandeln. Amen."
+    },
+    {
+      "title": "Dritte Anrufung",
+      "choir": "Throne",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Throne möge der Herr in unsere Herzen einen wahren und aufrichtigen Geist der Demut eingießen. Amen."
+    },
+    {
+      "title": "Vierte Anrufung",
+      "choir": "Herrschaften",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Herrschaften möge der Herr uns die Gnade geben, unsere Sinne zu beherrschen und alle ungeordneten Leidenschaften zu überwinden. Amen."
+    },
+    {
+      "title": "Fünfte Anrufung",
+      "choir": "Mächte",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Mächte möge der Herr unsere Seelen vor den Fallstricken und Versuchungen des Teufels beschützen. Amen."
+    },
+    {
+      "title": "Sechste Anrufung",
+      "choir": "Gewalten",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Gewalten möge der Herr uns vor dem Bösen bewahren und uns nicht in Versuchung fallen lassen. Amen."
+    },
+    {
+      "title": "Siebte Anrufung",
+      "choir": "Fürstentümer",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Fürstentümer möge Gott unsere Seelen mit einem wahren Geist des Gehorsams erfüllen. Amen."
+    },
+    {
+      "title": "Achte Anrufung",
+      "choir": "Erzengel",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Erzengel möge der Herr uns Ausdauer im Glauben und in allen guten Werken schenken, damit wir die Herrlichkeit des Himmels erlangen. Amen."
+    },
+    {
+      "title": "Neunte Anrufung",
+      "choir": "Engel",
+      "salutation": "Durch die Fürsprache des heiligen Michael und des himmlischen Chores der Engel möge der Herr uns gewähren, von ihnen in diesem sterblichen Leben beschützt und im zukünftigen Leben in den Himmel geführt zu werden. Amen."
+    }
+  ],
+  "archangelPrayers": [
+    {
+      "title": "Zu Ehren des heiligen Michael",
+      "instruction": "Ein Vater Unser"
+    },
+    {
+      "title": "Zu Ehren des heiligen Gabriel",
+      "instruction": "Ein Vater Unser"
+    },
+    {
+      "title": "Zu Ehren des heiligen Raphael",
+      "instruction": "Ein Vater Unser"
+    },
+    {
+      "title": "Zu Ehren unseres Schutzengels",
+      "instruction": "Ein Vater Unser"
+    }
+  ]
+}

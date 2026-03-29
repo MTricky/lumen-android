@@ -1,0 +1,143 @@
+{
+  "id": "blessedVirginMary",
+  "title": "Lauretanische Litanei",
+  "subtitle": "Litanei von Loreto",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "Wir bitten dich, Herr, unser Gott: Gib uns, deinen Dienern, allzeit Gesundheit des Leibes und der Seele. Auf die Fürsprache der seligen, allzeit jungfräulichen Gottesmutter Maria befreie uns von allem Leid der Gegenwart und schenke uns die ewige Freude. Durch Christus, unseren Herrn. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, erbarme dich.", "response": "Christus, erbarme dich." },
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, höre uns.", "response": "Christus, erhöre uns." }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Gott Vater im Himmel," },
+        { "text": "Gott Sohn, Erlöser der Welt," },
+        { "text": "Gott Heiliger Geist," },
+        { "text": "Heiligste Dreifaltigkeit, ein einiger Gott," }
+      ]
+    },
+    {
+      "title": "Heilige Maria",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Heilige Maria," },
+        { "text": "Heilige Gottesmutter," },
+        { "text": "Heilige Jungfrau aller Jungfrauen," }
+      ]
+    },
+    {
+      "title": "Mutter",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Mutter Christi," },
+        { "text": "Mutter der Kirche," },
+        { "text": "Mutter der Barmherzigkeit," },
+        { "text": "Mutter der göttlichen Gnade," },
+        { "text": "Mutter der Hoffnung," },
+        { "text": "Du reinste Mutter," },
+        { "text": "Du keuscheste Mutter," },
+        { "text": "Du unversehrte Mutter," },
+        { "text": "Du unbefleckte Mutter," },
+        { "text": "Du liebenswürdige Mutter," },
+        { "text": "Du wunderbare Mutter," },
+        { "text": "Du Mutter des guten Rates," },
+        { "text": "Du Mutter des Schöpfers," },
+        { "text": "Du Mutter des Erlösers," }
+      ]
+    },
+    {
+      "title": "Jungfrau",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du weiseste Jungfrau," },
+        { "text": "Du ehrwürdige Jungfrau," },
+        { "text": "Du lobwürdige Jungfrau," },
+        { "text": "Du mächtige Jungfrau," },
+        { "text": "Du gütige Jungfrau," },
+        { "text": "Du getreue Jungfrau," }
+      ]
+    },
+    {
+      "title": "Symbolische Titel",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du Spiegel der Gerechtigkeit," },
+        { "text": "Du Sitz der Weisheit," },
+        { "text": "Du Ursache unserer Freude," },
+        { "text": "Du geistliches Gefäß," },
+        { "text": "Du ehrwürdiges Gefäß," },
+        { "text": "Du ausgezeichnetes Gefäß der Andacht," },
+        { "text": "Du geheimnisvolle Rose," },
+        { "text": "Du Turm Davids," },
+        { "text": "Du elfenbeinerner Turm," },
+        { "text": "Du goldenes Haus," },
+        { "text": "Du Bundeslade," },
+        { "text": "Du Pforte des Himmels," },
+        { "text": "Du Morgenstern," },
+        { "text": "Du Heil der Kranken," },
+        { "text": "Du Zuflucht der Sünder," },
+        { "text": "Du Trost der Migranten," },
+        { "text": "Du Trösterin der Betrübten," },
+        { "text": "Du Hilfe der Christen," }
+      ]
+    },
+    {
+      "title": "Königin",
+      "type": "petition",
+      "response": "bitte für uns.",
+      "invocations": [
+        { "text": "Du Königin der Engel," },
+        { "text": "Du Königin der Patriarchen," },
+        { "text": "Du Königin der Propheten," },
+        { "text": "Du Königin der Apostel," },
+        { "text": "Du Königin der Märtyrer," },
+        { "text": "Du Königin der Bekenner," },
+        { "text": "Du Königin der Jungfrauen," },
+        { "text": "Du Königin aller Heiligen," },
+        { "text": "Du Königin, ohne Erbsünde empfangen," },
+        { "text": "Du Königin, in den Himmel aufgenommen," },
+        { "text": "Du Königin des heiligsten Rosenkranzes," },
+        { "text": "Du Königin der Familie," },
+        { "text": "Du Königin des Friedens," }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "verschone uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erhöre uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erbarme dich unser." }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Bitte für uns, heilige Gottesmutter.", "response": "Dass wir würdig werden der Verheißungen Christi." }
+      ]
+    }
+  ]
+}

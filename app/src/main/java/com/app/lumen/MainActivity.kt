@@ -95,6 +95,7 @@ class MainActivity : ComponentActivity() {
             currentLang.startsWith("es") -> "es"
             currentLang.startsWith("pt") -> "pt"
             currentLang.startsWith("it") -> "it"
+            currentLang.startsWith("de") -> "de"
             else -> "en"
         }
         val previousAudioLang = prefs.getString("audio_language", null)

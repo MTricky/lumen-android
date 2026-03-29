@@ -1,0 +1,793 @@
+<resources>
+    <!-- Tab bar -->
+    <string name="tab_liturgy">Liturgie</string>
+    <string name="tab_bible">Bibel</string>
+    <string name="tab_prayers">Gebete</string>
+    <string name="tab_calendar">Kalender</string>
+    <string name="tab_settings">Einstellungen</string>
+
+    <!-- Day picker -->
+    <string name="today">Heute</string>
+    <string name="tomorrow">Morgen</string>
+
+    <!-- Reading sections -->
+    <string name="section_saint_title">Heiliger des Tages</string>
+    <string name="section_saint_short">Heiliger</string>
+    <string name="section_first_reading_title">Erste Lesung</string>
+    <string name="section_first_reading_short">1.</string>
+    <string name="section_psalm_title">Antwortpsalm</string>
+    <string name="section_psalm_short">Psalm</string>
+    <string name="section_second_reading_title">Zweite Lesung</string>
+    <string name="section_second_reading_short">2.</string>
+    <string name="section_gospel_title">Evang.</string>
+    <string name="section_gospel_short">Evang.</string>
+    <string name="section_reflection_title">Betrachtung</string>
+    <string name="section_reflection_short">Betrachten</string>
+
+    <!-- Reading cards -->
+    <string name="tap_to_read_more">Tippen um mehr zu lesen</string>
+    <string name="tap_to_read_more_ellipsis">Tippen, um mehr zu lesen…</string>
+    <string name="verse_of_the_day">Vers des Tages</string>
+    <string name="view_all_readings">Alle Lesungen anzeigen</string>
+    <string name="tap_for_reflection">Tippen für Betrachtung</string>
+
+    <!-- Psalm -->
+    <string name="psalm_response_label">Antwort</string>
+
+    <!-- Audio -->
+    <string name="listen">Anhören</string>
+    <string name="pause">Pausieren</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_back">Zurück</string>
+    <string name="cd_play">Abspielen</string>
+    <string name="cd_pause">Pausieren</string>
+    <string name="cd_settings">Einstellungen</string>
+    <string name="cd_font_size">Schriftgröße</string>
+
+    <!-- Font size options -->
+    <string name="font_size_small">Klein</string>
+    <string name="font_size_medium">Mittel</string>
+    <string name="font_size_large">Groß</string>
+    <string name="font_size_extra_large">Extra Groß</string>
+
+    <!-- Bible -->
+    <string name="bible_old">Alt</string>
+    <string name="bible_new">Neu</string>
+    <string name="bible_old_testament">Altes Testament</string>
+    <string name="bible_new_testament">Neues Testament</string>
+    <string name="bible_book_count">%1$d Bücher</string>
+    <string name="cd_language">Sprache</string>
+    <string name="cd_search">Suche</string>
+    <string name="bible_search_books">Bücher suchen...</string>
+    <string name="bible_search_hint">Suche nach Buchname oder Abkürzung</string>
+    <string name="bible_no_results">Keine Ergebnisse für "%1$s"</string>
+    <string name="translation">Übersetzung</string>
+    <string name="done">Fertig</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="error_load_translations">Übersetzungen konnten nicht geladen werden</string>
+    <string name="catholic_bible">Katholische Bibel</string>
+    <string name="protestant_bible">Protestantische Bibel</string>
+
+    <!-- Bible Reader -->
+    <string name="cd_text_settings">Texteinstellungen</string>
+    <string name="cd_chapter_picker">Kapitelauswahl</string>
+    <string name="reader_font_size">Schriftgröße</string>
+    <string name="reader_line_spacing">Zeilenabstand</string>
+    <string name="reader_justify_text">Text ausrichten</string>
+    <string name="reader_preview_text">Am Anfang schuf Gott Himmel und Erde.</string>
+    <string name="reader_pt_format">%1$d pt</string>
+    <string name="error_load_chapter">Kapitel konnte nicht geladen werden</string>
+    <string name="error_load_chapters">Kapitel konnten nicht geladen werden</string>
+
+    <!-- Bible book sections -->
+    <string name="section_law">Gesetz</string>
+    <string name="section_ot_history">Geschichte</string>
+    <string name="section_poetry">Poesie und Weisheit</string>
+    <string name="section_major_prophets">Große Propheten</string>
+    <string name="section_minor_prophets">Kleine Propheten</string>
+    <string name="section_gospels">Evangelien</string>
+    <string name="section_nt_history">Geschichte</string>
+    <string name="section_pauline_epistles">Paulinische Briefe</string>
+    <string name="section_general_epistles">Katholische Briefe</string>
+    <string name="section_prophecy">Prophetie</string>
+
+    <!-- Bible languages -->
+    <string name="lang_english">Englisch</string>
+    <string name="lang_spanish">Spanisch</string>
+    <string name="lang_portuguese">Portugiesisch</string>
+    <string name="lang_french">Französisch</string>
+    <string name="lang_italian">Italienisch</string>
+    <string name="lang_german">Deutsch</string>
+    <string name="lang_polish">Polnisch</string>
+
+    <!-- Verse categories -->
+    <string name="verse_category_faith">Glaube</string>
+    <string name="verse_category_love">Liebe</string>
+    <string name="verse_category_hope">Hoffnung</string>
+    <string name="verse_category_strength">Kraft</string>
+    <string name="verse_category_peace">Frieden</string>
+    <string name="verse_category_guidance">Führung</string>
+    <string name="verse_category_healing">Heilung</string>
+    <string name="verse_category_family">Familie</string>
+    <string name="verse_category_gratitude">Dankbarkeit</string>
+    <string name="verse_category_forgiveness">Vergebung</string>
+
+    <!-- Verse of the Day detail -->
+    <string name="verse_reflection">Betrachtung</string>
+    <string name="verse_liturgical_connection">Liturgische Verbindung</string>
+    <string name="verse_share">Vers teilen</string>
+    <string name="verse_connection_gospel">Heutiges Evangelium</string>
+    <string name="verse_connection_first_reading">Erste Lesung</string>
+    <string name="verse_connection_psalm">Antwortpsalm</string>
+    <string name="verse_connection_saint">Heiliger des Tages</string>
+    <string name="verse_connection_season">Liturgische Zeit</string>
+
+    <!-- Bible errors -->
+    <string name="error_api_limit">Tägliches API-Limit erreicht. Bitte versuchen Sie es morgen erneut.</string>
+    <string name="error_load_bible_versions">Bibelversionen konnten nicht geladen werden</string>
+
+    <!-- Rosary -->
+    <string name="rosary_todays_mysteries">Geheimnisse des Tages</string>
+    <string name="rosary_joyful">Freudenreiche</string>
+    <string name="rosary_sorrowful">Schmerzhafte</string>
+    <string name="rosary_glorious">Glorreiche</string>
+    <string name="rosary_luminous">Lichtreiche</string>
+    <string name="rosary_days_joyful">Montag, Samstag</string>
+    <string name="rosary_days_sorrowful">Dienstag, Freitag</string>
+    <string name="rosary_days_glorious">Mittwoch, Sonntag</string>
+    <string name="rosary_days_luminous">Donnerstag</string>
+    <string name="rosary_tap_to_start">Tippen, um zu beten…</string>
+    <string name="rosary_the_holy_rosary">Der Heilige Rosenkranz</string>
+    <string name="rosary_tap_to_begin">Tippen zum Starten</string>
+    <string name="rosary_tap_to_continue">Tippen Sie irgendwo, um fortzufahren</string>
+    <string name="rosary_close">Schließen</string>
+    <string name="rosary_previous">Zurück</string>
+    <string name="rosary_next">Weiter</string>
+    <string name="rosary_decade_of">Gesätz %1$d von %2$d</string>
+    <string name="rosary_hail_mary_of">Gegrüßet seist du Maria %1$d von %2$d</string>
+    <string name="rosary_mystery_number">%1$d. GEHEIMNIS</string>
+    <string name="rosary_ordinal_1">.</string>
+    <string name="rosary_ordinal_2">.</string>
+    <string name="rosary_ordinal_3">.</string>
+    <string name="rosary_ordinal_other">.</string>
+    <string name="rosary_fruit">Frucht: %1$s</string>
+    <string name="rosary_completed">Rosenkranz vollendet</string>
+    <string name="rosary_completed_message">Mögen die Gebete, die du dargebracht hast, dir Frieden bringen und dich durch die Fürsprache der seligen Jungfrau Maria näher zu Gott führen.</string>
+    <string name="rosary_done">Fertig</string>
+    <string name="rosary_progress_remaining">%1$d Gebete übrig · %2$d%% abgeschlossen</string>
+    <string name="rosary_almost_done">Fast fertig!</string>
+    <string name="rosary_section_sign_of_cross">Kreuzzeichen</string>
+    <string name="rosary_section_apostles_creed">Apostolisches Glaubensbekenntnis</string>
+    <string name="rosary_section_our_father">Vater unser</string>
+    <string name="rosary_section_hail_mary">Gegrüßet seist du, Maria</string>
+    <string name="rosary_section_glory_be">Ehre sei dem Vater</string>
+    <string name="rosary_section_fatima_prayer">Fatima-Gebet</string>
+    <string name="rosary_section_mystery">Geheimnis</string>
+    <string name="rosary_section_hail_holy_queen">Gegrüßet seist du, Königin</string>
+    <string name="rosary_section_final_prayer">Schlussgebet</string>
+
+    <!-- Rosary Audio -->
+    <string name="rosary_audio_label">Audio</string>
+    <string name="rosary_audio_playback_speed">Wiedergabegeschwindigkeit</string>
+    <string name="rosary_audio_speed_format">%.1f×</string>
+    <string name="rosary_audio_auto_advance">Automatisch weiter</string>
+    <string name="rosary_audio_downloading">Audio wird heruntergeladen...</string>
+
+    <!-- Prayer Audio Download Sheet -->
+    <string name="prayer_audio_available">Audio verfügbar</string>
+    <string name="prayer_audio_enable">Audio aktivieren</string>
+    <string name="prayer_audio_listen">Hören Sie beim Beten zu</string>
+    <string name="prayer_audio_ready">Audio einsatzbereit</string>
+    <string name="prayer_audio_downloading">Audio wird heruntergeladen…</string>
+    <string name="prayer_audio_download_complete">Download abgeschlossen</string>
+    <string name="prayer_audio_continue">Weiter</string>
+    <string name="prayer_audio_settings_note">Sie können dies jederzeit in den Einstellungen ändern</string>
+
+    <!-- Chaplets -->
+    <string name="chaplets_header_title">Andachten</string>
+    <string name="chaplets_header_subtitle">Andachtsgebete</string>
+    <string name="chaplets_header_description">Traditionelle katholische Andachtsgebete</string>
+
+    <!-- Chaplet Types -->
+    <string name="chaplet_divine_mercy_title">Barmherzigkeit</string>
+    <string name="chaplet_divine_mercy_subtitle">Bete um Gottes Barmherzigkeit</string>
+    <string name="chaplet_divine_mercy_duration">5 Gesätze</string>
+    <string name="chaplet_st_michael_title">St. Michael</string>
+    <string name="chaplet_st_michael_subtitle">Ehre die neun Engelschöre</string>
+    <string name="chaplet_st_michael_duration">9 Grüße</string>
+    <string name="chaplet_seven_sorrows_title">Sieben Schmerzen</string>
+    <string name="chaplet_seven_sorrows_subtitle">Meditiere über die Schmerzen Mariens</string>
+    <string name="chaplet_seven_sorrows_duration">7 Schmerzen</string>
+
+    <!-- Chaplet Progress -->
+    <string name="chaplet_decade_of">Gesätz %1$d von %2$d</string>
+    <string name="chaplet_for_the_sake_of">Um willen %1$d von %2$d</string>
+    <string name="chaplet_holy_god_of">Heiliger Gott %1$d von %2$d</string>
+    <string name="chaplet_salutation_of">Gruß %1$d von %2$d</string>
+    <string name="chaplet_archangel_prayer_of">Erzengel-Gebet %1$d von %2$d</string>
+    <string name="chaplet_hail_mary_of">Gegrüßet seist du Maria %1$d von %2$d</string>
+    <string name="chaplet_sorrow_of">Schmerz %1$d von %2$d</string>
+    <string name="chaplet_invocation_of">Anrufung %1$d von %2$d</string>
+
+    <!-- Chaplet Announcement Labels -->
+    <string name="chaplet_decade_number">%1$d. GESÄTZ</string>
+    <string name="chaplet_salutation_number">%1$d. GRUSS</string>
+    <string name="chaplet_archangel_number">%1$d. ERZENGEL-GEBET</string>
+    <string name="chaplet_sorrow_number">%1$d. SCHMERZ</string>
+    <string name="chaplet_choir_of">Chor der %1$s</string>
+
+    <!-- Chaplet Section Labels -->
+    <string name="chaplet_section_opening_prayer">Eröffnungsgebet</string>
+    <string name="chaplet_section_eternal_father">Ewiger Vater</string>
+    <string name="chaplet_section_for_the_sake">Um Seines schmerzhaften Leidens willen</string>
+    <string name="chaplet_section_holy_god">Heiliger Gott</string>
+    <string name="chaplet_section_closing_prayer">Schlussgebet</string>
+    <string name="chaplet_section_decade">Gesätz</string>
+    <string name="chaplet_section_salutation">Gruß</string>
+    <string name="chaplet_section_archangel_prayer">Gebet zum Erzengel</string>
+    <string name="chaplet_section_introductory_prayer">Einleitungsgebet</string>
+    <string name="chaplet_section_act_of_contrition">Reueakt</string>
+    <string name="chaplet_section_sorrowful_mother">Barmherzigste Mutter</string>
+    <string name="chaplet_section_sorrow">Schmerz</string>
+    <string name="chaplet_section_final_invocation">Schlussanrufung</string>
+    <string name="chaplet_section_versicle">Vers</string>
+    <string name="chaplet_section_response">Antwort</string>
+    <string name="chaplet_section_concluding_prayer">Abschlussgebet</string>
+
+    <!-- Prayer Type Menu -->
+    <string name="chaplet_prayer_type_menu">Gebetsart</string>
+    <string name="prayer_type_rosary">Rosenkranz</string>
+    <string name="prayer_type_chaplets">Andachten</string>
+    <string name="prayer_type_litanies">Litaneien</string>
+
+    <!-- Chaplet Completion -->
+    <string name="chaplet_completed">Chaplet abgeschlossen</string>
+    <string name="chaplet_completed_message">Mögen die Gebete, die du dargebracht hast, dir Frieden bringen und dich durch Seine unendliche Barmherzigkeit näher zu Gott führen.</string>
+
+    <!-- Litanies -->
+    <string name="litanies_header_title">Litaneien</string>
+    <string name="litanies_header_subtitle">Heilige Gebete</string>
+    <string name="litanies_header_description">Alte Gebete der Bitte und Andacht</string>
+
+    <string name="litany_blessed_virgin_mary_title">Lauretanische Litanei</string>
+    <string name="litany_blessed_virgin_mary_subtitle">Loreto</string>
+    <string name="litany_blessed_virgin_mary_duration">~10 Min</string>
+
+    <string name="litany_sacred_heart_title">Herz-Jesu-Litanei</string>
+    <string name="litany_sacred_heart_subtitle">Herz Jesu</string>
+    <string name="litany_sacred_heart_duration">~8 Min</string>
+
+    <string name="litany_st_joseph_title">Josefslitanei</string>
+    <string name="litany_st_joseph_subtitle">Hl. Josef</string>
+    <string name="litany_st_joseph_duration">~7 Min</string>
+
+    <string name="litany_saints_title">Allerheiligenlitanei</string>
+    <string name="litany_saints_subtitle">Alle Heiligen</string>
+    <string name="litany_saints_duration">~12 Min</string>
+
+    <string name="litany_holy_name_title">Litanei vom heiligsten Namen Jesu</string>
+    <string name="litany_holy_name_subtitle">Heiliger Name</string>
+    <string name="litany_holy_name_duration">~8 Min</string>
+
+    <string name="litany_precious_blood_title">Litanei vom kostbaren Blut Jesu Christi</string>
+    <string name="litany_precious_blood_subtitle">Kostbares Blut</string>
+    <string name="litany_precious_blood_duration">~8 Min</string>
+
+    <string name="litany_navigation_title">Litanei</string>
+    <string name="litany_tap_to_begin">Tippen zum Starten</string>
+
+    <string name="litany_step_sign_of_cross">Kreuzzeichen</string>
+    <string name="litany_step_closing_prayer">Schlussgebet</string>
+    <string name="litany_step_invocation">Anrufung</string>
+
+    <string name="litany_progress_almost_done">Fast fertig!</string>
+    <string name="litany_progress_remaining">%1$d Gebete übrig</string>
+
+    <string name="litany_completed">Litanei abgeschlossen</string>
+    <string name="litany_completed_message">Mögen deine Gebete erhört werden und Gottes Segen auf dir ruhen.</string>
+
+    <string name="litany_audio_response_delay">Antwortverzögerung</string>
+
+    <!-- Calendar -->
+    <string name="calendar_title">Kalender</string>
+    <string name="calendar_tab_calendar">Kalender</string>
+    <string name="calendar_tab_routine">Routine</string>
+    <string name="calendar_tab_notes">Notizen</string>
+    <string name="calendar_info_title">Über den Kalender</string>
+    <string name="calendar_info_region_title">Liturgische Region</string>
+    <string name="calendar_info_region_description">Der Kalender zeigt Feiern für Ihre ausgewählte Region: %1$s. Verschiedene Regionen können einzigartige Fest- und Feiertage haben.</string>
+    <string name="calendar_info_colors_title">Liturgische Farben</string>
+    <string name="calendar_info_colors_description">Die Farben zeigen die liturgische Zeit und die Art der Feier an:</string>
+    <string name="calendar_info_color_green_name">Grün</string>
+    <string name="calendar_info_color_green_desc">Jahreskreis</string>
+    <string name="calendar_info_color_violet_name">Violett</string>
+    <string name="calendar_info_color_violet_desc">Advent und Fastenzeit</string>
+    <string name="calendar_info_color_white_name">Weiß</string>
+    <string name="calendar_info_color_white_desc">Weihnachten, Ostern, Feste</string>
+    <string name="calendar_info_color_red_name">Rot</string>
+    <string name="calendar_info_color_red_desc">Märtyrer und Pfingsten</string>
+    <string name="calendar_info_color_rose_name">Rosa</string>
+    <string name="calendar_info_color_rose_desc">Gaudete- und Laetare-Sonntag</string>
+    <string name="calendar_info_ranks_title">Feierlichkeitsstufen</string>
+    <string name="calendar_info_ranks_description">Feiern haben unterschiedliche Wichtigkeitsstufen:</string>
+    <string name="calendar_info_rank_solemnity">Höchster Rang</string>
+    <string name="calendar_info_rank_feast">Wichtige Feiern</string>
+    <string name="calendar_info_rank_memorial">Gedenktage der Heiligen</string>
+    <string name="calendar_info_rank_weekday">Wochentage</string>
+    <string name="calendar_info_rank_solemnity_name">Hochfest</string>
+    <string name="calendar_info_rank_feast_name">Fest</string>
+    <string name="calendar_info_rank_memorial_name">Gedenktag</string>
+    <string name="calendar_info_rank_weekday_name">Wochentag</string>
+    <string name="calendar_info_holydays_title">Gebotene Feiertage</string>
+    <string name="calendar_info_holydays_description">Mit einem Stern markierte Tage sind gebotene Feiertage. Katholiken sind verpflichtet, an diesen Tagen wie an Sonntagen die Messe zu besuchen.</string>
+    <string name="calendar_info_howto_title">Anleitung</string>
+    <string name="calendar_info_howto_description">Tippen Sie auf einen Tag, um Details anzuzeigen und Ihre Messbesuche zu verfolgen. Verwenden Sie das Kontextmenü (langes Drücken) für schnelle Aktionen wie das Markieren des Messbesuchs.</string>
+    <string name="calendar_day_obligatory">Verpflichtend</string>
+    <string name="calendar_day_set_reminder">Erinnerung festlegen</string>
+    <string name="calendar_day_add_note">Notiz hinzufügen</string>
+    <string name="cd_calendar_info">Kalender-Info</string>
+
+    <!-- Placeholder -->
+    <string name="coming_soon">Demnächst</string>
+
+    <!-- Common actions -->
+    <string name="cancel">Abbrechen</string>
+    <string name="save">Speichern</string>
+    <string name="set">Festlegen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
+
+    <!-- Note types -->
+    <string name="note_type_mass">Messe</string>
+    <string name="note_type_confession">Beichte</string>
+    <string name="note_type_custom">Benutzerdefiniert</string>
+
+    <!-- Note placeholders -->
+    <string name="note_placeholder_mass_title">z.B. Sonntagsmesse in St. Maria</string>
+    <string name="note_placeholder_confession_title">z.B. Beichte vor Ostern</string>
+    <string name="note_placeholder_custom_title">Notiztitel</string>
+    <string name="note_placeholder_mass_content">z.B. Schöne Predigt über Vergebung...</string>
+    <string name="note_placeholder_confession_content">z.B. Überlegungen und Vorsätze...</string>
+    <string name="note_placeholder_custom_content">Fügen Sie hier Ihre Notizen hinzu...</string>
+
+    <!-- Note type descriptions (day detail) -->
+    <string name="note_type_mass_desc">Eine besuchte Messe aufzeichnen</string>
+    <string name="note_type_confession_desc">Eine Beichte aufzeichnen</string>
+    <string name="note_type_custom_desc">Eine persönliche Notiz hinzufügen</string>
+
+    <!-- Notes -->
+    <string name="note_add_title">Neue Notiz</string>
+    <string name="note_edit_title">Notiz bearbeiten</string>
+    <string name="note_field_type">Typ</string>
+    <string name="note_field_date">Datum</string>
+    <string name="note_field_title">Titel</string>
+    <string name="note_field_content">Notizen (optional)</string>
+    <string name="note_delete_title">Notiz löschen</string>
+    <string name="note_delete_message">Sind Sie sicher, dass Sie diese Notiz löschen möchten?</string>
+    <string name="note_delete_action">Notiz löschen</string>
+    <string name="notes_search_placeholder">Notizen suchen</string>
+    <string name="notes_section_plans">Zukünftige Pläne</string>
+    <string name="notes_section_notes">Notizen</string>
+    <string name="notes_empty_title">Noch keine Notizen</string>
+    <string name="notes_empty_message">Fügen Sie Notizen aus dem Kalender hinzu oder erstellen Sie eine neue Notiz, um zu beginnen</string>
+    <string name="notes_yesterday">Gestern</string>
+
+    <!-- Reminder types -->
+    <string name="reminder_type_mass">Messe</string>
+    <string name="reminder_type_confession">Beichte</string>
+    <string name="reminder_type_holy_day">Heiliger Tag</string>
+    <string name="reminder_type_first_friday">Herz-Jesu-Freitag</string>
+    <string name="reminder_type_fasting">Fasten</string>
+    <string name="reminder_type_prayer">Gebet</string>
+    <string name="reminder_type_custom">Benutzerdefiniert</string>
+
+    <!-- Reminder type descriptions -->
+    <string name="reminder_desc_mass">Erinnere mich an die Messe</string>
+    <string name="reminder_desc_confession">Erinnere mich an die Beichte</string>
+    <string name="reminder_desc_holy_day">Erinnere mich an diesen gebotenen Feiertag</string>
+    <string name="reminder_desc_first_friday">Erinnere mich an die Herz-Jesu-Freitag-Andacht</string>
+    <string name="reminder_desc_fasting">Erinnere mich ans Fasten</string>
+    <string name="reminder_desc_prayer">Erinnere mich ans Beten</string>
+    <string name="reminder_desc_custom">Benutzerdefinierte Erinnerung festlegen</string>
+
+    <!-- Reminder default titles -->
+    <string name="reminder_default_mass">Messe besuchen</string>
+    <string name="reminder_default_confession">Zur Beichte gehen</string>
+    <string name="reminder_default_holy_day">Gebotener Feiertag</string>
+    <string name="reminder_default_first_friday">Herz-Jesu-Freitag-Andacht</string>
+    <string name="reminder_default_fasting">Fasttag</string>
+    <string name="reminder_default_prayer">Gebetszeit</string>
+
+    <!-- Reminder default messages -->
+    <string name="reminder_msg_mass">Zeit, sich auf die Heilige Messe vorzubereiten</string>
+    <string name="reminder_msg_confession">Denken Sie daran, Ihr Gewissen zu erforschen</string>
+    <string name="reminder_msg_holy_day">Heute Pflicht zur Messfeier</string>
+    <string name="reminder_msg_first_friday">Empfangen Sie die Heilige Kommunion zur Sühne</string>
+    <string name="reminder_msg_fasting">Verzichten Sie auf Fleisch und begrenzen Sie die Mahlzeiten</string>
+    <string name="reminder_msg_prayer">Nehmen Sie sich einen Moment für das Gebet</string>
+    <string name="reminder_msg_default">Nicht vergessen!</string>
+
+    <!-- Reminders -->
+    <string name="reminder_field_title">Titel</string>
+    <string name="reminder_field_message">Nachricht</string>
+    <string name="reminder_field_time">Zeit</string>
+    <string name="reminder_field_notes">Notizen (optional)</string>
+    <string name="reminder_title_placeholder">Erinnerungstitel</string>
+    <string name="reminder_notes_placeholder">Notiz hinzufügen...</string>
+    <string name="reminder_delete_title">Erinnerung löschen</string>
+    <string name="reminder_delete_message">Sind Sie sicher, dass Sie diese Erinnerung löschen möchten?</string>
+    <string name="reminder_delete_action">Erinnerung löschen</string>
+
+    <!-- Add menu -->
+    <string name="menu_add_note">Notiz hinzufügen</string>
+    <string name="menu_add_reminder">Erinnerung hinzufügen</string>
+
+    <!-- Day Detail -->
+    <string name="day_detail_existing_reminders">Erinnerungen festlegen</string>
+    <string name="day_detail_set_reminders">Erinnerungen festlegen</string>
+    <string name="day_detail_existing_notes">Notizen</string>
+    <string name="day_detail_add_note">Notiz hinzufügen</string>
+
+    <!-- Routine types -->
+    <string name="routine_type_mass">Heilige Messe</string>
+    <string name="routine_type_morning_prayer">Morgengebet</string>
+    <string name="routine_type_evening_prayer">Abendgebet</string>
+    <string name="routine_type_rosary">Rosenkranz</string>
+    <string name="routine_type_adoration">Anbetung</string>
+    <string name="routine_type_angelus">Angelus</string>
+    <string name="routine_type_divine_mercy">Barmherzigkeit</string>
+    <string name="routine_type_custom">Benutzerdefiniert</string>
+    <string name="routine_type_prayer_routine">Gebetsroutine</string>
+
+    <!-- Routine default titles -->
+    <string name="routine_default_sunday_mass">Sonntagsmesse</string>
+    <string name="routine_default_morning_offering">Morgenopfer</string>
+    <string name="routine_default_evening_reflection">Abendbetrachtung</string>
+    <string name="routine_default_daily_rosary">Täglicher Rosenkranz</string>
+    <string name="routine_default_divine_mercy_chaplet">Barmherzigkeitsrosenkranz</string>
+    <string name="routine_default_weekly_adoration">Wöchentliche Anbetung</string>
+
+    <!-- Routine notification messages -->
+    <string name="routine_notif_mass">Zeit, sich auf die Heilige Messe vorzubereiten</string>
+    <string name="routine_notif_morning">Beginnen Sie Ihren Tag mit dem Morgenopfer</string>
+    <string name="routine_notif_evening">Beende deinen Tag mit Besinnung und Gebet</string>
+    <string name="routine_notif_rosary">Zeit, mit Maria durch die Geheimnisse zu meditieren</string>
+    <string name="routine_notif_adoration">Zeit für die Eucharistische Anbetung</string>
+    <string name="routine_notif_angelus">Der Engel des Herrn brachte Maria die Botschaft</string>
+    <string name="routine_notif_divine_mercy">Zeit, den Barmherzigkeitsrosenkranz zu beten</string>
+    <string name="routine_notif_custom">Zeit für deine Gebetsroutine</string>
+
+    <!-- Routine suggestions -->
+    <string name="routine_suggestion_mass_subtitle">Wöchentliche Erinnerung für die Heilige Messe</string>
+    <string name="routine_suggestion_rosary_subtitle">Meditieren Sie mit Maria durch die Geheimnisse</string>
+    <string name="routine_suggestion_morning_subtitle">Beginnen Sie Ihren Tag mit dem Morgenopfer</string>
+    <string name="routine_suggestion_evening_subtitle">Beende deinen Tag mit Besinnung und Gebet</string>
+    <string name="routine_suggestion_divine_mercy_subtitle">Beten Sie den Rosenkranz zur Stunde der Barmherzigkeit</string>
+    <string name="routine_suggestion_adoration_subtitle">Besuchen Sie Jesus im Allerheiligsten</string>
+    <string name="routine_suggestion_angelus_subtitle">Traditionelles Mittagsgebet</string>
+
+    <!-- Routine empty state -->
+    <string name="routine_empty_title">Starten Sie Ihre Gebetsroutine</string>
+    <string name="routine_empty_subtitle">Wählen Sie eine Routine, um Ihre tägliche Gebetsgewohnheit aufzubauen</string>
+
+    <!-- Routine sections -->
+    <string name="routine_section_active">Aktive Routinen</string>
+    <string name="routine_section_paused">Pausiert</string>
+    <string name="routine_section_suggested">Für Sie vorgeschlagen</string>
+
+    <!-- Routine actions -->
+    <string name="routine_add">Hinzufügen</string>
+    <string name="routine_mark_completed">Als erledigt markieren</string>
+    <string name="routine_completed_today">Heute abgeschlossen</string>
+    <string name="routine_pause">Pausieren</string>
+    <string name="routine_resume">Fortsetzen</string>
+    <string name="routine_delete_title">Routine löschen</string>
+    <string name="routine_delete_message">Bist du sicher, dass du "%1$s" löschen möchtest? Damit wird auch der gesamte Abschlussverlauf entfernt.</string>
+
+    <!-- Routine detail -->
+    <string name="routine_close">Schließen</string>
+    <string name="routine_options">Optionen</string>
+    <string name="routine_schedule">Zeitplan</string>
+    <string name="routine_progress">Fortschritt</string>
+    <string name="routine_settings">Einstellungen</string>
+    <string name="routine_track_completion">Abschluss verfolgen</string>
+    <string name="routine_day_streak">Tages-Serie</string>
+    <string name="routine_this_month">Diesen Monat</string>
+    <string name="routine_created_date">Erstellt am %1$s</string>
+    <string name="routine_month_count">%1$d von %2$d diesen Monat</string>
+
+    <!-- Routine create/edit -->
+    <string name="routine_new_title">Neue Routine</string>
+    <string name="routine_new_subtitle">Wählen Sie eine geistliche Gewohnheit</string>
+    <string name="routine_edit_title">Routine bearbeiten</string>
+    <string name="routine_quick_start">Schnellstart</string>
+    <string name="routine_field_title">Titel</string>
+    <string name="routine_field_title_placeholder">Routinenname</string>
+    <string name="routine_field_days">Tage</string>
+    <string name="routine_field_time">Zeit</string>
+    <string name="routine_days_every_day">Jeden Tag</string>
+    <string name="routine_days_weekdays">Wochentage</string>
+    <string name="routine_days_weekends">Wochenende</string>
+    <string name="routine_notifications">Benachrichtigungen</string>
+    <string name="routine_remind_me">Erinnere mich</string>
+    <string name="routine_back">Zurück</string>
+    <string name="routine_enabled">Aktiviert</string>
+    <string name="routine_disabled">Deaktiviert</string>
+
+    <!-- Routine lead times -->
+    <string name="routine_lead_at_time">Zur Ereigniszeit</string>
+    <string name="routine_lead_5min">5 Minuten vorher</string>
+    <string name="routine_lead_15min">15 Minuten vorher</string>
+    <string name="routine_lead_30min">30 Minuten vorher</string>
+    <string name="routine_lead_1hour">1 Stunde vorher</string>
+    <string name="routine_lead_2hours">2 Stunden vorher</string>
+    <string name="routine_lead_1day">1 Tag vorher</string>
+
+    <!-- First Friday -->
+    <string name="first_friday_title">Herz-Jesu-Freitag-Andacht</string>
+    <string name="first_friday_subtitle">Jahresübersicht</string>
+    <string name="first_friday_schedule">Erster Freitag jeden Monats</string>
+    <string name="first_friday_setup_monthly_reminder">Monatliche Erinnerung</string>
+    <string name="first_friday_setup_reminder_time">Erinnerungszeit</string>
+
+    <!-- Day abbreviations -->
+    <string name="day_abbrev_mon">M</string>
+    <string name="day_abbrev_tue">D</string>
+    <string name="day_abbrev_wed">M</string>
+    <string name="day_abbrev_thu">D</string>
+    <string name="day_abbrev_fri">F</string>
+    <string name="day_abbrev_sat">S</string>
+    <string name="day_abbrev_sun">S</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_section_premium">Premium</string>
+    <string name="settings_premium_lumen_pro">Lumen Pro</string>
+    <string name="settings_premium_go_premium">Premium werden</string>
+    <string name="settings_premium_renews">Verlängerung am %1$s</string>
+    <string name="settings_premium_active">Lumen Pro</string>
+    <string name="settings_premium_unlock">Alle Funktionen freischalten</string>
+    <string name="settings_section_calendar">Kalender</string>
+    <string name="settings_calendar_region">Kalenderregion</string>
+    <string name="settings_calendar_region_footer">Bestimmt, welche regionalen Fest- und Feiertage angezeigt werden.</string>
+
+    <!-- Liturgical seasons -->
+    <string name="season_advent">Advent</string>
+    <string name="season_christmas">Weihnachten</string>
+    <string name="season_lent">Fastenzeit</string>
+    <string name="season_easter">Ostern</string>
+    <string name="season_ordinary_time">Jahreskreis</string>
+
+    <!-- Calendar regions -->
+    <string name="region_universal">Universal</string>
+    <string name="region_argentina">Argentinien</string>
+    <string name="region_australia">Australien</string>
+    <string name="region_austria">Österreich</string>
+    <string name="region_brazil">Brasilien</string>
+    <string name="region_canada">Kanada</string>
+    <string name="region_chile">Chile</string>
+    <string name="region_colombia">Kolumbien</string>
+    <string name="region_france">Frankreich</string>
+    <string name="region_germany">Deutschland</string>
+    <string name="region_ireland">Irland</string>
+    <string name="region_italy">Italien</string>
+    <string name="region_mexico">Mexiko</string>
+    <string name="region_peru">Peru</string>
+    <string name="region_philippines">Philippinen</string>
+    <string name="region_poland">Polen</string>
+    <string name="region_portugal">Portugal</string>
+    <string name="region_spain">Spanien</string>
+    <string name="region_uk">Vereinigtes Königreich</string>
+    <string name="region_usa">USA</string>
+    <string name="settings_section_bible">Bibel</string>
+    <string name="settings_bible_font_size">Schriftgröße</string>
+    <string name="settings_bible_clear_cache">Bibel-Cache leeren</string>
+    <string name="settings_bible_cache_footer">Zwischengespeicherte Kapitel werden nach 30 Tagen automatisch entfernt.</string>
+    <string name="settings_section_prayer">Gebet</string>
+    <string name="settings_prayer_visual_style">Visueller Stil</string>
+    <string name="settings_prayer_visual_sacred_art">Sakrale Kunst</string>
+    <string name="settings_prayer_visual_simple">Einfach</string>
+    <string name="settings_prayer_footer">Sakrale Kunst zeigt Gemälde für jedes Geheimnis. Schlicht verwendet einen dunklen Hintergrund. Audio spielt gesprochene Gebete ab.</string>
+    <string name="settings_section_support">Support</string>
+    <string name="settings_support_share">App teilen</string>
+    <string name="settings_share_title">Lumen teilen</string>
+    <string name="settings_share_subtitle">Für welche Plattform möchtest du den Link teilen?</string>
+    <string name="settings_share_android">Android</string>
+    <string name="settings_share_ios">iOS</string>
+    <string name="settings_support_contact">Support kontaktieren</string>
+    <string name="settings_section_legal">Rechtliches</string>
+    <string name="settings_legal_privacy">Datenschutzerklärung</string>
+    <string name="settings_legal_terms">Nutzungsbedingungen</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title_lumen">Lumen</string>
+    <string name="paywall_title_pro">PRO</string>
+    <string name="paywall_subtitle">Entsperren Sie das vollständige
+spirituelle Erlebnis</string>
+    <string name="paywall_close">Schließen</string>
+    <string name="paywall_feature_audio">Audio</string>
+    <string name="paywall_feature_audio_desc">Lesungen und Gebete anhören</string>
+    <string name="badge_pro">PRO</string>
+    <string name="unlock_full_reflection">Vollständige Betrachtung entsperren</string>
+    <string name="paywall_feature_reflections">Betrachtungen</string>
+    <string name="paywall_feature_reflections_desc">Tägliche spirituelle Impulse</string>
+    <string name="paywall_feature_bible">Ganze Bibel</string>
+    <string name="paywall_feature_bible_desc">Altes &amp; Neues Testament</string>
+    <string name="paywall_feature_prayers">Alle Gebete</string>
+    <string name="paywall_feature_prayers_desc">Rosenkranz, Andachten &amp; Litaneien</string>
+    <string name="paywall_feature_widgets">Widgets</string>
+    <string name="paywall_feature_widgets_desc">Vers des Tages auf Ihrem Startbildschirm</string>
+    <string name="paywall_feature_suggestions">App mitgestalten</string>
+    <string name="paywall_feature_suggestions_desc">Neue Ideen vorschlagen</string>
+    <string name="paywall_plan_monthly">Monatlich</string>
+    <string name="paywall_plan_annual">Jährlich</string>
+    <string name="paywall_trial_free">%1$s kostenlose Testversion</string>
+    <string name="paywall_price_per_month">%1$s/Monat</string>
+    <string name="paywall_price_per_year">%1$s/Jahr</string>
+    <string name="paywall_price_per_week">%1$s/Woche</string>
+    <string name="paywall_price_then_per_month">dann %1$s/Monat</string>
+    <string name="paywall_price_then_per_year">dann %1$s/Jahr</string>
+    <string name="paywall_trial_days">%1$d Tage</string>
+    <string name="paywall_trial_months">%1$d Monate</string>
+    <string name="paywall_trial_years">%1$d Jahre</string>
+    <string name="paywall_button_start_trial">Gratis testen</string>
+    <string name="paywall_button_subscribe">Jetzt abonnieren</string>
+    <string name="paywall_terms">Bedingungen</string>
+    <string name="paywall_privacy">Datenschutz</string>
+    <string name="paywall_restore">Wiederherstellen</string>
+    <string name="paywall_error_title">Fehler</string>
+    <string name="paywall_error_ok">OK</string>
+    <string name="paywall_error_no_subscription">Kein aktives Abonnement gefunden.</string>
+
+    <!-- Errors -->
+    <string name="error_no_liturgy">Keine Liturgie für diesen Tag verfügbar</string>
+    <string name="error_load_failed">Liturgie konnte nicht geladen werden: %1$s</string>
+
+    <!-- Widgets -->
+    <string name="widget_verse_title">Vers des Tages</string>
+    <string name="widget_medium_label">Mittleres Widget</string>
+    <string name="widget_large_label">Großes Widget</string>
+    <string name="widget_medium_description">Tägliche Schrift mit Betrachtung</string>
+    <string name="widget_large_description">Vollständiger Vers mit schönen Bildern</string>
+    <string name="widget_loading">Laden...</string>
+    <string name="widget_unlock">Entsperren</string>
+
+    <!-- Onboarding - Common -->
+    <string name="onboarding_continue">Weiter</string>
+
+    <!-- Onboarding - Welcome -->
+    <string name="onboarding_welcome_subtitle">Licht für Ihre spirituelle Reise</string>
+    <string name="onboarding_welcome_body">Wachsen Sie im Glauben mit der Bibel, täglichen Lesungen, geführten Gebeten und spirituellen Routinen.</string>
+    <string name="onboarding_get_started">Loslegen</string>
+
+    <!-- Onboarding - Bible Quotes -->
+    <string name="onboarding_quote_john_8_12">"Ich bin das Licht der Welt. Wer mir nachfolgt, wird nicht in der Finsternis wandeln, sondern wird das Licht des Lebens haben."</string>
+    <string name="onboarding_quote_john_8_12_source">Johannes 8:12</string>
+    <string name="onboarding_quote_psalm_27_1">"Der Herr ist mein Licht und mein Heil; vor wem sollte ich mich fürchten?"</string>
+    <string name="onboarding_quote_psalm_27_1_source">Psalm 27:1</string>
+    <string name="onboarding_quote_psalm_119_105">"Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Wege."</string>
+    <string name="onboarding_quote_psalm_119_105_source">Psalm 119:105</string>
+    <string name="onboarding_quote_ephesians_5_8">"Denn einst wart ihr Finsternis, nun aber seid ihr Licht im Herrn. Wandelt als Kinder des Lichts."</string>
+    <string name="onboarding_quote_ephesians_5_8_source">Epheser 5:8</string>
+    <string name="onboarding_quote_matthew_5_14">"Ihr seid das Licht der Welt. Es kann die Stadt, die auf einem Berge liegt, nicht verborgen sein."</string>
+    <string name="onboarding_quote_matthew_5_14_source">Matthäus 5:14</string>
+    <string name="onboarding_quote_isaiah_60_1">"Mache dich auf, werde licht; denn dein Licht kommt, und die Herrlichkeit des Herrn geht auf über dir."</string>
+    <string name="onboarding_quote_isaiah_60_1_source">Jesaja 60:1</string>
+
+    <!-- Onboarding - Features -->
+    <string name="onboarding_features_title">Alles, was Sie brauchen</string>
+    <string name="onboarding_features_subtitle">Für Ihre spirituelle Reise</string>
+    <string name="onboarding_features_bible">Die Bibel</string>
+    <string name="onboarding_features_readings">Tägliche Lesungen</string>
+    <string name="onboarding_features_prayers">Geführte Gebete</string>
+    <string name="onboarding_features_calendar">Liturgischer Kalender</string>
+    <string name="onboarding_features_routines">Gebetsroutinen</string>
+    <string name="onboarding_features_and_more">und mehr…</string>
+
+    <!-- Onboarding - Bible -->
+    <string name="onboarding_bible_title">Bibelsprache</string>
+    <string name="onboarding_bible_subtitle">Wähle deine bevorzugte Sprache
+zum Lesen der Bibel.</string>
+    <string name="onboarding_bible_selected_language">Ausgewählte Sprache</string>
+    <string name="onboarding_bible_change_language">Sprache ändern</string>
+
+    <!-- Onboarding - Region -->
+    <string name="onboarding_region_title">Ihre Region</string>
+    <string name="onboarding_region_subtitle">Wir zeigen Ihnen die richtigen Fest- und Feiertage für Ihren Standort.</string>
+    <string name="onboarding_region_selected">Ausgewählte Region</string>
+    <string name="onboarding_region_change">Region ändern</string>
+
+    <!-- Onboarding - Notifications -->
+    <string name="onboarding_notifications_title">Bleiben Sie auf Kurs</string>
+    <string name="onboarding_notifications_subtitle">Erhalten Sie sanfte Erinnerungen für Ihre Gebetsroutinen und wichtige liturgische Ereignisse.</string>
+    <string name="onboarding_notifications_benefit_reminders">Rechtzeitige Gebetserinnerungen</string>
+    <string name="onboarding_notifications_benefit_morning_evening">Morgen- und Abendgebete</string>
+    <string name="onboarding_notifications_benefit_holy_days">Hinweise für gebotene Feiertage</string>
+    <string name="onboarding_notifications_benefit_control">Sie bestimmen was und wann</string>
+    <string name="onboarding_notifications_enable">Benachrichtigungen aktivieren</string>
+
+    <!-- Onboarding - Rosary -->
+    <string name="onboarding_rosary_title">Gebetserlebnis</string>
+    <string name="onboarding_rosary_subtitle">Passen Sie Ihr Gebetserlebnis an</string>
+    <string name="onboarding_rosary_description">Sakrale Kunst zeigt Gemälde als Hintergrund. Schlicht nutzt ein dunkles Design. Änderbar in den Einstellungen.</string>
+    <string name="onboarding_rosary_enable_audio">Audio aktivieren</string>
+    <string name="onboarding_rosary_audio_guided">Audio-geführte Rosenkranzgebete</string>
+    <string name="onboarding_rosary_audio_ready">Audio einsatzbereit</string>
+    <string name="onboarding_rosary_audio_downloading">Herunterladen… %1$d%%</string>
+    <string name="onboarding_rosary_audio_will_download">Audio wird heruntergeladen</string>
+    <string name="onboarding_rosary_audio_preview">Gegrüßet seist du Maria – Vorschau</string>
+
+    <!-- Onboarding - Routine Intro -->
+    <string name="onboarding_routine_intro_title">Bauen Sie Ihre Routine auf</string>
+    <string name="onboarding_routine_intro_subtitle">Spirituelles Wachstum geschieht durch tägliche Übung. Legen Sie Gebetszeiten fest, die zu Ihrem Zeitplan passen.</string>
+    <string name="onboarding_routine_intro_benefit_reminders">Geplante Erinnerungen halten Sie beständig</string>
+    <string name="onboarding_routine_intro_benefit_progress">Verfolgen Sie Ihren Fortschritt und Ihre Serien</string>
+    <string name="onboarding_routine_intro_benefit_habits">Bauen Sie dauerhafte spirituelle Gewohnheiten auf</string>
+    <string name="onboarding_routine_intro_button">Routinen einrichten</string>
+
+    <!-- Onboarding - Routine Setup -->
+    <string name="onboarding_routine_setup_title">Wählen Sie Ihre Routinen</string>
+    <string name="onboarding_routine_setup_subtitle">Tippen zum Auswählen, dann Zeit anpassen</string>
+    <string name="onboarding_routine_setup_suggested">Vorgeschlagen</string>
+    <string name="onboarding_routine_setup_custom">Benutzerdefiniert</string>
+    <string name="onboarding_routine_setup_add_custom">Eigene Routine hinzufügen</string>
+    <string name="onboarding_routine_setup_count">%1$d Routine(n) ausgewählt</string>
+    <string name="onboarding_routine_setup_skip">Vorerst überspringen</string>
+    <string name="onboarding_routine_setup_dialog_title">Neue eigene Routine</string>
+    <string name="onboarding_routine_setup_dialog_placeholder">Routinenname</string>
+    <string name="onboarding_routine_setup_dialog_add">Hinzufügen</string>
+    <string name="onboarding_routine_setup_first_fridays">Herz-Jesu-Freitage</string>
+    <string name="onboarding_routine_setup_yearly_tracking">Jahresübersicht</string>
+
+    <!-- Onboarding - Routine Edit Sheet -->
+    <string name="onboarding_routine_edit_title">Routine bearbeiten</string>
+    <string name="onboarding_routine_edit_days">Tage</string>
+    <string name="onboarding_routine_edit_every_day">Jeden Tag</string>
+    <string name="onboarding_routine_edit_weekdays">Wochentage</string>
+    <string name="onboarding_routine_edit_weekends">Wochenende</string>
+    <string name="onboarding_routine_edit_time">Zeit</string>
+    <string name="onboarding_routine_edit_notifications">Benachrichtigungen</string>
+    <string name="onboarding_routine_edit_remind_me">Erinnere mich</string>
+    <string name="onboarding_routine_edit_delete">Routine löschen</string>
+    <string name="onboarding_routine_edit_done">Fertig</string>
+
+    <!-- Onboarding - First Friday Edit Sheet -->
+    <string name="onboarding_first_friday_title">Herz-Jesu-Freitage</string>
+    <string name="onboarding_first_friday_subtitle">Verfolgen Sie Ihre Herz-Jesu-Freitag-Andacht das ganze Jahr über</string>
+    <string name="onboarding_first_friday_question">Wie viele aufeinanderfolgende Herz-Jesu-Freitage haben Sie bereits?</string>
+    <string name="onboarding_first_friday_month">Monat</string>
+    <string name="onboarding_first_friday_months">Monate</string>
+    <string name="onboarding_first_friday_tracking_note">Dies hilft uns, Ihre Andacht weiter zu verfolgen</string>
+
+    <!-- Onboarding - Loading -->
+    <string name="onboarding_loading_step_1">Speichern Ihrer Einstellungen</string>
+    <string name="onboarding_loading_step_2">Vorbereiten Ihrer Inhalte</string>
+    <string name="onboarding_loading_step_3">Gebete werden eingerichtet</string>
+    <string name="onboarding_loading_step_4">Fast fertig</string>
+    <string name="onboarding_loading_ready">Bereit zu beginnen!</string>
+    <string name="onboarding_loading_begin">Beginne deine Reise</string>
+    <string name="onboarding_loading_preparing">Vorbereitung…</string>
+
+    <!-- Onboarding - Widgets -->
+    <string name="onboarding_widgets_title">Widgets für den Startbildschirm</string>
+    <string name="onboarding_widgets_subtitle">Jeden Tag ein frischer Vers und schöne Bilder</string>
+
+    <!-- Onboarding - Completion -->
+    <string name="onboarding_completion_title">Sie sind bereit!</string>
+    <string name="onboarding_completion_subtitle">Ihre spirituelle Reise beginnt jetzt</string>
+    <string name="onboarding_completion_routines">%1$d Gebetsroutine(n)</string>
+    <string name="onboarding_completion_routines_subtitle">Mit Erinnerungen geplant</string>
+    <string name="onboarding_completion_bible_subtitle">Ihre Bibelübersetzung</string>
+    <string name="onboarding_completion_region_subtitle">Liturgische Kalenderregion</string>
+    <string name="onboarding_completion_notifications_title">Benachrichtigungen aktiviert</string>
+    <string name="onboarding_completion_notifications_subtitle">Sie erhalten Gebetserinnerungen</string>
+    <string name="onboarding_completion_done">Fertig</string>
+
+    <!-- Onboarding - Feedback -->
+    <string name="onboarding_feedback_title">Wie gefällt es Ihnen bisher?</string>
+    <string name="onboarding_feedback_subtitle">Wir würden gerne Ihr Feedback zum Onboarding von Lumen hören. Positives Feedback hilft uns zu wachsen!</string>
+    <string name="onboarding_feedback_positive">Großartig! ⭐</string>
+    <string name="onboarding_feedback_neutral">Es war in Ordnung</string>
+    <string name="onboarding_feedback_negative">Verbesserungsbedarf</string>
+</resources>

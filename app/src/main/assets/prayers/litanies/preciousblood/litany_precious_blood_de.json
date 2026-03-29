@@ -1,0 +1,200 @@
+{
+  "id": "preciousBlood",
+  "title": "Litanei vom Kostbarsten Blut unseres Herrn Jesus Christus",
+  "subtitle": "Der Preis unserer Erlösung",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "Allmächtiger, ewiger Gott, du hast deinen eingeborenen Sohn zum Erlöser der Welt bestellt und wolltest durch sein Blut versöhnt werden. Wir bitten dich, gib, dass wir den Preis unseres Heiles würdig verehren und durch seine Kraft vor den Übeln des gegenwärtigen Lebens bewahrt werden, damit wir uns seiner Frucht ewig im Himmel erfreuen. Durch Christus, unseren Herrn. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Christus, erbarme dich.",
+          "response": "Christus, erbarme dich."
+        },
+        {
+          "text": "Herr, erbarme dich.",
+          "response": "Herr, erbarme dich."
+        },
+        {
+          "text": "Jesus, höre uns.",
+          "response": "Jesus, erhöre uns."
+        }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        {
+          "text": "Gott Vater im Himmel,"
+        },
+        {
+          "text": "Gott Sohn, Erlöser der Welt,"
+        },
+        {
+          "text": "Gott Heiliger Geist,"
+        },
+        {
+          "text": "Heiligste Dreifaltigkeit, ein einiger Gott,"
+        }
+      ]
+    },
+    {
+      "title": "Göttlicher Ursprung",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, des eingeborenen Sohnes des ewigen Vaters,"
+        },
+        {
+          "text": "Blut Christi, des menschgewordenen Wortes Gottes,"
+        },
+        {
+          "text": "Blut Christi, des Neuen und Ewigen Bundes,"
+        }
+      ]
+    },
+    {
+      "title": "Das Leiden",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, in der Todesangst zur Erde rinnend,"
+        },
+        {
+          "text": "Blut Christi, bei der Geißelung strömend,"
+        },
+        {
+          "text": "Blut Christi, bei der Dornenkrönung fließend,"
+        },
+        {
+          "text": "Blut Christi, am Kreuze vergossen,"
+        }
+      ]
+    },
+    {
+      "title": "Erlösung",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, Preis unseres Heiles,"
+        },
+        {
+          "text": "Blut Christi, ohne das es keine Vergebung gibt,"
+        },
+        {
+          "text": "Blut Christi, eucharistischer Trank und Reinigung der Seelen,"
+        }
+      ]
+    },
+    {
+      "title": "Macht und Heiligkeit",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, Strom der Barmherzigkeit,"
+        },
+        {
+          "text": "Blut Christi, Überwinder der bösen Geister,"
+        },
+        {
+          "text": "Blut Christi, Starkmut der Märtyrer,"
+        },
+        {
+          "text": "Blut Christi, Kraft der Bekenner,"
+        }
+      ]
+    },
+    {
+      "title": "Schutz",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, Quell der Jungfräulichkeit,"
+        },
+        {
+          "text": "Blut Christi, Hilfe der Gefährdeten,"
+        },
+        {
+          "text": "Blut Christi, Erleichterung der Bedrückten,"
+        },
+        {
+          "text": "Blut Christi, Trost in Trauer,"
+        }
+      ]
+    },
+    {
+      "title": "Hoffnung und Herrlichkeit",
+      "type": "petition",
+      "response": "rette uns.",
+      "invocations": [
+        {
+          "text": "Blut Christi, Hoffnung der Büßer,"
+        },
+        {
+          "text": "Blut Christi, Tröstung der Sterbenden,"
+        },
+        {
+          "text": "Blut Christi, Friede und Milde der Herzen,"
+        },
+        {
+          "text": "Blut Christi, Unterpfand des ewigen Lebens,"
+        },
+        {
+          "text": "Blut Christi, Befreiung der Seelen aus dem Fegfeuer,"
+        },
+        {
+          "text": "Blut Christi, aller Ehre und Herrlichkeit überaus würdig,"
+        }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "verschone uns, o Herr."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erhöre uns, o Herr."
+        },
+        {
+          "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,",
+          "response": "erbarme dich unser."
+        }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Du hast uns erlöst, o Herr, durch dein Blut.",
+          "response": "Und hast uns für unsern Gott zu einem Königreich gemacht."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "id": "sacredHeart",
+  "title": "Litanei vom Heiligsten Herzen Jesu",
+  "subtitle": "Andacht zum Herzen unseres Herrn",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Kreuzzeichen",
+      "text": "Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen."
+    },
+    "closingPrayer": {
+      "title": "Gebet",
+      "text": "Allmächtiger, ewiger Gott, schau auf das Herz deines geliebten Sohnes und auf den Lobpreis und die Genugtuung, die er dir für die Sünder dargebracht hat. Gewähre gnädig deine Verzeihung denen, die um dein Erbarmen flehen, im Namen deines Sohnes Jesus Christus, der mit dir lebt und herrscht in Ewigkeit. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, erbarme dich.", "response": "Christus, erbarme dich." },
+        { "text": "Herr, erbarme dich.", "response": "Herr, erbarme dich." },
+        { "text": "Christus, höre uns.", "response": "Christus, erhöre uns." }
+      ]
+    },
+    {
+      "title": "Heilige Dreifaltigkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Gott Vater im Himmel," },
+        { "text": "Gott Sohn, Erlöser der Welt," },
+        { "text": "Gott Heiliger Geist," },
+        { "text": "Heiligste Dreifaltigkeit, ein einiger Gott," }
+      ]
+    },
+    {
+      "title": "Göttliche Natur",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, des Sohnes des ewigen Vaters," },
+        { "text": "Herz Jesu, im Schoß der Jungfrau Maria vom Heiligen Geist gebildet," },
+        { "text": "Herz Jesu, mit dem Worte Gottes wesenhaft vereinigt," },
+        { "text": "Herz Jesu, von unendlicher Majestät," },
+        { "text": "Herz Jesu, du heiliger Tempel Gottes," },
+        { "text": "Herz Jesu, du Zelt des Allerhöchsten," },
+        { "text": "Herz Jesu, du Haus Gottes und Pforte des Himmels," }
+      ]
+    },
+    {
+      "title": "Liebe und Tugend",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, du Feuerherd der Liebe," },
+        { "text": "Herz Jesu, du Wohnstatt der Gerechtigkeit und Liebe," },
+        { "text": "Herz Jesu, voll Güte und Liebe," },
+        { "text": "Herz Jesu, du Abgrund aller Tugenden," },
+        { "text": "Herz Jesu, würdig allen Lobes," }
+      ]
+    },
+    {
+      "title": "Weisheit und Herrlichkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, du König und Mitte aller Herzen," },
+        { "text": "Herz Jesu, in dem alle Schätze der Weisheit und Erkenntnis sind," },
+        { "text": "Herz Jesu, in dem die ganze Fülle der Gottheit wohnt," },
+        { "text": "Herz Jesu, an dem der Vater sein Wohlgefallen hat," },
+        { "text": "Herz Jesu, aus dessen Fülle wir alle empfangen haben," }
+      ]
+    },
+    {
+      "title": "Barmherzigkeit und Heiligkeit",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, du Sehnsucht der ewigen Hügel," },
+        { "text": "Herz Jesu, geduldig und von großem Erbarmen," },
+        { "text": "Herz Jesu, reich für alle, die dich anrufen," },
+        { "text": "Herz Jesu, du Quelle des Lebens und der Heiligkeit," },
+        { "text": "Herz Jesu, du Sühne für unsere Sünden," }
+      ]
+    },
+    {
+      "title": "Leiden",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, mit Schmach gesättigt," },
+        { "text": "Herz Jesu, zermalmt um unserer Sünden willen," },
+        { "text": "Herz Jesu, gehorsam bis zum Tod," },
+        { "text": "Herz Jesu, von der Lanze durchbohrt," }
+      ]
+    },
+    {
+      "title": "Leben und Heil",
+      "type": "petition",
+      "response": "erbarme dich unser.",
+      "invocations": [
+        { "text": "Herz Jesu, du Quelle allen Trostes," },
+        { "text": "Herz Jesu, unser Leben und unsere Auferstehung," },
+        { "text": "Herz Jesu, unser Friede und unsere Versöhnung," },
+        { "text": "Herz Jesu, du Opferlamm für die Sünder," },
+        { "text": "Herz Jesu, du Rettung aller, die auf dich hoffen," },
+        { "text": "Herz Jesu, du Hoffnung aller, die in dir sterben," },
+        { "text": "Herz Jesu, du Wonne aller Heiligen," }
+      ]
+    },
+    {
+      "title": "Lamm Gottes",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "verschone uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erhöre uns, o Herr." },
+        { "text": "Lamm Gottes, du nimmst hinweg die Sünden der Welt,", "response": "erbarme dich unser." }
+      ]
+    },
+    {
+      "title": "Versikel",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Jesus, sanftmütig und demütig von Herzen,", "response": "Bilde unser Herz nach deinem Herzen." }
+      ]
+    }
+  ]
+}
