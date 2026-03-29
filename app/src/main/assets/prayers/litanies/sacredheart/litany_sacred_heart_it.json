@@ -1,0 +1,129 @@
+{
+  "id": "sacredHeart",
+  "title": "Litanie del Sacro Cuore di Gesù",
+  "subtitle": "Devozione al Cuore di Nostro Signore",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre e del Figlio e dello Spirito Santo. Amen."
+    },
+    "closingPrayer": {
+      "title": "Orazione",
+      "text": "O Dio onnipotente ed eterno, guarda al Cuore del tuo dilettissimo Figlio e alle lodi e alle soddisfazioni che egli ti offre a nome dei peccatori; e a quanti implorano la tua misericordia, concedi benigno il perdono, nel nome del medesimo Figlio tuo Gesù Cristo, che con te vive e regna nei secoli dei secoli. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, pietà.", "response": "Cristo, pietà." },
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, ascoltaci.", "response": "Cristo, esaudiscici." }
+      ]
+    },
+    {
+      "title": "Santissima Trinità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Padre celeste, che sei Dio," },
+        { "text": "Figlio, Redentore del mondo, che sei Dio," },
+        { "text": "Spirito Santo, che sei Dio," },
+        { "text": "Santa Trinità, unico Dio," }
+      ]
+    },
+    {
+      "title": "Natura divina",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, Figlio dell'eterno Padre," },
+        { "text": "Cuore di Gesù, formato dallo Spirito Santo nel seno della Vergine Maria," },
+        { "text": "Cuore di Gesù, unito alla Persona del Verbo di Dio," },
+        { "text": "Cuore di Gesù, maestà infinita," },
+        { "text": "Cuore di Gesù, tempio santo di Dio," },
+        { "text": "Cuore di Gesù, tabernacolo dell'Altissimo," },
+        { "text": "Cuore di Gesù, casa di Dio e porta del cielo," }
+      ]
+    },
+    {
+      "title": "Amore e virtù",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, fornace ardente di carità," },
+        { "text": "Cuore di Gesù, sede di giustizia e di amore," },
+        { "text": "Cuore di Gesù, pieno di bontà e di amore," },
+        { "text": "Cuore di Gesù, abisso di ogni virtù," },
+        { "text": "Cuore di Gesù, degnissimo di ogni lode," }
+      ]
+    },
+    {
+      "title": "Sapienza e gloria",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, re e centro di tutti i cuori," },
+        { "text": "Cuore di Gesù, in cui sono tutti i tesori della sapienza e della scienza," },
+        { "text": "Cuore di Gesù, in cui abita tutta la pienezza della divinità," },
+        { "text": "Cuore di Gesù, nel quale il Padre si è compiaciuto," },
+        { "text": "Cuore di Gesù, dalla cui pienezza noi tutti abbiamo ricevuto," }
+      ]
+    },
+    {
+      "title": "Misericordia e santità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, desiderio dei colli eterni," },
+        { "text": "Cuore di Gesù, paziente e misericordioso," },
+        { "text": "Cuore di Gesù, generoso con tutti quelli che ti invocano," },
+        { "text": "Cuore di Gesù, fonte di vita e di santità," },
+        { "text": "Cuore di Gesù, propiziazione per i nostri peccati," }
+      ]
+    },
+    {
+      "title": "Sofferenza",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, colmato d'insulti," },
+        { "text": "Cuore di Gesù, spezzato per i nostri peccati," },
+        { "text": "Cuore di Gesù, obbediente fino alla morte," },
+        { "text": "Cuore di Gesù, trafitto dalla lancia," }
+      ]
+    },
+    {
+      "title": "Vita e salvezza",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Cuore di Gesù, fonte di ogni consolazione," },
+        { "text": "Cuore di Gesù, vita e risurrezione nostra," },
+        { "text": "Cuore di Gesù, pace e riconciliazione nostra," },
+        { "text": "Cuore di Gesù, vittima dei peccatori," },
+        { "text": "Cuore di Gesù, salvezza di chi spera in te," },
+        { "text": "Cuore di Gesù, speranza di chi muore in te," },
+        { "text": "Cuore di Gesù, delizia di tutti i santi," }
+      ]
+    },
+    {
+      "title": "Agnello di Dio",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "perdonaci, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "esaudiscici, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "abbi pietà di noi." }
+      ]
+    },
+    {
+      "title": "Versetto",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Gesù, mite e umile di cuore,", "response": "Rendi il nostro cuore simile al tuo." }
+      ]
+    }
+  ]
+}

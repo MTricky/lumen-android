@@ -1,0 +1,103 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre, e del Figlio, e dello Spirito Santo. Amen."
+    },
+    "introductoryPrayer": {
+      "title": "Preghiera Introduttiva",
+      "text": "Mio Dio, Ti offro questo Rosario per la Tua gloria, affinché possa onorare la Tua Santa Madre, la Beata Vergine, e condividere e meditare le sue sofferenze. Ti supplico umilmente di darmi un vero pentimento per tutti i miei peccati. Dammi saggezza e umiltà, affinché possa ricevere tutte le indulgenze contenute in questa preghiera."
+    },
+    "actOfContrition": {
+      "title": "Atto di Dolore",
+      "text": "Mio Dio, mi pento e mi dolgo con tutto il cuore dei miei peccati, perché peccando ho meritato i Tuoi castighi e molto più perché ho offeso Te, infinitamente buono e degno di essere amato sopra ogni cosa. Propongo con il Tuo santo aiuto di non offenderTi mai più e di fuggire le occasioni prossime di peccato. Signore, misericordia, perdonami. Amen."
+    },
+    "ourFather": {
+      "title": "Padre Nostro",
+      "text": "Padre nostro, che sei nei cieli, sia santificato il tuo nome, venga il tuo regno, sia fatta la tua volontà, come in cielo così in terra. Dacci oggi il nostro pane quotidiano, e rimetti a noi i nostri debiti come noi li rimettiamo ai nostri debitori, e non ci indurre in tentazione, ma liberaci dal male. Amen."
+    },
+    "hailMary": {
+      "title": "Ave Maria",
+      "text": "Ave Maria, piena di grazia, il Signore è con te. Tu sei benedetta fra le donne e benedetto è il frutto del tuo seno, Gesù. Santa Maria, Madre di Dio, prega per noi peccatori, adesso e nell'ora della nostra morte. Amen."
+    },
+    "gloryBe": {
+      "title": "Gloria al Padre",
+      "text": "Gloria al Padre, e al Figlio, e allo Spirito Santo. Come era nel principio, e ora e sempre, nei secoli dei secoli. Amen."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Madre Misericordiosa",
+      "text": "Madre Misericordiosa, ricordaci sempre i Dolori del tuo Figlio, Gesù."
+    },
+    "closingPrayer": {
+      "title": "Preghiera Finale",
+      "text": "Regina dei Martiri, il tuo cuore ha sofferto così tanto. Ti prego, per i meriti delle lacrime che hai versato in questi terribili e dolorosi momenti, di ottenere per me e per tutti i peccatori del mondo la grazia di una completa sincerità e pentimento. Amen."
+    },
+    "finalInvocation": {
+      "title": "Invocazione Finale",
+      "text": "Maria, che fosti concepita senza peccato e che hai sofferto per noi, prega per noi."
+    },
+    "versicle": {
+      "title": "Versetto",
+      "text": "Prega per noi, o Vergine Addoloratissima."
+    },
+    "response": {
+      "title": "Risposta",
+      "text": "Affinché siamo fatti degni delle promesse di Cristo."
+    },
+    "concludingPrayer": {
+      "title": "Preghiera Conclusiva",
+      "text": "Ti preghiamo, Signore Gesù Cristo, che ora e nell'ora della nostra morte la Beata Vergine Maria, tua Madre, interceda per noi davanti al trono della tua misericordia, lei la cui santissima anima fu trafitta da una spada di dolore nell'ora della tua amara Passione. Per te, Gesù Cristo, Salvatore del mondo, che con il Padre e lo Spirito Santo vivi e regni nei secoli dei secoli. Amen."
+    }
+  },
+  "sorrows": [
+    {
+      "title": "Il Primo Dolore",
+      "name": "La Profezia di Simeone",
+      "scripture": "Luca 2,34-35",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, nell'afflizione del tuo tenero cuore alla profezia del santo e anziano Simeone. Cara Madre, per il tuo cuore così afflitto, ottienimi la virtù dell'umiltà e il dono del santo timore di Dio.",
+      "fruit": "Umiltà e il dono del santo timore di Dio"
+    },
+    {
+      "title": "Il Secondo Dolore",
+      "name": "La Fuga in Egitto",
+      "scripture": "Matteo 2,13-15",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, nell'angoscia del tuo cuore amorosissimo durante la fuga in Egitto e il tuo soggiorno là. Cara Madre, per il tuo cuore così turbato, ottienimi la virtù della generosità, specialmente verso i poveri, e il dono della pietà.",
+      "fruit": "Generosità verso i poveri e il dono della pietà"
+    },
+    {
+      "title": "Il Terzo Dolore",
+      "name": "La Perdita di Gesù Bambino nel Tempio",
+      "scripture": "Luca 2,41-50",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, in quelle ansie che provarono il tuo cuore turbato per la perdita del tuo caro Gesù. Cara Madre, per il tuo cuore così pieno di angoscia, ottienimi la virtù della castità e il dono della scienza.",
+      "fruit": "Castità e il dono della scienza"
+    },
+    {
+      "title": "Il Quarto Dolore",
+      "name": "Maria Incontra Gesù che Porta la Croce",
+      "scripture": "Luca 23,27-31",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, nella costernazione del tuo cuore nell'incontrare Gesù mentre portava la sua Croce. Cara Madre, per il tuo cuore così turbato, ottienimi la virtù della pazienza e il dono della fortezza.",
+      "fruit": "Pazienza e il dono della fortezza"
+    },
+    {
+      "title": "Il Quinto Dolore",
+      "name": "La Crocifissione e Morte di Gesù",
+      "scripture": "Giovanni 19,25-30",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, nel martirio che il tuo cuore generoso sopportò stando presso Gesù nella sua agonia. Cara Madre, per il tuo cuore afflitto, ottienimi la virtù della temperanza e il dono del consiglio.",
+      "fruit": "Temperanza e il dono del consiglio"
+    },
+    {
+      "title": "Il Sesto Dolore",
+      "name": "Maria Riceve il Corpo di Gesù",
+      "scripture": "Giovanni 19,38-40",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, nella ferita del tuo cuore compassionevole, quando il costato di Gesù fu trafitto dalla lancia e il suo corpo fu deposto dalla Croce. Cara Madre, per il tuo cuore così trafitto, ottienimi la virtù della carità fraterna e il dono dell'intelletto.",
+      "fruit": "Carità fraterna e il dono dell'intelletto"
+    },
+    {
+      "title": "Il Settimo Dolore",
+      "name": "La Sepoltura di Gesù",
+      "scripture": "Giovanni 19,41-42",
+      "meditation": "Mi addoloro per te, o Maria addoloratissima, per le pene che straziarono il tuo cuore amorosissimo alla sepoltura di Gesù. Cara Madre, per il tuo cuore immerso nell'amarezza della desolazione, ottienimi la virtù della diligenza e il dono della sapienza.",
+      "fruit": "Diligenza e il dono della sapienza"
+    }
+  ]
+}

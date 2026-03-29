@@ -1,0 +1,97 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre, e del Figlio, e dello Spirito Santo. Amen."
+    },
+    "openingPrayer": {
+      "title": "Preghiera di Apertura",
+      "text": "O Dio, vieni a salvarmi. Signore, vieni presto in mio aiuto. Gloria al Padre, e al Figlio, e allo Spirito Santo. Come era nel principio, e ora e sempre, nei secoli dei secoli. Amen."
+    },
+    "ourFather": {
+      "title": "Padre Nostro",
+      "text": "Padre nostro, che sei nei cieli, sia santificato il tuo nome, venga il tuo regno, sia fatta la tua volontà, come in cielo così in terra. Dacci oggi il nostro pane quotidiano, e rimetti a noi i nostri debiti come noi li rimettiamo ai nostri debitori, e non ci indurre in tentazione, ma liberaci dal male. Amen."
+    },
+    "hailMary": {
+      "title": "Ave Maria",
+      "text": "Ave Maria, piena di grazia, il Signore è con te. Tu sei benedetta fra le donne e benedetto è il frutto del tuo seno, Gesù. Santa Maria, Madre di Dio, prega per noi peccatori, adesso e nell'ora della nostra morte. Amen."
+    },
+    "gloryBe": {
+      "title": "Gloria al Padre",
+      "text": "Gloria al Padre, e al Figlio, e allo Spirito Santo. Come era nel principio, e ora e sempre, nei secoli dei secoli. Amen."
+    },
+    "closingPrayer": {
+      "title": "Preghiera Finale",
+      "text": "O glorioso principe San Michele, capo e comandante degli eserciti celesti, custode delle anime, vincitore degli spiriti ribelli, servo nella casa del Re Divino e nostro ammirabile conduttore, tu che risplendi di eccellenza e di sovrumana virtù, liberaci da ogni male, noi che ci rivolgiamo a te con fiducia, e rendici capaci con la tua graziosa protezione di servire Dio sempre più fedelmente ogni giorno."
+    },
+    "finalPrayer": {
+      "title": "Preghiera Conclusiva",
+      "text": "Dio Onnipotente ed Eterno, che per un prodigio di bontà e per il misericordioso desiderio della salvezza di tutti gli uomini, hai costituito il gloriosissimo Arcangelo San Michele Principe della Tua Chiesa, rendici degni, Ti preghiamo, di essere liberati da tutti i nostri nemici, affinché nessuno di essi ci molesti nell'ora della morte, ma che da lui siamo condotti alla Tua Presenza. Questo chiediamo per i meriti di Gesù Cristo Nostro Signore. Amen."
+    }
+  },
+  "salutations": [
+    {
+      "title": "Prima Salutazione",
+      "choir": "Serafini",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste dei Serafini, il Signore ci renda degni di ardere del fuoco della perfetta carità. Amen."
+    },
+    {
+      "title": "Seconda Salutazione",
+      "choir": "Cherubini",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste dei Cherubini, il Signore ci conceda la grazia di abbandonare le vie del peccato e correre nei sentieri della perfezione cristiana. Amen."
+    },
+    {
+      "title": "Terza Salutazione",
+      "choir": "Troni",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste dei Troni, il Signore infonda nei nostri cuori uno spirito vero e sincero di umiltà. Amen."
+    },
+    {
+      "title": "Quarta Salutazione",
+      "choir": "Dominazioni",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste delle Dominazioni, il Signore ci dia la grazia di governare i nostri sensi e vincere ogni passione disordinata. Amen."
+    },
+    {
+      "title": "Quinta Salutazione",
+      "choir": "Potestà",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste delle Potestà, il Signore protegga le nostre anime contro le insidie e le tentazioni del demonio. Amen."
+    },
+    {
+      "title": "Sesta Salutazione",
+      "choir": "Virtù",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste delle Virtù, il Signore ci preservi dal male e non ci lasci cadere in tentazione. Amen."
+    },
+    {
+      "title": "Settima Salutazione",
+      "choir": "Principati",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste dei Principati, Dio riempia le nostre anime di un vero spirito di obbedienza. Amen."
+    },
+    {
+      "title": "Ottava Salutazione",
+      "choir": "Arcangeli",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste degli Arcangeli, il Signore ci doni la perseveranza nella fede e in tutte le buone opere affinché possiamo raggiungere la gloria del Cielo. Amen."
+    },
+    {
+      "title": "Nona Salutazione",
+      "choir": "Angeli",
+      "salutation": "Per l'intercessione di San Michele e del Coro celeste degli Angeli, il Signore ci conceda di essere protetti da loro in questa vita mortale e condotti nella vita futura al Cielo. Amen."
+    }
+  ],
+  "archangelPrayers": [
+    {
+      "title": "In onore di San Michele",
+      "instruction": "Un Padre Nostro"
+    },
+    {
+      "title": "In onore di San Gabriele",
+      "instruction": "Un Padre Nostro"
+    },
+    {
+      "title": "In onore di San Raffaele",
+      "instruction": "Un Padre Nostro"
+    },
+    {
+      "title": "In onore del nostro Angelo Custode",
+      "instruction": "Un Padre Nostro"
+    }
+  ]
+}

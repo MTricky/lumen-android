@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Litanie di San Giuseppe",
+  "subtitle": "Custode della Santa Famiglia",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre e del Figlio e dello Spirito Santo. Amen."
+    },
+    "closingPrayer": {
+      "title": "Orazione",
+      "text": "O Dio, che con ineffabile provvidenza ti degnasti di eleggere il beato Giuseppe a sposo della tua santissima Madre, concedi che, venerandolo quale protettore in terra, meritiamo di averlo intercessore nel cielo. Tu che vivi e regni nei secoli dei secoli. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, pietà.", "response": "Cristo, pietà." },
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, ascoltaci.", "response": "Cristo, esaudiscici." }
+      ]
+    },
+    {
+      "title": "Santissima Trinità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Padre del cielo, che sei Dio," },
+        { "text": "Figlio, Redentore del mondo, che sei Dio," },
+        { "text": "Spirito Santo, che sei Dio," },
+        { "text": "Santa Trinità, unico Dio," }
+      ]
+    },
+    {
+      "title": "Santa Maria",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Santa Maria," },
+        { "text": "San Giuseppe," }
+      ]
+    },
+    {
+      "title": "Titoli di San Giuseppe",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Gloriosa discendenza di Davide," },
+        { "text": "Splendore dei Patriarchi," },
+        { "text": "Sposo della Madre di Dio," },
+        { "text": "Custode del Redentore," },
+        { "text": "Custode purissimo della Vergine," },
+        { "text": "Tu che nutristi il Figlio di Dio," },
+        { "text": "Solerte difensore di Cristo," },
+        { "text": "Servo di Cristo," },
+        { "text": "Ministro della salvezza," },
+        { "text": "Capo della santa Famiglia," }
+      ]
+    },
+    {
+      "title": "Virtù",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Giuseppe giustissimo," },
+        { "text": "Giuseppe castissimo," },
+        { "text": "Giuseppe prudentissimo," },
+        { "text": "Giuseppe fortissimo," },
+        { "text": "Giuseppe obbedientissimo," },
+        { "text": "Giuseppe fedelissimo," }
+      ]
+    },
+    {
+      "title": "Titoli d'onore",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Specchio di pazienza," },
+        { "text": "Amante della povertà," },
+        { "text": "Modello dei lavoratori," },
+        { "text": "Decoro della vita domestica," },
+        { "text": "Custode dei vergini," },
+        { "text": "Sostegno delle famiglie," }
+      ]
+    },
+    {
+      "title": "Patronati",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Sostegno nelle difficoltà," },
+        { "text": "Conforto dei miseri," },
+        { "text": "Patrono degli esuli," },
+        { "text": "Patrono degli afflitti," },
+        { "text": "Patrono dei poveri," },
+        { "text": "Speranza degli infermi," },
+        { "text": "Patrono dei moribondi," },
+        { "text": "Terrore dei demòni," },
+        { "text": "Protettore della santa Chiesa," }
+      ]
+    },
+    {
+      "title": "Agnello di Dio",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "perdonaci, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "esaudiscici, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "abbi pietà di noi." }
+      ]
+    },
+    {
+      "title": "Versetto",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Lo ha costituito padrone della sua casa.", "response": "E principe sopra ogni suo possedimento." }
+      ]
+    }
+  ]
+}

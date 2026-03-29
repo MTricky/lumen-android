@@ -1,0 +1,326 @@
+{
+  "id": "holyName",
+  "title": "Litanie del Santissimo Nome di Gesù",
+  "subtitle": "In lode del Santissimo Nome",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre e del Figlio e dello Spirito Santo. Amen."
+    },
+    "closingPrayer": {
+      "title": "Orazione",
+      "text": "Signore Gesù Cristo, che hai detto: «Chiedete e otterrete; cercate e troverete; bussate e vi sarà aperto», ascolta benigno le nostre suppliche, e concedici la grazia del tuo divino amore, affinché ti amiamo con tutto il cuore, in tutte le nostre parole e azioni, e non cessiamo mai di lodarti. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Signore, pietà.",
+          "response": "Signore, pietà."
+        },
+        {
+          "text": "Cristo, pietà.",
+          "response": "Cristo, pietà."
+        },
+        {
+          "text": "Signore, pietà.",
+          "response": "Signore, pietà."
+        },
+        {
+          "text": "Gesù, ascoltaci.",
+          "response": "Gesù, esaudiscici."
+        }
+      ]
+    },
+    {
+      "title": "Santissima Trinità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Padre celeste, che sei Dio,"
+        },
+        {
+          "text": "Figlio, Redentore del mondo, che sei Dio,"
+        },
+        {
+          "text": "Spirito Santo, che sei Dio,"
+        },
+        {
+          "text": "Santa Trinità, unico Dio,"
+        }
+      ]
+    },
+    {
+      "title": "Gloria divina",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Gesù, Figlio del Dio vivo,"
+        },
+        {
+          "text": "Gesù, splendore del Padre,"
+        },
+        {
+          "text": "Gesù, fulgore di luce eterna,"
+        },
+        {
+          "text": "Gesù, Re della gloria,"
+        },
+        {
+          "text": "Gesù, sole di giustizia,"
+        },
+        {
+          "text": "Gesù, Figlio della Vergine Maria,"
+        }
+      ]
+    },
+    {
+      "title": "Attributi divini",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Gesù, amabilissimo,"
+        },
+        {
+          "text": "Gesù, ammirabile,"
+        },
+        {
+          "text": "Gesù, Dio forte,"
+        },
+        {
+          "text": "Gesù, Padre del secolo futuro,"
+        },
+        {
+          "text": "Gesù, angelo del gran consiglio,"
+        },
+        {
+          "text": "Gesù, onnipotente,"
+        },
+        {
+          "text": "Gesù, pazientissimo,"
+        },
+        {
+          "text": "Gesù, obbedientissimo,"
+        },
+        {
+          "text": "Gesù, mite e umile di cuore,"
+        }
+      ]
+    },
+    {
+      "title": "Amore e virtù",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Gesù, amante della castità,"
+        },
+        {
+          "text": "Gesù, che ci ami,"
+        },
+        {
+          "text": "Gesù, Dio della pace,"
+        },
+        {
+          "text": "Gesù, autore della vita,"
+        },
+        {
+          "text": "Gesù, modello delle virtù,"
+        },
+        {
+          "text": "Gesù, zelante delle anime,"
+        },
+        {
+          "text": "Gesù, Dio nostro,"
+        },
+        {
+          "text": "Gesù, rifugio nostro,"
+        }
+      ]
+    },
+    {
+      "title": "Misericordia e luce",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Gesù, padre dei poveri,"
+        },
+        {
+          "text": "Gesù, tesoro dei fedeli,"
+        },
+        {
+          "text": "Gesù, buon Pastore,"
+        },
+        {
+          "text": "Gesù, luce vera,"
+        },
+        {
+          "text": "Gesù, sapienza eterna,"
+        },
+        {
+          "text": "Gesù, bontà infinita,"
+        },
+        {
+          "text": "Gesù, via e vita nostra,"
+        }
+      ]
+    },
+    {
+      "title": "Gloria dei Santi",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        {
+          "text": "Gesù, gioia degli Angeli,"
+        },
+        {
+          "text": "Gesù, Re dei Patriarchi,"
+        },
+        {
+          "text": "Gesù, maestro degli Apostoli,"
+        },
+        {
+          "text": "Gesù, dottore degli Evangelisti,"
+        },
+        {
+          "text": "Gesù, fortezza dei Martiri,"
+        },
+        {
+          "text": "Gesù, luce dei Confessori,"
+        },
+        {
+          "text": "Gesù, purezza delle Vergini,"
+        },
+        {
+          "text": "Gesù, corona di tutti i Santi,"
+        }
+      ]
+    },
+    {
+      "title": "Misericordia",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Siateci propizio,",
+          "response": "perdonateci, o Gesù."
+        },
+        {
+          "text": "Siateci propizio,",
+          "response": "esauditeci, o Gesù."
+        }
+      ]
+    },
+    {
+      "title": "Liberazione",
+      "type": "petition",
+      "response": "liberaci, o Gesù.",
+      "invocations": [
+        {
+          "text": "Da ogni male,"
+        },
+        {
+          "text": "Da ogni peccato,"
+        },
+        {
+          "text": "Dalla tua ira,"
+        },
+        {
+          "text": "Dalle insidie del demonio,"
+        },
+        {
+          "text": "Dallo spirito di fornicazione,"
+        },
+        {
+          "text": "Dalla morte eterna,"
+        },
+        {
+          "text": "Dal disprezzo delle tue ispirazioni,"
+        }
+      ]
+    },
+    {
+      "title": "Per i Misteri di Cristo",
+      "type": "petition",
+      "response": "liberaci, o Gesù.",
+      "invocations": [
+        {
+          "text": "Per il mistero della tua santa Incarnazione,"
+        },
+        {
+          "text": "Per la tua Natività,"
+        },
+        {
+          "text": "Per la tua Infanzia,"
+        },
+        {
+          "text": "Per la tua vita tutta divina,"
+        },
+        {
+          "text": "Per le tue fatiche,"
+        },
+        {
+          "text": "Per la tua agonia e Passione,"
+        },
+        {
+          "text": "Per la tua Croce e il tuo abbandono,"
+        },
+        {
+          "text": "Per i tuoi languori,"
+        },
+        {
+          "text": "Per la tua Morte e Sepoltura,"
+        },
+        {
+          "text": "Per la tua Risurrezione,"
+        },
+        {
+          "text": "Per la tua Ascensione,"
+        },
+        {
+          "text": "Per l'istituzione della Santissima Eucaristia,"
+        },
+        {
+          "text": "Per le tue gioie,"
+        },
+        {
+          "text": "Per la tua gloria,"
+        }
+      ]
+    },
+    {
+      "title": "Agnello di Dio",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Agnello di Dio, che togli i peccati del mondo,",
+          "response": "perdonaci, o Gesù."
+        },
+        {
+          "text": "Agnello di Dio, che togli i peccati del mondo,",
+          "response": "esaudiscici, o Gesù."
+        },
+        {
+          "text": "Agnello di Dio, che togli i peccati del mondo,",
+          "response": "abbi pietà di noi."
+        }
+      ]
+    },
+    {
+      "title": "Versetto",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Gesù, ascoltaci.",
+          "response": "Gesù, esaudiscici."
+        }
+      ]
+    }
+  ]
+}

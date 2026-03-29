@@ -1,0 +1,62 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre, e del Figlio, e dello Spirito Santo. Amen."
+    },
+    "openingPrayer": {
+      "title": "Preghiera di Apertura",
+      "text": "Sei spirato, o Gesù, ma la sorgente della vita è sgorgata per le anime e si è aperto l'oceano della misericordia per il mondo intero. O Sorgente di Vita, imperscrutabile Divina Misericordia, avvolgi il mondo intero e riversati su di noi."
+    },
+    "ourFather": {
+      "title": "Padre Nostro",
+      "text": "Padre nostro, che sei nei cieli, sia santificato il tuo nome, venga il tuo regno, sia fatta la tua volontà, come in cielo così in terra. Dacci oggi il nostro pane quotidiano, e rimetti a noi i nostri debiti come noi li rimettiamo ai nostri debitori, e non ci indurre in tentazione, ma liberaci dal male. Amen."
+    },
+    "hailMary": {
+      "title": "Ave Maria",
+      "text": "Ave Maria, piena di grazia, il Signore è con te. Tu sei benedetta fra le donne e benedetto è il frutto del tuo seno, Gesù. Santa Maria, Madre di Dio, prega per noi peccatori, adesso e nell'ora della nostra morte. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Credo Apostolico",
+      "text": "Io credo in Dio, Padre onnipotente, Creatore del cielo e della terra. E in Gesù Cristo, suo unico Figlio, nostro Signore, il quale fu concepito di Spirito Santo, nacque da Maria Vergine, patì sotto Ponzio Pilato, fu crocifisso, morì e fu sepolto; discese agli inferi; il terzo giorno risuscitò da morte; salì al cielo, siede alla destra di Dio Padre onnipotente: di là verrà a giudicare i vivi e i morti. Credo nello Spirito Santo, la santa Chiesa cattolica, la comunione dei santi, la remissione dei peccati, la risurrezione della carne, la vita eterna. Amen."
+    },
+    "eternalFather": {
+      "title": "Eterno Padre",
+      "text": "Eterno Padre, Ti offro il Corpo e il Sangue, l'Anima e la Divinità del Tuo dilettissimo Figlio e Nostro Signore Gesù Cristo, in espiazione dei nostri peccati e di quelli del mondo intero."
+    },
+    "forTheSake": {
+      "title": "Per la Sua Dolorosa Passione",
+      "text": "Per la Sua dolorosa Passione, abbi misericordia di noi e del mondo intero."
+    },
+    "holyGod": {
+      "title": "Santo Dio",
+      "text": "Santo Dio, Santo Forte, Santo Immortale, abbi pietà di noi e del mondo intero."
+    },
+    "closingPrayer": {
+      "title": "Preghiera Finale",
+      "text": "Dio Eterno, la cui misericordia è infinita e il tesoro della compassione inesauribile, volgi a noi uno sguardo benigno e aumenta in noi la Tua misericordia, affinché nei momenti difficili non ci disperiamo né ci scoraggiamo, ma con grande fiducia ci sottomettiamo alla Tua santa volontà, che è Amore e Misericordia stessa. Amen."
+    }
+  },
+  "decades": [
+    {
+      "title": "Prima Decina",
+      "meditation": ""
+    },
+    {
+      "title": "Seconda Decina",
+      "meditation": ""
+    },
+    {
+      "title": "Terza Decina",
+      "meditation": ""
+    },
+    {
+      "title": "Quarta Decina",
+      "meditation": ""
+    },
+    {
+      "title": "Quinta Decina",
+      "meditation": ""
+    }
+  ]
+}

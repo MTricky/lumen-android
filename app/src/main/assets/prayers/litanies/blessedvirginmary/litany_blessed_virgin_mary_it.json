@@ -1,0 +1,143 @@
+{
+  "id": "blessedVirginMary",
+  "title": "Litanie della Beata Vergine Maria",
+  "subtitle": "Litanie Lauretane",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre e del Figlio e dello Spirito Santo. Amen."
+    },
+    "closingPrayer": {
+      "title": "Orazione",
+      "text": "Concedi ai tuoi fedeli, Signore Dio nostro, di godere sempre la salute del corpo e dello spirito, e per la gloriosa intercessione della beata sempre Vergine Maria, liberaci dai mali presenti e guidaci alla gioia senza fine. Per Cristo nostro Signore. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, pietà.", "response": "Cristo, pietà." },
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, ascoltaci.", "response": "Cristo, esaudiscici." }
+      ]
+    },
+    {
+      "title": "Santissima Trinità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Padre del cielo, che sei Dio," },
+        { "text": "Figlio, Redentore del mondo, che sei Dio," },
+        { "text": "Spirito Santo, che sei Dio," },
+        { "text": "Santa Trinità, unico Dio," }
+      ]
+    },
+    {
+      "title": "Santa Maria",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Santa Maria," },
+        { "text": "Santa Madre di Dio," },
+        { "text": "Santa Vergine delle vergini," }
+      ]
+    },
+    {
+      "title": "Madre",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Madre di Cristo," },
+        { "text": "Madre della Chiesa," },
+        { "text": "Madre di misericordia," },
+        { "text": "Madre della divina grazia," },
+        { "text": "Madre della speranza," },
+        { "text": "Madre purissima," },
+        { "text": "Madre castissima," },
+        { "text": "Madre sempre vergine," },
+        { "text": "Madre immacolata," },
+        { "text": "Madre degna d'amore," },
+        { "text": "Madre ammirabile," },
+        { "text": "Madre del buon consiglio," },
+        { "text": "Madre del Creatore," },
+        { "text": "Madre del Salvatore," }
+      ]
+    },
+    {
+      "title": "Vergine",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Vergine prudentissima," },
+        { "text": "Vergine degna di onore," },
+        { "text": "Vergine degna di lode," },
+        { "text": "Vergine potente," },
+        { "text": "Vergine clemente," },
+        { "text": "Vergine fedele," }
+      ]
+    },
+    {
+      "title": "Titoli simbolici",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Specchio di giustizia," },
+        { "text": "Sede della sapienza," },
+        { "text": "Causa della nostra letizia," },
+        { "text": "Vaso spirituale," },
+        { "text": "Vaso degno di onore," },
+        { "text": "Vaso insigne di devozione," },
+        { "text": "Rosa mistica," },
+        { "text": "Torre di Davide," },
+        { "text": "Torre d'avorio," },
+        { "text": "Casa d'oro," },
+        { "text": "Arca dell'alleanza," },
+        { "text": "Porta del cielo," },
+        { "text": "Stella del mattino," },
+        { "text": "Salute degli infermi," },
+        { "text": "Rifugio dei peccatori," },
+        { "text": "Conforto dei migranti," },
+        { "text": "Consolatrice degli afflitti," },
+        { "text": "Aiuto dei cristiani," }
+      ]
+    },
+    {
+      "title": "Regina",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Regina degli Angeli," },
+        { "text": "Regina dei Patriarchi," },
+        { "text": "Regina dei Profeti," },
+        { "text": "Regina degli Apostoli," },
+        { "text": "Regina dei Martiri," },
+        { "text": "Regina dei Confessori," },
+        { "text": "Regina delle Vergini," },
+        { "text": "Regina di tutti i Santi," },
+        { "text": "Regina concepita senza peccato originale," },
+        { "text": "Regina assunta in cielo," },
+        { "text": "Regina del santissimo Rosario," },
+        { "text": "Regina della famiglia," },
+        { "text": "Regina della pace," }
+      ]
+    },
+    {
+      "title": "Agnello di Dio",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "perdonaci, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "esaudiscici, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "abbi pietà di noi." }
+      ]
+    },
+    {
+      "title": "Versetto",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Prega per noi, Santa Madre di Dio.", "response": "Perché siamo resi degni delle promesse di Cristo." }
+      ]
+    }
+  ]
+}

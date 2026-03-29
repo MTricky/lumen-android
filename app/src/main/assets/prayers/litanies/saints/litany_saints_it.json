@@ -1,0 +1,235 @@
+{
+  "id": "saints",
+  "title": "Litanie dei Santi",
+  "subtitle": "La Grande Intercessione della Chiesa",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Segno della Croce",
+      "text": "Nel nome del Padre e del Figlio e dello Spirito Santo. Amen."
+    },
+    "closingPrayer": {
+      "title": "Orazione",
+      "text": "O Dio, la cui gloria proclamano i beati cittadini del cielo, concedici, ti preghiamo, di ottenere per l'intercessione di tutti i tuoi Santi la tua abbondante misericordia. Per Cristo nostro Signore. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, pietà.", "response": "Cristo, pietà." },
+        { "text": "Signore, pietà.", "response": "Signore, pietà." },
+        { "text": "Cristo, ascoltaci.", "response": "Cristo, esaudiscici." }
+      ]
+    },
+    {
+      "title": "Santissima Trinità",
+      "type": "petition",
+      "response": "abbi pietà di noi.",
+      "invocations": [
+        { "text": "Padre celeste, che sei Dio," },
+        { "text": "Figlio, Redentore del mondo, che sei Dio," },
+        { "text": "Spirito Santo, che sei Dio," },
+        { "text": "Santa Trinità, unico Dio," }
+      ]
+    },
+    {
+      "title": "Santa Maria",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Santa Maria," },
+        { "text": "Santa Madre di Dio," },
+        { "text": "Santa Vergine delle vergini," }
+      ]
+    },
+    {
+      "title": "Angeli e Profeti",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "San Michele," },
+        { "text": "San Gabriele," },
+        { "text": "San Raffaele," },
+        { "text": "Tutti i santi Angeli e Arcangeli," },
+        { "text": "Tutti i santi ordini degli spiriti beati," },
+        { "text": "San Giovanni Battista," },
+        { "text": "San Giuseppe," },
+        { "text": "Tutti i santi Patriarchi e Profeti," }
+      ]
+    },
+    {
+      "title": "Apostoli ed Evangelisti",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "San Pietro," },
+        { "text": "San Paolo," },
+        { "text": "Sant'Andrea," },
+        { "text": "San Giacomo," },
+        { "text": "San Giovanni," },
+        { "text": "San Tommaso," },
+        { "text": "San Giacomo," },
+        { "text": "San Filippo," },
+        { "text": "San Bartolomeo," },
+        { "text": "San Matteo," },
+        { "text": "San Simone," },
+        { "text": "San Taddeo," },
+        { "text": "San Mattia," },
+        { "text": "San Barnaba," },
+        { "text": "San Luca," },
+        { "text": "San Marco," },
+        { "text": "Tutti i santi Apostoli ed Evangelisti," },
+        { "text": "Tutti i santi Discepoli del Signore," }
+      ]
+    },
+    {
+      "title": "Martiri",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Tutti i santi Innocenti," },
+        { "text": "Santo Stefano," },
+        { "text": "San Lorenzo," },
+        { "text": "San Vincenzo," },
+        { "text": "Santi Fabiano e Sebastiano," },
+        { "text": "Santi Giovanni e Paolo," },
+        { "text": "Santi Cosma e Damiano," },
+        { "text": "Santi Gervasio e Protasio," },
+        { "text": "Tutti i santi Martiri," }
+      ]
+    },
+    {
+      "title": "Vescovi e Dottori",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "San Silvestro," },
+        { "text": "San Gregorio," },
+        { "text": "Sant'Ambrogio," },
+        { "text": "Sant'Agostino," },
+        { "text": "San Girolamo," },
+        { "text": "San Martino," },
+        { "text": "San Nicola," },
+        { "text": "Tutti i santi Vescovi e Confessori," },
+        { "text": "Tutti i santi Dottori," }
+      ]
+    },
+    {
+      "title": "Sacerdoti e Religiosi",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Sant'Antonio," },
+        { "text": "San Benedetto," },
+        { "text": "San Bernardo," },
+        { "text": "San Domenico," },
+        { "text": "San Francesco," },
+        { "text": "Tutti i santi Sacerdoti e Leviti," },
+        { "text": "Tutti i santi Monaci ed Eremiti," }
+      ]
+    },
+    {
+      "title": "Sante Donne",
+      "type": "petition",
+      "response": "prega per noi.",
+      "invocations": [
+        { "text": "Santa Maria Maddalena," },
+        { "text": "Sant'Agata," },
+        { "text": "Santa Lucia," },
+        { "text": "Sant'Agnese," },
+        { "text": "Santa Cecilia," },
+        { "text": "Santa Caterina d'Alessandria," },
+        { "text": "Sant'Anastasia," },
+        { "text": "Tutte le sante Vergini e Vedove," },
+        { "text": "Tutti i Santi e le Sante di Dio," }
+      ]
+    },
+    {
+      "title": "Siateci propizio",
+      "type": "petition",
+      "response": "",
+      "invocations": [
+        { "text": "Siateci propizio,", "response": "perdonateci, o Signore." },
+        { "text": "Siateci propizio,", "response": "esauditeci, o Signore." }
+      ]
+    },
+    {
+      "title": "Liberazione",
+      "type": "petition",
+      "response": "liberaci, o Signore.",
+      "invocations": [
+        { "text": "Da ogni male," },
+        { "text": "Da ogni peccato," },
+        { "text": "Dalla tua ira," },
+        { "text": "Dalla morte improvvisa e imprevista," },
+        { "text": "Dalle insidie del demonio," },
+        { "text": "Dall'ira, dall'odio e da ogni cattiva volontà," },
+        { "text": "Dallo spirito di fornicazione," },
+        { "text": "Dal fulmine e dalla tempesta," },
+        { "text": "Dal flagello del terremoto," },
+        { "text": "Dalla peste, dalla fame e dalla guerra," },
+        { "text": "Dalla morte eterna," }
+      ]
+    },
+    {
+      "title": "Per i Misteri di Cristo",
+      "type": "petition",
+      "response": "liberaci, o Signore.",
+      "invocations": [
+        { "text": "Per il mistero della tua santa Incarnazione," },
+        { "text": "Per la tua Venuta," },
+        { "text": "Per la tua Natività," },
+        { "text": "Per il tuo Battesimo e il tuo santo digiuno," },
+        { "text": "Per la tua Croce e la tua Passione," },
+        { "text": "Per la tua Morte e Sepoltura," },
+        { "text": "Per la tua santa Risurrezione," },
+        { "text": "Per la tua mirabile Ascensione," },
+        { "text": "Per la venuta dello Spirito Santo Paraclito," },
+        { "text": "Nel giorno del giudizio," }
+      ]
+    },
+    {
+      "title": "Suppliche",
+      "type": "petition",
+      "response": "ti preghiamo, ascoltaci.",
+      "invocations": [
+        { "text": "Che ci perdoni," },
+        { "text": "Che ci faccia grazia," },
+        { "text": "Che ci conduca a vera penitenza," },
+        { "text": "Che governi e conservi la tua santa Chiesa," },
+        { "text": "Che conservi il Santo Padre e tutti gli ordini della Chiesa nella santa religione," },
+        { "text": "Che umili i nemici della santa Chiesa," },
+        { "text": "Che conceda la pace e la vera concordia ai re e ai principi cristiani," },
+        { "text": "Che conceda la pace e l'unità a tutto il popolo cristiano," },
+        { "text": "Che riconduca all'unità della Chiesa tutti coloro che si sono allontanati dalla verità," },
+        { "text": "Che illumini con la luce del Vangelo tutti gli infedeli," },
+        { "text": "Che ci rafforzi e ci conservi nel tuo santo servizio," },
+        { "text": "Che innalzi le nostre menti ai desideri celesti," },
+        { "text": "Che ricompensi con beni eterni tutti i nostri benefattori," },
+        { "text": "Che liberi le nostre anime e quelle dei nostri fratelli dalla dannazione eterna," },
+        { "text": "Che dia e conservi i frutti della terra," },
+        { "text": "Che conceda il riposo eterno a tutti i fedeli defunti," },
+        { "text": "Che ti degni di esaudirci," },
+        { "text": "Figlio di Dio," }
+      ]
+    },
+    {
+      "title": "Agnello di Dio",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "perdonaci, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "esaudiscici, o Signore." },
+        { "text": "Agnello di Dio, che togli i peccati del mondo,", "response": "abbi pietà di noi." }
+      ]
+    },
+    {
+      "title": "Versetto",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Cristo, ascoltaci.", "response": "Cristo, esaudiscici." }
+      ]
+    }
+  ]
+}
