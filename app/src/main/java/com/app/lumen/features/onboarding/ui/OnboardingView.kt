@@ -67,7 +67,6 @@ import com.app.lumen.features.onboarding.ui.steps.WelcomeStep
 import com.app.lumen.services.RemoteConfigManager
 import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.NearBlack
-import com.app.lumen.ui.theme.SoftGold
 import com.google.android.play.core.review.ReviewManagerFactory
 import kotlinx.coroutines.delay
 
