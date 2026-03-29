@@ -937,7 +937,7 @@ private fun BookCard(
                 Icon(
                     imageVector = Icons.Filled.Lock,
                     contentDescription = null,
-                    tint = SoftGold.copy(alpha = 0.7f),
+                    tint = SoftGold.copy(alpha = 0.6f),
                     modifier = Modifier.size(13.dp),
                 )
             }
@@ -945,14 +945,14 @@ private fun BookCard(
                 text = book.abbreviation,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = SoftGold.copy(alpha = if (isLocked) 0.7f else 1f),
+                color = SoftGold.copy(alpha = if (isLocked) 0.6f else 1f),
             )
         }
         Spacer(Modifier.height(4.dp))
         Text(
             text = book.name,
             fontSize = 13.sp,
-            color = Color.White.copy(alpha = if (isLocked) 0.55f else 0.7f),
+            color = Color.White.copy(alpha = if (isLocked) 0.45f else 0.7f),
         )
     }
 }
