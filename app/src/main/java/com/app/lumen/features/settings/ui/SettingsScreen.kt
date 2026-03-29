@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.text.format.Formatter
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -19,11 +22,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,6 +69,7 @@ fun SettingsScreen(
     val scrollState = rememberScrollState()
 
     var showPaywall by remember { mutableStateOf(false) }
+    var showShareDialog by remember { mutableStateOf(false) }
 
     // Bible font size state (synced with BibleReaderScreen prefs)
     val prefs = remember { context.getSharedPreferences(BIBLE_READER_PREFS, Context.MODE_PRIVATE) }
@@ -449,16 +457,7 @@ fun SettingsScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable {
-                        val sendIntent = Intent(Intent.ACTION_SEND).apply {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "https://play.google.com/store/apps/details?id=com.app.lumen"
-                            )
-                            type = "text/plain"
-                        }
-                        context.startActivity(Intent.createChooser(sendIntent, null))
-                    }
+                    .clickable { showShareDialog = true }
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -588,6 +587,21 @@ fun SettingsScreen(
         PaywallSheet(onDismiss = { showPaywall = false })
     }
 
+    // ── Share App Dialog ─────────────────────────────────────────
+    if (showShareDialog) {
+        ShareAppDialog(
+            onPlatformSelected = { url ->
+                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                    putExtra(Intent.EXTRA_TEXT, url)
+                    type = "text/plain"
+                }
+                context.startActivity(Intent.createChooser(sendIntent, null))
+                showShareDialog = false
+            },
+            onDismiss = { showShareDialog = false },
+        )
+    }
+
     // ── Visual Style Picker Dialog ────────────────────────────────
     if (showVisualStylePicker) {
         VisualStylePickerDialog(
@@ -678,6 +692,143 @@ private fun FooterText(text: String) {
 }
 
 // ── Dialogs ──────────────────────────────────────────────────────
+
+private const val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.bajpro.lumen"
+private const val APP_STORE_URL = "https://apps.apple.com/us/app/lumen-bible-catholic-rosary/id6756075397"
+
+@Composable
+private fun ShareAppDialog(
+    onPlatformSelected: (String) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var visible by remember { mutableStateOf(false) }
+    val animatedAlpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = tween(durationMillis = 200),
+        label = "dialogAlpha",
+    )
+    val animatedScale by animateFloatAsState(
+        targetValue = if (visible) 1f else 0.85f,
+        animationSpec = tween(durationMillis = 250),
+        label = "dialogScale",
+    )
+
+    LaunchedEffect(Unit) { visible = true }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .alpha(animatedAlpha)
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+            ) { onDismiss() },
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier
+                .scale(animatedScale)
+                .padding(horizontal = 32.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .background(CardBg)
+                .border(1.dp, CardBorder, RoundedCornerShape(20.dp))
+                .padding(24.dp)
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                ) { /* consume clicks so they don't dismiss */ },
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = stringResource(R.string.settings_share_title),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = stringResource(R.string.settings_share_subtitle),
+                fontSize = 14.sp,
+                color = Color.White.copy(alpha = 0.7f),
+                textAlign = TextAlign.Center,
+                lineHeight = 20.sp,
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            ShareDialogButton(
+                title = stringResource(R.string.settings_share_android),
+                iconRes = R.drawable.ic_android,
+                iconTint = Color(0xFF3DDC84),
+            ) {
+                onPlatformSelected(PLAY_STORE_URL)
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            ShareDialogButton(
+                title = stringResource(R.string.settings_share_ios),
+                iconRes = R.drawable.ic_apple,
+                iconTint = Color.Black,
+                iconSize = 24.dp,
+            ) {
+                onPlatformSelected(APP_STORE_URL)
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            ShareDialogButton(
+                title = stringResource(R.string.cancel),
+            ) {
+                onDismiss()
+            }
+        }
+    }
+}
+
+@Composable
+private fun ShareDialogButton(
+    title: String,
+    iconRes: Int? = null,
+    iconTint: Color = Color.White.copy(alpha = 0.8f),
+    iconSize: Dp = 20.dp,
+    onClick: () -> Unit,
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clip(RoundedCornerShape(28.dp))
+            .background(Color.White.copy(alpha = 0.08f))
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            if (iconRes != null) {
+                Icon(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = null,
+                    tint = iconTint,
+                    modifier = Modifier.size(iconSize),
+                )
+                Spacer(Modifier.width(10.dp))
+            }
+            Text(
+                text = title,
+                fontWeight = FontWeight.Medium,
+                fontSize = 17.sp,
+                color = Color.White.copy(alpha = 0.8f),
+            )
+        }
+    }
+}
 
 private val REGION_ENTRIES = listOf(
     "Universal" to R.string.region_universal,

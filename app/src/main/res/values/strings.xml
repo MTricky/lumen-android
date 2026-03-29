@@ -583,6 +583,10 @@
     <string name="settings_prayer_footer">Sacred Art shows paintings for each mystery. Simple uses a dark background. Audio plays narrated prayers.</string>
     <string name="settings_section_support">Support</string>
     <string name="settings_support_share">Share the App</string>
+    <string name="settings_share_title">Share Lumen</string>
+    <string name="settings_share_subtitle">Which platform would you like to share the link for?</string>
+    <string name="settings_share_android">Android</string>
+    <string name="settings_share_ios">iOS</string>
     <string name="settings_support_contact">Contact Support</string>
     <string name="settings_section_legal">Legal</string>
     <string name="settings_legal_privacy">Privacy Policy</string>

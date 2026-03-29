@@ -511,6 +511,10 @@
     <string name="settings_prayer_footer">Sztuka Sakralna pokazuje obrazy dla każdej tajemnicy. Prosty używa ciemnego tła. Audio odtwarza narrację modlitw.</string>
     <string name="settings_section_support">Wsparcie</string>
     <string name="settings_support_share">Udostępnij Aplikację</string>
+    <string name="settings_share_title">Udostępnij Lumen</string>
+    <string name="settings_share_subtitle">Dla jakiej platformy chcesz udostępnić link?</string>
+    <string name="settings_share_android">Android</string>
+    <string name="settings_share_ios">iOS</string>
     <string name="settings_support_contact">Kontakt z pomocą</string>
     <string name="settings_section_legal">Informacje prawne</string>
     <string name="settings_legal_privacy">Polityka Prywatności</string>
