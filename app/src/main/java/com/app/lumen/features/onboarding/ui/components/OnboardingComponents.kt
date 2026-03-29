@@ -5,11 +5,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,11 +18,14 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,13 +43,36 @@ import com.app.lumen.ui.theme.SoftGold
 private val CardBg = Color(0xFF1A1A29)
 private val CardBorder = Color.White.copy(alpha = 0.10f)
 
+val LocalCompactOnboarding = staticCompositionLocalOf { false }
+
+@Composable
+fun ColumnScope.OnboardingTopSpacer() {
+    if (LocalCompactOnboarding.current) {
+        Spacer(modifier = Modifier.height(8.dp))
+    } else {
+        Spacer(modifier = Modifier.weight(1f))
+    }
+}
+
+@Composable
+fun ColumnScope.OnboardingBottomSpacer() {
+    if (!LocalCompactOnboarding.current) {
+        Spacer(modifier = Modifier.weight(1f))
+    }
+}
+
 @Composable
 fun OnboardingPageContainer(
     @DrawableRes backgroundRes: Int,
     modifier: Modifier = Modifier,
+    button: @Composable () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        val isCompact = maxHeight < 680.dp
+        val headerHeight = (maxHeight * 0.5f).coerceAtMost(400.dp)
+        val topPadding = (maxHeight * 0.22f).coerceAtMost(150.dp)
+
         // Background color
         Box(
             modifier = Modifier
@@ -59,7 +84,7 @@ fun OnboardingPageContainer(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .height(headerHeight)
         ) {
             Image(
                 painter = painterResource(id = backgroundRes),
@@ -84,17 +109,52 @@ fun OnboardingPageContainer(
             )
         }
 
-        // Content aligned to bottom with navigation bar inset
+        // Content area - scrollable on compact, weighted layout on large
+        CompositionLocalProvider(LocalCompactOnboarding provides isCompact) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .then(
+                        if (isCompact) Modifier.verticalScroll(rememberScrollState())
+                        else Modifier
+                    )
+                    .padding(horizontal = 20.dp)
+                    .padding(top = topPadding, bottom = 140.dp)
+            ) {
+                content()
+            }
+        }
+
+        // Floating button at bottom with gradient transition
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 20.dp)
-                .padding(top = 150.dp)
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(bottom = 16.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
         ) {
-            content()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                NearBlack.copy(alpha = 0f),
+                                NearBlack.copy(alpha = 0.8f),
+                                NearBlack
+                            )
+                        )
+                    )
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(NearBlack)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .padding(horizontal = 20.dp)
+                    .padding(bottom = 16.dp)
+            ) {
+                button()
+            }
         }
     }
 }

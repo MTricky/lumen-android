@@ -1,6 +1,9 @@
 package com.app.lumen.features.onboarding.ui.phases
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.EaseInOutSine
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -10,6 +13,8 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
@@ -19,6 +24,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -98,26 +104,58 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
     var timerProgress by remember { mutableFloatStateOf(0f) }
     val quoteDuration = 8000L
 
-    // Flame pulse animation (matching iOS: easeInOut 1.8s)
-    val infiniteTransition = rememberInfiniteTransition(label = "pulse")
+    // Shared completion state — drives checkmark, glow fade, and button title simultaneously
+    var showComplete by remember { mutableStateOf(false) }
+
+    // Flame animations with organic easing
+    val infiniteTransition = rememberInfiniteTransition(label = "flame")
     val pulseScale by infiniteTransition.animateFloat(
-        initialValue = 0.9f,
-        targetValue = 1.25f,
+        initialValue = 0.93f,
+        targetValue = 1.1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1800),
+            animation = tween(2200, easing = EaseInOutSine),
             repeatMode = RepeatMode.Reverse
         ),
         label = "pulseScale"
     )
-    // Glow opacity pulse (iOS: 0.4 to 0.9)
     val glowAlpha by infiniteTransition.animateFloat(
         initialValue = 0.4f,
-        targetValue = 0.9f,
+        targetValue = 0.65f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1800),
+            animation = tween(2200, easing = EaseInOutSine),
             repeatMode = RepeatMode.Reverse
         ),
         label = "glowAlpha"
+    )
+    // Secondary outer glow ring
+    val outerGlowAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.12f,
+        targetValue = 0.25f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2600, easing = EaseInOutSine),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "outerGlow"
+    )
+
+    // Glow fades out gold, fades in accent on complete
+    val glowFade by animateFloatAsState(
+        targetValue = if (showComplete) 0f else 1f,
+        animationSpec = tween(600, easing = FastOutSlowInEasing),
+        label = "glowFade"
+    )
+    val accentGlow by animateFloatAsState(
+        targetValue = if (showComplete) 1f else 0f,
+        animationSpec = tween(800, easing = FastOutSlowInEasing),
+        label = "accentGlow"
+    )
+
+    // Glass circle border transitions to gray on completion
+    val circleBorderColor by animateColorAsState(
+        targetValue = if (showComplete) Color.White.copy(alpha = 0.25f)
+        else Color.White.copy(alpha = 0.10f),
+        animationSpec = tween(500),
+        label = "circleBorder"
     )
 
     // Haptic on each loading step change
@@ -127,10 +165,11 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
         }
     }
 
-    // Haptic on loading complete (wait for fill animation to finish visually)
+    // Synchronized completion — wait for button fill animation, then trigger everything together
     LaunchedEffect(viewModel.isLoadingComplete) {
         if (viewModel.isLoadingComplete) {
-            delay(300)
+            delay(400) // wait for fill animation (300ms) + buffer
+            showComplete = true
             HapticManager.success(view)
         }
     }
@@ -151,12 +190,18 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val isCompact = maxHeight < 680.dp
+        val headerHeight = (maxHeight * 0.5f).coerceAtMost(400.dp)
+        val topPadding = (maxHeight * 0.22f).coerceAtMost(150.dp)
+        val iconContainerSize = if (isCompact) 160.dp else 220.dp
+        val circleSize = if (isCompact) 90.dp else 110.dp
+
         // Background
         Box(modifier = Modifier.fillMaxSize().background(NearBlack))
 
         // Header image
-        Box(modifier = Modifier.fillMaxWidth().height(400.dp)) {
+        Box(modifier = Modifier.fillMaxWidth().height(headerHeight)) {
             Image(
                 painter = painterResource(id = R.drawable.onboarding_olive_garden),
                 contentDescription = null,
@@ -184,30 +229,68 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 15.dp)
-                .padding(top = 150.dp)
+                .padding(top = topPadding)
                 .windowInsetsPadding(WindowInsets.navigationBars)
                 .padding(bottom = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.weight(1f))
 
-            // Animated icon with glow + glass circle background
+            // Animated icon with multi-layer glow + glass circle
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.size(220.dp)
+                modifier = Modifier.size(iconContainerSize)
             ) {
-                // Radial glow behind the circle (iOS: RadialGradient softGold 0.25 → clear)
-                if (!viewModel.isLoadingComplete) {
+                // Outer glow ring (fades with glowFade on completion)
+                Box(
+                    modifier = Modifier
+                        .size(iconContainerSize)
+                        .scale(pulseScale * 1.1f)
+                        .drawBehind {
+                            drawCircle(
+                                brush = Brush.radialGradient(
+                                    colors = listOf(
+                                        SoftGold.copy(alpha = outerGlowAlpha * glowFade),
+                                        Color.Transparent
+                                    ),
+                                    center = Offset(size.width / 2, size.height / 2),
+                                    radius = size.width / 2
+                                ),
+                            )
+                        }
+                )
+
+                // Inner glow ring
+                Box(
+                    modifier = Modifier
+                        .size(iconContainerSize)
+                        .scale(pulseScale)
+                        .drawBehind {
+                            drawCircle(
+                                brush = Brush.radialGradient(
+                                    colors = listOf(
+                                        SoftGold.copy(alpha = 0.25f * glowAlpha * glowFade),
+                                        SoftGold.copy(alpha = 0.08f * glowAlpha * glowFade),
+                                        Color.Transparent
+                                    ),
+                                    center = Offset(size.width / 2, size.height / 2),
+                                    radius = size.width / 2
+                                )
+                            )
+                        }
+                )
+
+                // Accent color blur behind circle on completion
+                if (accentGlow > 0f) {
                     Box(
                         modifier = Modifier
-                            .size(220.dp)
-                            .scale(pulseScale)
+                            .size(circleSize * 1.6f)
                             .drawBehind {
                                 drawCircle(
                                     brush = Brush.radialGradient(
                                         colors = listOf(
-                                            SoftGold.copy(alpha = 0.25f * glowAlpha),
-                                            SoftGold.copy(alpha = 0.08f * glowAlpha),
+                                            SoftGold.copy(alpha = 0.4f * accentGlow),
+                                            SoftGold.copy(alpha = 0.15f * accentGlow),
                                             Color.Transparent
                                         ),
                                         center = Offset(size.width / 2, size.height / 2),
@@ -218,81 +301,100 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                     )
                 }
 
-                // Glass circle background
+                // Glass circle background with animated border
                 Box(
                     modifier = Modifier
-                        .size(110.dp)
+                        .size(circleSize)
                         .clip(CircleShape)
                         .background(CardBg)
-                        .border(1.dp, Color.White.copy(alpha = 0.10f), CircleShape)
+                        .border(1.dp, circleBorderColor, CircleShape)
                 )
 
-                if (!viewModel.isLoadingComplete) {
-                    Icon(
-                        imageVector = Icons.Filled.LocalFireDepartment,
-                        contentDescription = null,
-                        tint = SoftGold,
-                        modifier = Modifier
-                            .size(48.dp)
-                            .scale(pulseScale)
-                    )
-                } else {
-                    Icon(
-                        imageVector = Icons.Filled.Check,
-                        contentDescription = null,
-                        tint = Color.White,
-                        modifier = Modifier.size(56.dp)
-                    )
+                // Icon transition: flame → checkmark with scale + fade
+                AnimatedContent(
+                    targetState = showComplete,
+                    transitionSpec = {
+                        (scaleIn(
+                            initialScale = 0.3f,
+                            animationSpec = tween(500, easing = FastOutSlowInEasing)
+                        ) + fadeIn(tween(400))).togetherWith(
+                            scaleOut(
+                                targetScale = 1.5f,
+                                animationSpec = tween(350)
+                            ) + fadeOut(tween(300))
+                        )
+                    },
+                    label = "iconTransition"
+                ) { complete ->
+                    if (complete) {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(if (isCompact) 52.dp else 62.dp)
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Filled.LocalFireDepartment,
+                            contentDescription = null,
+                            tint = SoftGold,
+                            modifier = Modifier
+                                .size(if (isCompact) 40.dp else 48.dp)
+                                .scale(pulseScale)
+                        )
+                    }
                 }
             }
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Rotating quotes
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(140.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(CardBg)
-                    .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
-                    .padding(horizontal = 20.dp, vertical = 16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+            // Rotating quotes - hidden on compact screens
+            if (!isCompact) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(140.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(CardBg)
+                        .border(1.dp, CardBorder, RoundedCornerShape(16.dp))
+                        .padding(horizontal = 20.dp, vertical = 16.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    AnimatedContent(
-                        targetState = currentQuoteIndex,
-                        transitionSpec = {
-                            fadeIn(tween(800)) togetherWith fadeOut(tween(800))
-                        },
-                        label = "loadingQuote"
-                    ) { index ->
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                text = stringResource(quotes[index].quoteRes),
-                                fontSize = 14.sp,
-                                fontStyle = FontStyle.Italic,
-                                color = Color.White.copy(alpha = 0.85f),
-                                textAlign = TextAlign.Center,
-                                maxLines = 3
-                            )
-                            Spacer(modifier = Modifier.height(12.dp))
-                            Text(
-                                text = stringResource(quotes[index].sourceRes),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = SoftGold
-                            )
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        AnimatedContent(
+                            targetState = currentQuoteIndex,
+                            transitionSpec = {
+                                fadeIn(tween(800)) togetherWith fadeOut(tween(800))
+                            },
+                            label = "loadingQuote"
+                        ) { index ->
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = stringResource(quotes[index].quoteRes),
+                                    fontSize = 14.sp,
+                                    fontStyle = FontStyle.Italic,
+                                    color = Color.White.copy(alpha = 0.85f),
+                                    textAlign = TextAlign.Center,
+                                    maxLines = 3
+                                )
+                                Spacer(modifier = Modifier.height(12.dp))
+                                Text(
+                                    text = stringResource(quotes[index].sourceRes),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    color = SoftGold
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
+            }
 
             // Status text (fade only, matching iOS easeInOut 0.5s)
             Box(
@@ -323,7 +425,7 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(28.dp))
+            Spacer(modifier = Modifier.height(if (isCompact) 16.dp else 28.dp))
 
             // Step dots
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -340,11 +442,12 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(28.dp))
+            Spacer(modifier = Modifier.height(if (isCompact) 16.dp else 28.dp))
 
-            // Progress fill button (capsule that fills with progress)
+            // Progress fill button
             ProgressFillButton(
                 progress = viewModel.loadingButtonProgress,
+                isReady = showComplete,
                 onClick = { HapticManager.lightImpact(view); onContinue() }
             )
         }
@@ -354,20 +457,10 @@ fun LoadingPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
 @Composable
 private fun ProgressFillButton(
     progress: Float,
+    isReady: Boolean,
     onClick: () -> Unit
 ) {
     val isComplete = progress >= 1f
-    var showCompleteTitle by remember { mutableStateOf(false) }
-
-    // Delay title change until after the fill animation (300ms) completes + 100ms buffer
-    LaunchedEffect(isComplete) {
-        if (isComplete) {
-            delay(400)
-            showCompleteTitle = true
-        } else {
-            showCompleteTitle = false
-        }
-    }
 
     // Smooth animation of the fill width
     val animatedProgress by animateFloatAsState(
@@ -403,26 +496,26 @@ private fun ProgressFillButton(
             )
         }
 
-        // Content - animated title transition
+        // Content - title transitions in sync with showComplete
         AnimatedContent(
-            targetState = showCompleteTitle,
+            targetState = isReady,
             transitionSpec = {
                 fadeIn(tween(400)) togetherWith fadeOut(tween(300))
             },
             label = "buttonTitle"
-        ) { isComplete ->
+        ) { ready ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = if (isComplete) stringResource(R.string.onboarding_loading_begin)
+                    text = if (ready) stringResource(R.string.onboarding_loading_begin)
                         else stringResource(R.string.onboarding_loading_preparing),
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 17.sp,
                     color = Color.White
                 )
-                if (isComplete) {
+                if (ready) {
                     Icon(
                         imageVector = Icons.Filled.ArrowForward,
                         contentDescription = null,

@@ -258,10 +258,16 @@ private fun WidgetLargePreview(
                 )
         )
 
+        val scale = (height / 300.dp).coerceIn(0.65f, 1f)
+        val verseFontSize = (22 * scale).sp
+        val verseLineHeight = (28 * scale).sp
+        val contentPadding = (20 * scale).coerceAtLeast(12f).dp
+        val maxLines = if (height < 240.dp) 4 else 6
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .padding(contentPadding)
         ) {
             // Top: category badge + quote icon
             Row(
@@ -297,8 +303,8 @@ private fun WidgetLargePreview(
                 Image(
                     painter = painterResource(id = R.drawable.ic_widget_quote),
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp),
-                    alpha = 0.4f
+                    modifier = Modifier.size(28.dp),
+                    alpha = 0.85f
                 )
             }
 
@@ -312,11 +318,12 @@ private fun WidgetLargePreview(
             ) {
                 Text(
                     text = verse.text,
-                    fontSize = 22.sp,
+                    fontSize = verseFontSize,
                     fontWeight = FontWeight.Medium,
                     color = Color.White,
-                    maxLines = 6,
-                    lineHeight = 28.sp
+                    maxLines = maxLines,
+                    lineHeight = verseLineHeight,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                 )
             }
 
@@ -333,7 +340,7 @@ private fun WidgetLargePreview(
                 ) {
                     Text(
                         text = verse.reference,
-                        fontSize = 13.sp,
+                        fontSize = (13 * scale).sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
@@ -388,11 +395,16 @@ private fun WidgetMediumPreview(
                 )
         )
 
+        val scale = (height / 150.dp).coerceIn(0.7f, 1f)
+        val verseFontSize = (16 * scale).sp
+        val verseLineHeight = (21 * scale).sp
+        val contentPadding = (20 * scale).coerceAtLeast(12f).dp
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
+                .padding(contentPadding),
+            verticalArrangement = Arrangement.spacedBy((6 * scale).dp)
         ) {
             // Top: category badge + quote icon
             Row(
@@ -427,8 +439,8 @@ private fun WidgetMediumPreview(
                 Image(
                     painter = painterResource(id = R.drawable.ic_widget_quote),
                     contentDescription = null,
-                    modifier = Modifier.size(14.dp),
-                    alpha = 0.4f
+                    modifier = Modifier.size(22.dp),
+                    alpha = 0.85f
                 )
             }
 
@@ -442,11 +454,12 @@ private fun WidgetMediumPreview(
             ) {
                 Text(
                     text = verse.mediumText,
-                    fontSize = 16.sp,
+                    fontSize = verseFontSize,
                     fontWeight = FontWeight.Medium,
                     color = Color.White,
                     maxLines = 3,
-                    lineHeight = 21.sp
+                    lineHeight = verseLineHeight,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                 )
             }
         }

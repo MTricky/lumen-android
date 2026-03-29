@@ -41,9 +41,11 @@ import com.app.lumen.R
 import com.app.lumen.features.calendar.model.LiturgicalRegion
 import com.app.lumen.features.onboarding.OnboardingStep
 import com.app.lumen.features.onboarding.OnboardingViewModel
+import com.app.lumen.features.onboarding.ui.components.OnboardingBottomSpacer
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassCard
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassProminentButton
 import com.app.lumen.features.onboarding.ui.components.OnboardingPageContainer
+import com.app.lumen.features.onboarding.ui.components.OnboardingTopSpacer
 import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.SoftGold
 
@@ -55,8 +57,16 @@ fun RegionStep(viewModel: OnboardingViewModel) {
     val view = LocalView.current
     var showDropdown by remember { mutableStateOf(false) }
 
-    OnboardingPageContainer(backgroundRes = OnboardingStep.REGION.backgroundRes) {
-        Spacer(modifier = Modifier.weight(1f))
+    OnboardingPageContainer(
+        backgroundRes = OnboardingStep.REGION.backgroundRes,
+        button = {
+            OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_continue)) {
+                HapticManager.selection(view)
+                viewModel.goToNextStep()
+            }
+        }
+    ) {
+        OnboardingTopSpacer()
 
         // Title Card
         OnboardingGlassCard {
@@ -197,11 +207,6 @@ fun RegionStep(viewModel: OnboardingViewModel) {
             }
         }
 
-        Spacer(modifier = Modifier.weight(1f))
-
-        OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_continue)) {
-            HapticManager.selection(view)
-            viewModel.goToNextStep()
-        }
+        OnboardingBottomSpacer()
     }
 }

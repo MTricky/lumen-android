@@ -48,9 +48,11 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.onboarding.OnboardingStep
 import com.app.lumen.features.onboarding.OnboardingViewModel
+import com.app.lumen.features.onboarding.ui.components.OnboardingBottomSpacer
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassCard
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassProminentButton
 import com.app.lumen.features.onboarding.ui.components.OnboardingPageContainer
+import com.app.lumen.features.onboarding.ui.components.OnboardingTopSpacer
 import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.SoftGold
 import kotlinx.coroutines.delay
@@ -84,8 +86,16 @@ fun WelcomeStep(viewModel: OnboardingViewModel) {
         }
     }
 
-    OnboardingPageContainer(backgroundRes = OnboardingStep.WELCOME.backgroundRes) {
-        Spacer(modifier = Modifier.weight(1f))
+    OnboardingPageContainer(
+        backgroundRes = OnboardingStep.WELCOME.backgroundRes,
+        button = {
+            OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_get_started)) {
+                HapticManager.selection(view)
+                viewModel.goToNextStep()
+            }
+        }
+    ) {
+        OnboardingTopSpacer()
 
         // App intro card
         OnboardingGlassCard {
@@ -199,12 +209,7 @@ fun WelcomeStep(viewModel: OnboardingViewModel) {
             }
         }
 
-        Spacer(modifier = Modifier.weight(1f))
-
-        OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_get_started)) {
-            HapticManager.selection(view)
-            viewModel.goToNextStep()
-        }
+        OnboardingBottomSpacer()
     }
 }
 

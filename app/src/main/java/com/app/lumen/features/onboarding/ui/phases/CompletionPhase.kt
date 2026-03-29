@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -54,25 +58,34 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
     val context = LocalContext.current
     val view = LocalView.current
 
-    Box(
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
             .background(NearBlack)
     ) {
+        val isCompact = maxHeight < 680.dp
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .then(
+                    if (isCompact) Modifier.verticalScroll(rememberScrollState())
+                    else Modifier
+                )
                 .padding(horizontal = 24.dp)
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(bottom = 16.dp),
+                .padding(top = 48.dp, bottom = 140.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.weight(1f))
+            if (isCompact) {
+                Spacer(modifier = Modifier.height(24.dp))
+            } else {
+                Spacer(modifier = Modifier.weight(1f))
+            }
 
             // Main content - no animation, just show everything
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(32.dp)
+                verticalArrangement = Arrangement.spacedBy(if (isCompact) 20.dp else 32.dp)
             ) {
                 // Success checkmark
                 Box(contentAlignment = Alignment.Center) {
@@ -156,16 +169,47 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            if (!isCompact) {
+                Spacer(modifier = Modifier.weight(1f))
+            }
+        }
 
-            // Done button
-            OnboardingGlassProminentButton(
-                title = stringResource(R.string.onboarding_completion_done),
-                isLoading = viewModel.isCompleting
+        // Floating button at bottom with gradient transition
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                NearBlack.copy(alpha = 0f),
+                                NearBlack.copy(alpha = 0.8f),
+                                NearBlack
+                            )
+                        )
+                    )
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(NearBlack)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .padding(horizontal = 24.dp)
+                    .padding(bottom = 16.dp)
             ) {
-                HapticManager.success(view)
-                viewModel.completeOnboarding()
-                onDone()
+                OnboardingGlassProminentButton(
+                    title = stringResource(R.string.onboarding_completion_done),
+                    isLoading = viewModel.isCompleting
+                ) {
+                    HapticManager.success(view)
+                    viewModel.completeOnboarding()
+                    onDone()
+                }
             }
         }
     }

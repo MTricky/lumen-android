@@ -41,9 +41,11 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.onboarding.OnboardingStep
 import com.app.lumen.features.onboarding.OnboardingViewModel
+import com.app.lumen.features.onboarding.ui.components.OnboardingBottomSpacer
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassCard
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassProminentButton
 import com.app.lumen.features.onboarding.ui.components.OnboardingPageContainer
+import com.app.lumen.features.onboarding.ui.components.OnboardingTopSpacer
 import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.SoftGold
 
@@ -56,8 +58,25 @@ fun NotificationsStep(viewModel: OnboardingViewModel) {
         viewModel.onNotificationPermissionResult(granted)
     }
 
-    OnboardingPageContainer(backgroundRes = OnboardingStep.NOTIFICATIONS.backgroundRes) {
-        Spacer(modifier = Modifier.weight(1f))
+    OnboardingPageContainer(
+        backgroundRes = OnboardingStep.NOTIFICATIONS.backgroundRes,
+        button = {
+            OnboardingGlassProminentButton(
+                title = stringResource(R.string.onboarding_notifications_enable),
+                isLoading = viewModel.isRequestingNotifications
+            ) {
+                HapticManager.lightImpact(view)
+                viewModel.requestNotifications()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                } else {
+                    // Pre-Android 13, notifications are enabled by default
+                    viewModel.onNotificationPermissionResult(true)
+                }
+            }
+        }
+    ) {
+        OnboardingTopSpacer()
 
         // Title Card
         OnboardingGlassCard {
@@ -119,21 +138,7 @@ fun NotificationsStep(viewModel: OnboardingViewModel) {
             )
         }
 
-        Spacer(modifier = Modifier.weight(1f))
-
-        OnboardingGlassProminentButton(
-            title = stringResource(R.string.onboarding_notifications_enable),
-            isLoading = viewModel.isRequestingNotifications
-        ) {
-            HapticManager.lightImpact(view)
-            viewModel.requestNotifications()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            } else {
-                // Pre-Android 13, notifications are enabled by default
-                viewModel.onNotificationPermissionResult(true)
-            }
-        }
+        OnboardingBottomSpacer()
     }
 }
 
