@@ -3,12 +3,16 @@ package com.app.lumen.features.onboarding.ui
 import android.app.Activity
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
@@ -142,6 +147,9 @@ fun OnboardingView(
             exit = fadeOut(tween(200))
         ) {
             OnboardingFeedbackDialog(
+                onDismiss = {
+                    showFeedbackDialog = false
+                },
                 onFeedback = { result ->
                     HapticManager.selection(view)
                     OnboardingManager.shared.markFeedbackAsked()
@@ -209,20 +217,45 @@ private val FeedbackCardBorder = Color.White.copy(alpha = 0.15f)
 
 @Composable
 private fun OnboardingFeedbackDialog(
+    onDismiss: () -> Unit,
     onFeedback: (OnboardingFeedbackResult) -> Unit
 ) {
+    // Card scale animation
+    val cardScale = remember { Animatable(0.85f) }
+    LaunchedEffect(Unit) {
+        cardScale.animateTo(
+            targetValue = 1f,
+            animationSpec = spring(
+                dampingRatio = 0.75f,
+                stiffness = 400f
+            )
+        )
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.3f)),
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) { onDismiss() },
         contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 32.dp)
+                .graphicsLayer {
+                    scaleX = cardScale.value
+                    scaleY = cardScale.value
+                }
                 .clip(RoundedCornerShape(20.dp))
                 .background(FeedbackCardBg)
                 .border(1.dp, FeedbackCardBorder, RoundedCornerShape(20.dp))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) { /* consume taps on the card so they don't dismiss */ }
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

@@ -269,12 +269,11 @@ fun RoutineSetupStep(viewModel: OnboardingViewModel) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp)
+                    .height(30.dp)
                     .background(
                         Brush.verticalGradient(
                             colors = listOf(
                                 NearBlack.copy(alpha = 0f),
-                                NearBlack.copy(alpha = 0.8f),
                                 NearBlack
                             )
                         )

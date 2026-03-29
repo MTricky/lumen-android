@@ -507,7 +507,7 @@ private fun PrayerScreen(
             }
         }
 
-        Spacer(Modifier.height(100.dp))
+        Spacer(Modifier.height(120.dp))
     }
 }
 
