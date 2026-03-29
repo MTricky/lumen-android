@@ -1,0 +1,158 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de la Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Je Crois en Dieu",
+      "text": "Je crois en Dieu, le Père tout-puissant, Créateur du ciel et de la terre. Et en Jésus-Christ, son Fils unique, notre Seigneur, qui a été conçu du Saint-Esprit, est né de la Vierge Marie, a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli, est descendu aux enfers, le troisième jour est ressuscité des morts, est monté aux cieux, est assis à la droite de Dieu le Père tout-puissant, d'où il viendra juger les vivants et les morts. Je crois en l'Esprit-Saint, à la sainte Église catholique, à la communion des saints, à la rémission des péchés, à la résurrection de la chair, à la vie éternelle. Amen."
+    },
+    "ourFather": {
+      "title": "Notre Père",
+      "text": "Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal. Amen."
+    },
+    "hailMary": {
+      "title": "Je Vous Salue Marie",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "gloryBe": {
+      "title": "Gloire au Père",
+      "text": "Gloire au Père, et au Fils, et au Saint-Esprit. Comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen."
+    },
+    "fatimaPrayer": {
+      "title": "Prière de Fatima",
+      "text": "Ô mon Jésus, pardonnez-nous nos péchés, préservez-nous du feu de l'enfer, et conduisez au ciel toutes les âmes, surtout celles qui ont le plus besoin de votre miséricorde. Amen."
+    },
+    "hailHolyQueen": {
+      "title": "Salve Regina",
+      "text": "Salut, ô Reine, Mère de miséricorde, notre vie, notre douceur et notre espérance, salut! Enfants d'Ève, exilés, nous crions vers vous. Vers vous nous soupirons, gémissant et pleurant dans cette vallée de larmes. Ô vous, notre avocate, tournez vers nous vos regards miséricordieux. Et, après cet exil, montrez-nous Jésus, le fruit béni de vos entrailles. Ô clémente, ô miséricordieuse, ô douce Vierge Marie. Priez pour nous, sainte Mère de Dieu, afin que nous devenions dignes des promesses du Christ. Amen."
+    },
+    "finalPrayer": {
+      "title": "Prière Finale",
+      "text": "Ô Dieu, dont le Fils unique, par sa vie, sa mort et sa résurrection, nous a acquis les récompenses de la vie éternelle, accordez-nous, nous vous en supplions, qu'en méditant ces mystères du très saint Rosaire de la bienheureuse Vierge Marie, nous imitions ce qu'ils contiennent et obtenions ce qu'ils promettent. Par le Christ notre Seigneur. Amen."
+    },
+    "introHailMaryFaith": {
+      "title": "Je Vous Salue Marie (pour la Foi)",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "introHailMaryHope": {
+      "title": "Je Vous Salue Marie (pour l'Espérance)",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "introHailMaryCharity": {
+      "title": "Je Vous Salue Marie (pour la Charité)",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    }
+  },
+  "mysteries": {
+    "joyful": [
+      {
+        "name": "L'Annonciation",
+        "meditation": "L'Ange Gabriel annonce à Marie qu'elle concevra et enfantera le Fils de Dieu. Marie accepte humblement la volonté de Dieu, disant: 'Voici la servante du Seigneur; qu'il me soit fait selon ta parole.'",
+        "fruit": "Humilité"
+      },
+      {
+        "name": "La Visitation",
+        "meditation": "Marie rend visite à sa cousine Élisabeth, enceinte de Jean-Baptiste. Élisabeth, remplie de l'Esprit-Saint, proclame Marie bénie entre toutes les femmes. Marie répond par le Magnificat.",
+        "fruit": "Amour du Prochain"
+      },
+      {
+        "name": "La Nativité",
+        "meditation": "Jésus naît dans une étable à Bethléem. Le Sauveur du monde entre dans l'humanité dans les circonstances les plus humbles, emmailloté et couché dans une crèche.",
+        "fruit": "Pauvreté en Esprit"
+      },
+      {
+        "name": "La Présentation au Temple",
+        "meditation": "Marie et Joseph présentent l'enfant Jésus au Temple. Siméon le reconnaît comme le Messie et prophétise qu'un glaive transpercera l'âme de Marie.",
+        "fruit": "Obéissance"
+      },
+      {
+        "name": "Le Recouvrement de Jésus au Temple",
+        "meditation": "Après trois jours de recherche, Marie et Joseph trouvent Jésus, âgé de douze ans, dans le Temple, assis au milieu des docteurs, les écoutant et les interrogeant.",
+        "fruit": "Joie de Retrouver Jésus"
+      }
+    ],
+    "sorrowful": [
+      {
+        "name": "L'Agonie au Jardin",
+        "meditation": "Jésus prie au Jardin de Gethsémani, suant du sang dans son angoisse alors qu'il contemple sa Passion. Il prie: 'Mon Père, s'il est possible, que cette coupe passe loin de moi! Cependant, non pas comme je veux, mais comme tu veux.'",
+        "fruit": "Contrition"
+      },
+      {
+        "name": "La Flagellation",
+        "meditation": "Jésus est brutalement flagellé par les soldats romains. Il endure cette terrible souffrance en silence, offrant sa douleur pour notre rédemption.",
+        "fruit": "Pureté"
+      },
+      {
+        "name": "Le Couronnement d'Épines",
+        "meditation": "Les soldats se moquent de Jésus comme Roi, pressant une couronne d'épines sur sa tête et le frappant. Ils crachent sur lui et s'agenouillent devant lui par dérision.",
+        "fruit": "Courage Moral"
+      },
+      {
+        "name": "Le Portement de la Croix",
+        "meditation": "Jésus porte sa lourde croix à travers les rues de Jérusalem vers le Calvaire. Il tombe trois fois mais continue, rencontrant sa Mère douloureuse en chemin.",
+        "fruit": "Patience"
+      },
+      {
+        "name": "La Crucifixion",
+        "meditation": "Jésus est cloué sur la croix et meurt après trois heures d'agonie. Il pardonne à ses bourreaux et promet le paradis au larron repentant. Il confie Marie à Jean et Jean à Marie.",
+        "fruit": "Persévérance"
+      }
+    ],
+    "glorious": [
+      {
+        "name": "La Résurrection",
+        "meditation": "Le troisième jour, Jésus ressuscite des morts, vainquant le péché et la mort. Le tombeau est vide et il apparaît à Marie-Madeleine et aux disciples.",
+        "fruit": "Foi"
+      },
+      {
+        "name": "L'Ascension",
+        "meditation": "Quarante jours après sa Résurrection, Jésus monte au ciel en présence de ses disciples. Il promet d'envoyer l'Esprit-Saint et d'être avec eux toujours.",
+        "fruit": "Espérance"
+      },
+      {
+        "name": "La Descente du Saint-Esprit",
+        "meditation": "À la Pentecôte, le Saint-Esprit descend sur Marie et les Apôtres sous forme de langues de feu. Ils sont remplis de courage et commencent à prêcher l'Évangile.",
+        "fruit": "Amour de Dieu"
+      },
+      {
+        "name": "L'Assomption",
+        "meditation": "À la fin de sa vie terrestre, Marie est élevée corps et âme dans la gloire céleste. Elle est emportée pour être avec son Fils pour toujours.",
+        "fruit": "Grâce d'une Bonne Mort"
+      },
+      {
+        "name": "Le Couronnement de Marie",
+        "meditation": "Marie est couronnée Reine du ciel et de la terre par son Fils. Elle règne avec le Christ et intercède pour tous ses enfants sur la terre.",
+        "fruit": "Confiance en l'Intercession de Marie"
+      }
+    ],
+    "luminous": [
+      {
+        "name": "Le Baptême dans le Jourdain",
+        "meditation": "Jésus est baptisé par Jean dans le fleuve Jourdain. Les cieux s'ouvrent, l'Esprit descend comme une colombe, et la voix du Père proclame: 'Celui-ci est mon Fils bien-aimé.'",
+        "fruit": "Ouverture à l'Esprit-Saint"
+      },
+      {
+        "name": "Les Noces de Cana",
+        "meditation": "À la demande de Marie, Jésus accomplit son premier miracle, changeant l'eau en vin. Marie dit aux serviteurs: 'Faites tout ce qu'il vous dira.'",
+        "fruit": "À Jésus par Marie"
+      },
+      {
+        "name": "L'Annonce du Royaume",
+        "meditation": "Jésus proclame le Royaume de Dieu et appelle tous à la conversion. Il enseigne avec autorité et accomplit des signes et des prodiges.",
+        "fruit": "Conversion et Confiance en Dieu"
+      },
+      {
+        "name": "La Transfiguration",
+        "meditation": "Jésus est transfiguré sur le Mont Thabor devant Pierre, Jacques et Jean. Son visage resplendit comme le soleil et ses vêtements deviennent blancs comme la lumière.",
+        "fruit": "Désir de Sainteté"
+      },
+      {
+        "name": "L'Institution de l'Eucharistie",
+        "meditation": "Lors de la Dernière Cène, Jésus institue l'Eucharistie, donnant son Corps et son Sang sous les apparences du pain et du vin. Il commande à ses Apôtres: 'Faites ceci en mémoire de moi.'",
+        "fruit": "Adoration"
+      }
+    ]
+  }
+}

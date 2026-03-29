@@ -105,6 +105,18 @@
     <string name="lang_german">German</string>
     <string name="lang_polish">Polish</string>
 
+    <!-- Verse categories -->
+    <string name="verse_category_faith">Faith</string>
+    <string name="verse_category_love">Love</string>
+    <string name="verse_category_hope">Hope</string>
+    <string name="verse_category_strength">Strength</string>
+    <string name="verse_category_peace">Peace</string>
+    <string name="verse_category_guidance">Guidance</string>
+    <string name="verse_category_healing">Healing</string>
+    <string name="verse_category_family">Family</string>
+    <string name="verse_category_gratitude">Gratitude</string>
+    <string name="verse_category_forgiveness">Forgiveness</string>
+
     <!-- Verse of the Day detail -->
     <string name="verse_reflection">Reflection</string>
     <string name="verse_liturgical_connection">Liturgical Connection</string>

@@ -92,6 +92,7 @@ class DivineMercyViewModel(application: Application) : AndroidViewModel(applicat
         val lang = Locale.getDefault().language
         return when {
             lang.startsWith("pl") -> "pl"
+            lang.startsWith("fr") -> "fr"
             else -> "en"
         }
     }

@@ -100,6 +100,7 @@ class StMichaelViewModel(application: Application) : AndroidViewModel(applicatio
         val lang = Locale.getDefault().language
         return when {
             lang.startsWith("pl") -> "pl"
+            lang.startsWith("fr") -> "fr"
             else -> "en"
         }
     }

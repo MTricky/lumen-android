@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.lumen.widget.categoryNameRes
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -402,7 +403,7 @@ fun VerseCard(
                     )
                     Spacer(Modifier.width(4.dp))
                     Text(
-                        text = category.replaceFirstChar { it.uppercase() },
+                        text = stringResource(categoryNameRes(category)),
                         fontSize = 10.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,

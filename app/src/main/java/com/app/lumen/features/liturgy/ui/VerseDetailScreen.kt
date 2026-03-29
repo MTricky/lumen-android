@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.liturgy.model.DailyVerse
+import com.app.lumen.widget.categoryNameRes
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
@@ -164,7 +165,7 @@ fun VerseDetailScreen(
                         modifier = Modifier.size(13.dp),
                     )
                     Text(
-                        text = verse.category.replaceFirstChar { it.uppercase() },
+                        text = stringResource(categoryNameRes(verse.category)),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color.White,

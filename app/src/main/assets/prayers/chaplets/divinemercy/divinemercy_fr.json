@@ -1,0 +1,62 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de la Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "openingPrayer": {
+      "title": "Prière d'Ouverture",
+      "text": "Tu as expiré, Jésus, mais la source de vie a jailli pour les âmes et l'océan de miséricorde s'est ouvert pour le monde entier. Ô Source de Vie, insondable Miséricorde Divine, enveloppe le monde entier et déverse-Toi sur nous."
+    },
+    "ourFather": {
+      "title": "Notre Père",
+      "text": "Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal. Amen."
+    },
+    "hailMary": {
+      "title": "Je Vous Salue Marie",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Je Crois en Dieu",
+      "text": "Je crois en Dieu, le Père tout-puissant, Créateur du ciel et de la terre. Et en Jésus-Christ, son Fils unique, notre Seigneur, qui a été conçu du Saint-Esprit, est né de la Vierge Marie, a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli, est descendu aux enfers, le troisième jour est ressuscité des morts, est monté aux cieux, est assis à la droite de Dieu le Père tout-puissant, d'où il viendra juger les vivants et les morts. Je crois en l'Esprit-Saint, à la sainte Église catholique, à la communion des saints, à la rémission des péchés, à la résurrection de la chair, à la vie éternelle. Amen."
+    },
+    "eternalFather": {
+      "title": "Père Éternel",
+      "text": "Père Éternel, je T'offre le Corps et le Sang, l'Âme et la Divinité de Ton Fils bien-aimé, Notre Seigneur Jésus-Christ, en réparation de nos péchés et de ceux du monde entier."
+    },
+    "forTheSake": {
+      "title": "Par Sa Douloureuse Passion",
+      "text": "Par Sa douloureuse Passion, aie miséricorde de nous et du monde entier."
+    },
+    "holyGod": {
+      "title": "Dieu Saint",
+      "text": "Dieu Saint, Dieu Fort, Dieu Immortel, aie pitié de nous et du monde entier."
+    },
+    "closingPrayer": {
+      "title": "Prière Finale",
+      "text": "Dieu Éternel, en qui la miséricorde est infinie et le trésor de compassion inépuisable, regarde-nous avec bonté et augmente Ta miséricorde en nous, afin que dans les moments difficiles nous ne désespérions pas ni ne nous découragions, mais qu'avec grande confiance nous nous soumettions à Ta sainte volonté, qui est l'Amour et la Miséricorde même. Amen."
+    }
+  },
+  "decades": [
+    {
+      "title": "Première Dizaine",
+      "meditation": ""
+    },
+    {
+      "title": "Deuxième Dizaine",
+      "meditation": ""
+    },
+    {
+      "title": "Troisième Dizaine",
+      "meditation": ""
+    },
+    {
+      "title": "Quatrième Dizaine",
+      "meditation": ""
+    },
+    {
+      "title": "Cinquième Dizaine",
+      "meditation": ""
+    }
+  ]
+}

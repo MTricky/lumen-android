@@ -1,0 +1,129 @@
+{
+  "id": "sacredHeart",
+  "title": "Litanies du Sacré-Cœur de Jésus",
+  "subtitle": "Dévotion au Cœur de Notre Seigneur",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Oraison",
+      "text": "Dieu tout-puissant et éternel, considérez le Cœur de votre Fils bien-aimé, ainsi que les louanges et les satisfactions qu'il vous offre au nom des pécheurs ; et à ceux qui implorent votre miséricorde, accordez le pardon, au nom de ce même Jésus-Christ, votre Fils, qui vit et règne avec vous, dans les siècles des siècles. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, ayez pitié de nous.", "response": "Ô Christ, ayez pitié de nous." },
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, écoutez-nous.", "response": "Ô Christ, exaucez-nous." }
+      ]
+    },
+    {
+      "title": "Sainte Trinité",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Dieu le Père, du haut des cieux," },
+        { "text": "Dieu le Fils, Rédempteur du monde," },
+        { "text": "Dieu le Saint-Esprit," },
+        { "text": "Trinité Sainte, qui êtes un seul Dieu," }
+      ]
+    },
+    {
+      "title": "Nature divine",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, Fils du Père éternel," },
+        { "text": "Cœur de Jésus, formé par le Saint-Esprit dans le sein de la Vierge Marie," },
+        { "text": "Cœur de Jésus, uni substantiellement au Verbe de Dieu," },
+        { "text": "Cœur de Jésus, souveraine majesté," },
+        { "text": "Cœur de Jésus, temple saint de Dieu," },
+        { "text": "Cœur de Jésus, tabernacle du Très-Haut," },
+        { "text": "Cœur de Jésus, maison de Dieu et porte du ciel," }
+      ]
+    },
+    {
+      "title": "Amour et vertu",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, fournaise ardente de charité," },
+        { "text": "Cœur de Jésus, sanctuaire de la justice et de l'amour," },
+        { "text": "Cœur de Jésus, plein d'amour et de bonté," },
+        { "text": "Cœur de Jésus, abîme de toutes les vertus," },
+        { "text": "Cœur de Jésus, très digne de toutes louanges," }
+      ]
+    },
+    {
+      "title": "Sagesse et gloire",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, roi et centre de tous les cœurs," },
+        { "text": "Cœur de Jésus, dans lequel sont tous les trésors de la sagesse et de la science," },
+        { "text": "Cœur de Jésus, dans lequel réside toute la plénitude de la divinité," },
+        { "text": "Cœur de Jésus, objet de complaisance du Père céleste," },
+        { "text": "Cœur de Jésus, de la plénitude duquel nous avons tous reçu," }
+      ]
+    },
+    {
+      "title": "Miséricorde et sainteté",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, le désiré des collines éternelles," },
+        { "text": "Cœur de Jésus, patient et très miséricordieux," },
+        { "text": "Cœur de Jésus, libéral pour tous ceux qui vous invoquent," },
+        { "text": "Cœur de Jésus, source de vie et de sainteté," },
+        { "text": "Cœur de Jésus, propitiation pour nos péchés," }
+      ]
+    },
+    {
+      "title": "Souffrance",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, rassasié d'opprobres," },
+        { "text": "Cœur de Jésus, broyé à cause de nos péchés," },
+        { "text": "Cœur de Jésus, obéissant jusqu'à la mort," },
+        { "text": "Cœur de Jésus, percé de la lance," }
+      ]
+    },
+    {
+      "title": "Vie et salut",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Cœur de Jésus, source de toute consolation," },
+        { "text": "Cœur de Jésus, notre vie et notre résurrection," },
+        { "text": "Cœur de Jésus, notre paix et notre réconciliation," },
+        { "text": "Cœur de Jésus, victime des pécheurs," },
+        { "text": "Cœur de Jésus, salut de ceux qui espèrent en vous," },
+        { "text": "Cœur de Jésus, espérance de ceux qui meurent en vous," },
+        { "text": "Cœur de Jésus, délices de tous les saints," }
+      ]
+    },
+    {
+      "title": "Agneau de Dieu",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "pardonnez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "exaucez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "ayez pitié de nous." }
+      ]
+    },
+    {
+      "title": "Verset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Jésus, doux et humble de cœur,", "response": "Rendez notre cœur semblable au vôtre." }
+      ]
+    }
+  ]
+}

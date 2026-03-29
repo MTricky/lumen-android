@@ -270,7 +270,7 @@ private fun AudioPreviewCard(viewModel: OnboardingViewModel) {
                     }
                 }
             }
-            .padding(horizontal = 14.dp),
+            .padding(start = 14.dp, end = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

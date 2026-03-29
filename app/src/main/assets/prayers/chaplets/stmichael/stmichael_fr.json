@@ -1,0 +1,97 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de la Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "openingPrayer": {
+      "title": "Prière d'Ouverture",
+      "text": "Ô Dieu, viens à mon aide. Seigneur, hâte-toi de me secourir. Gloire au Père, et au Fils, et au Saint-Esprit. Comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen."
+    },
+    "ourFather": {
+      "title": "Notre Père",
+      "text": "Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal. Amen."
+    },
+    "hailMary": {
+      "title": "Je Vous Salue Marie",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "gloryBe": {
+      "title": "Gloire au Père",
+      "text": "Gloire au Père, et au Fils, et au Saint-Esprit. Comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen."
+    },
+    "closingPrayer": {
+      "title": "Prière Finale",
+      "text": "Ô glorieux prince Saint Michel, chef et commandant des armées célestes, gardien des âmes, vainqueur des esprits rebelles, serviteur dans la maison du Roi Divin et notre admirable conducteur, toi qui brilles d'excellence et de vertu surhumaine, délivre-nous de tout mal, nous qui nous tournons vers toi avec confiance, et permets-nous par ta gracieuse protection de servir Dieu de plus en plus fidèlement chaque jour."
+    },
+    "finalPrayer": {
+      "title": "Prière Conclusive",
+      "text": "Dieu Tout-Puissant et Éternel, qui par un prodige de bonté et un désir miséricordieux pour le salut de tous les hommes, as établi le très glorieux Archange Saint Michel Prince de Ton Église, rends-nous dignes, nous Te le demandons, d'être délivrés de tous nos ennemis, afin qu'aucun d'eux ne nous tourmente à l'heure de la mort, mais que nous soyons conduits par lui en Ta Présence. Nous Te le demandons par les mérites de Jésus-Christ Notre Seigneur. Amen."
+    }
+  },
+  "salutations": [
+    {
+      "title": "Première Salutation",
+      "choir": "Séraphins",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Séraphins, que le Seigneur nous rende dignes de brûler du feu de la parfaite charité. Amen."
+    },
+    {
+      "title": "Deuxième Salutation",
+      "choir": "Chérubins",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Chérubins, que le Seigneur nous accorde la grâce de quitter les voies du péché et de courir dans les chemins de la perfection chrétienne. Amen."
+    },
+    {
+      "title": "Troisième Salutation",
+      "choir": "Trônes",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Trônes, que le Seigneur infuse dans nos cœurs un esprit vrai et sincère d'humilité. Amen."
+    },
+    {
+      "title": "Quatrième Salutation",
+      "choir": "Dominations",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Dominations, que le Seigneur nous donne la grâce de gouverner nos sens et de vaincre toutes les passions désordonnées. Amen."
+    },
+    {
+      "title": "Cinquième Salutation",
+      "choir": "Puissances",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Puissances, que le Seigneur protège nos âmes contre les pièges et les tentations du démon. Amen."
+    },
+    {
+      "title": "Sixième Salutation",
+      "choir": "Vertus",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Vertus, que le Seigneur nous préserve du mal et ne nous laisse pas tomber dans la tentation. Amen."
+    },
+    {
+      "title": "Septième Salutation",
+      "choir": "Principautés",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Principautés, que Dieu remplisse nos âmes d'un vrai esprit d'obéissance. Amen."
+    },
+    {
+      "title": "Huitième Salutation",
+      "choir": "Archanges",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Archanges, que le Seigneur nous donne la persévérance dans la foi et dans toutes les bonnes œuvres afin que nous puissions atteindre la gloire du Ciel. Amen."
+    },
+    {
+      "title": "Neuvième Salutation",
+      "choir": "Anges",
+      "salutation": "Par l'intercession de Saint Michel et du Chœur céleste des Anges, que le Seigneur nous accorde d'être protégés par eux dans cette vie mortelle et conduits dans la vie future au Ciel. Amen."
+    }
+  ],
+  "archangelPrayers": [
+    {
+      "title": "En l'honneur de Saint Michel",
+      "instruction": "Un Notre Père"
+    },
+    {
+      "title": "En l'honneur de Saint Gabriel",
+      "instruction": "Un Notre Père"
+    },
+    {
+      "title": "En l'honneur de Saint Raphaël",
+      "instruction": "Un Notre Père"
+    },
+    {
+      "title": "En l'honneur de notre Ange Gardien",
+      "instruction": "Un Notre Père"
+    }
+  ]
+}

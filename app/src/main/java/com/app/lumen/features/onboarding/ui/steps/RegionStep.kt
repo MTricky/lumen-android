@@ -62,6 +62,7 @@ fun RegionStep(viewModel: OnboardingViewModel) {
         button = {
             OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_continue)) {
                 HapticManager.selection(view)
+                viewModel.setRegion(viewModel.selectedRegion)
                 viewModel.goToNextStep()
             }
         }

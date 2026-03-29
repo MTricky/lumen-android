@@ -77,7 +77,7 @@ fun SettingsScreen(
 
     // Calendar region state
     val calendarPrefs = remember { context.getSharedPreferences("calendar_settings", Context.MODE_PRIVATE) }
-    var selectedRegion by remember { mutableStateOf(calendarPrefs.getString("region", "Poland") ?: "Poland") }
+    var selectedRegion by remember { mutableStateOf(calendarPrefs.getString("region", "Universal") ?: "Universal") }
     var showRegionPicker by remember { mutableStateOf(false) }
 
     // Rosary visual style state
@@ -934,6 +934,7 @@ private fun prayerLanguageCode(): String {
     val lang = Locale.getDefault().language
     return when {
         lang.startsWith("pl") -> "pl"
+        lang.startsWith("fr") -> "fr"
         else -> "en"
     }
 }

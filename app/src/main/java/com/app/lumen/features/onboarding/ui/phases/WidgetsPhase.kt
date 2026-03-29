@@ -40,6 +40,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.app.lumen.widget.categoryNameRes
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -173,7 +174,9 @@ fun WidgetsPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                         text = stringResource(R.string.onboarding_widgets_title),
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        lineHeight = 36.sp
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
@@ -289,7 +292,7 @@ private fun WidgetLargePreview(
                         )
                         Spacer(modifier = Modifier.width(5.dp))
                         Text(
-                            text = categoryName(verse.category),
+                            text = stringResource(categoryNameRes(verse.category)),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White
@@ -426,7 +429,7 @@ private fun WidgetMediumPreview(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = categoryName(verse.category),
+                            text = stringResource(categoryNameRes(verse.category)),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White
@@ -481,16 +484,3 @@ private fun categoryIconRes(category: String): Int = when (category) {
     else -> R.drawable.ic_cat_faith
 }
 
-private fun categoryName(category: String): String = when (category) {
-    "faith" -> "Faith"
-    "love" -> "Love"
-    "hope" -> "Hope"
-    "strength" -> "Strength"
-    "peace" -> "Peace"
-    "guidance" -> "Guidance"
-    "healing" -> "Healing"
-    "family" -> "Family"
-    "gratitude" -> "Gratitude"
-    "forgiveness" -> "Forgiveness"
-    else -> category.replaceFirstChar { it.uppercase() }
-}

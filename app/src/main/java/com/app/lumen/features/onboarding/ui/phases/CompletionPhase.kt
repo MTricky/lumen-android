@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
@@ -123,7 +124,8 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
                     Text(
                         text = stringResource(R.string.onboarding_completion_subtitle),
                         fontSize = 18.sp,
-                        color = Color.White.copy(alpha = 0.7f)
+                        color = Color.White.copy(alpha = 0.7f),
+                        textAlign = TextAlign.Center
                     )
                 }
 

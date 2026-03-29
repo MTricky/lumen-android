@@ -374,16 +374,19 @@ fun categorySkeletonBadgeRes(category: String): Int = when (category) {
     else -> R.drawable.widget_skeleton_badge_faith
 }
 
-fun categoryName(category: String): String = when (category) {
-    "faith" -> "Faith"
-    "love" -> "Love"
-    "hope" -> "Hope"
-    "strength" -> "Strength"
-    "peace" -> "Peace"
-    "guidance" -> "Guidance"
-    "healing" -> "Healing"
-    "family" -> "Family"
-    "gratitude" -> "Gratitude"
-    "forgiveness" -> "Forgiveness"
-    else -> category.replaceFirstChar { it.uppercase() }
+fun categoryNameRes(category: String): Int = when (category) {
+    "faith" -> R.string.verse_category_faith
+    "love" -> R.string.verse_category_love
+    "hope" -> R.string.verse_category_hope
+    "strength" -> R.string.verse_category_strength
+    "peace" -> R.string.verse_category_peace
+    "guidance" -> R.string.verse_category_guidance
+    "healing" -> R.string.verse_category_healing
+    "family" -> R.string.verse_category_family
+    "gratitude" -> R.string.verse_category_gratitude
+    "forgiveness" -> R.string.verse_category_forgiveness
+    else -> R.string.verse_category_faith
 }
+
+fun categoryName(context: Context, category: String): String =
+    context.getString(categoryNameRes(category))

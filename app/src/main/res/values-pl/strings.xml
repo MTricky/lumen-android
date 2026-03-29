@@ -100,6 +100,18 @@
     <string name="lang_german">Niemiecki</string>
     <string name="lang_polish">Polski</string>
 
+    <!-- Verse categories -->
+    <string name="verse_category_faith">Wiara</string>
+    <string name="verse_category_love">Miłość</string>
+    <string name="verse_category_hope">Nadzieja</string>
+    <string name="verse_category_strength">Siła</string>
+    <string name="verse_category_peace">Pokój</string>
+    <string name="verse_category_guidance">Przewodnictwo</string>
+    <string name="verse_category_healing">Uzdrowienie</string>
+    <string name="verse_category_family">Rodzina</string>
+    <string name="verse_category_gratitude">Wdzięczność</string>
+    <string name="verse_category_forgiveness">Przebaczenie</string>
+
     <!-- Verse of the Day detail -->
     <string name="verse_reflection">Refleksja</string>
     <string name="verse_liturgical_connection">Powiązanie Liturgiczne</string>

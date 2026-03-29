@@ -295,7 +295,7 @@ private fun VerseLargeContent(
                             )
                             Spacer(modifier = GlanceModifier.width(6.dp))
                             Text(
-                                text = categoryName(data.category),
+                                text = categoryName(context, data.category),
                                 style = TextStyle(
                                     color = ColorProvider(Color.White),
                                     fontSize = badgeFontSize,

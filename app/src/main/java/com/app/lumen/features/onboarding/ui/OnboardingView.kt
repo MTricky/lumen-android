@@ -240,7 +240,7 @@ private fun OnboardingFeedbackDialog(
                 text = stringResource(R.string.onboarding_feedback_subtitle),
                 fontSize = 14.sp,
                 color = Color.White.copy(alpha = 0.7f),
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 lineHeight = 20.sp
             )
 

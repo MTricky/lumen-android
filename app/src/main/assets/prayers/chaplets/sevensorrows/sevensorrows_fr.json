@@ -1,0 +1,103 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de la Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "introductoryPrayer": {
+      "title": "Prière d'Introduction",
+      "text": "Mon Dieu, je T'offre ce Rosaire pour Ta gloire, afin d'honorer Ta Sainte Mère, la Bienheureuse Vierge, et de partager et méditer ses souffrances. Je Te supplie humblement de me donner une vraie repentance pour tous mes péchés. Donne-moi sagesse et humilité, afin que je puisse recevoir toutes les indulgences contenues dans cette prière."
+    },
+    "actOfContrition": {
+      "title": "Acte de Contrition",
+      "text": "Mon Dieu, j'ai un très grand regret de T'avoir offensé, parce que Tu es infiniment bon, infiniment aimable, et que le péché Te déplaît. Je prends la ferme résolution, avec le secours de Ta sainte grâce, de ne plus T'offenser et de faire pénitence. Amen."
+    },
+    "ourFather": {
+      "title": "Notre Père",
+      "text": "Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal. Amen."
+    },
+    "hailMary": {
+      "title": "Je Vous Salue Marie",
+      "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen."
+    },
+    "gloryBe": {
+      "title": "Gloire au Père",
+      "text": "Gloire au Père, et au Fils, et au Saint-Esprit. Comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Mère Miséricordieuse",
+      "text": "Mère Miséricordieuse, rappelle-nous toujours les Douleurs de ton Fils, Jésus."
+    },
+    "closingPrayer": {
+      "title": "Prière Finale",
+      "text": "Reine des Martyrs, ton cœur a tant souffert. Je t'en supplie, par les mérites des larmes que tu as versées en ces temps terribles et douloureux, obtiens-moi ainsi qu'à tous les pécheurs du monde la grâce d'une complète sincérité et repentance. Amen."
+    },
+    "finalInvocation": {
+      "title": "Invocation Finale",
+      "text": "Marie, qui a été conçue sans péché et qui a souffert pour nous, priez pour nous."
+    },
+    "versicle": {
+      "title": "Verset",
+      "text": "Priez pour nous, ô Vierge très douloureuse."
+    },
+    "response": {
+      "title": "Réponse",
+      "text": "Afin que nous devenions dignes des promesses du Christ."
+    },
+    "concludingPrayer": {
+      "title": "Prière Conclusive",
+      "text": "Nous Te supplions, Seigneur Jésus-Christ, que maintenant et à l'heure de notre mort, la Bienheureuse Vierge Marie, Ta Mère, intercède pour nous devant le trône de Ta miséricorde, elle dont l'âme très sainte fut transpercée par un glaive de douleur à l'heure de Ta Passion amère. Par Toi, Jésus-Christ, Sauveur du monde, qui avec le Père et le Saint-Esprit vis et règnes pour les siècles des siècles. Amen."
+    }
+  },
+  "sorrows": [
+    {
+      "title": "La Première Douleur",
+      "name": "La Prophétie de Siméon",
+      "scripture": "Luc 2,34-35",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans l'affliction de ton tendre cœur à la prophétie du saint vieillard Siméon. Chère Mère, par ton cœur si affligé, obtiens-moi la vertu d'humilité et le don de la sainte crainte de Dieu.",
+      "fruit": "Humilité et le don de la sainte crainte de Dieu"
+    },
+    {
+      "title": "La Deuxième Douleur",
+      "name": "La Fuite en Égypte",
+      "scripture": "Matthieu 2,13-15",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans l'angoisse de ton cœur très affectueux durant la fuite en Égypte et ton séjour là-bas. Chère Mère, par ton cœur si troublé, obtiens-moi la vertu de générosité, surtout envers les pauvres, et le don de piété.",
+      "fruit": "Générosité envers les pauvres et le don de piété"
+    },
+    {
+      "title": "La Troisième Douleur",
+      "name": "La Perte de l'Enfant Jésus au Temple",
+      "scripture": "Luc 2,41-50",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans ces anxiétés qui éprouvèrent ton cœur troublé à la perte de ton cher Jésus. Chère Mère, par ton cœur si plein d'angoisse, obtiens-moi la vertu de chasteté et le don de science.",
+      "fruit": "Chasteté et le don de science"
+    },
+    {
+      "title": "La Quatrième Douleur",
+      "name": "Marie Rencontre Jésus Portant sa Croix",
+      "scripture": "Luc 23,27-31",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans la consternation de ton cœur en rencontrant Jésus portant sa Croix. Chère Mère, par ton cœur si troublé, obtiens-moi la vertu de patience et le don de force.",
+      "fruit": "Patience et le don de force"
+    },
+    {
+      "title": "La Cinquième Douleur",
+      "name": "La Crucifixion et la Mort de Jésus",
+      "scripture": "Jean 19,25-30",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans le martyre que ton cœur généreux endura en te tenant près de Jésus dans son agonie. Chère Mère, par ton cœur affligé, obtiens-moi la vertu de tempérance et le don de conseil.",
+      "fruit": "Tempérance et le don de conseil"
+    },
+    {
+      "title": "La Sixième Douleur",
+      "name": "Marie Reçoit le Corps de Jésus",
+      "scripture": "Jean 19,38-40",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, dans la blessure de ton cœur compatissant, quand le côté de Jésus fut percé par la lance et que son corps fut descendu de la Croix. Chère Mère, par ton cœur ainsi transpercé, obtiens-moi la vertu de charité fraternelle et le don d'intelligence.",
+      "fruit": "Charité fraternelle et le don d'intelligence"
+    },
+    {
+      "title": "La Septième Douleur",
+      "name": "La Mise au Tombeau de Jésus",
+      "scripture": "Jean 19,41-42",
+      "meditation": "Je compatis à ta douleur, ô Marie très douloureuse, pour les tourments qui déchirèrent ton cœur très aimant lors de la mise au tombeau de Jésus. Chère Mère, par ton cœur plongé dans l'amertume de la désolation, obtiens-moi la vertu de diligence et le don de sagesse.",
+      "fruit": "Diligence et le don de sagesse"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "id": "saints",
+  "title": "Litanie des Saints",
+  "subtitle": "La Grande Intercession de l'Église",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Oraison",
+      "text": "Ô Dieu, dont la gloire est proclamée par les bienheureux habitants du ciel, accordez-nous, nous vous en prions, que par l'intercession de tous vos Saints, nous obtenions votre abondante miséricorde. Par le Christ notre Seigneur. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, ayez pitié de nous.", "response": "Ô Christ, ayez pitié de nous." },
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, écoutez-nous.", "response": "Ô Christ, exaucez-nous." }
+      ]
+    },
+    {
+      "title": "Sainte Trinité",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Dieu le Père, du haut des cieux," },
+        { "text": "Dieu le Fils, Rédempteur du monde," },
+        { "text": "Dieu le Saint-Esprit," },
+        { "text": "Trinité Sainte, qui êtes un seul Dieu," }
+      ]
+    },
+    {
+      "title": "Sainte Marie",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Sainte Marie," },
+        { "text": "Sainte Mère de Dieu," },
+        { "text": "Sainte Vierge des vierges," }
+      ]
+    },
+    {
+      "title": "Anges et Prophètes",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Saint Michel," },
+        { "text": "Saint Gabriel," },
+        { "text": "Saint Raphaël," },
+        { "text": "Tous les saints Anges et Archanges," },
+        { "text": "Tous les saints ordres des esprits bienheureux," },
+        { "text": "Saint Jean-Baptiste," },
+        { "text": "Saint Joseph," },
+        { "text": "Tous les saints Patriarches et Prophètes," }
+      ]
+    },
+    {
+      "title": "Apôtres et Évangélistes",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Saint Pierre," },
+        { "text": "Saint Paul," },
+        { "text": "Saint André," },
+        { "text": "Saint Jacques," },
+        { "text": "Saint Jean," },
+        { "text": "Saint Thomas," },
+        { "text": "Saint Jacques," },
+        { "text": "Saint Philippe," },
+        { "text": "Saint Barthélemy," },
+        { "text": "Saint Matthieu," },
+        { "text": "Saint Simon," },
+        { "text": "Saint Thaddée," },
+        { "text": "Saint Mathias," },
+        { "text": "Saint Barnabé," },
+        { "text": "Saint Luc," },
+        { "text": "Saint Marc," },
+        { "text": "Tous les saints Apôtres et Évangélistes," },
+        { "text": "Tous les saints Disciples du Seigneur," }
+      ]
+    },
+    {
+      "title": "Martyrs",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Tous les saints Innocents," },
+        { "text": "Saint Étienne," },
+        { "text": "Saint Laurent," },
+        { "text": "Saint Vincent," },
+        { "text": "Saints Fabien et Sébastien," },
+        { "text": "Saints Jean et Paul," },
+        { "text": "Saints Côme et Damien," },
+        { "text": "Saints Gervais et Protais," },
+        { "text": "Tous les saints Martyrs," }
+      ]
+    },
+    {
+      "title": "Évêques et Docteurs",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Saint Sylvestre," },
+        { "text": "Saint Grégoire," },
+        { "text": "Saint Ambroise," },
+        { "text": "Saint Augustin," },
+        { "text": "Saint Jérôme," },
+        { "text": "Saint Martin," },
+        { "text": "Saint Nicolas," },
+        { "text": "Tous les saints Évêques et Confesseurs," },
+        { "text": "Tous les saints Docteurs," }
+      ]
+    },
+    {
+      "title": "Prêtres et Religieux",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Saint Antoine," },
+        { "text": "Saint Benoît," },
+        { "text": "Saint Bernard," },
+        { "text": "Saint Dominique," },
+        { "text": "Saint François," },
+        { "text": "Tous les saints Prêtres et Lévites," },
+        { "text": "Tous les saints Moines et Ermites," }
+      ]
+    },
+    {
+      "title": "Saintes Femmes",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Sainte Marie-Madeleine," },
+        { "text": "Sainte Agathe," },
+        { "text": "Sainte Lucie," },
+        { "text": "Sainte Agnès," },
+        { "text": "Sainte Cécile," },
+        { "text": "Sainte Catherine d'Alexandrie," },
+        { "text": "Sainte Anastasie," },
+        { "text": "Toutes les saintes Vierges et Veuves," },
+        { "text": "Tous les Saints et Saintes de Dieu," }
+      ]
+    },
+    {
+      "title": "Soyez-nous propice",
+      "type": "petition",
+      "response": "",
+      "invocations": [
+        { "text": "Soyez-nous propice,", "response": "pardonnez-nous, Seigneur." },
+        { "text": "Soyez-nous propice,", "response": "exaucez-nous, Seigneur." }
+      ]
+    },
+    {
+      "title": "Délivrance",
+      "type": "petition",
+      "response": "délivrez-nous, Seigneur.",
+      "invocations": [
+        { "text": "De tout mal," },
+        { "text": "De tout péché," },
+        { "text": "De votre colère," },
+        { "text": "De la mort subite et imprévue," },
+        { "text": "Des embûches du démon," },
+        { "text": "De la colère, de la haine et de toute mauvaise volonté," },
+        { "text": "De l'esprit de fornication," },
+        { "text": "De la foudre et de la tempête," },
+        { "text": "Du fléau du tremblement de terre," },
+        { "text": "De la peste, de la famine et de la guerre," },
+        { "text": "De la mort éternelle," }
+      ]
+    },
+    {
+      "title": "Par les Mystères du Christ",
+      "type": "petition",
+      "response": "délivrez-nous, Seigneur.",
+      "invocations": [
+        { "text": "Par le mystère de votre sainte Incarnation," },
+        { "text": "Par votre Avènement," },
+        { "text": "Par votre Nativité," },
+        { "text": "Par votre Baptême et votre saint jeûne," },
+        { "text": "Par votre Croix et votre Passion," },
+        { "text": "Par votre Mort et votre Sépulture," },
+        { "text": "Par votre sainte Résurrection," },
+        { "text": "Par votre admirable Ascension," },
+        { "text": "Par la venue du Saint-Esprit Consolateur," },
+        { "text": "Au jour du jugement," }
+      ]
+    },
+    {
+      "title": "Supplications",
+      "type": "petition",
+      "response": "nous vous en prions, écoutez-nous.",
+      "invocations": [
+        { "text": "De nous pardonner," },
+        { "text": "De nous faire grâce," },
+        { "text": "De nous conduire à une vraie pénitence," },
+        { "text": "De gouverner et de conserver votre sainte Église," },
+        { "text": "De conserver le Saint-Père et tous les ordres de l'Église dans la sainte religion," },
+        { "text": "D'humilier les ennemis de la sainte Église," },
+        { "text": "De donner la paix et la vraie concorde aux rois et aux princes chrétiens," },
+        { "text": "D'accorder la paix et l'unité à tout le peuple chrétien," },
+        { "text": "De ramener à l'unité de l'Église tous ceux qui se sont égarés de la vérité," },
+        { "text": "D'éclairer de la lumière de l'Évangile tous les infidèles," },
+        { "text": "De nous fortifier et de nous conserver dans votre saint service," },
+        { "text": "D'élever nos esprits vers les désirs célestes," },
+        { "text": "De rendre les biens éternels à tous nos bienfaiteurs," },
+        { "text": "De délivrer nos âmes et celles de nos frères de la damnation éternelle," },
+        { "text": "De donner et de conserver les fruits de la terre," },
+        { "text": "D'accorder le repos éternel à tous les fidèles défunts," },
+        { "text": "De daigner nous exaucer," },
+        { "text": "Fils de Dieu," }
+      ]
+    },
+    {
+      "title": "Agneau de Dieu",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "pardonnez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "exaucez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "ayez pitié de nous." }
+      ]
+    },
+    {
+      "title": "Verset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Ô Christ, écoutez-nous.", "response": "Ô Christ, exaucez-nous." }
+      ]
+    }
+  ]
+}

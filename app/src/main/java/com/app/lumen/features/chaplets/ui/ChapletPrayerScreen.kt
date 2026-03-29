@@ -70,6 +70,7 @@ private fun prayerLanguageCode(): String {
     val lang = Locale.getDefault().language
     return when {
         lang.startsWith("pl") -> "pl"
+        lang.startsWith("fr") -> "fr"
         else -> "en"
     }
 }

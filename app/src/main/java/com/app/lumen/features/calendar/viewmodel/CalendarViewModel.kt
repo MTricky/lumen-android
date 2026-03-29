@@ -249,7 +249,7 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun loadRegion(): LiturgicalRegion {
-        val regionName = prefs.getString("region", "Poland") ?: "Poland"
+        val regionName = prefs.getString("region", "Universal") ?: "Universal"
         return LiturgicalRegion.fromDisplayName(regionName)
     }
 

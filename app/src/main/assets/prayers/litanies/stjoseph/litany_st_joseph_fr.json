@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Litanies de Saint Joseph",
+  "subtitle": "Gardien de la Sainte Famille",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Signe de Croix",
+      "text": "Au nom du Père, et du Fils, et du Saint-Esprit. Amen."
+    },
+    "closingPrayer": {
+      "title": "Oraison",
+      "text": "Ô Dieu, qui dans votre providence ineffable avez daigné choisir le bienheureux Joseph comme époux de votre très sainte Mère, faites, nous vous en prions, que nous méritions d'avoir pour intercesseur dans le ciel celui que nous vénérons comme protecteur sur la terre. Par Jésus-Christ notre Seigneur. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, ayez pitié de nous.", "response": "Ô Christ, ayez pitié de nous." },
+        { "text": "Seigneur, ayez pitié de nous.", "response": "Seigneur, ayez pitié de nous." },
+        { "text": "Ô Christ, écoutez-nous.", "response": "Ô Christ, exaucez-nous." }
+      ]
+    },
+    {
+      "title": "Sainte Trinité",
+      "type": "petition",
+      "response": "ayez pitié de nous.",
+      "invocations": [
+        { "text": "Dieu le Père, du haut des cieux," },
+        { "text": "Dieu le Fils, Rédempteur du monde," },
+        { "text": "Dieu le Saint-Esprit," },
+        { "text": "Trinité Sainte, qui êtes un seul Dieu," }
+      ]
+    },
+    {
+      "title": "Sainte Marie",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Sainte Marie," },
+        { "text": "Saint Joseph," }
+      ]
+    },
+    {
+      "title": "Titres de Saint Joseph",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Illustre descendant de David," },
+        { "text": "Lumière des Patriarches," },
+        { "text": "Époux de la Mère de Dieu," },
+        { "text": "Gardien du Rédempteur," },
+        { "text": "Chaste gardien de la Vierge," },
+        { "text": "Nourricier du Fils de Dieu," },
+        { "text": "Zélé défenseur du Christ," },
+        { "text": "Serviteur du Christ," },
+        { "text": "Ministre du salut," },
+        { "text": "Chef de la Sainte Famille," }
+      ]
+    },
+    {
+      "title": "Vertus",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Joseph très juste," },
+        { "text": "Joseph très chaste," },
+        { "text": "Joseph très prudent," },
+        { "text": "Joseph très courageux," },
+        { "text": "Joseph très obéissant," },
+        { "text": "Joseph très fidèle," }
+      ]
+    },
+    {
+      "title": "Titres d'honneur",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Miroir de patience," },
+        { "text": "Ami de la pauvreté," },
+        { "text": "Modèle des travailleurs," },
+        { "text": "Gloire de la vie de famille," },
+        { "text": "Gardien des vierges," },
+        { "text": "Soutien des familles," }
+      ]
+    },
+    {
+      "title": "Patronages",
+      "type": "petition",
+      "response": "priez pour nous.",
+      "invocations": [
+        { "text": "Appui dans les difficultés," },
+        { "text": "Consolation des malheureux," },
+        { "text": "Patron des exilés," },
+        { "text": "Patron des affligés," },
+        { "text": "Patron des pauvres," },
+        { "text": "Espérance des malades," },
+        { "text": "Patron des mourants," },
+        { "text": "Terreur des démons," },
+        { "text": "Protecteur de la Sainte Église," }
+      ]
+    },
+    {
+      "title": "Agneau de Dieu",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "pardonnez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "exaucez-nous, Seigneur." },
+        { "text": "Agneau de Dieu, qui effacez les péchés du monde,", "response": "ayez pitié de nous." }
+      ]
+    },
+    {
+      "title": "Verset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Il l'a établi maître de sa maison.", "response": "Et prince de tous ses biens." }
+      ]
+    }
+  ]
+}
