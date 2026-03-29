@@ -3,7 +3,9 @@ package com.app.lumen.features.calendar.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -43,6 +45,7 @@ fun CreateRoutineSheet(
     preselectedType: RoutineItemType? = null,
     preselectedSuggestion: RoutineSuggestion? = null,
     onDismiss: () -> Unit,
+    onFirstFridayTap: () -> Unit = {},
     onCreate: (
         title: String,
         type: RoutineItemType,
@@ -88,15 +91,13 @@ fun CreateRoutineSheet(
     var showTimePicker by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+        modifier = Modifier.fillMaxWidth()
     ) {
         // Header
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 4.dp),
+                .padding(horizontal = 16.dp, vertical = 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -146,6 +147,7 @@ fun CreateRoutineSheet(
                         }
                         step = CreateRoutineStep.CONFIGURATION
                     },
+                    onFirstFridayTap = onFirstFridayTap,
                     onQuickStart = { suggestion ->
                         selectedType = suggestion.type
                         title = context.getString(suggestion.titleRes)
@@ -205,8 +207,28 @@ fun CreateRoutineSheet(
 @Composable
 private fun TypeSelectionContent(
     onSelectType: (RoutineItemType) -> Unit,
+    onFirstFridayTap: () -> Unit,
     onQuickStart: (RoutineSuggestion) -> Unit
 ) {
+    // Sealed type to represent grid items (routine types + first friday)
+    data class GridItem(
+        val routineType: RoutineItemType? = null,
+        val isFirstFriday: Boolean = false
+    )
+
+    val gridItems = listOf(
+        GridItem(routineType = RoutineItemType.MASS),
+        GridItem(routineType = RoutineItemType.MORNING_PRAYER),
+        GridItem(routineType = RoutineItemType.EVENING_PRAYER),
+        GridItem(routineType = RoutineItemType.ROSARY),
+        GridItem(routineType = RoutineItemType.ADORATION),
+        GridItem(routineType = RoutineItemType.ANGELUS),
+        GridItem(routineType = RoutineItemType.DIVINE_MERCY),
+        GridItem(isFirstFriday = true),
+        GridItem(routineType = RoutineItemType.CUSTOM)
+    )
+    val rows = gridItems.chunked(3)
+
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
@@ -217,34 +239,29 @@ private fun TypeSelectionContent(
             Spacer(modifier = Modifier.height(12.dp))
             Text(stringResource(R.string.routine_new_title), color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(stringResource(R.string.routine_new_subtitle), color = Slate, fontSize = 14.sp)
+            Text(stringResource(R.string.routine_new_subtitle), color = Slate, fontSize = 14.sp, lineHeight = 19.sp)
             Spacer(modifier = Modifier.height(24.dp))
         }
 
         // Type grid - 3 columns
-        val types = listOf(
-            RoutineItemType.MASS,
-            RoutineItemType.MORNING_PRAYER,
-            RoutineItemType.EVENING_PRAYER,
-            RoutineItemType.ROSARY,
-            RoutineItemType.ADORATION,
-            RoutineItemType.ANGELUS,
-            RoutineItemType.DIVINE_MERCY,
-            RoutineItemType.CUSTOM
-        )
-        val rows = types.chunked(3)
-
         items(rows) { row ->
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                for (type in row) {
-                    TypeGridItem(
-                        type = type,
-                        modifier = Modifier.weight(1f),
-                        onClick = { onSelectType(type) }
-                    )
+                for (item in row) {
+                    if (item.isFirstFriday) {
+                        FirstFridayGridItem(
+                            modifier = Modifier.weight(1f),
+                            onClick = onFirstFridayTap
+                        )
+                    } else if (item.routineType != null) {
+                        TypeGridItem(
+                            type = item.routineType,
+                            modifier = Modifier.weight(1f),
+                            onClick = { onSelectType(item.routineType) }
+                        )
+                    }
                 }
                 repeat(3 - row.size) {
                     Spacer(modifier = Modifier.weight(1f))
@@ -261,34 +278,34 @@ private fun TypeSelectionContent(
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
-        }
 
-        val quickStartSuggestions = RoutineSuggestion.all
-        val quickStartRows = quickStartSuggestions.chunked(2)
-
-        items(quickStartRows) { row ->
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                modifier = Modifier
+                    .horizontalScroll(rememberScrollState())
+                    .height(IntrinsicSize.Max)
             ) {
-                for (suggestion in row) {
+                Spacer(modifier = Modifier.width(16.dp))
+                val quickStartSuggestions = RoutineSuggestion.all
+                for ((index, suggestion) in quickStartSuggestions.withIndex()) {
                     QuickStartCard(
                         suggestion = suggestion,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .width(200.dp)
+                            .fillMaxHeight(),
                         onClick = { onQuickStart(suggestion) }
                     )
+                    if (index < quickStartSuggestions.lastIndex) {
+                        Spacer(modifier = Modifier.width(12.dp))
+                    }
                 }
-                if (row.size == 1) {
-                    Spacer(modifier = Modifier.weight(1f))
-                }
+                Spacer(modifier = Modifier.width(16.dp))
             }
-            Spacer(modifier = Modifier.height(12.dp))
-        }
 
-        item { Spacer(modifier = Modifier.height(32.dp)) }
+            Spacer(modifier = Modifier.height(32.dp))
+        }
     }
 }
 
@@ -307,7 +324,7 @@ private fun TypeGridItem(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 8.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(type.icon, null, tint = SoftGold, modifier = Modifier.size(28.dp))
@@ -327,6 +344,47 @@ private fun TypeGridItem(
 }
 
 @Composable
+private fun FirstFridayGridItem(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = modifier.clickable(onClick = onClick),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBg),
+        border = androidx.compose.foundation.BorderStroke(1.dp, CardBorder)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(28.dp)
+                    .clip(CircleShape)
+                    .background(SoftGold),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("1", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            AutoSizeText(
+                text = stringResource(R.string.onboarding_first_friday_title),
+                color = Color.White,
+                maxFontSize = 12.sp,
+                minFontSize = 9.sp,
+                fontWeight = FontWeight.Medium,
+                maxLines = 1,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
 private fun QuickStartCard(
     suggestion: RoutineSuggestion,
     modifier: Modifier = Modifier,
@@ -338,14 +396,15 @@ private fun QuickStartCard(
         colors = CardDefaults.cardColors(containerColor = CardBg),
         border = androidx.compose.foundation.BorderStroke(1.dp, CardBorder)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp).fillMaxHeight()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(suggestion.type.icon, null, tint = SoftGold, modifier = Modifier.size(20.dp))
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(stringResource(suggestion.titleRes), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(stringResource(suggestion.subtitleRes), color = Slate, fontSize = 12.sp, maxLines = 2)
+            Text(stringResource(suggestion.subtitleRes), color = Slate, fontSize = 12.sp, lineHeight = 17.sp, maxLines = 2)
+            Spacer(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Filled.Schedule, null, tint = Slate, modifier = Modifier.size(14.dp))
@@ -377,7 +436,10 @@ private fun ConfigurationContent(
     selectedLeadTimeIndex: Int,
     onLeadTimeChange: (Int) -> Unit
 ) {
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 16.dp)
+    ) {
         item {
             // Type header
             Column(

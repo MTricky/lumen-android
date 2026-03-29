@@ -613,6 +613,7 @@ private fun NotesEmptyState() {
                 text = stringResource(R.string.notes_empty_message),
                 fontSize = 14.sp,
                 color = Slate,
+                lineHeight = 19.sp,
                 modifier = Modifier.padding(horizontal = 40.dp),
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )

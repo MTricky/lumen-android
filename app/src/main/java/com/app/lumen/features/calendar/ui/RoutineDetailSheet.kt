@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
@@ -141,8 +142,8 @@ private fun WeeklyRoutineDetailContent(
                 ) {
                     Icon(type.icon, null, tint = SoftGold, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(routine.title, color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(routine.title, color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+                    Spacer(modifier = Modifier.height(16.dp))
                     // Type badge
                     Box(
                         modifier = Modifier

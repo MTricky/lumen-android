@@ -17,9 +17,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.features.calendar.model.firstFridayLeadTimeOptions
+import com.app.lumen.R
 import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
 import com.app.lumen.ui.theme.*
 import java.util.Calendar
@@ -57,9 +59,9 @@ fun FirstFridaySetupSheet(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            SheetCapsuleButton(text = "Cancel", onClick = onDismiss)
+            SheetCapsuleButton(text = stringResource(R.string.cancel), onClick = onDismiss)
             SheetCapsuleButton(
-                text = "Save",
+                text = stringResource(R.string.save),
                 onClick = {
                     onCreate(
                         isNotificationEnabled,
@@ -92,16 +94,19 @@ fun FirstFridaySetupSheet(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    "First Friday Devotion",
+                    stringResource(R.string.first_friday_title),
                     color = Color.White,
                     fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    "Track your consecutive First Friday devotions. The practice involves attending Mass and receiving Holy Communion on the First Friday of nine consecutive months.",
+                    stringResource(R.string.onboarding_first_friday_subtitle),
                     color = Slate,
                     fontSize = 13.sp,
+                    lineHeight = 18.sp,
+                    textAlign = TextAlign.Center,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
@@ -116,16 +121,17 @@ fun FirstFridaySetupSheet(
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            "Already completed First Fridays?",
+                            stringResource(R.string.onboarding_first_friday_question),
                             color = Color.White,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            "Enter the number of consecutive First Fridays you've already completed.",
+                            stringResource(R.string.onboarding_first_friday_tracking_note),
                             color = Slate,
-                            fontSize = 12.sp
+                            fontSize = 12.sp,
+                            lineHeight = 17.sp
                         )
                         Spacer(modifier = Modifier.height(12.dp))
 
@@ -171,7 +177,7 @@ fun FirstFridaySetupSheet(
                         ) {
                             Icon(Icons.Filled.Notifications, null, tint = SoftGold)
                             Spacer(modifier = Modifier.width(12.dp))
-                            Text("Notifications", color = Color.White, modifier = Modifier.weight(1f))
+                            Text(stringResource(R.string.first_friday_setup_monthly_reminder), color = Color.White, modifier = Modifier.weight(1f))
                             Switch(
                                 checked = isNotificationEnabled,
                                 onCheckedChange = { isNotificationEnabled = it },
@@ -186,7 +192,7 @@ fun FirstFridaySetupSheet(
                             Spacer(modifier = Modifier.height(12.dp))
 
                             // Time picker
-                            Text("Notification time", color = Slate, fontSize = 12.sp)
+                            Text(stringResource(R.string.first_friday_setup_reminder_time), color = Slate, fontSize = 12.sp)
                             Spacer(modifier = Modifier.height(4.dp))
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
@@ -205,7 +211,7 @@ fun FirstFridaySetupSheet(
                             }
 
                             Spacer(modifier = Modifier.height(12.dp))
-                            Text("Remind me", color = Slate, fontSize = 12.sp)
+                            Text(stringResource(R.string.routine_remind_me), color = Slate, fontSize = 12.sp)
                             Spacer(modifier = Modifier.height(4.dp))
                         }
                     }
@@ -259,10 +265,10 @@ fun FirstFridaySetupSheet(
                     notificationHour = timePickerState.hour
                     notificationMinute = timePickerState.minute
                     showTimePicker = false
-                }) { Text("OK", color = SoftGold) }
+                }) { Text(stringResource(R.string.done), color = SoftGold) }
             },
             dismissButton = {
-                TextButton(onClick = { showTimePicker = false }) { Text("Cancel", color = Slate) }
+                TextButton(onClick = { showTimePicker = false }) { Text(stringResource(R.string.cancel), color = Slate) }
             },
             text = { TimePicker(state = timePickerState) }
         )

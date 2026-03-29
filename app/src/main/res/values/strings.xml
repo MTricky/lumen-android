@@ -520,6 +520,8 @@
     <string name="first_friday_title">First Friday Devotion</string>
     <string name="first_friday_subtitle">Yearly tracking</string>
     <string name="first_friday_schedule">First Friday of each month</string>
+    <string name="first_friday_setup_monthly_reminder">Monthly reminder</string>
+    <string name="first_friday_setup_reminder_time">Reminder time</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">M</string>

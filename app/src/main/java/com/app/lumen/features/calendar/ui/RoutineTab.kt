@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
@@ -287,7 +288,9 @@ private fun EmptyRoutineState(
             Text(
                 text = stringResource(R.string.routine_empty_subtitle),
                 color = Slate,
-                fontSize = 14.sp
+                fontSize = 14.sp,
+                lineHeight = 18.sp,
+                textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -391,8 +394,9 @@ fun WeeklyRoutineCard(
                             color = Color.White,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            lineHeight = 20.sp
                         )
                         Text(
                             text = scheduleSummary,
@@ -645,7 +649,7 @@ fun PausedRoutineCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(title, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-                Text(scheduleSummary, color = Slate, fontSize = 12.sp)
+                Text(scheduleSummary, color = Slate, fontSize = 12.sp, lineHeight = 17.sp)
             }
             IconButton(onClick = onResume) {
                 Icon(Icons.Filled.PlayArrow, "Resume", tint = SoftGold)
@@ -860,7 +864,8 @@ fun SuggestionCard(
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    lineHeight = 14.sp
                 )
                 Text(stringResource(suggestion.subtitleRes), color = Slate, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
@@ -901,7 +906,8 @@ fun FirstFridaySuggestionCard(onClick: () -> Unit) {
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    lineHeight = 14.sp
                 )
                 Text(stringResource(R.string.first_friday_subtitle), color = Slate, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
@@ -982,7 +988,7 @@ private fun FirstFridaySuggestionCardLarge(
             }
             Spacer(modifier = Modifier.height(12.dp))
             Text(stringResource(R.string.first_friday_title), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-            Text(stringResource(R.string.first_friday_subtitle), color = Slate, fontSize = 12.sp)
+            Text(stringResource(R.string.first_friday_subtitle), color = Slate, fontSize = 12.sp, lineHeight = 17.sp)
             Spacer(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.height(12.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {

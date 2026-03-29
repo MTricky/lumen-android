@@ -156,7 +156,7 @@ fun RoutineSetupStep(viewModel: OnboardingViewModel) {
                 // Angelus card
                 val angelus = RoutineSuggestion.angelus
                 RoutineCard(
-                    title = angelus.title,
+                    title = stringResource(angelus.titleRes),
                     icon = angelus.type.icon,
                     isSelected = viewModel.isRoutineSelected(angelus),
                     defaultHour = angelus.defaultHour,

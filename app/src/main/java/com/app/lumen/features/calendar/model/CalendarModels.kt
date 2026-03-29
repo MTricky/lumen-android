@@ -128,7 +128,7 @@ data class LiturgicalDay(
     val isMoveable: Boolean = false,
     val readingsReference: String? = null
 ) {
-    fun localizedCelebrationName(languageCode: String = "en"): String {
+    fun localizedCelebrationName(languageCode: String = java.util.Locale.getDefault().language): String {
         return celebrationNames[languageCode]
             ?: celebrationNames["en"]
             ?: celebrationNames.values.firstOrNull()

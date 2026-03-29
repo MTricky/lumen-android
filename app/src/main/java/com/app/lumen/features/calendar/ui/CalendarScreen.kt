@@ -413,6 +413,10 @@ fun CalendarScreen(
                 preselectedType = createRoutinePreselectedType,
                 preselectedSuggestion = createRoutinePreselectedSuggestion,
                 onDismiss = { showCreateRoutineSheet = false },
+                onFirstFridayTap = {
+                    showCreateRoutineSheet = false
+                    showFirstFridaySetupSheet = true
+                },
                 onCreate = { title, type, days, hour, minute, notifEnabled, loggingEnabled, leadTime ->
                     routineViewModel.createRoutine(
                         title = title,

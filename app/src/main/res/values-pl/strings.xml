@@ -479,6 +479,8 @@
     <string name="first_friday_title">Nabożeństwo Pierwszych Piątków</string>
     <string name="first_friday_subtitle">Śledzenie roczne</string>
     <string name="first_friday_schedule">Pierwszy piątek każdego miesiąca</string>
+    <string name="first_friday_setup_monthly_reminder">Comiesięczne przypomnienie</string>
+    <string name="first_friday_setup_reminder_time">Godzina przypomnienia</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">P</string>
