@@ -7,6 +7,7 @@ import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.subscription.SubscriptionManager
+import com.app.lumen.services.RemoteConfigManager
 import com.google.firebase.FirebaseApp
 import com.revenuecat.purchases.LogLevel
 import com.revenuecat.purchases.Purchases
@@ -16,6 +17,7 @@ class LumenApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
+        RemoteConfigManager.initialize()
         Purchases.logLevel = LogLevel.DEBUG
         Purchases.configure(
             PurchasesConfiguration.Builder(this, "goog_hPMfptKVUNVLpYgDXuRtqjJtHHV").build()

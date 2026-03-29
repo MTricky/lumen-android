@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
+import com.app.lumen.services.RemoteConfigManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
 import com.revenuecat.purchases.Package
@@ -142,6 +143,8 @@ fun PaywallSheet(
                                 .align(Alignment.CenterHorizontally),
                         )
                     } else {
+                        val showWeeklySplit = RemoteConfigManager.weeklySplitEnabled
+
                         monthlyPkg?.let { pkg ->
                             val trialText = if (isEligibleForTrial) {
                                 pkg.product.subscriptionOptions?.freeTrial?.freePhase?.billingPeriod
@@ -157,7 +160,7 @@ fun PaywallSheet(
                             } else {
                                 stringResource(R.string.paywall_price_per_month, priceStr)
                             }
-                            val weeklyPrice = SubscriptionManager.formatWeeklyPrice(pkg, 4)
+                            val weeklyPrice = if (showWeeklySplit) SubscriptionManager.formatWeeklyPrice(pkg, 4) else null
                             PlanCard(
                                 title = title,
                                 subtitle = subtitle,
@@ -183,7 +186,7 @@ fun PaywallSheet(
                             } else {
                                 stringResource(R.string.paywall_price_per_year, priceStr)
                             }
-                            val weeklyPrice = SubscriptionManager.formatWeeklyPrice(pkg, 52)
+                            val weeklyPrice = if (showWeeklySplit) SubscriptionManager.formatWeeklyPrice(pkg, 52) else null
                             PlanCard(
                                 title = title,
                                 subtitle = subtitle,

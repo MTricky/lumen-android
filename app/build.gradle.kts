@@ -118,6 +118,9 @@ dependencies {
     // WorkManager
     implementation(libs.work.runtime)
 
+    // Google Play In-App Review
+    implementation(libs.play.review)
+
     // Splash Screen
     implementation(libs.splash.screen)
 

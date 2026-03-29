@@ -738,4 +738,11 @@
     <string name="onboarding_completion_notifications_title">Notifications Enabled</string>
     <string name="onboarding_completion_notifications_subtitle">You\'ll receive prayer reminders</string>
     <string name="onboarding_completion_done">Done</string>
+
+    <!-- Onboarding - Feedback -->
+    <string name="onboarding_feedback_title">How\'s your experience so far?</string>
+    <string name="onboarding_feedback_subtitle">We\'d love to hear your feedback about Lumen\'s onboarding. Positive feedback helps us grow!</string>
+    <string name="onboarding_feedback_positive">Great! \u2B50</string>
+    <string name="onboarding_feedback_neutral">It was okay</string>
+    <string name="onboarding_feedback_negative">Needs improvement</string>
 </resources>
