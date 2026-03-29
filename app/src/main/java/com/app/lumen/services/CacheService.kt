@@ -59,10 +59,23 @@ data class SerializableVerse(
 class CacheService(private val context: Context) {
     private val cacheDir = File(context.cacheDir, "LiturgyCache").apply { mkdirs() }
     private val json = Json { ignoreUnknownKeys = true; prettyPrint = false }
+    private val prefs = context.getSharedPreferences("cache_prefs", Context.MODE_PRIVATE)
 
     init {
+        // Clear cache if language changed since last run
+        val currentLang = Locale.getDefault().language
+        val cachedLang = prefs.getString("cached_language", null)
+        if (cachedLang != null && cachedLang != currentLang) {
+            clearAllCache()
+        }
+        prefs.edit().putString("cached_language", currentLang).apply()
+
         cleanupOldCache()
         cleanupOldImageCache()
+    }
+
+    fun clearAllCache() {
+        cacheDir.listFiles()?.forEach { it.delete() }
     }
 
     fun cacheLiturgy(liturgy: DailyLiturgy, dateString: String) {

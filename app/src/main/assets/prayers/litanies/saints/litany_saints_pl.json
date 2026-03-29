@@ -1,0 +1,235 @@
+{
+  "id": "saints",
+  "title": "Litania do Wszystkich Świętych",
+  "subtitle": "Wielka modlitwa wstawiennicza Kościoła",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa",
+      "text": "Boże, którego chwałę głoszą błogosławieni mieszkańcy nieba, daj, prosimy, abyśmy za wstawiennictwem wszystkich Twoich Świętych dostąpili Twojego obfitego miłosierdzia. Przez Chrystusa, Pana naszego. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste eleison.", "response": "Chryste eleison." },
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste, usłysz nas.", "response": "Chryste, wysłuchaj nas." }
+      ]
+    },
+    {
+      "title": "Trójca Święta",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        { "text": "Ojcze z nieba, Boże," },
+        { "text": "Synu, Odkupicielu świata, Boże," },
+        { "text": "Duchu Święty, Boże," },
+        { "text": "Święta Trójco, Jedyny Boże," }
+      ]
+    },
+    {
+      "title": "Najświętsza Maryja Panna",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święta Maryjo," },
+        { "text": "Święta Boża Rodzicielko," },
+        { "text": "Święta Panno nad pannami," }
+      ]
+    },
+    {
+      "title": "Aniołowie i Prorocy",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święty Michale," },
+        { "text": "Święty Gabrielu," },
+        { "text": "Święty Rafale," },
+        { "text": "Wszyscy święci Aniołowie i Archaniołowie," },
+        { "text": "Wszystkie święte zastępy duchów niebieskich," },
+        { "text": "Święty Janie Chrzcicielu," },
+        { "text": "Święty Józefie," },
+        { "text": "Wszyscy święci Patriarchowie i Prorocy," }
+      ]
+    },
+    {
+      "title": "Apostołowie i Ewangeliści",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święty Piotrze," },
+        { "text": "Święty Pawle," },
+        { "text": "Święty Andrzeju," },
+        { "text": "Święty Jakubie," },
+        { "text": "Święty Janie," },
+        { "text": "Święty Tomaszu," },
+        { "text": "Święty Jakubie," },
+        { "text": "Święty Filipie," },
+        { "text": "Święty Bartłomieju," },
+        { "text": "Święty Mateuszu," },
+        { "text": "Święty Szymonie," },
+        { "text": "Święty Tadeuszu," },
+        { "text": "Święty Macieju," },
+        { "text": "Święty Barnabie," },
+        { "text": "Święty Łukaszu," },
+        { "text": "Święty Marku," },
+        { "text": "Wszyscy święci Apostołowie i Ewangeliści," },
+        { "text": "Wszyscy święci Uczniowie Pańscy," }
+      ]
+    },
+    {
+      "title": "Męczennicy",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Wszyscy święci Młodziankowie," },
+        { "text": "Święty Szczepanie," },
+        { "text": "Święty Wawrzyńcze," },
+        { "text": "Święty Wincenty," },
+        { "text": "Święci Fabianie i Sebastianie," },
+        { "text": "Święci Janie i Pawle," },
+        { "text": "Święci Kosmie i Damianie," },
+        { "text": "Święci Gerwazy i Protazy," },
+        { "text": "Wszyscy święci Męczennicy," }
+      ]
+    },
+    {
+      "title": "Biskupi i Doktorzy",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święty Sylwestrze," },
+        { "text": "Święty Grzegorzu," },
+        { "text": "Święty Ambroży," },
+        { "text": "Święty Augustynie," },
+        { "text": "Święty Hieronimie," },
+        { "text": "Święty Marcinie," },
+        { "text": "Święty Mikołaju," },
+        { "text": "Wszyscy święci Biskupi i Wyznawcy," },
+        { "text": "Wszyscy święci Doktorzy," }
+      ]
+    },
+    {
+      "title": "Kapłani i Zakonnicy",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święty Antoni," },
+        { "text": "Święty Benedykcie," },
+        { "text": "Święty Bernardzie," },
+        { "text": "Święty Dominiku," },
+        { "text": "Święty Franciszku," },
+        { "text": "Wszyscy święci Kapłani i Lewici," },
+        { "text": "Wszyscy święci Zakonnicy i Pustelnicy," }
+      ]
+    },
+    {
+      "title": "Święte Niewiasty",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święta Mario Magdaleno," },
+        { "text": "Święta Agato," },
+        { "text": "Święta Łucjo," },
+        { "text": "Święta Agnieszko," },
+        { "text": "Święta Cecylio," },
+        { "text": "Święta Katarzyno Aleksandryjska," },
+        { "text": "Święta Anastazjo," },
+        { "text": "Wszystkie święte Dziewice i Wdowy," },
+        { "text": "Wszyscy Święci i Święte Boże," }
+      ]
+    },
+    {
+      "title": "Bądź nam miłościw",
+      "type": "petition",
+      "response": "",
+      "invocations": [
+        { "text": "Bądź nam miłościw,", "response": "przepuść nam, Panie." },
+        { "text": "Bądź nam miłościw,", "response": "wysłuchaj nas, Panie." }
+      ]
+    },
+    {
+      "title": "Wybawienie",
+      "type": "petition",
+      "response": "wybaw nas, Panie.",
+      "invocations": [
+        { "text": "Od wszelkiego zła," },
+        { "text": "Od każdego grzechu," },
+        { "text": "Od gniewu Twego," },
+        { "text": "Od nagłej i niespodziewanej śmierci," },
+        { "text": "Od sideł szatańskich," },
+        { "text": "Od gniewu, nienawiści i wszelkiej złej woli," },
+        { "text": "Od ducha nieczystości," },
+        { "text": "Od gromu i burzy," },
+        { "text": "Od klęski trzęsienia ziemi," },
+        { "text": "Od zarazy, głodu i wojny," },
+        { "text": "Od śmierci wiecznej," }
+      ]
+    },
+    {
+      "title": "Przez tajemnice Chrystusa",
+      "type": "petition",
+      "response": "wybaw nas, Panie.",
+      "invocations": [
+        { "text": "Przez tajemnicę świętego Wcielenia Twego," },
+        { "text": "Przez Przyjście Twoje," },
+        { "text": "Przez Narodzenie Twoje," },
+        { "text": "Przez Chrzest i święty post Twój," },
+        { "text": "Przez Krzyż i Mękę Twoją," },
+        { "text": "Przez Śmierć i Pogrzeb Twój," },
+        { "text": "Przez święte Zmartwychwstanie Twoje," },
+        { "text": "Przez cudowne Wniebowstąpienie Twoje," },
+        { "text": "Przez Zesłanie Ducha Świętego, Pocieszyciela," },
+        { "text": "W dzień sądu," }
+      ]
+    },
+    {
+      "title": "Prośby",
+      "type": "petition",
+      "response": "prosimy Cię, wysłuchaj nas.",
+      "invocations": [
+        { "text": "Abyś nam odpuścić raczył," },
+        { "text": "Abyś nam przebaczył," },
+        { "text": "Abyś nas do prawdziwej pokuty doprowadzić raczył," },
+        { "text": "Abyś Kościół swój święty rządzić i zachować raczył," },
+        { "text": "Abyś Ojca Świętego i wszystkie stany kościelne w świętej pobożności zachować raczył," },
+        { "text": "Abyś nieprzyjaciół Kościoła świętego ukorzyć raczył," },
+        { "text": "Abyś królom i książętom chrześcijańskim pokój i zgodę prawdziwą dać raczył," },
+        { "text": "Abyś całemu ludowi chrześcijańskiemu pokój i jedność dać raczył," },
+        { "text": "Abyś wszystkich błądzących do jedności Kościoła doprowadzić raczył," },
+        { "text": "Abyś wszystkich niewierzących światłem Ewangelii oświecić raczył," },
+        { "text": "Abyś nas w świętej służbie Twojej utwierdzić i zachować raczył," },
+        { "text": "Abyś umysły nasze ku pragnieniu rzeczy niebieskich podnieść raczył," },
+        { "text": "Abyś wszystkim dobrodziejom naszym wieczne dobra oddać raczył," },
+        { "text": "Abyś dusze nasze i braci naszych od wiecznego potępienia zachować raczył," },
+        { "text": "Abyś urodzaje ziemskie dać i zachować raczył," },
+        { "text": "Abyś wszystkim wiernym zmarłym wieczny odpoczynek dać raczył," },
+        { "text": "Abyś nas wysłuchać raczył," },
+        { "text": "Synu Boży," }
+      ]
+    },
+    {
+      "title": "Baranek Boży",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "przepuść nam, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "wysłuchaj nas, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "zmiłuj się nad nami." }
+      ]
+    },
+    {
+      "title": "Werset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Chryste, usłysz nas.", "response": "Chryste, wysłuchaj nas." }
+      ]
+    }
+  ]
+}

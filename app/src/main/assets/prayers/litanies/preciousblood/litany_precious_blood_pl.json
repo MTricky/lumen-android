@@ -1,0 +1,200 @@
+{
+  "id": "preciousBlood",
+  "title": "Litania do Najdroższej Krwi Chrystusa Pana",
+  "subtitle": "Cena naszego zbawienia",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa",
+      "text": "Wszechmogący, wieczny Boże, który jednorodzonego Syna swego ustanowiłeś Odkupicielem świata i Krwią Jego dałeś się przebłagać, daj nam, prosimy, godnie czcić cenę naszego zbawienia i dzięki niej doznawać obrony od zła doczesnego na ziemi, abyśmy wiekuistym szczęściem radowali się w niebie. Przez tegoż Chrystusa, Pana naszego. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Kyrie eleison.",
+          "response": "Kyrie eleison."
+        },
+        {
+          "text": "Chryste eleison.",
+          "response": "Chryste eleison."
+        },
+        {
+          "text": "Kyrie eleison.",
+          "response": "Kyrie eleison."
+        },
+        {
+          "text": "Chryste, usłysz nas.",
+          "response": "Chryste, wysłuchaj nas."
+        }
+      ]
+    },
+    {
+      "title": "Trójca Święta",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Ojcze z nieba, Boże,"
+        },
+        {
+          "text": "Synu, Odkupicielu świata, Boże,"
+        },
+        {
+          "text": "Duchu Święty, Boże,"
+        },
+        {
+          "text": "Święta Trójco, Jedyny Boże,"
+        }
+      ]
+    },
+    {
+      "title": "Boski początek",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, Jednorodzonego Syna Ojca Przedwiecznego,"
+        },
+        {
+          "text": "Krwi Chrystusa, wcielonego Słowa Bożego,"
+        },
+        {
+          "text": "Krwi Chrystusa, nowego i wiecznego Przymierza,"
+        }
+      ]
+    },
+    {
+      "title": "Męka Pańska",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, przy konaniu w Ogrójcu spływająca na ziemię,"
+        },
+        {
+          "text": "Krwi Chrystusa, tryskająca przy biczowaniu,"
+        },
+        {
+          "text": "Krwi Chrystusa, brocząca spod cierniowej korony,"
+        },
+        {
+          "text": "Krwi Chrystusa, przelana na Krzyżu,"
+        }
+      ]
+    },
+    {
+      "title": "Odkupienie",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, zapłato naszego zbawienia,"
+        },
+        {
+          "text": "Krwi Chrystusa, bez której nie ma przebaczenia,"
+        },
+        {
+          "text": "Krwi Chrystusa, napoju i obmyciu dusz w Eucharystii,"
+        }
+      ]
+    },
+    {
+      "title": "Moc i świętość",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, zdroju miłosierdzia,"
+        },
+        {
+          "text": "Krwi Chrystusa, zwyciężająca złe duchy,"
+        },
+        {
+          "text": "Krwi Chrystusa, męstwo Męczenników,"
+        },
+        {
+          "text": "Krwi Chrystusa, mocy Wyznawców,"
+        }
+      ]
+    },
+    {
+      "title": "Opieka",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, rodząca Dziewice,"
+        },
+        {
+          "text": "Krwi Chrystusa, ostojo zagrożonych,"
+        },
+        {
+          "text": "Krwi Chrystusa, ulgo pracujących,"
+        },
+        {
+          "text": "Krwi Chrystusa, pociecho płaczących,"
+        }
+      ]
+    },
+    {
+      "title": "Nadzieja i chwała",
+      "type": "petition",
+      "response": "wybaw nas.",
+      "invocations": [
+        {
+          "text": "Krwi Chrystusa, nadziejo pokutujących,"
+        },
+        {
+          "text": "Krwi Chrystusa, otucho konających,"
+        },
+        {
+          "text": "Krwi Chrystusa, pokoju i słodyczy serc naszych,"
+        },
+        {
+          "text": "Krwi Chrystusa, zadatku życia wiecznego,"
+        },
+        {
+          "text": "Krwi Chrystusa, wybawienie dusz z otchłani czyśćcowej,"
+        },
+        {
+          "text": "Krwi Chrystusa, wszelkiej chwały i czci najgodniejsza,"
+        }
+      ]
+    },
+    {
+      "title": "Baranek Boży",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "przepuść nam, Panie."
+        },
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "wysłuchaj nas, Panie."
+        },
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "zmiłuj się nad nami."
+        }
+      ]
+    },
+    {
+      "title": "Werset",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Odkupiłeś nas, Panie, Krwią swoją.",
+          "response": "I uczyniłeś nas królestwem Boga naszego."
+        }
+      ]
+    }
+  ]
+}

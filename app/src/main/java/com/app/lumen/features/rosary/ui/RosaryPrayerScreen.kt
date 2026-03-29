@@ -24,8 +24,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -60,6 +64,14 @@ private val ButtonGlassBorder = Color.White.copy(alpha = 0.20f)
 
 private const val CROSSFADE_MS = 1000
 
+private fun prayerLanguageCode(): String {
+    val lang = Locale.getDefault().language
+    return when {
+        lang.startsWith("pl") -> "pl"
+        else -> "en"
+    }
+}
+
 @Composable
 fun RosaryPrayerScreen(
     viewModel: RosaryViewModel,
@@ -93,7 +105,8 @@ fun RosaryPrayerScreen(
     // Audio state — reactive
     val audioPlayer = remember { RosaryAudioPlayer.getInstance(context) }
     val audioService = remember { RosaryAudioService.getInstance(context) }
-    val isAudioDownloaded = remember { audioService.isAudioDownloaded("en") }
+    val audioLang = remember { prayerLanguageCode() }
+    val isAudioDownloaded = remember { audioService.isAudioDownloaded(audioLang) }
     val audioIsPlaying by audioPlayer.isPlaying.collectAsState()
     val audioIsAutoAdvancing by audioPlayer.isAutoAdvancing.collectAsState()
 
@@ -111,10 +124,10 @@ fun RosaryPrayerScreen(
     LaunchedEffect(Unit) {
         if (isAudioDownloaded) {
             withContext(Dispatchers.IO) {
-                val config = audioService.fetchAudioConfig("en")
+                val config = audioService.fetchAudioConfig(audioLang)
                 if (config != null) {
                     withContext(Dispatchers.Main) {
-                        audioPlayer.configure(config, "en")
+                        audioPlayer.configure(config, audioLang)
                     }
                 }
             }
@@ -421,13 +434,44 @@ private fun PrayerScreen(
     exitAnim: ExitTransition,
     onTap: () -> Unit,
 ) {
+    val scrollState = rememberScrollState()
+    val canScroll = scrollState.canScrollForward || scrollState.canScrollBackward
     Column(
         modifier = Modifier
             .fillMaxSize()
             .tapToAdvance(onTap)
             .statusBarsPadding()
             .padding(top = 68.dp)
-            .verticalScroll(rememberScrollState()),
+            .then(
+                if (canScroll) Modifier
+                    .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
+                    .drawWithContent {
+                        drawContent()
+                        val fadeHeight = 32.dp.toPx()
+                        if (scrollState.canScrollBackward) {
+                            drawRect(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(Color.Transparent, Color.Black),
+                                    startY = 0f,
+                                    endY = fadeHeight,
+                                ),
+                                blendMode = BlendMode.DstIn,
+                            )
+                        }
+                        if (scrollState.canScrollForward) {
+                            drawRect(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(Color.Black, Color.Transparent),
+                                    startY = size.height - fadeHeight,
+                                    endY = size.height,
+                                ),
+                                blendMode = BlendMode.DstIn,
+                            )
+                        }
+                    }
+                else Modifier
+            )
+            .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Progress panel — scrolls with content

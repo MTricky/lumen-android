@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.features.rosary.service.RosaryAudioService
+import com.app.lumen.features.rosary.ui.RosaryVisualMode
+import java.util.Locale
 import com.app.lumen.features.subscription.PaywallSheet
 import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.theme.NearBlack
@@ -72,7 +74,7 @@ fun SettingsScreen(
 
     // Rosary visual style state
     val rosaryPrefs = remember { context.getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE) }
-    var visualStyle by remember { mutableStateOf(rosaryPrefs.getString("visual_style", "Sacred Art") ?: "Sacred Art") }
+    var visualMode by remember { mutableStateOf(RosaryVisualMode.current(context)) }
     var showVisualStylePicker by remember { mutableStateOf(false) }
     var isAudioEnabled by remember { mutableStateOf(rosaryPrefs.getBoolean("audio_enabled", false)) }
 
@@ -80,7 +82,8 @@ fun SettingsScreen(
     val audioService = remember { RosaryAudioService.getInstance(context) }
     val isDownloadingAudio by audioService.isDownloading.collectAsState()
     val audioDownloadProgress by audioService.downloadProgress.collectAsState()
-    var isAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded("en")) }
+    val audioLang = remember { prayerLanguageCode() }
+    var isAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded(audioLang)) }
 
     // Bible cache size
     var cacheSizeBytes by remember { mutableLongStateOf(0L) }
@@ -192,8 +195,9 @@ fun SettingsScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.clickable { showRegionPicker = true },
                     ) {
+                        val regionLabelRes = REGION_ENTRIES.firstOrNull { it.first == selectedRegion }?.second
                         Text(
-                            text = selectedRegion,
+                            text = if (regionLabelRes != null) stringResource(regionLabelRes) else selectedRegion,
                             fontSize = 15.sp,
                             color = SoftGold,
                         )
@@ -325,7 +329,12 @@ fun SettingsScreen(
                         modifier = Modifier.clickable { showVisualStylePicker = true },
                     ) {
                         Text(
-                            text = visualStyle,
+                            text = stringResource(
+                                when (visualMode) {
+                                    RosaryVisualMode.SACRED_ART -> R.string.settings_prayer_visual_sacred_art
+                                    RosaryVisualMode.SIMPLE -> R.string.settings_prayer_visual_simple
+                                }
+                            ),
                             fontSize = 15.sp,
                             color = SoftGold,
                         )
@@ -370,9 +379,9 @@ fun SettingsScreen(
                         if (enabled && !isAudioDownloaded) {
                             scope.launch {
                                 withContext(Dispatchers.IO) {
-                                    audioService.downloadAudio("en")
+                                    audioService.downloadAudio(audioLang)
                                 }
-                                isAudioDownloaded = audioService.isAudioDownloaded("en")
+                                isAudioDownloaded = audioService.isAudioDownloaded(audioLang)
                             }
                         }
                     },
@@ -582,10 +591,10 @@ fun SettingsScreen(
     // ── Visual Style Picker Dialog ────────────────────────────────
     if (showVisualStylePicker) {
         VisualStylePickerDialog(
-            selectedStyle = visualStyle,
-            onStyleSelected = {
-                visualStyle = it
-                rosaryPrefs.edit().putString("visual_style", it).apply()
+            selectedMode = visualMode,
+            onModeSelected = {
+                visualMode = it
+                rosaryPrefs.edit().putString("visual_style", it.key).apply()
                 showVisualStylePicker = false
             },
             onDismiss = { showVisualStylePicker = false },
@@ -670,11 +679,27 @@ private fun FooterText(text: String) {
 
 // ── Dialogs ──────────────────────────────────────────────────────
 
-private val REGIONS = listOf(
-    "Universal",
-    "Argentina", "Australia", "Austria", "Brazil", "Canada", "Chile",
-    "Colombia", "France", "Germany", "Ireland", "Italy", "Mexico",
-    "Peru", "Philippines", "Poland", "Portugal", "Spain", "UK", "USA",
+private val REGION_ENTRIES = listOf(
+    "Universal" to R.string.region_universal,
+    "Argentina" to R.string.region_argentina,
+    "Australia" to R.string.region_australia,
+    "Austria" to R.string.region_austria,
+    "Brazil" to R.string.region_brazil,
+    "Canada" to R.string.region_canada,
+    "Chile" to R.string.region_chile,
+    "Colombia" to R.string.region_colombia,
+    "France" to R.string.region_france,
+    "Germany" to R.string.region_germany,
+    "Ireland" to R.string.region_ireland,
+    "Italy" to R.string.region_italy,
+    "Mexico" to R.string.region_mexico,
+    "Peru" to R.string.region_peru,
+    "Philippines" to R.string.region_philippines,
+    "Poland" to R.string.region_poland,
+    "Portugal" to R.string.region_portugal,
+    "Spain" to R.string.region_spain,
+    "UK" to R.string.region_uk,
+    "USA" to R.string.region_usa,
 )
 
 @Composable
@@ -694,23 +719,24 @@ private fun RegionPickerDialog(
                     .heightIn(max = 400.dp)
                     .verticalScroll(rememberScrollState()),
             ) {
-                REGIONS.forEach { region ->
+                REGION_ENTRIES.forEach { (key, labelRes) ->
+                    val isSelected = key == selectedRegion
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(8.dp))
-                            .clickable { onRegionSelected(region) }
+                            .clickable { onRegionSelected(key) }
                             .padding(vertical = 12.dp, horizontal = 8.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
-                            text = region,
+                            text = stringResource(labelRes),
                             fontSize = 15.sp,
-                            color = if (region == selectedRegion) SoftGold else Color.White,
-                            fontWeight = if (region == selectedRegion) FontWeight.SemiBold else FontWeight.Normal,
+                            color = if (isSelected) SoftGold else Color.White,
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                             modifier = Modifier.weight(1f),
                         )
-                        if (region == selectedRegion) {
+                        if (isSelected) {
                             Icon(
                                 imageVector = Icons.Filled.Check,
                                 contentDescription = null,
@@ -753,12 +779,18 @@ private fun clearBibleCache(context: Context) {
     firebaseCacheDir.mkdirs()
 }
 
-private val VISUAL_STYLES = listOf("Sacred Art", "Simple")
+private fun prayerLanguageCode(): String {
+    val lang = Locale.getDefault().language
+    return when {
+        lang.startsWith("pl") -> "pl"
+        else -> "en"
+    }
+}
 
 @Composable
 private fun VisualStylePickerDialog(
-    selectedStyle: String,
-    onStyleSelected: (String) -> Unit,
+    selectedMode: RosaryVisualMode,
+    onModeSelected: (RosaryVisualMode) -> Unit,
     onDismiss: () -> Unit,
 ) {
     AlertDialog(
@@ -768,23 +800,30 @@ private fun VisualStylePickerDialog(
         },
         text = {
             Column {
-                VISUAL_STYLES.forEach { style ->
+                RosaryVisualMode.entries.forEach { mode ->
+                    val label = stringResource(
+                        when (mode) {
+                            RosaryVisualMode.SACRED_ART -> R.string.settings_prayer_visual_sacred_art
+                            RosaryVisualMode.SIMPLE -> R.string.settings_prayer_visual_simple
+                        }
+                    )
+                    val isSelected = mode == selectedMode
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(8.dp))
-                            .clickable { onStyleSelected(style) }
+                            .clickable { onModeSelected(mode) }
                             .padding(vertical = 14.dp, horizontal = 8.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
-                            text = style,
+                            text = label,
                             fontSize = 15.sp,
-                            color = if (style == selectedStyle) SoftGold else Color.White,
-                            fontWeight = if (style == selectedStyle) FontWeight.SemiBold else FontWeight.Normal,
+                            color = if (isSelected) SoftGold else Color.White,
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                             modifier = Modifier.weight(1f),
                         )
-                        if (style == selectedStyle) {
+                        if (isSelected) {
                             Icon(
                                 imageVector = Icons.Filled.Check,
                                 contentDescription = null,

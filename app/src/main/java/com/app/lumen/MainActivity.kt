@@ -13,12 +13,16 @@ import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.onboarding.ui.OnboardingView
+import com.app.lumen.features.rosary.service.RosaryAudioService
 import com.app.lumen.features.subscription.SubscriptionManager
 import com.app.lumen.ui.tabs.MainTabView
 import com.app.lumen.ui.theme.LumenTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
 
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        checkLanguageChangeAndReDownloadAudio()
         handleIntent(intent)
 
         setContent {
@@ -79,6 +84,40 @@ class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleIntent(intent)
+    }
+
+    private fun checkLanguageChangeAndReDownloadAudio() {
+        val prefs = getSharedPreferences("cache_prefs", Context.MODE_PRIVATE)
+        val currentLang = Locale.getDefault().language
+        val audioLang = when {
+            currentLang.startsWith("pl") -> "pl"
+            else -> "en"
+        }
+        val previousAudioLang = prefs.getString("audio_language", null)
+        prefs.edit().putString("audio_language", audioLang).apply()
+
+        val audioService = RosaryAudioService.getInstance(this)
+        val rosaryPrefs = getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE)
+        val audioEnabled = rosaryPrefs.getBoolean("audio_enabled", false)
+
+        // Re-download if: language changed explicitly, OR audio is enabled but not
+        // downloaded for the current language (covers first migration and language switch)
+        if (!audioService.isAudioDownloaded(audioLang) && audioEnabled) {
+            MainScope().launch {
+                withContext(Dispatchers.IO) {
+                    audioService.downloadAudio(audioLang)
+                }
+            }
+        } else if (previousAudioLang != null && previousAudioLang != audioLang
+            && audioService.isAudioDownloaded(previousAudioLang)
+            && !audioService.isAudioDownloaded(audioLang)
+        ) {
+            MainScope().launch {
+                withContext(Dispatchers.IO) {
+                    audioService.downloadAudio(audioLang)
+                }
+            }
+        }
     }
 
     private fun handleIntent(intent: Intent?) {

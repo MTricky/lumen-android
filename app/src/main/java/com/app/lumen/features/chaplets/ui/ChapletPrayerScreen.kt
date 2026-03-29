@@ -24,8 +24,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -61,6 +65,14 @@ private val ButtonGlassBg = Color.White.copy(alpha = 0.12f)
 private val ButtonGlassBorder = Color.White.copy(alpha = 0.20f)
 
 private const val CROSSFADE_MS = 1000
+
+private fun prayerLanguageCode(): String {
+    val lang = Locale.getDefault().language
+    return when {
+        lang.startsWith("pl") -> "pl"
+        else -> "en"
+    }
+}
 
 /**
  * Data class to hold what the chaplet prayer screen needs to display.
@@ -115,11 +127,13 @@ fun ChapletPrayerScreen(
 
     val chapletType = state.chapletType
 
+    val audioLang = remember { prayerLanguageCode() }
+
     // Audio requires BOTH rosary AND chaplet downloaded (like iOS)
     var isChapletAudioDownloaded by remember { mutableStateOf(
-        if (chapletType.isNotEmpty()) audioService.isChapletAudioDownloaded("en", chapletType) else false
+        if (chapletType.isNotEmpty()) audioService.isChapletAudioDownloaded(audioLang, chapletType) else false
     ) }
-    var isRosaryAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded("en")) }
+    var isRosaryAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded(audioLang)) }
     val isAudioFullyDownloaded = isChapletAudioDownloaded && isRosaryAudioDownloaded
     // Show audio button if either is downloaded or chaplet config exists remotely
     var hasChapletAudioAvailable by remember { mutableStateOf(false) }
@@ -139,9 +153,9 @@ fun ChapletPrayerScreen(
     var showDownloadSheet by remember { mutableStateOf(false) }
 
     fun recheckAudioState() {
-        isRosaryAudioDownloaded = audioService.isAudioDownloaded("en")
+        isRosaryAudioDownloaded = audioService.isAudioDownloaded(audioLang)
         isChapletAudioDownloaded = if (chapletType.isNotEmpty()) {
-            audioService.isChapletAudioDownloaded("en", chapletType)
+            audioService.isChapletAudioDownloaded(audioLang, chapletType)
         } else false
     }
 
@@ -150,14 +164,14 @@ fun ChapletPrayerScreen(
 
         // Check remote availability
         withContext(Dispatchers.IO) {
-            val chapletConfig = audioService.fetchChapletAudioConfig("en", chapletType)
+            val chapletConfig = audioService.fetchChapletAudioConfig(audioLang, chapletType)
             if (chapletConfig != null) {
                 hasChapletAudioAvailable = true
             }
         }
 
         // Show sheet with slight delay if chaplet not downloaded (only if rosary audio is already downloaded)
-        val sheetShown = rosaryPrefs.getBoolean("chaplet_audio_offer_shown_${chapletType}_en", false)
+        val sheetShown = rosaryPrefs.getBoolean("chaplet_audio_offer_shown_${chapletType}_${audioLang}", false)
         if (!sheetShown && !isChapletAudioDownloaded && isRosaryAudioDownloaded) {
             delay(400)
             showDownloadSheet = true
@@ -168,11 +182,11 @@ fun ChapletPrayerScreen(
     LaunchedEffect(isAudioFullyDownloaded) {
         if (chapletType.isNotEmpty() && isAudioFullyDownloaded) {
             withContext(Dispatchers.IO) {
-                val chapletConfig = audioService.fetchChapletAudioConfig("en", chapletType)
-                val rosaryConfig = audioService.fetchAudioConfig("en")
+                val chapletConfig = audioService.fetchChapletAudioConfig(audioLang, chapletType)
+                val rosaryConfig = audioService.fetchAudioConfig(audioLang)
                 if (chapletConfig != null) {
                     withContext(Dispatchers.Main) {
-                        audioPlayer.configure(chapletConfig, rosaryConfig, "en", chapletType)
+                        audioPlayer.configure(chapletConfig, rosaryConfig, audioLang, chapletType)
                     }
                 }
             }
@@ -450,7 +464,7 @@ fun ChapletPrayerScreen(
         PrayerAudioDownloadSheet(
             prayerName = state.chapletDisplayName,
             chapletType = chapletType,
-            language = "en",
+            language = audioLang,
             onDismiss = {
                 showDownloadSheet = false
                 // Re-check audio state after sheet dismissal (like iOS)
@@ -476,13 +490,44 @@ private fun PrayerScreen(
     exitAnim: ExitTransition,
     onTap: () -> Unit,
 ) {
+    val scrollState = rememberScrollState()
+    val canScroll = scrollState.canScrollForward || scrollState.canScrollBackward
     Column(
         modifier = Modifier
             .fillMaxSize()
             .tapToAdvance(onTap)
             .statusBarsPadding()
             .padding(top = 68.dp)
-            .verticalScroll(rememberScrollState()),
+            .then(
+                if (canScroll) Modifier
+                    .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
+                    .drawWithContent {
+                        drawContent()
+                        val fadeHeight = 32.dp.toPx()
+                        if (scrollState.canScrollBackward) {
+                            drawRect(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(Color.Transparent, Color.Black),
+                                    startY = 0f,
+                                    endY = fadeHeight,
+                                ),
+                                blendMode = BlendMode.DstIn,
+                            )
+                        }
+                        if (scrollState.canScrollForward) {
+                            drawRect(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(Color.Black, Color.Transparent),
+                                    startY = size.height - fadeHeight,
+                                    endY = size.height,
+                                ),
+                                blendMode = BlendMode.DstIn,
+                            )
+                        }
+                    }
+                else Modifier
+            )
+            .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Progress panel

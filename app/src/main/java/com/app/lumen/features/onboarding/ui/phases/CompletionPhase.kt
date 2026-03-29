@@ -139,21 +139,19 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
                         )
                     }
 
-                    // Bible
-                    viewModel.selectedBible?.let { bible ->
-                        SummaryCard(
-                            icon = Icons.Filled.Book,
-                            iconColor = SoftGold,
-                            title = bible.displayName,
-                            subtitle = stringResource(R.string.onboarding_completion_bible_subtitle)
-                        )
-                    }
+                    // Bible language
+                    SummaryCard(
+                        icon = Icons.Filled.Book,
+                        iconColor = SoftGold,
+                        title = stringResource(viewModel.selectedBibleLanguage.displayNameRes),
+                        subtitle = stringResource(R.string.onboarding_completion_bible_subtitle)
+                    )
 
                     // Region
                     SummaryCard(
                         icon = Icons.Filled.Public,
                         iconColor = Color.Cyan,
-                        title = viewModel.selectedRegion.displayName,
+                        title = stringResource(viewModel.selectedRegion.displayNameRes),
                         subtitle = stringResource(R.string.onboarding_completion_region_subtitle)
                     )
 

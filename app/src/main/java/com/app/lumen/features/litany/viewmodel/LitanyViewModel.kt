@@ -117,10 +117,11 @@ class LitanyViewModel(application: Application) : AndroidViewModel(application) 
         _isLoading.value = true
         currentLitanyType = litanyType
         try {
-            val jsonString = getApplication<Application>().assets
-                .open(litanyType.jsonPath)
-                .bufferedReader()
-                .use { it.readText() }
+            val jsonString = try {
+                getApplication<Application>().assets.open(litanyType.jsonPath)
+            } catch (_: Exception) {
+                getApplication<Application>().assets.open(litanyType.jsonPathFallback)
+            }.bufferedReader().use { it.readText() }
             _prayerData.value = json.decodeFromString<LitanyPrayerData>(jsonString)
         } catch (e: Exception) {
             e.printStackTrace()

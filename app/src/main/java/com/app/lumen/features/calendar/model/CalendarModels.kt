@@ -1,32 +1,34 @@
 package com.app.lumen.features.calendar.model
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
+import com.app.lumen.R
 import com.app.lumen.ui.theme.*
 import kotlinx.serialization.Serializable
 
 // MARK: - Liturgical Region
 
-enum class LiturgicalRegion(val rawValue: String, val displayName: String) {
-    UNIVERSAL("universal", "Universal"),
-    USA("usa", "USA"),
-    BRAZIL("brazil", "Brazil"),
-    POLAND("poland", "Poland"),
-    PORTUGAL("portugal", "Portugal"),
-    IRELAND("ireland", "Ireland"),
-    PHILIPPINES("philippines", "Philippines"),
-    AUSTRALIA("australia", "Australia"),
-    UK("uk", "United Kingdom"),
-    CANADA("canada", "Canada"),
-    SPAIN("spain", "Spain"),
-    MEXICO("mexico", "Mexico"),
-    ARGENTINA("argentina", "Argentina"),
-    CHILE("chile", "Chile"),
-    COLOMBIA("colombia", "Colombia"),
-    PERU("peru", "Peru"),
-    FRANCE("france", "France"),
-    GERMANY("germany", "Germany"),
-    AUSTRIA("austria", "Austria"),
-    ITALY("italy", "Italy");
+enum class LiturgicalRegion(val rawValue: String, val displayName: String, @StringRes val displayNameRes: Int) {
+    UNIVERSAL("universal", "Universal", R.string.region_universal),
+    USA("usa", "USA", R.string.region_usa),
+    BRAZIL("brazil", "Brazil", R.string.region_brazil),
+    POLAND("poland", "Poland", R.string.region_poland),
+    PORTUGAL("portugal", "Portugal", R.string.region_portugal),
+    IRELAND("ireland", "Ireland", R.string.region_ireland),
+    PHILIPPINES("philippines", "Philippines", R.string.region_philippines),
+    AUSTRALIA("australia", "Australia", R.string.region_australia),
+    UK("uk", "United Kingdom", R.string.region_uk),
+    CANADA("canada", "Canada", R.string.region_canada),
+    SPAIN("spain", "Spain", R.string.region_spain),
+    MEXICO("mexico", "Mexico", R.string.region_mexico),
+    ARGENTINA("argentina", "Argentina", R.string.region_argentina),
+    CHILE("chile", "Chile", R.string.region_chile),
+    COLOMBIA("colombia", "Colombia", R.string.region_colombia),
+    PERU("peru", "Peru", R.string.region_peru),
+    FRANCE("france", "France", R.string.region_france),
+    GERMANY("germany", "Germany", R.string.region_germany),
+    AUSTRIA("austria", "Austria", R.string.region_austria),
+    ITALY("italy", "Italy", R.string.region_italy);
 
     companion object {
         fun fromRawValue(value: String): LiturgicalRegion =

@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Litania do Świętego Józefa",
+  "subtitle": "Opiekun Świętej Rodziny",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa",
+      "text": "Boże, Ty w niewysłowionej Opatrzności wybrałeś świętego Józefa na Oblubieńca Najświętszej Rodzicielki Twojego Syna, spraw, abyśmy oddając mu na ziemi cześć jako opiekunowi, zasłużyli na Jego orędownictwo w niebie. Przez Chrystusa, Pana naszego. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste eleison.", "response": "Chryste eleison." },
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste, usłysz nas.", "response": "Chryste, wysłuchaj nas." }
+      ]
+    },
+    {
+      "title": "Trójca Święta",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        { "text": "Ojcze z nieba, Boże," },
+        { "text": "Synu, Odkupicielu świata, Boże," },
+        { "text": "Duchu Święty, Boże," },
+        { "text": "Święta Trójco, Jedyny Boże," }
+      ]
+    },
+    {
+      "title": "Święta Maryja",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święta Maryjo," },
+        { "text": "Święty Józefie," }
+      ]
+    },
+    {
+      "title": "Tytuły Świętego Józefa",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Przesławny Potomku Dawida," },
+        { "text": "Światło Patriarchów," },
+        { "text": "Oblubieńcze Bogarodzicy," },
+        { "text": "Opiekun Odkupiciela," },
+        { "text": "Przeczysty Stróżu Dziewicy," },
+        { "text": "Żywicielu Syna Bożego," },
+        { "text": "Troskliwy Obrońco Chrystusa," },
+        { "text": "Sługa Chrystusa," },
+        { "text": "Sługa zbawienia," },
+        { "text": "Głowo Najświętszej Rodziny," }
+      ]
+    },
+    {
+      "title": "Cnoty",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Józefie najsprawiedliwszy," },
+        { "text": "Józefie najczystszy," },
+        { "text": "Józefie najroztropniejszy," },
+        { "text": "Józefie najmężniejszy," },
+        { "text": "Józefie najposłuszniejszy," },
+        { "text": "Józefie najwierniejszy," }
+      ]
+    },
+    {
+      "title": "Tytuły honorowe",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Zwierciadło cierpliwości," },
+        { "text": "Miłośniku ubóstwa," },
+        { "text": "Wzorze pracujących," },
+        { "text": "Ozdobo życia rodzinnego," },
+        { "text": "Opiekunie Dziewic," },
+        { "text": "Podporo rodzin," }
+      ]
+    },
+    {
+      "title": "Patronaty",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Podpora w trudnościach," },
+        { "text": "Pociecho nieszczęśliwych," },
+        { "text": "Patron wygnańców," },
+        { "text": "Patron cierpiących," },
+        { "text": "Patron ubogich," },
+        { "text": "Nadziejo chorych," },
+        { "text": "Patronie umierających," },
+        { "text": "Postrachu duchów piekielnych," },
+        { "text": "Opiekunie Kościoła świętego," }
+      ]
+    },
+    {
+      "title": "Baranek Boży",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "przepuść nam, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "wysłuchaj nas, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "zmiłuj się nad nami." }
+      ]
+    },
+    {
+      "title": "Werset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Ustanowił go panem domu swego.", "response": "I zarządcą wszystkich posiadłości swoich." }
+      ]
+    }
+  ]
+}

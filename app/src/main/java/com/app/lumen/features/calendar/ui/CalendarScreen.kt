@@ -218,7 +218,7 @@ fun CalendarScreen(
             contentWindowInsets = { WindowInsets(0) },
         ) {
             CalendarInfoSheet(
-                regionName = region.displayName,
+                regionName = stringResource(region.displayNameRes),
                 onDismiss = { showInfoSheet = false }
             )
         }
@@ -644,7 +644,7 @@ fun CalendarScreen(
                     Column(modifier = Modifier.fillMaxSize()) {
                         CalendarStickyHeader(
                             monthTitle = visibleMonthTitle,
-                            regionName = region.displayName
+                            regionName = stringResource(region.displayNameRes)
                         )
 
                         val calendarAlpha by animateFloatAsState(

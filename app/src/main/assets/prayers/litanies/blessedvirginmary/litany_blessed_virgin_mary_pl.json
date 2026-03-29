@@ -1,0 +1,144 @@
+{
+  "id": "blessedVirginMary",
+  "title": "Litania loretańska do Najświętszej Maryi Panny",
+  "subtitle": "Litania Loretańska",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa",
+      "text": "Prosimy Cię, Panie Boże, daj nam, sługom Twoim, cieszyć się trwałym zdrowiem duszy i ciała, a za przyczyną Najświętszej Maryi, zawsze Dziewicy, racz nas uwolnić od doczesnych utrapień i obdarzyć wieczną radością. Przez Chrystusa, Pana naszego. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste eleison.", "response": "Chryste eleison." },
+        { "text": "Kyrie eleison.", "response": "Kyrie eleison." },
+        { "text": "Chryste, usłysz nas.", "response": "Chryste, wysłuchaj nas." }
+      ]
+    },
+    {
+      "title": "Trójca Święta",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        { "text": "Ojcze z nieba, Boże," },
+        { "text": "Synu, Odkupicielu świata, Boże," },
+        { "text": "Duchu Święty, Boże," },
+        { "text": "Święta Trójco, Jedyny Boże," }
+      ]
+    },
+    {
+      "title": "Święta Maryja",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Święta Maryjo," },
+        { "text": "Święta Boża Rodzicielko," },
+        { "text": "Święta Panno nad pannami," }
+      ]
+    },
+    {
+      "title": "Matka",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Matko Chrystusowa," },
+        { "text": "Matko Kościoła," },
+        { "text": "Matko miłosierdzia," },
+        { "text": "Matko łaski Bożej," },
+        { "text": "Matko nadziei," },
+        { "text": "Matko nieskalana," },
+        { "text": "Matko najczystsza," },
+        { "text": "Matko dziewicza," },
+        { "text": "Matko nienaruszona," },
+        { "text": "Matko najmilsza," },
+        { "text": "Matko przedziwna," },
+        { "text": "Matko dobrej rady," },
+        { "text": "Matko Stworzyciela," },
+        { "text": "Matko Zbawiciela," }
+      ]
+    },
+    {
+      "title": "Dziewica",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Panno roztropna," },
+        { "text": "Panno czcigodna," },
+        { "text": "Panno wsławiona," },
+        { "text": "Panno można," },
+        { "text": "Panno łaskawa," },
+        { "text": "Panno wierna," }
+      ]
+    },
+    {
+      "title": "Tytuły symboliczne",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Zwierciadło sprawiedliwości," },
+        { "text": "Stolico mądrości," },
+        { "text": "Przyczyno naszej radości," },
+        { "text": "Przybytku Ducha Świętego," },
+        { "text": "Przybytku chwalebny," },
+        { "text": "Przybytku sławny pobożności," },
+        { "text": "Różo duchowna," },
+        { "text": "Wieżo Dawidowa," },
+        { "text": "Wieżo z kości słoniowej," },
+        { "text": "Domie złoty," },
+        { "text": "Arko przymierza," },
+        { "text": "Bramo niebieska," },
+        { "text": "Gwiazdo zaranna," },
+        { "text": "Uzdrowienie chorych," },
+        { "text": "Ucieczko grzesznych," },
+        { "text": "Pociecho migrantów," },
+        { "text": "Pocieszycielko strapionych," },
+        { "text": "Wspomożenie wiernych," }
+      ]
+    },
+    {
+      "title": "Królowa",
+      "type": "petition",
+      "response": "módl się za nami.",
+      "invocations": [
+        { "text": "Królowo Aniołów," },
+        { "text": "Królowo Patriarchów," },
+        { "text": "Królowo Proroków," },
+        { "text": "Królowo Apostołów," },
+        { "text": "Królowo Męczenników," },
+        { "text": "Królowo Wyznawców," },
+        { "text": "Królowo Dziewic," },
+        { "text": "Królowo wszystkich Świętych," },
+        { "text": "Królowo bez zmazy pierworodnej poczęta," },
+        { "text": "Królowo wniebowzięta," },
+        { "text": "Królowo różańca świętego," },
+        { "text": "Królowo rodzin," },
+        { "text": "Królowo pokoju," },
+        { "text": "Królowo Polski," }
+      ]
+    },
+    {
+      "title": "Baranek Boży",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "przepuść nam, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "wysłuchaj nas, Panie." },
+        { "text": "Baranku Boży, który gładzisz grzechy świata,", "response": "zmiłuj się nad nami." }
+      ]
+    },
+    {
+      "title": "Werset",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Módl się za nami, Święta Boża Rodzicielko.", "response": "Abyśmy się stali godnymi obietnic Chrystusowych." }
+      ]
+    }
+  ]
+}

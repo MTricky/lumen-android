@@ -1,0 +1,158 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "apostlesCreed": {
+      "title": "Skład Apostolski",
+      "text": "Wierzę w Boga, Ojca Wszechmogącego, Stworzyciela nieba i ziemi. I w Jezusa Chrystusa, Syna Jego Jedynego, Pana naszego, który się począł z Ducha Świętego, narodził się z Maryi Panny, umęczon pod Ponckim Piłatem, ukrzyżowan, umarł i pogrzebion. Zstąpił do piekieł, trzeciego dnia zmartwychwstał. Wstąpił na niebiosa, siedzi po prawicy Boga Ojca Wszechmogącego. Stamtąd przyjdzie sądzić żywych i umarłych. Wierzę w Ducha Świętego, święty Kościół powszechny, Świętych obcowanie, grzechów odpuszczenie, ciała zmartwychwstanie, żywot wieczny. Amen."
+    },
+    "ourFather": {
+      "title": "Ojcze Nasz",
+      "text": "Ojcze nasz, któryś jest w niebie, święć się imię Twoje, przyjdź królestwo Twoje, bądź wola Twoja jako w niebie, tak i na ziemi. Chleba naszego powszedniego daj nam dzisiaj i odpuść nam nasze winy, jako i my odpuszczamy naszym winowajcom. I nie wódź nas na pokuszenie, ale nas zbaw ode złego. Amen."
+    },
+    "hailMary": {
+      "title": "Zdrowaś Maryjo",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą, błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi teraz i w godzinę śmierci naszej. Amen."
+    },
+    "gloryBe": {
+      "title": "Chwała Ojcu",
+      "text": "Chwała Ojcu i Synowi, i Duchowi Świętemu. Jak była na początku, teraz i zawsze, i na wieki wieków. Amen."
+    },
+    "fatimaPrayer": {
+      "title": "Modlitwa Fatimska",
+      "text": "O mój Jezu, przebacz nam nasze grzechy, zachowaj nas od ognia piekielnego, zaprowadź wszystkie dusze do nieba i dopomóż szczególnie tym, którzy najbardziej potrzebują Twojego miłosierdzia. Amen."
+    },
+    "hailHolyQueen": {
+      "title": "Witaj Królowo",
+      "text": "Witaj Królowo, Matko Miłosierdzia, życie, słodyczy i nadziejo nasza, witaj! Do Ciebie wołamy wygnańcy, synowie Ewy; do Ciebie wzdychamy jęcząc i płacząc na tym łez padole. Przeto, Orędowniczko nasza, one miłosierne oczy Twoje na nas zwróć, a Jezusa, błogosławiony owoc żywota Twojego, po tym wygnaniu nam okaż. O łaskawa, o litościwa, o słodka Panno Maryjo! Módl się za nami, święta Boża Rodzicielko, abyśmy się stali godnymi obietnic Chrystusowych. Amen."
+    },
+    "finalPrayer": {
+      "title": "Modlitwa Końcowa",
+      "text": "Boże, którego Jednorodzony Syn przez swoje życie, śmierć i zmartwychwstanie wysłużył nam nagrodę życia wiecznego, spraw, prosimy, abyśmy rozważając te tajemnice w Różańcu Najświętszej Maryi Panny, naśladowali to, co one zawierają, i osiągnęli to, co obiecują. Przez Chrystusa, Pana naszego. Amen."
+    },
+    "introHailMaryFaith": {
+      "title": "Zdrowaś Maryjo (o wiarę)",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą, błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi teraz i w godzinę śmierci naszej. Amen."
+    },
+    "introHailMaryHope": {
+      "title": "Zdrowaś Maryjo (o nadzieję)",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą, błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi teraz i w godzinę śmierci naszej. Amen."
+    },
+    "introHailMaryCharity": {
+      "title": "Zdrowaś Maryjo (o miłość)",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą, błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi teraz i w godzinę śmierci naszej. Amen."
+    }
+  },
+  "mysteries": {
+    "joyful": [
+      {
+        "name": "Zwiastowanie Najświętszej Maryi Pannie",
+        "meditation": "Archanioł Gabriel zwiastuje Maryi, że pocznie i porodzi Syna Bożego. Maryja pokornie przyjmuje wolę Bożą, mówiąc: 'Oto ja służebnica Pańska, niech mi się stanie według słowa twego.'",
+        "fruit": "Pokora"
+      },
+      {
+        "name": "Nawiedzenie Świętej Elżbiety",
+        "meditation": "Maryja odwiedza swoją krewną Elżbietę, która spodziewa się Jana Chrzciciela. Elżbieta napełniona Duchem Świętym ogłasza Maryję błogosławioną między niewiastami. Maryja odpowiada hymnem Magnificat.",
+        "fruit": "Miłość bliźniego"
+      },
+      {
+        "name": "Narodzenie Pana Jezusa",
+        "meditation": "Jezus rodzi się w stajni w Betlejem. Zbawiciel świata przychodzi do ludzkości w najbardziej pokornych okolicznościach, owinięty w pieluszki i położony w żłobie.",
+        "fruit": "Ubóstwo duchowe"
+      },
+      {
+        "name": "Ofiarowanie Pana Jezusa w świątyni",
+        "meditation": "Maryja i Józef przedstawiają Dzieciątko Jezus w Świątyni. Symeon rozpoznaje Go jako Mesjasza i prorokuje, że miecz przeniknie serce Maryi.",
+        "fruit": "Posłuszeństwo"
+      },
+      {
+        "name": "Odnalezienie Pana Jezusa w świątyni",
+        "meditation": "Po trzech dniach poszukiwań Maryja i Józef znajdują dwunastoletniego Jezusa w Świątyni, siedzącego wśród nauczycieli, słuchającego ich i zadającego pytania.",
+        "fruit": "Radość z odnalezienia Jezusa"
+      }
+    ],
+    "sorrowful": [
+      {
+        "name": "Modlitwa Pana Jezusa w Ogrójcu",
+        "meditation": "Jezus modli się w Ogrodzie Getsemani, poci się krwią w swej udręce, rozważając nadchodzącą Mękę. Modli się: 'Ojcze, jeśli to możliwe, niech odejdzie ode Mnie ten kielich; wszakże nie jak Ja chcę, ale jak Ty.'",
+        "fruit": "Żal za grzechy"
+      },
+      {
+        "name": "Biczowanie Pana Jezusa",
+        "meditation": "Jezus jest okrutnie biczowany przez rzymskich żołnierzy. Znosi to straszliwe cierpienie w milczeniu, ofiarując swój ból za nasze odkupienie.",
+        "fruit": "Czystość"
+      },
+      {
+        "name": "Cierniem ukoronowanie Pana Jezusa",
+        "meditation": "Żołnierze szydzą z Jezusa jako Króla, wciskając koronę z cierni na Jego głowę i bijąc Go. Plują na Niego i klękają przed Nim na pośmiewisko.",
+        "fruit": "Męstwo"
+      },
+      {
+        "name": "Dźwiganie krzyża",
+        "meditation": "Jezus niesie swój ciężki krzyż przez ulice Jerozolimy na Kalwarię. Upada trzy razy, ale idzie dalej, spotykając po drodze swoją zasmuco ną Matkę.",
+        "fruit": "Cierpliwość"
+      },
+      {
+        "name": "Ukrzyżowanie Pana Jezusa",
+        "meditation": "Jezus jest przybity do krzyża i umiera po trzech godzinach agonii. Przebacza swoim oprawcom i obiecuje raj skruszonemu łotrowi. Powierza Maryję Janowi, a Jana Maryi.",
+        "fruit": "Wytrwałość"
+      }
+    ],
+    "glorious": [
+      {
+        "name": "Zmartwychwstanie Pana Jezusa",
+        "meditation": "Trzeciego dnia Jezus powstaje z martwych, zwyciężając grzech i śmierć. Grób jest pusty, a On ukazuje się Marii Magdalenie i uczniom.",
+        "fruit": "Wiara"
+      },
+      {
+        "name": "Wniebowstąpienie Pana Jezusa",
+        "meditation": "Czterdzieści dni po Zmartwychwstaniu Jezus wstępuje do nieba w obecności swoich uczniów. Obiecuje zesłać Ducha Świętego i być z nimi zawsze.",
+        "fruit": "Nadzieja"
+      },
+      {
+        "name": "Zesłanie Ducha Świętego",
+        "meditation": "W dniu Pięćdziesiątnicy Duch Święty zstępuje na Maryję i Apostołów jako języki ognia. Zostają napełnieni odwagą i zaczynają głosić Ewangelię.",
+        "fruit": "Miłość Boga"
+      },
+      {
+        "name": "Wniebowzięcie Najświętszej Maryi Panny",
+        "meditation": "Pod koniec swego ziemskiego życia Maryja zostaje wzięta z ciałem i duszą do chwały niebieskiej. Jest zabrana, by być ze swoim Synem na zawsze.",
+        "fruit": "Łaska szczęśliwej śmierci"
+      },
+      {
+        "name": "Ukoronowanie Najświętszej Maryi Panny",
+        "meditation": "Maryja zostaje ukoronowana przez swojego Syna na Królową Nieba i Ziemi. Króluje z Chrystusem i wstawia się za wszystkimi swoimi dziećmi na ziemi.",
+        "fruit": "Ufność we wstawiennictwo Maryi"
+      }
+    ],
+    "luminous": [
+      {
+        "name": "Chrzest Pana Jezusa w Jordanie",
+        "meditation": "Jezus zostaje ochrzczony przez Jana w rzece Jordan. Niebiosa się otwierają, Duch zstępuje jak gołębica, a głos Ojca ogłasza: 'To jest mój Syn umiłowany.'",
+        "fruit": "Otwartość na Ducha Świętego"
+      },
+      {
+        "name": "Objawienie się Pana Jezusa na weselu w Kanie",
+        "meditation": "Na prośbę Maryi Jezus dokonuje swojego pierwszego cudu, zamieniając wodę w wino. Maryja mówi sługom: 'Zróbcie wszystko, cokolwiek wam powie.'",
+        "fruit": "Do Jezusa przez Maryję"
+      },
+      {
+        "name": "Głoszenie Królestwa Bożego",
+        "meditation": "Jezus głosi Królestwo Boże i wzywa wszystkich do nawrócenia. Naucza z mocą i czyni znaki i cuda.",
+        "fruit": "Nawrócenie i zaufanie Bogu"
+      },
+      {
+        "name": "Przemienienie Pana Jezusa na górze Tabor",
+        "meditation": "Jezus przemienia się na górze Tabor przed Piotrem, Jakubem i Janem. Jego twarz jaśnieje jak słońce, a Jego szaty stają się białe jak światło.",
+        "fruit": "Pragnienie świętości"
+      },
+      {
+        "name": "Ustanowienie Eucharystii",
+        "meditation": "Podczas Ostatniej Wieczerzy Jezus ustanawia Eucharystię, dając swoje Ciało i Krew pod postaciami chleba i wina. Nakazuje Apostołom: 'To czyńcie na moją pamiątkę.'",
+        "fruit": "Adoracja"
+      }
+    ]
+  }
+}

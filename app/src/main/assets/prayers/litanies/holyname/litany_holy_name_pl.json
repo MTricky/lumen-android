@@ -1,0 +1,326 @@
+{
+  "id": "holyName",
+  "title": "Litania do Najświętszego Imienia Jezus",
+  "subtitle": "Ku czci Najświętszego Imienia",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa",
+      "text": "Panie Jezu Chryste, któryś rzekł: «Proście, a otrzymacie; szukajcie, a znajdziecie; kołaczcie, a będzie wam otworzone», daj nam, prosimy, uczucie swej Boskiej miłości, abyśmy Cię z całego serca, usty i uczynkiem miłowali i nigdy nie przestawali wielbić. Racz nas obdarzyć, Panie, ustawiczną bojaźnią i miłością świętego Imienia Twego, albowiem nigdy nie odmawiasz Twej opieki tym, których utwierdzasz w Twej miłości. Który żyjesz i królujesz na wieki wieków. Amen."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Kyrie eleison.",
+          "response": "Kyrie eleison."
+        },
+        {
+          "text": "Chryste eleison.",
+          "response": "Chryste eleison."
+        },
+        {
+          "text": "Kyrie eleison.",
+          "response": "Kyrie eleison."
+        },
+        {
+          "text": "Jezu, usłysz nas.",
+          "response": "Jezu, wysłuchaj nas."
+        }
+      ]
+    },
+    {
+      "title": "Trójca Święta",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Ojcze z nieba, Boże,"
+        },
+        {
+          "text": "Synu, Odkupicielu świata, Boże,"
+        },
+        {
+          "text": "Duchu Święty, Boże,"
+        },
+        {
+          "text": "Święta Trójco, Jedyny Boże,"
+        }
+      ]
+    },
+    {
+      "title": "Boska chwała",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Jezu, Synu Boga żywego,"
+        },
+        {
+          "text": "Jezu, odblasku Ojca,"
+        },
+        {
+          "text": "Jezu, jasności światła wiecznego,"
+        },
+        {
+          "text": "Jezu, Królu chwały,"
+        },
+        {
+          "text": "Jezu, słońce sprawiedliwości,"
+        },
+        {
+          "text": "Jezu, Synu Maryi Panny,"
+        }
+      ]
+    },
+    {
+      "title": "Boskie przymioty",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Jezu najmilszy,"
+        },
+        {
+          "text": "Jezu przedziwny,"
+        },
+        {
+          "text": "Jezu, Boże mocny,"
+        },
+        {
+          "text": "Jezu, Ojcze na wieki,"
+        },
+        {
+          "text": "Jezu, wielkiej rady zwiastunie,"
+        },
+        {
+          "text": "Jezu najmożniejszy,"
+        },
+        {
+          "text": "Jezu najcierpliwszy,"
+        },
+        {
+          "text": "Jezu najposłuszniejszy,"
+        },
+        {
+          "text": "Jezu cichy i pokornego serca,"
+        }
+      ]
+    },
+    {
+      "title": "Miłość i cnota",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Jezu, miłośniku czystości,"
+        },
+        {
+          "text": "Jezu, miłujący nas,"
+        },
+        {
+          "text": "Jezu, Boże pokoju,"
+        },
+        {
+          "text": "Jezu, dawco życia,"
+        },
+        {
+          "text": "Jezu, cnót przykładzie,"
+        },
+        {
+          "text": "Jezu, pragnący dusz naszych,"
+        },
+        {
+          "text": "Jezu, Boże nasz,"
+        },
+        {
+          "text": "Jezu, ucieczko nasza,"
+        }
+      ]
+    },
+    {
+      "title": "Miłosierdzie i światło",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Jezu, Ojcze ubogich,"
+        },
+        {
+          "text": "Jezu, skarbie wiernych,"
+        },
+        {
+          "text": "Jezu, dobry Pasterzu,"
+        },
+        {
+          "text": "Jezu, światłości prawdziwa,"
+        },
+        {
+          "text": "Jezu, mądrości przedwieczna,"
+        },
+        {
+          "text": "Jezu, dobroci nieskończona,"
+        },
+        {
+          "text": "Jezu, drogo i życie nasze,"
+        }
+      ]
+    },
+    {
+      "title": "Chwała Świętych",
+      "type": "petition",
+      "response": "zmiłuj się nad nami.",
+      "invocations": [
+        {
+          "text": "Jezu, wesele Aniołów,"
+        },
+        {
+          "text": "Jezu, królu Patriarchów,"
+        },
+        {
+          "text": "Jezu, mistrzu Apostołów,"
+        },
+        {
+          "text": "Jezu, nauczycielu Ewangelistów,"
+        },
+        {
+          "text": "Jezu, męstwo Męczenników,"
+        },
+        {
+          "text": "Jezu, światłości Wyznawców,"
+        },
+        {
+          "text": "Jezu, czystości Dziewic,"
+        },
+        {
+          "text": "Jezu, korono Wszystkich Świętych,"
+        }
+      ]
+    },
+    {
+      "title": "Miłosierdzie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Bądź nam miłościw,",
+          "response": "przepuść nam, Jezu."
+        },
+        {
+          "text": "Bądź nam miłościw,",
+          "response": "wysłuchaj nas, Jezu."
+        }
+      ]
+    },
+    {
+      "title": "Wybawienie",
+      "type": "petition",
+      "response": "wybaw nas, Jezu.",
+      "invocations": [
+        {
+          "text": "Od wszelkiego zła,"
+        },
+        {
+          "text": "Od każdego grzechu,"
+        },
+        {
+          "text": "Od gniewu Twego,"
+        },
+        {
+          "text": "Od sideł szatańskich,"
+        },
+        {
+          "text": "Od ducha nieczystości,"
+        },
+        {
+          "text": "Od śmierci wiecznej,"
+        },
+        {
+          "text": "Od zaniedbania natchnień Twoich,"
+        }
+      ]
+    },
+    {
+      "title": "Przez tajemnice Chrystusa",
+      "type": "petition",
+      "response": "wybaw nas, Jezu.",
+      "invocations": [
+        {
+          "text": "Przez tajemnicę świętego Wcielenia Twego,"
+        },
+        {
+          "text": "Przez Narodzenie Twoje,"
+        },
+        {
+          "text": "Przez Dziecięctwo Twoje,"
+        },
+        {
+          "text": "Przez najświętsze życie Twoje,"
+        },
+        {
+          "text": "Przez trudy Twoje,"
+        },
+        {
+          "text": "Przez konanie w Ogrójcu i Mękę Twoją,"
+        },
+        {
+          "text": "Przez Krzyż i opuszczenie Twoje,"
+        },
+        {
+          "text": "Przez omdlenie Twoje,"
+        },
+        {
+          "text": "Przez Śmierć i Pogrzeb Twój,"
+        },
+        {
+          "text": "Przez Zmartwychwstanie Twoje,"
+        },
+        {
+          "text": "Przez Wniebowstąpienie Twoje,"
+        },
+        {
+          "text": "Przez Twoje ustanowienie Najświętszego Sakramentu,"
+        },
+        {
+          "text": "Przez radości Twoje,"
+        },
+        {
+          "text": "Przez chwałę Twoją,"
+        }
+      ]
+    },
+    {
+      "title": "Baranek Boży",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "przepuść nam, Jezu."
+        },
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "wysłuchaj nas, Jezu."
+        },
+        {
+          "text": "Baranku Boży, który gładzisz grzechy świata,",
+          "response": "zmiłuj się nad nami."
+        }
+      ]
+    },
+    {
+      "title": "Werset",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Jezu, usłysz nas.",
+          "response": "Jezu, wysłuchaj nas."
+        }
+      ]
+    }
+  ]
+}

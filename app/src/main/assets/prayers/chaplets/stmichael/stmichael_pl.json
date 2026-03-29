@@ -1,0 +1,97 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża Świętego",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "openingPrayer": {
+      "title": "Modlitwa Początkowa",
+      "text": "Boże, wejrzyj ku wspomożeniu memu. Panie, pośpiesz ku ratunkowi memu. Chwała Ojcu i Synowi, i Duchowi Świętemu. Jak była na początku, teraz i zawsze, i na wieki wieków. Amen."
+    },
+    "ourFather": {
+      "title": "Ojcze Nasz",
+      "text": "Ojcze nasz, któryś jest w niebie, święć się imię Twoje; przyjdź królestwo Twoje; bądź wola Twoja jako w niebie, tak i na ziemi. Chleba naszego powszedniego daj nam dzisiaj; i odpuść nam nasze winy, jako i my odpuszczamy naszym winowajcom; i nie wódź nas na pokuszenie, ale nas zbaw ode złego. Amen."
+    },
+    "hailMary": {
+      "title": "Zdrowaś Maryjo",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą. Błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi, teraz i w godzinę śmierci naszej. Amen."
+    },
+    "gloryBe": {
+      "title": "Chwała Ojcu",
+      "text": "Chwała Ojcu i Synowi, i Duchowi Świętemu. Jak była na początku, teraz i zawsze, i na wieki wieków. Amen."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa Końcowa",
+      "text": "Najchwalebniejszy Książę, święty Michale, Zwierzchniku i Wodzu zastępów niebieskich, obrońco dusz, pogromco zbuntowanych duchów, sługo dworu królewskiego Domu Bożego, a po Jezusie Chrystusie przedziwny nasz Hetmanie, racz w swej nadziemskiej doskonałości i mocy ratować od złego nas, którzy z ufnością uciekamy się do Ciebie. Spraw, abyśmy pod skrzydłami Twej niezrównanej opieki coraz wierniej służyli Bogu."
+    },
+    "finalPrayer": {
+      "title": "Modlitwa Ostateczna",
+      "text": "Wszechmogący wieczny Boże, który cudem dobroci i miłosierdzia dla zbawienia wszystkich ludzi wybrałeś chwalebnego Archanioła świętego Michała na Księcia swego Kościoła, dozwól, błagamy, aby ten Święty Archanioł uwolnił nas swą dobroczynną prawicą od wszelkich nieprzyjaciół, tak tych, którzy nas teraz dręczą, jak i tych którzy w godzinę śmierci czyhać będą na naszą zgubę, oraz by zaprowadził nas przed oblicze Majestatu Twojego. Przez zasługi Jezusa Chrystusa, Pana naszego. Amen."
+    }
+  },
+  "salutations": [
+    {
+      "title": "Pozdrowienie Pierwsze",
+      "choir": "Serafinów",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Serafinów, zapal nas, Panie, ogniem doskonałej miłości. Amen."
+    },
+    {
+      "title": "Pozdrowienie Drugie",
+      "choir": "Cherubinów",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Cherubinów, udziel nam, Panie, łaski opuszczenia drogi grzechu, a postępowania drogą doskonałości chrześcijańskiej. Amen."
+    },
+    {
+      "title": "Pozdrowienie Trzecie",
+      "choir": "Tronów",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Tronów, wlej, Panie, w serca nasze ducha prawdziwej i szczerej pokory. Amen."
+    },
+    {
+      "title": "Pozdrowienie Czwarte",
+      "choir": "Panowań",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Panowań, daj nam, Panie, łaskę panowania nad naszymi zmysłami i naprawienia skażonych namiętności. Amen."
+    },
+    {
+      "title": "Pozdrowienie Piąte",
+      "choir": "Mocarstw",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Mocarstw, zachowaj, Panie, dusze nasze od zasadzek i pokus szatana. Amen."
+    },
+    {
+      "title": "Pozdrowienie Szóste",
+      "choir": "Potęg",
+      "salutation": "Za przyczyną świętego Michała Archanioła i Chóru przedziwnych Potęg niebiańskich, użycz nam, Panie, zwycięstwa w pokusach i zbaw ode złego. Amen."
+    },
+    {
+      "title": "Pozdrowienie Siódme",
+      "choir": "Księstw",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Księstw, napełnij nas, Panie, duchem prawdziwego i szczerego posłuszeństwa. Amen."
+    },
+    {
+      "title": "Pozdrowienie Ósme",
+      "choir": "Archaniołów",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru Archaniołów, obdarz nas, Panie, wytrwałością w wierze i w dobrych uczynkach, abyśmy mogli osiągnąć chwałę w niebiosach. Amen."
+    },
+    {
+      "title": "Pozdrowienie Dziewiąte",
+      "choir": "Aniołów",
+      "salutation": "Za przyczyną świętego Michała Archanioła i niebiańskiego Chóru wszystkich Aniołów, spraw, Panie, abyśmy doznając od nich opieki w tym życiu, zostali zaprowadzeni do chwały wiecznej w niebie. Amen."
+    }
+  ],
+  "archangelPrayers": [
+    {
+      "title": "Na cześć świętego Michała Archanioła",
+      "instruction": "Ojcze nasz"
+    },
+    {
+      "title": "Na cześć świętego Gabriela Archanioła",
+      "instruction": "Ojcze nasz"
+    },
+    {
+      "title": "Na cześć świętego Rafała Archanioła",
+      "instruction": "Ojcze nasz"
+    },
+    {
+      "title": "Na cześć naszego Anioła Stróża",
+      "instruction": "Ojcze nasz"
+    }
+  ]
+}

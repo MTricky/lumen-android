@@ -1,0 +1,103 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Znak Krzyża Świętego",
+      "text": "W imię Ojca i Syna, i Ducha Świętego. Amen."
+    },
+    "introductoryPrayer": {
+      "title": "Modlitwa Początkowa",
+      "text": "Matko Bolesna, porusz serce moje, abym w boleści umiał wniknąć Twoje."
+    },
+    "actOfContrition": {
+      "title": "Akt Żalu",
+      "text": "Boże mój, żałuję za me grzechy z całego serca, ponieważ Ciebie obraziłem. Nienawidzę wszystkich moich grzechów, bo lękam się utraty nieba i kary piekła, ale przede wszystkim dlatego, że obraziłem Ciebie, Boże mój, który jesteś najwyższym dobrem i godzien wszelkiej miłości. Postanawiam mocno, z pomocą Twojej łaski, wyspowiadać się z moich grzechów, czynić pokutę i poprawić moje życie. Amen."
+    },
+    "ourFather": {
+      "title": "Ojcze Nasz",
+      "text": "Ojcze nasz, któryś jest w niebie, święć się imię Twoje; przyjdź królestwo Twoje; bądź wola Twoja jako w niebie, tak i na ziemi. Chleba naszego powszedniego daj nam dzisiaj; i odpuść nam nasze winy, jako i my odpuszczamy naszym winowajcom; i nie wódź nas na pokuszenie, ale nas zbaw ode złego. Amen."
+    },
+    "hailMary": {
+      "title": "Zdrowaś Maryjo",
+      "text": "Zdrowaś Maryjo, łaski pełna, Pan z Tobą. Błogosławionaś Ty między niewiastami i błogosławiony owoc żywota Twojego, Jezus. Święta Maryjo, Matko Boża, módl się za nami grzesznymi, teraz i w godzinę śmierci naszej. Amen."
+    },
+    "gloryBe": {
+      "title": "Chwała Ojcu",
+      "text": "Chwała Ojcu i Synowi, i Duchowi Świętemu. Jak była na początku, teraz i zawsze, i na wieki wieków. Amen."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Matko Najboleśniejsza",
+      "text": "Matko Najboleśniejsza, przypominaj nam zawsze o cierpieniach Twojego Syna, Jezusa."
+    },
+    "closingPrayer": {
+      "title": "Modlitwa Końcowa",
+      "text": "Witaj Królowo, Matko Miłosierdzia, życie, słodyczy i nadziejo nasza, witaj! Do Ciebie wołamy wygnańcy, synowie Ewy; do Ciebie wzdychamy jęcząc i płacząc na tym łez padole. Przeto, Orędowniczko nasza, one miłosierne oczy Twoje na nas zwróć, a Jezusa, błogosławiony owoc żywota Twojego, po tym wygnaniu nam okaż. O łaskawa, o litościwa, o słodka Panno Maryjo!"
+    },
+    "finalInvocation": {
+      "title": "Wezwanie Końcowe",
+      "text": "Maryjo, któraś została poczęta bez grzechu i cierpiałaś za nas, módl się za nami."
+    },
+    "versicle": {
+      "title": "Wezwanie",
+      "text": "Módl się za nami, Panno Najboleśniejsza."
+    },
+    "response": {
+      "title": "Odpowiedź",
+      "text": "Abyśmy się stali godnymi obietnic Chrystusowych."
+    },
+    "concludingPrayer": {
+      "title": "Modlitwa Ostateczna",
+      "text": "Niech się wstawia za nami do Twej łaskawości, prosimy Cię, Panie Jezu Chryste, teraz i w godzinę śmierci naszej, Błogosławiona Panna Maryja, Matka Twoja, której duszę najświętszą w godzinę męki Twojej miecz boleści przeniknął. Przez Ciebie, Jezu Chryste, Zbawicielu świata, który z Ojcem i z Duchem Świętym żyjesz i królujesz na wieki wieków. Amen."
+    }
+  },
+  "sorrows": [
+    {
+      "title": "Boleść Pierwsza",
+      "name": "Proroctwo Symeona",
+      "scripture": "Łk 2, 34-35",
+      "meditation": "Starzec Symeon przepowiada Maryi, że duszę Jej przeszyje miecz. A stanie się to dlatego, że Jej Synowi będą się niektórzy sprzeciwiać.",
+      "fruit": "Poddanie się woli Bożej, jak Maryja"
+    },
+    {
+      "title": "Boleść Druga",
+      "name": "Ucieczka do Egiptu",
+      "scripture": "Mt 2, 13-15",
+      "meditation": "Na polecenie Anioła Józef wziął Dziecię i Matkę Jego i uszedł do Egiptu przed złością Heroda. Maryja w czasie tej tułaczki przeżyła wiele zmartwień.",
+      "fruit": "Słuchanie głosu Bożego, jak Maryja"
+    },
+    {
+      "title": "Boleść Trzecia",
+      "name": "Szukanie Pana Jezusa, który pozostał w świątyni",
+      "scripture": "Łk 2, 41-50",
+      "meditation": "Jezus zaginął w Jerozolimie, trzy dni Maryja wraz z Józefem bolejąc szukali Jezusa. Czy może być większa boleść dla Matki?",
+      "fruit": "Tęsknota za Jezusem"
+    },
+    {
+      "title": "Boleść Czwarta",
+      "name": "Spotkanie Pana Jezusa dźwigającego krzyż",
+      "scripture": "Łk 23, 27-31",
+      "meditation": "Skazany na śmierć Jezus dźwiga krzyż na Golgotę. A oto w drodze spotyka się z Matką swoją. Rzewne musiało być to spotkanie.",
+      "fruit": "Cierpliwe znoszenie krzyżów"
+    },
+    {
+      "title": "Boleść Piąta",
+      "name": "Śmierć Pana Jezusa na krzyżu",
+      "scripture": "J 19, 25-30",
+      "meditation": "Obok krzyża Jezusowego stała Matka Jego. Mężnie współcierpiała z Synem dla zbawienia świata.",
+      "fruit": "Panowanie nad złymi skłonnościami"
+    },
+    {
+      "title": "Boleść Szósta",
+      "name": "Złożenie martwego ciała Syna na kolana Matki",
+      "scripture": "J 19, 38-40",
+      "meditation": "Zdjęte z krzyża Ciało Jezusowe złożono w ramiona Maryi. Jezus przestał już cierpieć, a Ona jakby uzupełnia to, czego nie dostaje cierpieniom Jezusowym. Z największą czcią i wdzięcznością całuje Jego święte Rany i obmywa je swymi łzami.",
+      "fruit": "Szczery żal za grzechy"
+    },
+    {
+      "title": "Boleść Siódma",
+      "name": "Złożenie Pana Jezusa do grobu",
+      "scripture": "J 19, 41-42",
+      "meditation": "Umęczone Ciało Jezusowe złożono do grobu w obecności Matki Najświętszej. Żegnała je Maryja z bólem i z wielką wiarą, że Syn zmartwychwstanie.",
+      "fruit": "Prośba o szczęśliwą śmierć"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package com.app.lumen.features.litany.model
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.app.lumen.R
+import java.util.Locale
 
 enum class LitanyType(
     @StringRes val titleRes: Int,
@@ -11,7 +12,7 @@ enum class LitanyType(
     @DrawableRes val previewImageRes: Int,
     @DrawableRes val backgroundImageRes: Int,
     val audioChapletType: String,
-    val jsonPath: String,
+    private val jsonPathTemplate: String,
 ) {
     BLESSED_VIRGIN_MARY(
         titleRes = R.string.litany_blessed_virgin_mary_title,
@@ -20,7 +21,7 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_blessed_virgin_mary,
         backgroundImageRes = R.drawable.litany_bg_blessed_virgin_mary,
         audioChapletType = "litanyBlessedVirginMary",
-        jsonPath = "prayers/litanies/blessedvirginmary/litany_blessed_virgin_mary_en.json",
+        jsonPathTemplate = "prayers/litanies/blessedvirginmary/litany_blessed_virgin_mary_%s.json",
     ),
     SACRED_HEART(
         titleRes = R.string.litany_sacred_heart_title,
@@ -29,7 +30,7 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_sacred_heart,
         backgroundImageRes = R.drawable.litany_bg_sacred_heart,
         audioChapletType = "litanySacredHeartOfJesus",
-        jsonPath = "prayers/litanies/sacredheart/litany_sacred_heart_en.json",
+        jsonPathTemplate = "prayers/litanies/sacredheart/litany_sacred_heart_%s.json",
     ),
     ST_JOSEPH(
         titleRes = R.string.litany_st_joseph_title,
@@ -38,7 +39,7 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_st_joseph,
         backgroundImageRes = R.drawable.litany_bg_st_joseph,
         audioChapletType = "litanyStJoseph",
-        jsonPath = "prayers/litanies/stjoseph/litany_st_joseph_en.json",
+        jsonPathTemplate = "prayers/litanies/stjoseph/litany_st_joseph_%s.json",
     ),
     SAINTS(
         titleRes = R.string.litany_saints_title,
@@ -47,7 +48,7 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_saints,
         backgroundImageRes = R.drawable.litany_bg_saints,
         audioChapletType = "litanySaints",
-        jsonPath = "prayers/litanies/saints/litany_saints_en.json",
+        jsonPathTemplate = "prayers/litanies/saints/litany_saints_%s.json",
     ),
     HOLY_NAME(
         titleRes = R.string.litany_holy_name_title,
@@ -56,7 +57,7 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_holy_name,
         backgroundImageRes = R.drawable.litany_bg_holy_name,
         audioChapletType = "litanyHolyName",
-        jsonPath = "prayers/litanies/holyname/litany_holy_name_en.json",
+        jsonPathTemplate = "prayers/litanies/holyname/litany_holy_name_%s.json",
     ),
     PRECIOUS_BLOOD(
         titleRes = R.string.litany_precious_blood_title,
@@ -65,6 +66,22 @@ enum class LitanyType(
         previewImageRes = R.drawable.litany_preview_precious_blood,
         backgroundImageRes = R.drawable.litany_bg_precious_blood,
         audioChapletType = "litanyPreciousBlood",
-        jsonPath = "prayers/litanies/preciousblood/litany_precious_blood_en.json",
-    ),
+        jsonPathTemplate = "prayers/litanies/preciousblood/litany_precious_blood_%s.json",
+    );
+
+    val jsonPath: String
+        get() = jsonPathTemplate.format(prayerLanguageCode())
+
+    val jsonPathFallback: String
+        get() = jsonPathTemplate.format("en")
+
+    companion object {
+        fun prayerLanguageCode(): String {
+            val lang = Locale.getDefault().language
+            return when {
+                lang.startsWith("pl") -> "pl"
+                else -> "en"
+            }
+        }
+    }
 }

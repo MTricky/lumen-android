@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Lumen</string>
-    <string name="facebook_app_id">1412973413750096</string>
-    <string name="facebook_client_token">5f95c165bf9ce586003bd04b474ba92f</string>
+    <string name="app_name" translatable="false">Lumen</string>
+    <string name="facebook_app_id" translatable="false">1412973413750096</string>
+    <string name="facebook_client_token" translatable="false">5f95c165bf9ce586003bd04b474ba92f</string>
 
     <!-- Tab bar -->
     <string name="tab_liturgy">Liturgy</string>
@@ -541,6 +541,28 @@
     <string name="settings_section_calendar">Calendar</string>
     <string name="settings_calendar_region">Calendar Region</string>
     <string name="settings_calendar_region_footer">Determines which regional feast days and holy days of obligation are shown.</string>
+
+    <!-- Calendar regions -->
+    <string name="region_universal">Universal</string>
+    <string name="region_argentina">Argentina</string>
+    <string name="region_australia">Australia</string>
+    <string name="region_austria">Austria</string>
+    <string name="region_brazil">Brazil</string>
+    <string name="region_canada">Canada</string>
+    <string name="region_chile">Chile</string>
+    <string name="region_colombia">Colombia</string>
+    <string name="region_france">France</string>
+    <string name="region_germany">Germany</string>
+    <string name="region_ireland">Ireland</string>
+    <string name="region_italy">Italy</string>
+    <string name="region_mexico">Mexico</string>
+    <string name="region_peru">Peru</string>
+    <string name="region_philippines">Philippines</string>
+    <string name="region_poland">Poland</string>
+    <string name="region_portugal">Portugal</string>
+    <string name="region_spain">Spain</string>
+    <string name="region_uk">UK</string>
+    <string name="region_usa">USA</string>
     <string name="settings_section_bible">Bible</string>
     <string name="settings_bible_font_size">Font Size</string>
     <string name="settings_bible_clear_cache">Clear Bible Cache</string>

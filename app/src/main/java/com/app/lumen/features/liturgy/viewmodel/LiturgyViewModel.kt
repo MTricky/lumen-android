@@ -166,11 +166,17 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
                 val mainDoc = firestore.collection("dailyLiturgy")
                     .document(tomorrowDate).get().await()
                 val imageUrl = mainDoc.data?.get("imageUrl") as? String
+                val lang = getLanguageCode()
                 val contentDoc = firestore.collection("dailyLiturgy")
                     .document(tomorrowDate).collection("content")
+                    .document(lang).get().await()
+                val resolvedContentDoc = if (contentDoc.exists()) contentDoc
+                else if (lang != "en") firestore.collection("dailyLiturgy")
+                    .document(tomorrowDate).collection("content")
                     .document("en").get().await()
-                if (contentDoc.exists()) {
-                    val parsed = parseLiturgy(contentDoc.data!!, imageUrl)
+                else contentDoc
+                if (resolvedContentDoc.exists()) {
+                    val parsed = parseLiturgy(resolvedContentDoc.data!!, imageUrl)
                     liturgyCache[tomorrowDate] = parsed
                     cacheService.cacheLiturgy(parsed, tomorrowDate)
                 }
@@ -217,15 +223,25 @@ class LiturgyViewModel(application: Application) : AndroidViewModel(application)
             val imageUrl = mainDoc.data?.get("imageUrl") as? String
             liturgyImageUrl = imageUrl
 
+            val lang = getLanguageCode()
             val contentDoc = firestore.collection("dailyLiturgy")
+                .document(dateString)
+                .collection("content")
+                .document(lang)
+                .get()
+                .await()
+
+            val resolvedContentDoc = if (contentDoc.exists()) contentDoc
+            else if (lang != "en") firestore.collection("dailyLiturgy")
                 .document(dateString)
                 .collection("content")
                 .document("en")
                 .get()
                 .await()
+            else contentDoc
 
-            if (contentDoc.exists()) {
-                val data = contentDoc.data ?: throw Exception("Empty document")
+            if (resolvedContentDoc.exists()) {
+                val data = resolvedContentDoc.data ?: throw Exception("Empty document")
                 val parsed = parseLiturgy(data, imageUrl)
                 liturgyCache[dateString] = parsed
                 cacheService.cacheLiturgy(parsed, dateString)

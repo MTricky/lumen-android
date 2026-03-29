@@ -118,7 +118,7 @@ fun RegionStep(viewModel: OnboardingViewModel) {
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = viewModel.selectedRegion.displayName,
+                        text = stringResource(viewModel.selectedRegion.displayNameRes),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White
@@ -183,7 +183,7 @@ fun RegionStep(viewModel: OnboardingViewModel) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = region.displayName,
+                                    text = stringResource(region.displayNameRes),
                                     color = if (viewModel.selectedRegion == region) Color.White else Color.White.copy(alpha = 0.7f),
                                     fontWeight = if (viewModel.selectedRegion == region) FontWeight.SemiBold else FontWeight.Normal
                                 )

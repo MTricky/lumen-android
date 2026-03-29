@@ -227,6 +227,7 @@ private fun TodaysMysteryCard(mysteryType: MysteryType, onMysterySelected: (Myst
             Text(
                 text = stringResource(R.string.rosary_tap_to_start),
                 fontSize = 12.sp,
+                lineHeight = 16.sp,
                 color = Slate,
             )
         }

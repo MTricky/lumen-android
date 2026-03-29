@@ -6,6 +6,7 @@ import com.app.lumen.features.chaplets.model.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.json.Json
+import java.util.Locale
 
 class DivineMercyViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -73,15 +74,26 @@ class DivineMercyViewModel(application: Application) : AndroidViewModel(applicat
         if (_prayerData.value != null || _isLoading.value) return
         _isLoading.value = true
         try {
-            val jsonString = getApplication<Application>().assets
-                .open("prayers/chaplets/divinemercy/divinemercy_en.json")
-                .bufferedReader()
-                .use { it.readText() }
+            val lang = prayerLanguageCode()
+            val path = "prayers/chaplets/divinemercy/divinemercy_$lang.json"
+            val jsonString = try {
+                getApplication<Application>().assets.open(path)
+            } catch (_: Exception) {
+                getApplication<Application>().assets.open("prayers/chaplets/divinemercy/divinemercy_en.json")
+            }.bufferedReader().use { it.readText() }
             _prayerData.value = json.decodeFromString<DivineMercyPrayerData>(jsonString)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         _isLoading.value = false
+    }
+
+    private fun prayerLanguageCode(): String {
+        val lang = Locale.getDefault().language
+        return when {
+            lang.startsWith("pl") -> "pl"
+            else -> "en"
+        }
     }
 
     fun startChaplet() {
