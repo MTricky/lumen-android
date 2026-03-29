@@ -151,7 +151,7 @@
     <string name="rosary_ordinal_2">°</string>
     <string name="rosary_ordinal_3">°</string>
     <string name="rosary_ordinal_other">°</string>
-    <string name="rosary_fruit">Frutto: %@</string>
+    <string name="rosary_fruit">Frutto: %1$s</string>
     <string name="rosary_completed">Rosario completato</string>
     <string name="rosary_completed_message">Che le preghiere che hai offerto ti portino pace e ti avvicinino a Dio attraverso l\'intercessione della Beata Vergine Maria.</string>
     <string name="rosary_done">Fatto</string>
@@ -296,7 +296,7 @@
     <string name="calendar_tab_notes">Note</string>
     <string name="calendar_info_title">Informazioni sul calendario</string>
     <string name="calendar_info_region_title">Regione liturgica</string>
-    <string name="calendar_info_region_description">Il calendario mostra le celebrazioni per la regione selezionata: %@. Diverse regioni possono avere giorni festivi e di precetto unici.</string>
+    <string name="calendar_info_region_description">Il calendario mostra le celebrazioni per la regione selezionata: %1$s. Diverse regioni possono avere giorni festivi e di precetto unici.</string>
     <string name="calendar_info_colors_title">Colori liturgici</string>
     <string name="calendar_info_colors_description">I colori indicano il tempo liturgico e il tipo di celebrazione:</string>
     <string name="calendar_info_color_green_name">Verde</string>
@@ -483,7 +483,7 @@
     <string name="routine_pause">Pausa</string>
     <string name="routine_resume">Riprendi</string>
     <string name="routine_delete_title">Elimina routine</string>
-    <string name="routine_delete_message">Sei sicuro di voler eliminare questa routine? Questa azione non può essere annullata.</string>
+    <string name="routine_delete_message">Sei sicuro di voler eliminare \"%1$s\"? Verrà rimossa anche tutta la cronologia di completamento.</string>
 
     <!-- Routine detail -->
     <string name="routine_close">Chiudi</string>
@@ -545,7 +545,7 @@
     <string name="settings_section_premium">Premium</string>
     <string name="settings_premium_lumen_pro">Lumen Pro</string>
     <string name="settings_premium_go_premium">Passa a Premium</string>
-    <string name="settings_premium_renews">Si rinnova il %@</string>
+    <string name="settings_premium_renews">Si rinnova il %1$s</string>
     <string name="settings_premium_active">Lumen Pro</string>
     <string name="settings_premium_unlock">Sblocca tutte le funzionalità</string>
     <string name="settings_section_calendar">Calendario</string>
@@ -662,18 +662,18 @@ spirituale completa</string>
     <string name="onboarding_get_started">Inizia</string>
 
     <!-- Onboarding - Bible Quotes -->
-    <string name="onboarding_quote_john_8_12"></string>
-    <string name="onboarding_quote_john_8_12_source"></string>
-    <string name="onboarding_quote_psalm_27_1"></string>
-    <string name="onboarding_quote_psalm_27_1_source"></string>
-    <string name="onboarding_quote_psalm_119_105"></string>
-    <string name="onboarding_quote_psalm_119_105_source"></string>
-    <string name="onboarding_quote_ephesians_5_8"></string>
-    <string name="onboarding_quote_ephesians_5_8_source"></string>
-    <string name="onboarding_quote_matthew_5_14"></string>
-    <string name="onboarding_quote_matthew_5_14_source"></string>
-    <string name="onboarding_quote_isaiah_60_1"></string>
-    <string name="onboarding_quote_isaiah_60_1_source"></string>
+    <string name="onboarding_quote_john_8_12">\"Io sono la luce del mondo; chi segue me non camminerà nelle tenebre, ma avrà la luce della vita.\"</string>
+    <string name="onboarding_quote_john_8_12_source">Giovanni 8:12</string>
+    <string name="onboarding_quote_psalm_27_1">\"Il Signore è mia luce e mia salvezza: di chi avrò timore?\"</string>
+    <string name="onboarding_quote_psalm_27_1_source">Salmo 27:1</string>
+    <string name="onboarding_quote_psalm_119_105">\"Lampada per i miei passi è la tua parola, luce sul mio cammino.\"</string>
+    <string name="onboarding_quote_psalm_119_105_source">Salmo 119:105</string>
+    <string name="onboarding_quote_ephesians_5_8">\"Un tempo infatti eravate tenebra, ora siete luce nel Signore. Comportatevi perciò come figli della luce.\"</string>
+    <string name="onboarding_quote_ephesians_5_8_source">Efesini 5:8</string>
+    <string name="onboarding_quote_matthew_5_14">\"Voi siete la luce del mondo; non può restare nascosta una città che sta sopra un monte.\"</string>
+    <string name="onboarding_quote_matthew_5_14_source">Matteo 5:14</string>
+    <string name="onboarding_quote_isaiah_60_1">\"Àlzati, rivestiti di luce, perché viene la tua luce, la gloria del Signore brilla sopra di te.\"</string>
+    <string name="onboarding_quote_isaiah_60_1_source">Isaia 60:1</string>
 
     <!-- Onboarding - Features -->
     <string name="onboarding_features_title">Tutto ciò di cui hai bisogno</string>
