@@ -53,6 +53,7 @@ import com.app.lumen.ui.components.SaintCard
 import com.app.lumen.ui.components.VerseCard
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
+import com.app.lumen.features.calendar.model.LiturgicalSeason
 import com.app.lumen.ui.theme.*
 
 private val HEADER_HEIGHT = 380.dp
@@ -231,8 +232,9 @@ fun LiturgyScreen(
                                             .background(liturgicalColor(liturgy!!.liturgicalColor))
                                     )
                                     Spacer(Modifier.width(8.dp))
+                                    val seasonRes = LiturgicalSeason.fromRawValue(liturgy!!.season).displayNameRes
                                     Text(
-                                        text = liturgy!!.season,
+                                        text = stringResource(seasonRes),
                                         fontSize = 14.sp,
                                         color = Color.White.copy(alpha = 0.7f),
                                     )

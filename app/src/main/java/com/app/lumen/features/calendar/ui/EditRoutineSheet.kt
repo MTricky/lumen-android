@@ -206,7 +206,7 @@ fun EditRoutineSheet(
                                     FilterChip(
                                         selected = selectedLeadTimeIndex == index,
                                         onClick = { selectedLeadTimeIndex = index },
-                                        label = { Text(option.label, fontSize = 11.sp) },
+                                        label = { Text(stringResource(option.labelRes), fontSize = 11.sp) },
                                         colors = FilterChipDefaults.filterChipColors(
                                             selectedContainerColor = SoftGold.copy(alpha = 0.2f),
                                             selectedLabelColor = SoftGold,

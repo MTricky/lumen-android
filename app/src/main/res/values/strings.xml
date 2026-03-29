@@ -542,6 +542,13 @@
     <string name="settings_calendar_region">Calendar Region</string>
     <string name="settings_calendar_region_footer">Determines which regional feast days and holy days of obligation are shown.</string>
 
+    <!-- Liturgical seasons -->
+    <string name="season_advent">Advent</string>
+    <string name="season_christmas">Christmas</string>
+    <string name="season_lent">Lent</string>
+    <string name="season_easter">Easter</string>
+    <string name="season_ordinary_time">Ordinary Time</string>
+
     <!-- Calendar regions -->
     <string name="region_universal">Universal</string>
     <string name="region_argentina">Argentina</string>

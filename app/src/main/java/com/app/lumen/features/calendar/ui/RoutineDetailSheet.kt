@@ -150,7 +150,7 @@ private fun WeeklyRoutineDetailContent(
                             .background(Slate.copy(alpha = 0.2f))
                             .padding(horizontal = 12.dp, vertical = 4.dp)
                     ) {
-                        Text(type.displayName, color = Slate, fontSize = 12.sp)
+                        Text(stringResource(type.displayNameRes), color = Slate, fontSize = 12.sp)
                     }
                 }
 
@@ -206,8 +206,9 @@ private fun WeeklyRoutineDetailContent(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(Icons.Filled.Notifications, null, tint = SoftGold, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(8.dp))
-                                val leadLabel = com.app.lumen.features.calendar.model.leadTimeOptions
-                                    .find { it.minutes == routine.notificationLeadTimeMinutes }?.label ?: stringResource(R.string.routine_lead_at_time)
+                                val leadOption = com.app.lumen.features.calendar.model.leadTimeOptions
+                                    .find { it.minutes == routine.notificationLeadTimeMinutes }
+                                val leadLabel = if (leadOption != null) stringResource(leadOption.labelRes) else stringResource(R.string.routine_lead_at_time)
                                 Text(leadLabel, color = Color.White, fontSize = 14.sp)
                             }
                         }

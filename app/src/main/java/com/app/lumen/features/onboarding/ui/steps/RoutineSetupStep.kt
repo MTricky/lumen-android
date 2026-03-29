@@ -126,7 +126,7 @@ fun RoutineSetupStep(viewModel: OnboardingViewModel) {
                 ) {
                     rowItems.forEach { suggestion ->
                         RoutineCard(
-                            title = suggestion.title,
+                            title = stringResource(suggestion.titleRes),
                             icon = suggestion.type.icon,
                             isSelected = viewModel.isRoutineSelected(suggestion),
                             defaultHour = suggestion.defaultHour,

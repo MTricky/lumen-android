@@ -69,12 +69,12 @@ enum class CelebrationRank(val value: Int) {
 
 // MARK: - Liturgical Season
 
-enum class LiturgicalSeason(val rawValue: String) {
-    ADVENT("Advent"),
-    CHRISTMAS("Christmas"),
-    LENT("Lent"),
-    EASTER("Easter"),
-    ORDINARY_TIME("Ordinary Time");
+enum class LiturgicalSeason(val rawValue: String, @StringRes val displayNameRes: Int) {
+    ADVENT("Advent", R.string.season_advent),
+    CHRISTMAS("Christmas", R.string.season_christmas),
+    LENT("Lent", R.string.season_lent),
+    EASTER("Easter", R.string.season_easter),
+    ORDINARY_TIME("Ordinary Time", R.string.season_ordinary_time);
 
     companion object {
         fun fromRawValue(value: String): LiturgicalSeason =

@@ -27,7 +27,7 @@ data class MonthProgressDay(
     val isBeforeCreation: Boolean
 )
 
-class RoutineStorageService(context: Context) {
+class RoutineStorageService(private val context: Context) {
 
     private val store = RoutineDataStore.getInstance(context)
     private val json = Json { ignoreUnknownKeys = true }
@@ -302,7 +302,7 @@ class RoutineStorageService(context: Context) {
             val identifier = "${routine.id}-day$day"
             notificationManager.scheduleWeeklyNotification(
                 identifier = identifier,
-                title = type.notificationTitle,
+                title = context.getString(type.notificationTitleRes),
                 body = routine.title,
                 weekday = day,
                 hour = routine.hour,

@@ -541,7 +541,7 @@ private fun NoteRow(
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = liturgicalDay.season.rawValue,
+                                text = stringResource(liturgicalDay.season.displayNameRes),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = Slate

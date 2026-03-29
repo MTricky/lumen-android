@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.features.calendar.model.*
@@ -64,7 +65,12 @@ fun CreateRoutineSheet(
     }
 
     var selectedType by remember { mutableStateOf(preselectedType ?: preselectedSuggestion?.type) }
-    var title by remember { mutableStateOf(preselectedSuggestion?.title ?: preselectedType?.defaultTitle ?: "") }
+    val context = LocalContext.current
+    var title by remember { mutableStateOf(
+        if (preselectedSuggestion != null) context.getString(preselectedSuggestion.titleRes)
+        else if (preselectedType != null) context.getString(preselectedType.defaultTitleRes)
+        else ""
+    ) }
     var selectedDays by remember {
         mutableStateOf(
             preselectedSuggestion?.defaultDays ?: setOf(1, 2, 3, 4, 5, 6, 7)
@@ -130,7 +136,7 @@ fun CreateRoutineSheet(
                 TypeSelectionContent(
                     onSelectType = { type ->
                         selectedType = type
-                        title = type.defaultTitle
+                        title = context.getString(type.defaultTitleRes)
                         hour = type.defaultHour
                         minute = type.defaultMinute
                         // Set default days based on type
@@ -142,7 +148,7 @@ fun CreateRoutineSheet(
                     },
                     onQuickStart = { suggestion ->
                         selectedType = suggestion.type
-                        title = suggestion.title
+                        title = context.getString(suggestion.titleRes)
                         selectedDays = suggestion.defaultDays
                         hour = suggestion.defaultHour
                         minute = suggestion.defaultMinute
@@ -307,7 +313,7 @@ private fun TypeGridItem(
             Icon(type.icon, null, tint = SoftGold, modifier = Modifier.size(28.dp))
             Spacer(modifier = Modifier.height(8.dp))
             AutoSizeText(
-                text = type.displayName,
+                text = stringResource(type.displayNameRes),
                 color = Color.White,
                 maxFontSize = 12.sp,
                 minFontSize = 9.sp,
@@ -336,10 +342,10 @@ private fun QuickStartCard(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(suggestion.type.icon, null, tint = SoftGold, modifier = Modifier.size(20.dp))
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(suggestion.title, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(suggestion.titleRes), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(suggestion.subtitle, color = Slate, fontSize = 12.sp, maxLines = 2)
+            Text(stringResource(suggestion.subtitleRes), color = Slate, fontSize = 12.sp, maxLines = 2)
             Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Filled.Schedule, null, tint = Slate, modifier = Modifier.size(14.dp))
@@ -380,7 +386,7 @@ private fun ConfigurationContent(
             ) {
                 Icon(type.icon, null, tint = SoftGold, modifier = Modifier.size(36.dp))
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(type.displayName, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(type.displayNameRes), color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -498,7 +504,7 @@ private fun ConfigurationContent(
                                 FilterChip(
                                     selected = selectedLeadTimeIndex == index,
                                     onClick = { onLeadTimeChange(index) },
-                                    label = { Text(option.label, fontSize = 11.sp) },
+                                    label = { Text(stringResource(option.labelRes), fontSize = 11.sp) },
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = SoftGold.copy(alpha = 0.2f),
                                         selectedLabelColor = SoftGold,

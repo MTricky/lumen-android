@@ -78,7 +78,7 @@ data class OnboardingRoutineSelection(
 
 data class RoutineSuggestion(
     val id: String,
-    val title: String,
+    @androidx.annotation.StringRes val titleRes: Int,
     val type: RoutineItemType,
     val defaultDays: List<Int>,
     val defaultHour: Int,
@@ -87,14 +87,14 @@ data class RoutineSuggestion(
     companion object {
         // Matches iOS order exactly: Mass, Rosary, Morning Prayer, Evening Prayer, Divine Mercy, Adoration
         val all = listOf(
-            RoutineSuggestion("mass", "Holy Mass", RoutineItemType.MASS, listOf(1), 9, 0),
-            RoutineSuggestion("rosary", "Rosary", RoutineItemType.ROSARY, (1..7).toList(), 18, 0),
-            RoutineSuggestion("morning", "Morning Offering", RoutineItemType.MORNING_PRAYER, (1..7).toList(), 7, 0),
-            RoutineSuggestion("evening", "Evening Prayer", RoutineItemType.EVENING_PRAYER, (1..7).toList(), 21, 0),
-            RoutineSuggestion("divineMercy", "Divine Mercy", RoutineItemType.DIVINE_MERCY, (1..7).toList(), 15, 0),
-            RoutineSuggestion("adoration", "Adoration", RoutineItemType.ADORATION, listOf(5), 18, 0),
+            RoutineSuggestion("mass", R.string.routine_type_mass, RoutineItemType.MASS, listOf(1), 9, 0),
+            RoutineSuggestion("rosary", R.string.routine_type_rosary, RoutineItemType.ROSARY, (1..7).toList(), 18, 0),
+            RoutineSuggestion("morning", R.string.routine_default_morning_offering, RoutineItemType.MORNING_PRAYER, (1..7).toList(), 7, 0),
+            RoutineSuggestion("evening", R.string.routine_type_evening_prayer, RoutineItemType.EVENING_PRAYER, (1..7).toList(), 21, 0),
+            RoutineSuggestion("divineMercy", R.string.routine_type_divine_mercy, RoutineItemType.DIVINE_MERCY, (1..7).toList(), 15, 0),
+            RoutineSuggestion("adoration", R.string.routine_type_adoration, RoutineItemType.ADORATION, listOf(5), 18, 0),
         )
-        val angelus = RoutineSuggestion("angelus", "Angelus", RoutineItemType.ANGELUS, (1..7).toList(), 12, 0)
+        val angelus = RoutineSuggestion("angelus", R.string.routine_type_angelus, RoutineItemType.ANGELUS, (1..7).toList(), 12, 0)
     }
 }
 
@@ -379,7 +379,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
         } else {
             selectedRoutines.add(
                 OnboardingRoutineSelection(
-                    title = suggestion.title,
+                    title = getApplication<Application>().getString(suggestion.titleRes),
                     type = suggestion.type,
                     selectedDays = suggestion.defaultDays.toSet(),
                     selectedHour = suggestion.defaultHour,

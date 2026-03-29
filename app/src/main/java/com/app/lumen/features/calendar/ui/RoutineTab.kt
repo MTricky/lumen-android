@@ -855,14 +855,14 @@ fun SuggestionCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    suggestion.title,
+                    stringResource(suggestion.titleRes),
                     color = Color.White,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                Text(suggestion.subtitle, color = Slate, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(stringResource(suggestion.subtitleRes), color = Slate, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
             Spacer(modifier = Modifier.width(8.dp))
             Icon(Icons.Filled.AddCircleOutline, null, tint = SoftGold, modifier = Modifier.size(20.dp))
@@ -936,13 +936,13 @@ private fun EmptySuggestionCard(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                suggestion.title,
+                stringResource(suggestion.titleRes),
                 color = Color.White,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold
             )
             Text(
-                suggestion.subtitle,
+                stringResource(suggestion.subtitleRes),
                 color = Slate,
                 fontSize = 12.sp,
                 maxLines = 2,

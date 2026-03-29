@@ -746,6 +746,13 @@
     <string name="paywall_trial_years">%1$d rok</string>
     <string name="paywall_error_ok">OK</string>
 
+    <!-- Liturgical seasons -->
+    <string name="season_advent">Adwent</string>
+    <string name="season_christmas">Boże Narodzenie</string>
+    <string name="season_lent">Wielki Post</string>
+    <string name="season_easter">Wielkanoc</string>
+    <string name="season_ordinary_time">Okres Zwykły</string>
+
     <!-- Calendar regions -->
     <string name="region_universal">Uniwersalny</string>
     <string name="region_argentina">Argentyna</string>
