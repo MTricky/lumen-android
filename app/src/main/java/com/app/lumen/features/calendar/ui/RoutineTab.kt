@@ -245,7 +245,7 @@ fun RoutineTab(
             }
         }
 
-        item { Spacer(modifier = Modifier.height(80.dp)) }
+        item { Spacer(modifier = Modifier.height(120.dp)) }
     }
 }
 
@@ -794,24 +794,27 @@ fun YearProgressRow(yearProgress: List<FirstFridayYearProgress>) {
                         .clip(CircleShape)
                         .background(
                             when {
+                                month.isBeforeTracking -> Color.Transparent
                                 month.isCompleted || month.isPreChecked -> SoftGold
-                                month.isPast -> Color(0xFFEF5350).copy(alpha = 0.3f)
+                                month.isFuture -> Slate.copy(alpha = 0.2f)
+                                month.isPast -> Color.White.copy(alpha = 0.1f)
                                 else -> Slate.copy(alpha = 0.2f)
                             }
                         )
                         .then(
-                            if (!month.isCompleted && !month.isPreChecked && month.isFuture) {
+                            if (!month.isBeforeTracking && !month.isCompleted && !month.isPreChecked && month.isFuture) {
                                 Modifier.border(1.dp, Slate.copy(alpha = 0.3f), CircleShape)
                             } else Modifier
                         ),
                     contentAlignment = Alignment.Center
                 ) {
                     when {
+                        month.isBeforeTracking -> {}
                         month.isCompleted || month.isPreChecked -> {
                             Icon(Icons.Filled.Check, null, tint = Color.Black, modifier = Modifier.size(12.dp))
                         }
                         month.isPast -> {
-                            Icon(Icons.Filled.Close, null, tint = Color(0xFFEF5350), modifier = Modifier.size(12.dp))
+                            Icon(Icons.Filled.Close, null, tint = Slate, modifier = Modifier.size(12.dp))
                         }
                     }
                 }

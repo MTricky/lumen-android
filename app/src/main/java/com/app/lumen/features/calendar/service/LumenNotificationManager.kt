@@ -9,6 +9,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -20,10 +22,14 @@ import java.util.Calendar
 class LumenNotificationManager(private val context: Context) {
 
     companion object {
-        const val CHANNEL_ID = "lumen_reminders"
+        const val CHANNEL_ID = "lumen_reminders_v2"
         const val CHANNEL_NAME = "Reminders"
-        const val ROUTINE_CHANNEL_ID = "lumen_routines"
+        const val ROUTINE_CHANNEL_ID = "lumen_routines_v2"
         const val ROUTINE_CHANNEL_NAME = "Prayer Routines"
+
+        // Old channel IDs to clean up
+        private const val OLD_CHANNEL_ID = "lumen_reminders"
+        private const val OLD_ROUTINE_CHANNEL_ID = "lumen_routines"
 
         private const val EXTRA_NOTIFICATION_ID = "notification_id"
         private const val EXTRA_TITLE = "title"
@@ -40,6 +46,12 @@ class LumenNotificationManager(private val context: Context) {
     private fun createNotificationChannels() {
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        val bellSoundUri = Uri.parse("android.resource://${context.packageName}/${R.raw.notification_bell}")
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
         val reminderChannel = NotificationChannel(
             CHANNEL_ID,
             CHANNEL_NAME,
@@ -47,6 +59,7 @@ class LumenNotificationManager(private val context: Context) {
         ).apply {
             description = "Reminders for liturgical events and personal notes"
             enableVibration(true)
+            setSound(bellSoundUri, audioAttributes)
         }
 
         val routineChannel = NotificationChannel(
@@ -56,10 +69,15 @@ class LumenNotificationManager(private val context: Context) {
         ).apply {
             description = "Notifications for prayer routines"
             enableVibration(true)
+            setSound(bellSoundUri, audioAttributes)
         }
 
         manager.createNotificationChannel(reminderChannel)
         manager.createNotificationChannel(routineChannel)
+
+        // Clean up old channels
+        manager.deleteNotificationChannel(OLD_CHANNEL_ID)
+        manager.deleteNotificationChannel(OLD_ROUTINE_CHANNEL_ID)
     }
 
     fun hasNotificationPermission(): Boolean {
@@ -148,7 +166,8 @@ class LumenNotificationManager(private val context: Context) {
         weekday: Int, // Calendar.SUNDAY..SATURDAY (1-7)
         hour: Int,
         minute: Int,
-        leadTimeMinutes: Int = 0
+        leadTimeMinutes: Int = 0,
+        routineTypeRaw: String = ""
     ): Boolean {
         if (!hasNotificationPermission()) return false
 
@@ -163,6 +182,7 @@ class LumenNotificationManager(private val context: Context) {
             putExtra(EXTRA_BODY, body)
             putExtra(EXTRA_IS_ROUTINE, true)
             putExtra(EXTRA_IDENTIFIER, identifier)
+            putExtra("routine_type", routineTypeRaw)
             // Store weekday info for rescheduling after fire
             putExtra("weekday", weekday)
             putExtra("hour", hour)
@@ -256,6 +276,17 @@ class LumenNotificationManager(private val context: Context) {
         cancelNotification(reminder.notificationId)
         return scheduleNotification(reminder)
     }
+
+    fun cancelTodayNotificationForRoutine(routineId: String) {
+        val todayWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
+        val identifier = "$routineId-day$todayWeekday"
+        cancelNotification(identifier)
+    }
+
+    fun clearBadge() {
+        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.cancelAll()
+    }
 }
 
 class ReminderAlarmReceiver : BroadcastReceiver() {
@@ -274,21 +305,29 @@ class ReminderAlarmReceiver : BroadcastReceiver() {
             LumenNotificationManager.CHANNEL_ID
         }
 
-        // Ensure channels exist
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.createNotificationChannel(
-            NotificationChannel(
-                LumenNotificationManager.CHANNEL_ID,
-                LumenNotificationManager.CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
-        )
-        manager.createNotificationChannel(
-            NotificationChannel(
-                LumenNotificationManager.ROUTINE_CHANNEL_ID,
-                LumenNotificationManager.ROUTINE_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
+        // Ensure channels exist (LumenNotificationManager constructor creates them)
+        LumenNotificationManager(context)
+
+        // Determine navigation destination based on routine type
+        val routineType = intent.getStringExtra("routine_type") ?: ""
+
+        // Build content intent so tapping the notification opens the app
+        val launchIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)?.apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            if (isRoutine) {
+                // Route based on routine type: rosary -> prayers/rosary, divineMercy -> prayers/chaplets, others -> calendar/routine
+                when (routineType) {
+                    "rosary" -> putExtra("open_rosary", true)
+                    "divineMercy" -> putExtra("open_chaplets", true)
+                    else -> putExtra("open_calendar_routine", true)
+                }
+            }
+        }
+        val contentIntent = PendingIntent.getActivity(
+            context,
+            notificationId,
+            launchIntent ?: Intent(),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val notification = NotificationCompat.Builder(context, channelId)
@@ -297,6 +336,7 @@ class ReminderAlarmReceiver : BroadcastReceiver() {
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
+            .setContentIntent(contentIntent)
             .build()
 
         try {
@@ -320,7 +360,8 @@ class ReminderAlarmReceiver : BroadcastReceiver() {
                 weekday = weekday,
                 hour = hour,
                 minute = minute,
-                leadTimeMinutes = leadTime
+                leadTimeMinutes = leadTime,
+                routineTypeRaw = routineType
             )
         }
     }

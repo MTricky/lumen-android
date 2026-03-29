@@ -68,6 +68,7 @@ import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
 import androidx.annotation.StringRes
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 enum class Tab(
@@ -80,6 +81,30 @@ enum class Tab(
     PRAYERS(R.string.tab_prayers, iconRes = R.drawable.ic_christian_cross),
     CALENDAR(R.string.tab_calendar, icon = Icons.Filled.CalendarMonth),
     SETTINGS(R.string.tab_settings, icon = Icons.Filled.Settings),
+}
+
+/**
+ * Auto-complete a routine of the given type for today if one exists and is scheduled.
+ * Called when a prayer (rosary, divine mercy) is finished to log the routine completion.
+ */
+private suspend fun autoCompleteRoutineForType(
+    routineService: com.app.lumen.features.calendar.service.RoutineStorageService,
+    typeRaw: String,
+) {
+    val todayStart = com.app.lumen.features.calendar.service.RoutineStorageService.startOfDay(System.currentTimeMillis())
+    val cal = java.util.Calendar.getInstance()
+    val todayWeekday = cal.get(java.util.Calendar.DAY_OF_WEEK)
+
+    val routines = routineService.activeRoutines()
+    for (routine in routines) {
+        if (routine.typeRaw != typeRaw) continue
+        if (!routine.isLoggingEnabled) continue
+        val selectedDays = routineService.parseSelectedDays(routine)
+        if (todayWeekday !in selectedDays) continue
+        if (routineService.isCompleted(routine, todayStart)) continue
+        // Mark as complete
+        routineService.markCompleted(routine, todayStart)
+    }
 }
 
 // Styling
@@ -123,6 +148,12 @@ fun MainTabView(
     onPaywallConsumed: () -> Unit = {},
     openVerseDetail: Boolean = false,
     onVerseDetailConsumed: () -> Unit = {},
+    openCalendarRoutine: Boolean = false,
+    onCalendarRoutineConsumed: () -> Unit = {},
+    openRosary: Boolean = false,
+    onRosaryConsumed: () -> Unit = {},
+    openChaplets: Boolean = false,
+    onChapletsConsumed: () -> Unit = {},
 ) {
     var selectedTab by remember { mutableStateOf(Tab.LITURGY) }
     val scrollState = rememberTabBarScrollState()
@@ -158,6 +189,10 @@ fun MainTabView(
 
     // Calendar state (hoisted to preserve scroll position across tab switches)
     val calendarViewModel: com.app.lumen.features.calendar.viewmodel.CalendarViewModel = viewModel()
+
+    // Routine service for auto-completing routines when prayers finish
+    val routineService = remember { com.app.lumen.features.calendar.service.RoutineStorageService(context) }
+    val autoCompleteScope = androidx.compose.runtime.rememberCoroutineScope()
 
     // Prayer type state (Rosary vs Chaplets) — persisted
     val prayerPrefs = remember { context.getSharedPreferences("prayer_prefs", android.content.Context.MODE_PRIVATE) }
@@ -211,6 +246,34 @@ fun MainTabView(
                 showVerseDetail = true
             }
             onVerseDetailConsumed()
+        }
+    }
+
+    // Navigate to Calendar/Routine tab when opened from a notification
+    var calendarInitialTab by remember { mutableStateOf<com.app.lumen.features.calendar.ui.CalendarTabMode?>(null) }
+    LaunchedEffect(openCalendarRoutine) {
+        if (openCalendarRoutine) {
+            calendarInitialTab = com.app.lumen.features.calendar.ui.CalendarTabMode.ROUTINE
+            selectedTab = Tab.CALENDAR
+            onCalendarRoutineConsumed()
+        }
+    }
+
+    // Navigate to Prayers/Rosary tab when opened from a rosary notification
+    LaunchedEffect(openRosary) {
+        if (openRosary) {
+            prayerType = PrayerType.ROSARY
+            selectedTab = Tab.PRAYERS
+            onRosaryConsumed()
+        }
+    }
+
+    // Navigate to Prayers/Chaplets tab when opened from a divine mercy notification
+    LaunchedEffect(openChaplets) {
+        if (openChaplets) {
+            prayerType = PrayerType.CHAPLETS
+            selectedTab = Tab.PRAYERS
+            onChapletsConsumed()
         }
     }
 
@@ -312,7 +375,10 @@ fun MainTabView(
                     )
                 }
             }
-            Tab.CALENDAR -> CalendarScreen(calendarViewModel = calendarViewModel)
+            Tab.CALENDAR -> CalendarScreen(
+                calendarViewModel = calendarViewModel,
+                initialTab = calendarInitialTab,
+            )
             Tab.SETTINGS -> SettingsScreen(
                 bottomPadding = if (showAccessory && !isInline) 140.dp else 100.dp,
             )
@@ -661,6 +727,10 @@ fun MainTabView(
                 },
                 onComplete = {
                     showRosaryCompletion = true
+                    // Auto-mark rosary routine as complete for today
+                    autoCompleteScope.launch {
+                        autoCompleteRoutineForType(routineService, "rosary")
+                    }
                 },
             )
         }
@@ -700,7 +770,13 @@ fun MainTabView(
                         showChapletPrayer = false
                         divineMercyViewModel.reset()
                     },
-                    onComplete = { showChapletCompletion = true },
+                    onComplete = {
+                        showChapletCompletion = true
+                        // Auto-mark divine mercy routine as complete for today
+                        autoCompleteScope.launch {
+                            autoCompleteRoutineForType(routineService, "divineMercy")
+                        }
+                    },
                 )
                 ChapletType.ST_MICHAEL -> StMichaelPrayerScreen(
                     viewModel = stMichaelViewModel,

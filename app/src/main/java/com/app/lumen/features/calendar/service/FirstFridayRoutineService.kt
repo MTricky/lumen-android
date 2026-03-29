@@ -15,7 +15,8 @@ data class FirstFridayYearProgress(
     val isCompleted: Boolean,
     val isPreChecked: Boolean, // from initialConsecutiveCount
     val isPast: Boolean,
-    val isFuture: Boolean
+    val isFuture: Boolean,
+    val isBeforeTracking: Boolean = false // before the earliest tracked/pre-checked month
 )
 
 class FirstFridayRoutineService(context: Context) {
@@ -166,6 +167,13 @@ class FirstFridayRoutineService(context: Context) {
         val completions = store.firstFridayCompletions(routine.id)
         val completionDates = completions.map { RoutineStorageService.startOfDay(it.dateLong) }.toSet()
         val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+        val createdStart = RoutineStorageService.startOfDay(routine.createdAt)
+
+        // Build set of pre-checked dates: the N consecutive First Fridays before creation
+        val preCheckedDates = buildPreCheckedDates(routine.initialConsecutiveCount, createdStart)
+
+        // The earliest tracked date is the oldest pre-checked date, or the creation date if none
+        val earliestTracked = if (preCheckedDates.isNotEmpty()) preCheckedDates.min() else createdStart
 
         val cal = Calendar.getInstance()
         cal.add(Calendar.YEAR, yearOffset)
@@ -177,24 +185,42 @@ class FirstFridayRoutineService(context: Context) {
             val firstFriday = firstFridayOfMonth(year, month)
             val firstFridayStart = RoutineStorageService.startOfDay(firstFriday)
 
-            // Determine if this was pre-checked based on initialConsecutiveCount
-            // Pre-checked First Fridays are the ones before the routine creation
-            val isPreChecked = firstFridayStart < RoutineStorageService.startOfDay(routine.createdAt)
-                    && routine.initialConsecutiveCount > 0
-
             result.add(
                 FirstFridayYearProgress(
                     date = firstFridayStart,
                     monthIndex = month,
                     isCompleted = completionDates.contains(firstFridayStart),
-                    isPreChecked = isPreChecked,
+                    isPreChecked = preCheckedDates.contains(firstFridayStart),
                     isPast = firstFridayStart < todayStart,
-                    isFuture = firstFridayStart > todayStart
+                    isFuture = firstFridayStart > todayStart,
+                    isBeforeTracking = firstFridayStart < earliestTracked
                 )
             )
         }
 
         return result
+    }
+
+    private fun buildPreCheckedDates(count: Int, createdAt: Long): Set<Long> {
+        if (count <= 0) return emptySet()
+
+        // Collect all First Fridays before creation, most recent first
+        val candidates = mutableListOf<Long>()
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = createdAt
+
+        // Check up to 24 months back to find enough candidates
+        for (i in 0 until 24) {
+            val ff = firstFridayOfMonth(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH))
+            val ffStart = RoutineStorageService.startOfDay(ff)
+            if (ffStart < createdAt) {
+                candidates.add(ffStart)
+            }
+            if (candidates.size >= count) break
+            cal.add(Calendar.MONTH, -1)
+        }
+
+        return candidates.take(count).toSet()
     }
 
     // MARK: - Notifications

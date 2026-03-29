@@ -19,6 +19,7 @@ import com.app.lumen.R
 import com.app.lumen.features.calendar.data.WeeklyRoutineEntity
 import com.app.lumen.features.calendar.model.RoutineItemType
 import com.app.lumen.features.calendar.model.leadTimeOptions
+import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
 import com.app.lumen.ui.theme.*
 import kotlinx.serialization.json.Json
 import java.util.Calendar
@@ -69,30 +70,28 @@ fun EditRoutineSheet(
     ) {
         // Header
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(R.string.cancel), color = SoftGold)
-            }
-            TextButton(
-                onClick = {
-                    if (title.isNotBlank()) {
-                        onSave(
-                            title,
-                            selectedDays,
-                            hour,
-                            minute,
-                            isNotificationEnabled,
-                            isLoggingEnabled,
-                            leadTimeOptions[selectedLeadTimeIndex].minutes
-                        )
-                    }
-                },
-                enabled = title.isNotBlank()
+            SheetCapsuleButton(text = stringResource(R.string.cancel)) { onDismiss() }
+            SheetCapsuleButton(
+                text = stringResource(R.string.save),
+                isPrimary = true
             ) {
-                Text(stringResource(R.string.save), color = if (title.isNotBlank()) SoftGold else Slate)
+                if (title.isNotBlank()) {
+                    onSave(
+                        title,
+                        selectedDays,
+                        hour,
+                        minute,
+                        isNotificationEnabled,
+                        isLoggingEnabled,
+                        leadTimeOptions[selectedLeadTimeIndex].minutes
+                    )
+                }
             }
         }
 
@@ -171,9 +170,11 @@ fun EditRoutineSheet(
                     colors = CardDefaults.cardColors(containerColor = CardBg),
                     border = androidx.compose.foundation.BorderStroke(1.dp, CardBorder)
                 ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
+                    Column {
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Filled.Notifications, null, tint = SoftGold)
@@ -189,10 +190,17 @@ fun EditRoutineSheet(
                             )
                         }
                         if (isNotificationEnabled) {
-                            Spacer(modifier = Modifier.height(12.dp))
-                            Text(stringResource(R.string.routine_remind_me), color = Slate, fontSize = 12.sp)
+                            Text(
+                                stringResource(R.string.routine_remind_me),
+                                color = Slate,
+                                fontSize = 12.sp,
+                                modifier = Modifier.padding(horizontal = 16.dp)
+                            )
                             Spacer(modifier = Modifier.height(4.dp))
-                            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            LazyRow(
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                contentPadding = PaddingValues(horizontal = 16.dp)
+                            ) {
                                 items(leadTimeOptions.size) { index ->
                                     val option = leadTimeOptions[index]
                                     FilterChip(
@@ -214,6 +222,7 @@ fun EditRoutineSheet(
                                     )
                                 }
                             }
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
                 }

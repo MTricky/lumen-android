@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.features.calendar.model.*
+import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
 import com.app.lumen.ui.theme.*
 import java.util.Calendar
 
@@ -87,41 +88,39 @@ fun CreateRoutineSheet(
     ) {
         // Header
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = {
+            SheetCapsuleButton(
+                text = if (step == CreateRoutineStep.CONFIGURATION && preselectedType == null && preselectedSuggestion == null)
+                    stringResource(R.string.routine_back) else stringResource(R.string.cancel)
+            ) {
                 if (step == CreateRoutineStep.CONFIGURATION && preselectedType == null && preselectedSuggestion == null) {
                     step = CreateRoutineStep.TYPE_SELECTION
                 } else {
                     onDismiss()
                 }
-            }) {
-                Text(
-                    if (step == CreateRoutineStep.CONFIGURATION && preselectedType == null && preselectedSuggestion == null) stringResource(R.string.routine_back) else stringResource(R.string.cancel),
-                    color = SoftGold
-                )
             }
             if (step == CreateRoutineStep.CONFIGURATION) {
-                TextButton(
-                    onClick = {
-                        if (title.isNotBlank() && selectedType != null) {
-                            onCreate(
-                                title,
-                                selectedType!!,
-                                selectedDays,
-                                hour,
-                                minute,
-                                isNotificationEnabled,
-                                isLoggingEnabled,
-                                leadTimeOptions[selectedLeadTimeIndex].minutes
-                            )
-                        }
-                    },
-                    enabled = title.isNotBlank()
+                SheetCapsuleButton(
+                    text = stringResource(R.string.save),
+                    isPrimary = true
                 ) {
-                    Text(stringResource(R.string.save), color = if (title.isNotBlank()) SoftGold else Slate)
+                    if (title.isNotBlank() && selectedType != null) {
+                        onCreate(
+                            title,
+                            selectedType!!,
+                            selectedDays,
+                            hour,
+                            minute,
+                            isNotificationEnabled,
+                            isLoggingEnabled,
+                            leadTimeOptions[selectedLeadTimeIndex].minutes
+                        )
+                    }
                 }
             }
         }
@@ -462,9 +461,11 @@ private fun ConfigurationContent(
                 colors = CardDefaults.cardColors(containerColor = CardBg),
                 border = androidx.compose.foundation.BorderStroke(1.dp, CardBorder)
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(Icons.Filled.Notifications, null, tint = SoftGold)
@@ -481,10 +482,17 @@ private fun ConfigurationContent(
                     }
 
                     if (isNotificationEnabled) {
-                        Spacer(modifier = Modifier.height(12.dp))
-                        Text(stringResource(R.string.routine_remind_me), color = Slate, fontSize = 12.sp)
+                        Text(
+                            stringResource(R.string.routine_remind_me),
+                            color = Slate,
+                            fontSize = 12.sp,
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
                         Spacer(modifier = Modifier.height(4.dp))
-                        LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        LazyRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            contentPadding = PaddingValues(horizontal = 16.dp)
+                        ) {
                             items(leadTimeOptions.size) { index ->
                                 val option = leadTimeOptions[index]
                                 FilterChip(
@@ -506,6 +514,7 @@ private fun ConfigurationContent(
                                 )
                             }
                         }
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }
@@ -549,13 +558,13 @@ fun DaysPicker(
     onDaysChange: (Set<Int>) -> Unit
 ) {
     val dayLabels = listOf(
-        Calendar.SUNDAY to "S",
         Calendar.MONDAY to "M",
         Calendar.TUESDAY to "T",
         Calendar.WEDNESDAY to "W",
         Calendar.THURSDAY to "T",
         Calendar.FRIDAY to "F",
-        Calendar.SATURDAY to "S"
+        Calendar.SATURDAY to "S",
+        Calendar.SUNDAY to "S"
     )
 
     Row(

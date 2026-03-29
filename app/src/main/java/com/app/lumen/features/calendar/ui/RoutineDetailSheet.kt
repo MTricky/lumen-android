@@ -83,8 +83,9 @@ private fun WeeklyRoutineDetailContent(
     var monthOffset by remember { mutableIntStateOf(0) }
     var weekOffset by remember { mutableIntStateOf(0) }
     var detailedProgress by remember { mutableStateOf<List<Any>>(emptyList()) }
+    var refreshKey by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(monthOffset, weekOffset) {
+    LaunchedEffect(monthOffset, weekOffset, refreshKey) {
         detailedProgress = if (isMassType) {
             viewModel.getMonthProgressDetailed(routine, monthOffset)
         } else {
@@ -106,7 +107,7 @@ private fun WeeklyRoutineDetailContent(
             Box {
                 GlassIconButton(onClick = { showOptionsMenu = true }) {
                     Icon(
-                        Icons.Filled.MoreVert,
+                        Icons.Filled.MoreHoriz,
                         contentDescription = stringResource(R.string.routine_options),
                         tint = SoftGold,
                         modifier = Modifier.size(20.dp)
@@ -266,6 +267,7 @@ private fun WeeklyRoutineDetailContent(
                                     val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
                                     if (day.date <= todayStart && !day.isBeforeCreation) {
                                         viewModel.toggleCompletionForDate(routine, day.date)
+                                        refreshKey++
                                     }
                                 }
                             )
@@ -284,7 +286,16 @@ private fun WeeklyRoutineDetailContent(
                                     .format(Date(weekDays.last().date))
                                 Text("$startDate - $endDate", color = SoftGold, fontSize = 14.sp)
                                 Spacer(modifier = Modifier.height(12.dp))
-                                WeeklyProgressDots(weekDays)
+                                TappableWeeklyProgressDots(
+                                    weekProgress = weekDays,
+                                    onToggle = { day ->
+                                        val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+                                        if (day.date <= todayStart && !day.isBeforeCreation && day.isScheduled) {
+                                            viewModel.toggleCompletionForDate(routine, day.date)
+                                            refreshKey++
+                                        }
+                                    }
+                                )
                             }
                         }
 
@@ -345,12 +356,14 @@ private fun FirstFridayDetailContent(
     var yearOffset by remember { mutableIntStateOf(0) }
     var detailedYearProgress by remember { mutableStateOf<List<FirstFridayYearProgress>>(emptyList()) }
 
-    LaunchedEffect(yearOffset) {
+    var ffRefreshKey by remember { mutableIntStateOf(0) }
+
+    LaunchedEffect(yearOffset, ffRefreshKey) {
         detailedYearProgress = viewModel.getFirstFridayYearProgress(routine, yearOffset)
     }
 
-    // Use the default year progress when offset is 0
-    val displayProgress = if (yearOffset == 0) yearProgress else detailedYearProgress
+    // Use the default year progress when offset is 0 (but respect refresh)
+    val displayProgress = if (yearOffset == 0 && ffRefreshKey == 0) yearProgress else detailedYearProgress
 
     var showOptionsMenu by remember { mutableStateOf(false) }
 
@@ -365,7 +378,7 @@ private fun FirstFridayDetailContent(
             Box {
                 GlassIconButton(onClick = { showOptionsMenu = true }) {
                     Icon(
-                        Icons.Filled.MoreVert,
+                        Icons.Filled.MoreHoriz,
                         contentDescription = stringResource(R.string.routine_options),
                         tint = SoftGold,
                         modifier = Modifier.size(20.dp)
@@ -439,7 +452,16 @@ private fun FirstFridayDetailContent(
                             fontWeight = FontWeight.Medium
                         )
                         Spacer(modifier = Modifier.height(12.dp))
-                        YearProgressRow(displayProgress)
+                        TappableYearProgressRow(
+                            yearProgress = displayProgress,
+                            onToggle = { month ->
+                                val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+                                if (month.date <= todayStart && !month.isPreChecked) {
+                                    viewModel.toggleFirstFridayCompletionForDate(routine, month.date)
+                                    ffRefreshKey++
+                                }
+                            }
+                        )
 
                         Spacer(modifier = Modifier.height(12.dp))
                         val createdDate = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
@@ -546,6 +568,133 @@ fun MonthProgressGrid(
                 repeat(7 - row.size) {
                     Spacer(modifier = Modifier.size(32.dp))
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun TappableYearProgressRow(
+    yearProgress: List<FirstFridayYearProgress>,
+    onToggle: (FirstFridayYearProgress) -> Unit
+) {
+    val monthLabels = listOf("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D")
+    val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+
+    val rows = yearProgress.chunked(6)
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        for (row in rows) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                row.forEach { month ->
+                    val index = month.monthIndex
+                    val canToggle = !month.isBeforeTracking && !month.isPreChecked && month.date <= todayStart
+
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(
+                            modifier = Modifier
+                                .size(28.dp)
+                                .clip(CircleShape)
+                                .background(
+                                    when {
+                                        month.isBeforeTracking -> Color.Transparent
+                                        month.isCompleted || month.isPreChecked -> SoftGold
+                                        month.isFuture -> Slate.copy(alpha = 0.2f)
+                                        month.isPast -> Color.White.copy(alpha = 0.1f)
+                                        else -> Slate.copy(alpha = 0.2f)
+                                    }
+                                )
+                                .then(
+                                    if (!month.isBeforeTracking && !month.isCompleted && !month.isPreChecked && month.isFuture) {
+                                        Modifier.border(1.dp, Slate.copy(alpha = 0.3f), CircleShape)
+                                    } else Modifier
+                                )
+                                .clickable(enabled = canToggle) { onToggle(month) },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            when {
+                                month.isBeforeTracking -> {}
+                                month.isCompleted || month.isPreChecked -> {
+                                    Icon(Icons.Filled.Check, null, tint = Color.Black, modifier = Modifier.size(14.dp))
+                                }
+                                month.isPast -> {
+                                    Icon(Icons.Filled.Close, null, tint = Slate, modifier = Modifier.size(14.dp))
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = if (index < monthLabels.size) monthLabels[index] else "",
+                            color = Slate,
+                            fontSize = 9.sp
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun TappableWeeklyProgressDots(
+    weekProgress: List<WeekProgress>,
+    onToggle: (WeekProgress) -> Unit
+) {
+    val dayLabels = listOf("M", "T", "W", "T", "F", "S", "S")
+    val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        weekProgress.forEachIndexed { index, day ->
+            val canToggle = day.isScheduled && !day.isBeforeCreation && day.date <= todayStart
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(CircleShape)
+                        .background(
+                            when {
+                                day.isBeforeCreation -> Color.Transparent
+                                !day.isScheduled -> Color.Transparent
+                                day.isCompleted -> SoftGold
+                                day.date < todayStart -> Color(0xFFEF5350).copy(alpha = 0.2f)
+                                else -> Slate.copy(alpha = 0.15f)
+                            }
+                        )
+                        .then(
+                            if (day.isScheduled && !day.isCompleted && !day.isBeforeCreation) {
+                                Modifier.border(
+                                    1.dp,
+                                    if (day.date == todayStart) SoftGold.copy(alpha = 0.5f)
+                                    else Slate.copy(alpha = 0.5f),
+                                    CircleShape
+                                )
+                            } else Modifier
+                        )
+                        .clickable(enabled = canToggle) { onToggle(day) },
+                    contentAlignment = Alignment.Center
+                ) {
+                    when {
+                        day.isBeforeCreation || !day.isScheduled -> {}
+                        day.isCompleted -> {
+                            Icon(Icons.Filled.Check, null, tint = Color.Black, modifier = Modifier.size(14.dp))
+                        }
+                        day.date < todayStart -> {
+                            Icon(Icons.Filled.Close, null, tint = Color(0xFFEF5350), modifier = Modifier.size(14.dp))
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    text = if (index < dayLabels.size) dayLabels[index] else "",
+                    color = Slate,
+                    fontSize = 9.sp
+                )
             }
         }
     }

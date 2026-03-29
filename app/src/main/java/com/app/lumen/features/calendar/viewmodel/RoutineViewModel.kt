@@ -263,6 +263,10 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
                         routineService.unmarkCompleted(routine, todayStart)
                     } else {
                         routineService.markCompleted(routine, todayStart)
+                        // Cancel today's pending notification since the routine is done
+                        if (routine.isNotificationEnabled) {
+                            notificationManager.cancelTodayNotificationForRoutine(routine.id)
+                        }
                     }
                 }
                 is UnifiedRoutineItem.FirstFriday -> {
@@ -287,6 +291,23 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
                 routineService.unmarkCompleted(routine, dateLong)
             } else {
                 routineService.markCompleted(routine, dateLong)
+                // Cancel today's pending notification if marking today as complete
+                val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
+                if (dateLong == todayStart && routine.isNotificationEnabled) {
+                    notificationManager.cancelTodayNotificationForRoutine(routine.id)
+                }
+            }
+            loadRoutines()
+        }
+    }
+
+    fun toggleFirstFridayCompletionForDate(routine: FirstFridayRoutineEntity, dateLong: Long) {
+        viewModelScope.launch {
+            val isCompleted = firstFridayService.isCompleted(routine, dateLong)
+            if (isCompleted) {
+                firstFridayService.unmarkCompleted(routine, dateLong)
+            } else {
+                firstFridayService.markCompleted(routine, dateLong)
             }
             loadRoutines()
         }

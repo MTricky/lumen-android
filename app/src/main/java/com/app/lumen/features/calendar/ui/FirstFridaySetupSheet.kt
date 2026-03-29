@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.features.calendar.model.firstFridayLeadTimeOptions
+import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
 import com.app.lumen.ui.theme.*
 import java.util.Calendar
 
@@ -55,20 +56,19 @@ fun FirstFridaySetupSheet(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel", color = SoftGold)
-            }
-            TextButton(onClick = {
-                onCreate(
-                    isNotificationEnabled,
-                    notificationHour,
-                    notificationMinute,
-                    firstFridayLeadTimeOptions[selectedLeadTimeIndex].minutes,
-                    initialCount
-                )
-            }) {
-                Text("Save", color = SoftGold)
-            }
+            SheetCapsuleButton(text = "Cancel", onClick = onDismiss)
+            SheetCapsuleButton(
+                text = "Save",
+                onClick = {
+                    onCreate(
+                        isNotificationEnabled,
+                        notificationHour,
+                        notificationMinute,
+                        firstFridayLeadTimeOptions[selectedLeadTimeIndex].minutes,
+                        initialCount
+                    )
+                }
+            )
         }
 
         LazyColumn(
@@ -188,11 +188,7 @@ fun FirstFridaySetupSheet(
                             Text("Notification time", color = Slate, fontSize = 12.sp)
                             Spacer(modifier = Modifier.height(4.dp))
                             Card(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .let { mod ->
-                                        mod
-                                    },
+                                modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(8.dp),
                                 colors = CardDefaults.cardColors(containerColor = CardBg.copy(alpha = 0.5f)),
                                 onClick = { showTimePicker = true }
@@ -210,27 +206,34 @@ fun FirstFridaySetupSheet(
                             Spacer(modifier = Modifier.height(12.dp))
                             Text("Remind me", color = Slate, fontSize = 12.sp)
                             Spacer(modifier = Modifier.height(4.dp))
-                            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                items(firstFridayLeadTimeOptions.size) { index ->
-                                    val option = firstFridayLeadTimeOptions[index]
-                                    FilterChip(
-                                        selected = selectedLeadTimeIndex == index,
-                                        onClick = { selectedLeadTimeIndex = index },
-                                        label = { Text(option.label, fontSize = 11.sp) },
-                                        colors = FilterChipDefaults.filterChipColors(
-                                            selectedContainerColor = SoftGold.copy(alpha = 0.2f),
-                                            selectedLabelColor = SoftGold,
-                                            containerColor = Color.Transparent,
-                                            labelColor = Slate
-                                        ),
-                                        border = FilterChipDefaults.filterChipBorder(
-                                            borderColor = CardBorder,
-                                            selectedBorderColor = SoftGold.copy(alpha = 0.5f),
-                                            enabled = true,
-                                            selected = selectedLeadTimeIndex == index
-                                        )
+                        }
+                    }
+
+                    if (isNotificationEnabled) {
+                        LazyRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            contentPadding = PaddingValues(horizontal = 16.dp),
+                            modifier = Modifier.padding(bottom = 16.dp)
+                        ) {
+                            items(firstFridayLeadTimeOptions.size) { index ->
+                                val option = firstFridayLeadTimeOptions[index]
+                                FilterChip(
+                                    selected = selectedLeadTimeIndex == index,
+                                    onClick = { selectedLeadTimeIndex = index },
+                                    label = { Text(option.label, fontSize = 11.sp) },
+                                    colors = FilterChipDefaults.filterChipColors(
+                                        selectedContainerColor = SoftGold.copy(alpha = 0.2f),
+                                        selectedLabelColor = SoftGold,
+                                        containerColor = Color.Transparent,
+                                        labelColor = Slate
+                                    ),
+                                    border = FilterChipDefaults.filterChipBorder(
+                                        borderColor = CardBorder,
+                                        selectedBorderColor = SoftGold.copy(alpha = 0.5f),
+                                        enabled = true,
+                                        selected = selectedLeadTimeIndex == index
                                     )
-                                }
+                                )
                             }
                         }
                     }

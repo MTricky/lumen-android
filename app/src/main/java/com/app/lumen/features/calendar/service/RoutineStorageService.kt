@@ -197,6 +197,7 @@ class RoutineStorageService(context: Context) {
         val completionDates = completions.map { it.dateLong }.toSet()
 
         val cal = Calendar.getInstance()
+        cal.firstDayOfWeek = Calendar.MONDAY
         cal.add(Calendar.WEEK_OF_YEAR, weekOffset)
         // Go to Monday of the week
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
@@ -306,7 +307,8 @@ class RoutineStorageService(context: Context) {
                 weekday = day,
                 hour = routine.hour,
                 minute = routine.minute,
-                leadTimeMinutes = routine.notificationLeadTimeMinutes
+                leadTimeMinutes = routine.notificationLeadTimeMinutes,
+                routineTypeRaw = routine.typeRaw
             )
         }
     }

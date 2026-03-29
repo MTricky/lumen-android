@@ -63,7 +63,8 @@ enum class CalendarTabMode(@androidx.annotation.StringRes val labelRes: Int) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalendarScreen(
-    calendarViewModel: CalendarViewModel = viewModel()
+    calendarViewModel: CalendarViewModel = viewModel(),
+    initialTab: CalendarTabMode? = null,
 ) {
     val viewModel = calendarViewModel
     val monthsData by viewModel.monthsData.collectAsState()
@@ -79,8 +80,15 @@ fun CalendarScreen(
     }
 
     // Segmented picker state
-    var selectedTab by remember { mutableStateOf(CalendarTabMode.CALENDAR) }
-    var previousTabOrdinal by remember { mutableIntStateOf(0) }
+    var selectedTab by remember { mutableStateOf(initialTab ?: CalendarTabMode.CALENDAR) }
+    var previousTabOrdinal by remember { mutableIntStateOf((initialTab ?: CalendarTabMode.CALENDAR).ordinal) }
+
+    // Switch tab when requested from outside (e.g. notification)
+    LaunchedEffect(initialTab) {
+        if (initialTab != null) {
+            selectedTab = initialTab
+        }
+    }
 
     // Notes & Reminders state
     val allNotes by viewModel.allNotes.collectAsState()
@@ -597,6 +605,7 @@ fun CalendarScreen(
             onPlusTapped = {
                 if (selectedTab == CalendarTabMode.ROUTINE) {
                     createRoutinePreselectedType = null
+                    createRoutinePreselectedSuggestion = null
                     showCreateRoutineSheet = true
                 } else {
                     showAddMenu = true

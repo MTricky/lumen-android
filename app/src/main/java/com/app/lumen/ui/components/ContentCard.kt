@@ -390,20 +390,20 @@ fun VerseCard(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(12.dp))
+                        .clip(RoundedCornerShape(50))
                         .background(catColor.copy(alpha = 0.8f))
-                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                        .padding(horizontal = 8.dp, vertical = 2.dp)
                 ) {
                     Icon(
                         imageVector = catIcon,
                         contentDescription = null,
                         tint = Color.White,
-                        modifier = Modifier.size(13.dp)
+                        modifier = Modifier.size(11.dp)
                     )
-                    Spacer(Modifier.width(5.dp))
+                    Spacer(Modifier.width(4.dp))
                     Text(
                         text = category.replaceFirstChar { it.uppercase() },
-                        fontSize = 11.sp,
+                        fontSize = 10.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,
                     )
