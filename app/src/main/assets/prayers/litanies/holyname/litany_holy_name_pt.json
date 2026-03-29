@@ -1,0 +1,326 @@
+{
+  "id": "holyName",
+  "title": "Ladainha do Santíssimo Nome de Jesus",
+  "subtitle": "Em louvor do Santíssimo Nome",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, e do Filho, e do Espírito Santo. Amém."
+    },
+    "closingPrayer": {
+      "title": "Oração",
+      "text": "Senhor Jesus Cristo, que dissestes: «Pedi e recebereis; buscai e achareis; batei e abrir-se-vos-á», atendei benignamente as nossas súplicas e concedei-nos a graça do vosso divino amor, para que vos amemos de todo o coração, em todas as nossas palavras e ações, e nunca cessemos de vos louvar. Amém."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Senhor, tende piedade de nós.",
+          "response": "Senhor, tende piedade de nós."
+        },
+        {
+          "text": "Cristo, tende piedade de nós.",
+          "response": "Cristo, tende piedade de nós."
+        },
+        {
+          "text": "Senhor, tende piedade de nós.",
+          "response": "Senhor, tende piedade de nós."
+        },
+        {
+          "text": "Jesus, ouvi-nos.",
+          "response": "Jesus, atendei-nos."
+        }
+      ]
+    },
+    {
+      "title": "Santíssima Trindade",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Pai celeste, que sois Deus,"
+        },
+        {
+          "text": "Filho, Redentor do mundo, que sois Deus,"
+        },
+        {
+          "text": "Espírito Santo, que sois Deus,"
+        },
+        {
+          "text": "Santíssima Trindade, que sois um só Deus,"
+        }
+      ]
+    },
+    {
+      "title": "Glória divina",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Jesus, Filho do Deus vivo,"
+        },
+        {
+          "text": "Jesus, esplendor do Pai,"
+        },
+        {
+          "text": "Jesus, fulgor da luz eterna,"
+        },
+        {
+          "text": "Jesus, Rei da glória,"
+        },
+        {
+          "text": "Jesus, sol de justiça,"
+        },
+        {
+          "text": "Jesus, Filho da Virgem Maria,"
+        }
+      ]
+    },
+    {
+      "title": "Atributos divinos",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Jesus, amabilíssimo,"
+        },
+        {
+          "text": "Jesus, admirabilíssimo,"
+        },
+        {
+          "text": "Jesus, Deus forte,"
+        },
+        {
+          "text": "Jesus, Pai do século futuro,"
+        },
+        {
+          "text": "Jesus, Anjo do grande conselho,"
+        },
+        {
+          "text": "Jesus, todo-poderoso,"
+        },
+        {
+          "text": "Jesus, pacientíssimo,"
+        },
+        {
+          "text": "Jesus, obedientíssimo,"
+        },
+        {
+          "text": "Jesus, manso e humilde de coração,"
+        }
+      ]
+    },
+    {
+      "title": "Amor e virtude",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Jesus, amante da castidade,"
+        },
+        {
+          "text": "Jesus, que nos amais,"
+        },
+        {
+          "text": "Jesus, Deus da paz,"
+        },
+        {
+          "text": "Jesus, autor da vida,"
+        },
+        {
+          "text": "Jesus, modelo das virtudes,"
+        },
+        {
+          "text": "Jesus, zeloso das almas,"
+        },
+        {
+          "text": "Jesus, Deus nosso,"
+        },
+        {
+          "text": "Jesus, refúgio nosso,"
+        }
+      ]
+    },
+    {
+      "title": "Misericórdia e luz",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Jesus, Pai dos pobres,"
+        },
+        {
+          "text": "Jesus, tesouro dos fiéis,"
+        },
+        {
+          "text": "Jesus, bom Pastor,"
+        },
+        {
+          "text": "Jesus, luz verdadeira,"
+        },
+        {
+          "text": "Jesus, sabedoria eterna,"
+        },
+        {
+          "text": "Jesus, bondade infinita,"
+        },
+        {
+          "text": "Jesus, caminho e vida nossa,"
+        }
+      ]
+    },
+    {
+      "title": "Glória dos Santos",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        {
+          "text": "Jesus, alegria dos Anjos,"
+        },
+        {
+          "text": "Jesus, Rei dos Patriarcas,"
+        },
+        {
+          "text": "Jesus, mestre dos Apóstolos,"
+        },
+        {
+          "text": "Jesus, doutor dos Evangelistas,"
+        },
+        {
+          "text": "Jesus, fortaleza dos Mártires,"
+        },
+        {
+          "text": "Jesus, luz dos Confessores,"
+        },
+        {
+          "text": "Jesus, pureza das Virgens,"
+        },
+        {
+          "text": "Jesus, coroa de todos os Santos,"
+        }
+      ]
+    },
+    {
+      "title": "Misericórdia",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Sede-nos propício,",
+          "response": "perdoai-nos, Jesus."
+        },
+        {
+          "text": "Sede-nos propício,",
+          "response": "ouvi-nos, Jesus."
+        }
+      ]
+    },
+    {
+      "title": "Libertação",
+      "type": "petition",
+      "response": "livrai-nos, Jesus.",
+      "invocations": [
+        {
+          "text": "De todo o mal,"
+        },
+        {
+          "text": "De todo pecado,"
+        },
+        {
+          "text": "Da vossa ira,"
+        },
+        {
+          "text": "Das ciladas do demônio,"
+        },
+        {
+          "text": "Do espírito de fornicação,"
+        },
+        {
+          "text": "Da morte eterna,"
+        },
+        {
+          "text": "Do desprezo das vossas inspirações,"
+        }
+      ]
+    },
+    {
+      "title": "Pelos Mistérios de Cristo",
+      "type": "petition",
+      "response": "livrai-nos, Jesus.",
+      "invocations": [
+        {
+          "text": "Pelo mistério da vossa santa Encarnação,"
+        },
+        {
+          "text": "Pelo vosso Nascimento,"
+        },
+        {
+          "text": "Pela vossa Infância,"
+        },
+        {
+          "text": "Pela vossa vida divina,"
+        },
+        {
+          "text": "Pelos vossos trabalhos,"
+        },
+        {
+          "text": "Pela vossa agonia e Paixão,"
+        },
+        {
+          "text": "Pela vossa Cruz e abandono,"
+        },
+        {
+          "text": "Pelos vossos desfalecimentos,"
+        },
+        {
+          "text": "Pela vossa Morte e Sepultura,"
+        },
+        {
+          "text": "Pela vossa Ressurreição,"
+        },
+        {
+          "text": "Pela vossa Ascensão,"
+        },
+        {
+          "text": "Pela instituição da Santíssima Eucaristia,"
+        },
+        {
+          "text": "Pelas vossas alegrias,"
+        },
+        {
+          "text": "Pela vossa glória,"
+        }
+      ]
+    },
+    {
+      "title": "Cordeiro de Deus",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Cordeiro de Deus, que tirais os pecados do mundo,",
+          "response": "perdoai-nos, Jesus."
+        },
+        {
+          "text": "Cordeiro de Deus, que tirais os pecados do mundo,",
+          "response": "ouvi-nos, Jesus."
+        },
+        {
+          "text": "Cordeiro de Deus, que tirais os pecados do mundo,",
+          "response": "tende piedade de nós."
+        }
+      ]
+    },
+    {
+      "title": "Versículo",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Jesus, ouvi-nos.",
+          "response": "Jesus, atendei-nos."
+        }
+      ]
+    }
+  ]
+}

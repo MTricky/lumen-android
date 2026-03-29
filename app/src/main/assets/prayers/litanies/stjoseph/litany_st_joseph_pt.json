@@ -1,0 +1,122 @@
+{
+  "id": "stJoseph",
+  "title": "Ladainha de São José",
+  "subtitle": "Guardião da Sagrada Família",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, e do Filho, e do Espírito Santo. Amém."
+    },
+    "closingPrayer": {
+      "title": "Oração",
+      "text": "Ó Deus, que por inefável providência vos dignastes escolher o bem-aventurado São José para esposo de vossa santíssima Mãe, concedei-nos que mereçamos ter como intercessor no céu aquele que veneramos como protetor na terra. Por Cristo nosso Senhor. Amém."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, tende piedade de nós.", "response": "Cristo, tende piedade de nós." },
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, ouvi-nos.", "response": "Cristo, atendei-nos." }
+      ]
+    },
+    {
+      "title": "Santíssima Trindade",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Deus Pai do céu," },
+        { "text": "Deus Filho, Redentor do mundo," },
+        { "text": "Deus Espírito Santo," },
+        { "text": "Santíssima Trindade, que sois um só Deus," }
+      ]
+    },
+    {
+      "title": "Santa Maria",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Santa Maria," },
+        { "text": "São José," }
+      ]
+    },
+    {
+      "title": "Títulos de São José",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Ilustre filho de Davi," },
+        { "text": "Luz dos Patriarcas," },
+        { "text": "Esposo da Mãe de Deus," },
+        { "text": "Guardião do Redentor," },
+        { "text": "Casto guardião da Virgem," },
+        { "text": "Pai nutrício do Filho de Deus," },
+        { "text": "Zeloso defensor de Cristo," },
+        { "text": "Servo de Cristo," },
+        { "text": "Ministro da salvação," },
+        { "text": "Chefe da Sagrada Família," }
+      ]
+    },
+    {
+      "title": "Virtudes",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "José justíssimo," },
+        { "text": "José castíssimo," },
+        { "text": "José prudentíssimo," },
+        { "text": "José fortíssimo," },
+        { "text": "José obedientíssimo," },
+        { "text": "José fidelíssimo," }
+      ]
+    },
+    {
+      "title": "Títulos de honra",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Espelho de paciência," },
+        { "text": "Amigo da pobreza," },
+        { "text": "Modelo dos trabalhadores," },
+        { "text": "Glória da vida doméstica," },
+        { "text": "Guardião das virgens," },
+        { "text": "Amparo das famílias," }
+      ]
+    },
+    {
+      "title": "Patronatos",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Amparo nas dificuldades," },
+        { "text": "Consolação dos infelizes," },
+        { "text": "Patrono dos exilados," },
+        { "text": "Patrono dos aflitos," },
+        { "text": "Patrono dos pobres," },
+        { "text": "Esperança dos enfermos," },
+        { "text": "Patrono dos moribundos," },
+        { "text": "Terror dos demônios," },
+        { "text": "Protetor da Santa Igreja," }
+      ]
+    },
+    {
+      "title": "Cordeiro de Deus",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "perdoai-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "ouvi-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "tende piedade de nós." }
+      ]
+    },
+    {
+      "title": "Versículo",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Constituiu-o senhor de sua casa.", "response": "E príncipe de todos os seus bens." }
+      ]
+    }
+  ]
+}

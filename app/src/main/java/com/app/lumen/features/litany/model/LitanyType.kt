@@ -82,6 +82,7 @@ enum class LitanyType(
                 lang.startsWith("pl") -> "pl"
                 lang.startsWith("fr") -> "fr"
                 lang.startsWith("es") -> "es"
+                lang.startsWith("pt") -> "pt"
                 else -> "en"
             }
         }

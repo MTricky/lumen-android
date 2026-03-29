@@ -1,0 +1,158 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, do Filho e do Espírito Santo. Amém."
+    },
+    "apostlesCreed": {
+      "title": "Credo dos Apóstolos",
+      "text": "Creio em Deus Pai, Todo-Poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo, nasceu da Virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado, desceu à mansão dos mortos, ressuscitou ao terceiro dia, subiu aos céus, está sentado à direita de Deus Pai Todo-Poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo, na Santa Igreja Católica, na comunhão dos Santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém."
+    },
+    "ourFather": {
+      "title": "Pai Nosso",
+      "text": "Pai nosso que estais nos céus, santificado seja o vosso Nome, venha a nós o vosso Reino, seja feita a vossa vontade assim na terra como no céu. O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do Mal. Amém."
+    },
+    "hailMary": {
+      "title": "Ave Maria",
+      "text": "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém."
+    },
+    "gloryBe": {
+      "title": "Glória ao Pai",
+      "text": "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém."
+    },
+    "fatimaPrayer": {
+      "title": "Oração de Fátima",
+      "text": "Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o céu, principalmente as que mais precisarem. Amém."
+    },
+    "hailHolyQueen": {
+      "title": "Salve Rainha",
+      "text": "Salve, Rainha, Mãe de misericórdia, vida, doçura, esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém."
+    },
+    "finalPrayer": {
+      "title": "Oração Final",
+      "text": "Ó Deus, cujo Filho Unigênito, por sua vida, morte e ressurreição, nos alcançou o prêmio da vida eterna, concedei-nos, nós vos pedimos, que meditando estes mistérios do Santíssimo Rosário da Virgem Maria, imitemos o que eles contêm e alcancemos o que prometem. Por Cristo, nosso Senhor. Amém."
+    },
+    "introHailMaryFaith": {
+      "title": "Ave Maria (pela Fé)",
+      "text": "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém."
+    },
+    "introHailMaryHope": {
+      "title": "Ave Maria (pela Esperança)",
+      "text": "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém."
+    },
+    "introHailMaryCharity": {
+      "title": "Ave Maria (pela Caridade)",
+      "text": "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém."
+    }
+  },
+  "mysteries": {
+    "joyful": [
+      {
+        "name": "A Anunciação do Anjo a Nossa Senhora",
+        "meditation": "O Anjo Gabriel anuncia a Maria que ela conceberá e dará à luz o Filho de Deus. Maria aceita humildemente a vontade de Deus, dizendo: 'Eis aqui a serva do Senhor; faça-se em mim segundo a tua palavra.'",
+        "fruit": "Humildade"
+      },
+      {
+        "name": "A Visitação de Nossa Senhora a Santa Isabel",
+        "meditation": "Maria visita sua prima Isabel, que está grávida de João Batista. Isabel é cheia do Espírito Santo e proclama Maria bendita entre as mulheres. Maria responde com o Magnificat.",
+        "fruit": "Amor ao Próximo"
+      },
+      {
+        "name": "O Nascimento de Jesus",
+        "meditation": "Jesus nasce em um estábulo em Belém. O Salvador do mundo entra na humanidade nas circunstâncias mais humildes, envolto em panos e deitado em uma manjedoura.",
+        "fruit": "Pobreza de Espírito"
+      },
+      {
+        "name": "A Apresentação do Menino Jesus no Templo",
+        "meditation": "Maria e José apresentam o Menino Jesus no Templo. Simeão O reconhece como o Messias e profetiza que uma espada atravessará o coração de Maria.",
+        "fruit": "Obediência"
+      },
+      {
+        "name": "O Encontro do Menino Jesus no Templo",
+        "meditation": "Depois de três dias de busca, Maria e José encontram Jesus, de doze anos, no Templo, sentado entre os doutores, ouvindo-os e fazendo-lhes perguntas.",
+        "fruit": "Alegria de Encontrar Jesus"
+      }
+    ],
+    "sorrowful": [
+      {
+        "name": "A Agonia de Jesus no Horto",
+        "meditation": "Jesus ora no Jardim de Getsêmani, suando sangue em sua angústia ao contemplar sua Paixão vindoura. Ele ora: 'Pai, se é possível, afasta de mim este cálice; contudo, não seja como eu quero, mas como tu queres.'",
+        "fruit": "Arrependimento dos Pecados"
+      },
+      {
+        "name": "A Flagelação de Jesus",
+        "meditation": "Jesus é brutalmente flagelado pelos soldados romanos. Ele suporta esse terrível sofrimento em silêncio, oferecendo sua dor pela nossa redenção.",
+        "fruit": "Pureza"
+      },
+      {
+        "name": "A Coroação de Espinhos",
+        "meditation": "Os soldados zombam de Jesus como Rei, pressionando uma coroa de espinhos em sua cabeça e batendo nele. Cospem nele e ajoelham-se diante dele em escárnio.",
+        "fruit": "Coragem Moral"
+      },
+      {
+        "name": "Jesus Carrega a Cruz",
+        "meditation": "Jesus carrega sua pesada cruz pelas ruas de Jerusalém em direção ao Calvário. Ele cai três vezes, mas continua, encontrando sua Mãe dolorosa pelo caminho.",
+        "fruit": "Paciência"
+      },
+      {
+        "name": "A Crucificação e Morte de Jesus",
+        "meditation": "Jesus é pregado na cruz e morre após três horas de agonia. Ele perdoa seus algozes e promete o paraíso ao ladrão arrependido. Ele confia Maria a João e João a Maria.",
+        "fruit": "Perseverança"
+      }
+    ],
+    "glorious": [
+      {
+        "name": "A Ressurreição de Jesus",
+        "meditation": "No terceiro dia, Jesus ressuscita dos mortos, vencendo o pecado e a morte. O túmulo está vazio, e Ele aparece a Maria Madalena e aos discípulos.",
+        "fruit": "Fé"
+      },
+      {
+        "name": "A Ascensão de Jesus ao Céu",
+        "meditation": "Quarenta dias após sua Ressurreição, Jesus sobe ao céu na presença de seus discípulos. Ele promete enviar o Espírito Santo e estar com eles sempre.",
+        "fruit": "Esperança"
+      },
+      {
+        "name": "A Vinda do Espírito Santo",
+        "meditation": "No Pentecostes, o Espírito Santo desce sobre Maria e os Apóstolos como línguas de fogo. Eles são cheios de coragem e começam a pregar o Evangelho.",
+        "fruit": "Amor a Deus"
+      },
+      {
+        "name": "A Assunção de Nossa Senhora ao Céu",
+        "meditation": "No fim de sua vida terrena, Maria é elevada de corpo e alma à glória celestial. Ela é levada para estar com seu Filho para sempre.",
+        "fruit": "Graça de uma Morte Feliz"
+      },
+      {
+        "name": "A Coroação de Nossa Senhora",
+        "meditation": "Maria é coroada Rainha do Céu e da Terra por seu Filho. Ela reina com Cristo e intercede por todos os seus filhos na terra.",
+        "fruit": "Confiança na Intercessão de Maria"
+      }
+    ],
+    "luminous": [
+      {
+        "name": "O Batismo de Jesus no Jordão",
+        "meditation": "Jesus é batizado por João no rio Jordão. Os céus se abrem, o Espírito desce como uma pomba, e a voz do Pai proclama: 'Este é o meu Filho amado.'",
+        "fruit": "Abertura ao Espírito Santo"
+      },
+      {
+        "name": "As Bodas de Caná",
+        "meditation": "A pedido de Maria, Jesus realiza seu primeiro milagre, transformando água em vinho. Maria diz aos servos: 'Fazei tudo o que ele vos disser.'",
+        "fruit": "A Jesus por Maria"
+      },
+      {
+        "name": "O Anúncio do Reino de Deus",
+        "meditation": "Jesus proclama o Reino de Deus e chama todos à conversão. Ele ensina com autoridade e realiza sinais e prodígios.",
+        "fruit": "Arrependimento e Confiança em Deus"
+      },
+      {
+        "name": "A Transfiguração de Jesus",
+        "meditation": "Jesus é transfigurado no Monte Tabor diante de Pedro, Tiago e João. Seu rosto brilha como o sol e suas vestes tornam-se brancas como a luz.",
+        "fruit": "Desejo de Santidade"
+      },
+      {
+        "name": "A Instituição da Eucaristia",
+        "meditation": "Na Última Ceia, Jesus institui a Eucaristia, dando seu Corpo e Sangue sob as aparências de pão e vinho. Ele ordena aos Apóstolos: 'Fazei isto em memória de mim.'",
+        "fruit": "Adoração"
+      }
+    ]
+  }
+}

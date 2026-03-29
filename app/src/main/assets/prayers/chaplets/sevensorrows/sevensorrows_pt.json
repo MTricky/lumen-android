@@ -1,0 +1,107 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, e do Filho, e do Espírito Santo. Amém."
+    },
+    "introductoryPrayer": {
+      "title": "Oração Introdutória",
+      "text": "Ó Deus e Senhor meu, eu vos ofereço este Terço para a Vossa glória, para que sirva para honrar a Vossa Santa Mãe, a Virgem Maria, e para que eu a possa compartilhar e meditar os seus sofrimentos. Humildemente eu vos peço: concedei-me o arrependimento verdadeiro de meus pecados e dai-me a sabedoria e a humildade necessárias para que eu receba todas as indulgências concedidas por essas orações."
+    },
+    "actOfContrition": {
+      "title": "Ato de Contrição",
+      "text": "Ó meu Deus, estou muito arrependido de Vos ter ofendido e detesto todos os meus pecados, porque temo a perda do Céu e as dores do Inferno, mas sobretudo porque ofendem a Vós, meu Deus, que sois todo bom e merecedor de todo o meu amor. Resolvo firmemente, com a ajuda da Vossa graça, confessar os meus pecados, fazer penitência e emendar a minha vida. Amém."
+    },
+    "ourFather": {
+      "title": "Pai Nosso",
+      "text": "Pai Nosso que estais nos céus, santificado seja o vosso nome; venha a nós o vosso reino; seja feita a vossa vontade assim na terra como no céu. O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém."
+    },
+    "hailMary": {
+      "title": "Ave Maria",
+      "text": "Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém."
+    },
+    "gloryBe": {
+      "title": "Glória ao Pai",
+      "text": "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Mãe de Misericórdia",
+      "text": "Ó Mãe de Misericórdia, lembrai-nos sempre das dores de vosso filho, Jesus Cristo."
+    },
+    "closingPrayer": {
+      "title": "Oração Final",
+      "text": "Ó Rainha dos Mártires, vosso coração muito sofreu. Eu vos imploro pelo mérito das lágrimas que chorastes durante esses períodos tristes e terríveis, que concedeis a mim e a todos os pecadores do mundo a graça de nos arrependermos sincera e verdadeiramente. Amém."
+    },
+    "finalInvocation": {
+      "title": "Invocação Final",
+      "text": "Ó Maria, que foi concebida sem pecado e sofreu por todos nós, rogai por nós."
+    },
+    "versicle": {
+      "title": "Versículo",
+      "text": "Rogai por nós, ó Virgem Dolorosíssima."
+    },
+    "response": {
+      "title": "Resposta",
+      "text": "Para que sejamos dignos das promessas de Cristo."
+    },
+    "concludingPrayer": {
+      "title": "Oração Conclusiva",
+      "text": "Senhor Jesus Cristo, agora e na hora da nossa morte, vos pedimos pela intercessão da Santíssima Virgem Maria, vossa Mãe, cuja santa alma foi transpassada pela espada da dor na hora de vossa amarga Paixão. Concedei-nos esta graça, ó Salvador do mundo, que com o Pai e o Espírito Santo viveis e reinais pelos séculos dos séculos. Amém."
+    },
+    "tearsHonor": {
+      "title": "Em Honra das Lágrimas",
+      "text": "Em honra das lágrimas de Nossa Senhora: 3 x Ave Maria"
+    }
+  },
+  "sorrows": [
+    {
+      "title": "Primeira Dor",
+      "name": "A Profecia de Simeão",
+      "scripture": "Lucas 2, 34-35",
+      "meditation": "Simeão abençoou-os e disse a Maria, sua mãe: 'Este menino está aqui para queda e ressurgimento de muitos em Israel e para ser sinal de contradição; uma espada de dor atravessará a tua alma.'",
+      "fruit": "Humildade e o dom do santo temor de Deus"
+    },
+    {
+      "title": "Segunda Dor",
+      "name": "A Fuga para o Egito",
+      "scripture": "Mateus 2, 13-15",
+      "meditation": "O coração de Maria foi dilacerado quando, com o Menino Jesus e José, fugiu para o Egito para escapar da crueldade de Herodes que queria matar o Menino.",
+      "fruit": "Generosidade para com os pobres e o dom da piedade"
+    },
+    {
+      "title": "Terceira Dor",
+      "name": "A Perda do Menino Jesus no Templo",
+      "scripture": "Lucas 2, 41-50",
+      "meditation": "Maria sentiu muita angústia e dor quando perdeu por três dias Jesus em Jerusalém. Ela e José O procuraram com grande aflição até encontrá-Lo no Templo.",
+      "fruit": "Castidade e o dom da ciência"
+    },
+    {
+      "title": "Quarta Dor",
+      "name": "O Encontro de Maria com Jesus no Caminho do Calvário",
+      "scripture": "Lucas 23, 27-31",
+      "meditation": "Maria experimentou uma desmedida dor quando no caminho do Calvário viu Jesus carregando a Cruz para a nossa salvação.",
+      "fruit": "Paciência e o dom da fortaleza"
+    },
+    {
+      "title": "Quinta Dor",
+      "name": "A Crucificação e Morte de Jesus",
+      "scripture": "João 19, 25-30",
+      "meditation": "Maria experimentou uma imensa dor quando viu seu Filho morrer na Cruz. Junto à cruz de Jesus estavam de pé sua Mãe. Ali ela ofereceu seu Filho pela salvação do mundo.",
+      "fruit": "Temperança e o dom do conselho"
+    },
+    {
+      "title": "Sexta Dor",
+      "name": "Maria Recebe o Corpo de Jesus",
+      "scripture": "João 19, 38-40",
+      "meditation": "Maria experimentou imensa dor quando recebeu seu Filho morto nos seus braços. Com grande reverência e gratidão, beijou Suas santas Chagas e lavou-as com suas lágrimas.",
+      "fruit": "Caridade fraterna e o dom do entendimento"
+    },
+    {
+      "title": "Sétima Dor",
+      "name": "O Sepultamento de Jesus",
+      "scripture": "João 19, 41-42",
+      "meditation": "Maria provou uma indizível dor quando depositaram Jesus no sepulcro. Despediu-se dele com grande dor e com grande fé de que Seu Filho ressuscitaria.",
+      "fruit": "Diligência e o dom da sabedoria"
+    }
+  ]
+}

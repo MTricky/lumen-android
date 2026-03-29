@@ -72,6 +72,7 @@ private fun prayerLanguageCode(): String {
         lang.startsWith("pl") -> "pl"
         lang.startsWith("fr") -> "fr"
         lang.startsWith("es") -> "es"
+        lang.startsWith("pt") -> "pt"
         else -> "en"
     }
 }

@@ -1,0 +1,143 @@
+{
+  "id": "blessedVirginMary",
+  "title": "Ladainha de Nossa Senhora",
+  "subtitle": "Ladainha Lauretana",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, e do Filho, e do Espírito Santo. Amém."
+    },
+    "closingPrayer": {
+      "title": "Oração",
+      "text": "Concedei-nos, Senhor Deus, a nós vossos servos, perpétua saúde de alma e de corpo, e pela gloriosa intercessão da bem-aventurada sempre Virgem Maria, sermos livres da tristeza presente e gozarmos da eterna alegria. Por Cristo nosso Senhor. Amém."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, tende piedade de nós.", "response": "Cristo, tende piedade de nós." },
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, ouvi-nos.", "response": "Cristo, atendei-nos." }
+      ]
+    },
+    {
+      "title": "Santíssima Trindade",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Deus Pai do céu," },
+        { "text": "Deus Filho, Redentor do mundo," },
+        { "text": "Deus Espírito Santo," },
+        { "text": "Santíssima Trindade, que sois um só Deus," }
+      ]
+    },
+    {
+      "title": "Santa Maria",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Santa Maria," },
+        { "text": "Santa Mãe de Deus," },
+        { "text": "Santa Virgem das virgens," }
+      ]
+    },
+    {
+      "title": "Mãe",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Mãe de Cristo," },
+        { "text": "Mãe da Igreja," },
+        { "text": "Mãe de misericórdia," },
+        { "text": "Mãe da divina graça," },
+        { "text": "Mãe da esperança," },
+        { "text": "Mãe puríssima," },
+        { "text": "Mãe castíssima," },
+        { "text": "Mãe sempre virgem," },
+        { "text": "Mãe imaculada," },
+        { "text": "Mãe digna de amor," },
+        { "text": "Mãe admirável," },
+        { "text": "Mãe do bom conselho," },
+        { "text": "Mãe do Criador," },
+        { "text": "Mãe do Salvador," }
+      ]
+    },
+    {
+      "title": "Virgem",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Virgem prudentíssima," },
+        { "text": "Virgem venerável," },
+        { "text": "Virgem louvável," },
+        { "text": "Virgem poderosa," },
+        { "text": "Virgem clemente," },
+        { "text": "Virgem fiel," }
+      ]
+    },
+    {
+      "title": "Títulos simbólicos",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Espelho de justiça," },
+        { "text": "Sede da sabedoria," },
+        { "text": "Causa da nossa alegria," },
+        { "text": "Vaso espiritual," },
+        { "text": "Vaso honorável," },
+        { "text": "Vaso insigne de devoção," },
+        { "text": "Rosa mística," },
+        { "text": "Torre de David," },
+        { "text": "Torre de marfim," },
+        { "text": "Casa de ouro," },
+        { "text": "Arca da aliança," },
+        { "text": "Porta do céu," },
+        { "text": "Estrela da manhã," },
+        { "text": "Saúde dos enfermos," },
+        { "text": "Refúgio dos pecadores," },
+        { "text": "Consolação dos migrantes," },
+        { "text": "Consoladora dos aflitos," },
+        { "text": "Auxílio dos cristãos," }
+      ]
+    },
+    {
+      "title": "Rainha",
+      "type": "petition",
+      "response": "rogai por nós.",
+      "invocations": [
+        { "text": "Rainha dos Anjos," },
+        { "text": "Rainha dos Patriarcas," },
+        { "text": "Rainha dos Profetas," },
+        { "text": "Rainha dos Apóstolos," },
+        { "text": "Rainha dos Mártires," },
+        { "text": "Rainha dos Confessores," },
+        { "text": "Rainha das Virgens," },
+        { "text": "Rainha de todos os Santos," },
+        { "text": "Rainha concebida sem pecado original," },
+        { "text": "Rainha assunta ao céu," },
+        { "text": "Rainha do Santíssimo Rosário," },
+        { "text": "Rainha da família," },
+        { "text": "Rainha da paz," }
+      ]
+    },
+    {
+      "title": "Cordeiro de Deus",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "perdoai-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "ouvi-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais o pecado do mundo,", "response": "tende piedade de nós." }
+      ]
+    },
+    {
+      "title": "Versículo",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Rogai por nós, Santa Mãe de Deus.", "response": "Para que sejamos dignos das promessas de Cristo." }
+      ]
+    }
+  ]
+}

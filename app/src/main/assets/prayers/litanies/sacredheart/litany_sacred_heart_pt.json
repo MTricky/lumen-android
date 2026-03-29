@@ -1,0 +1,129 @@
+{
+  "id": "sacredHeart",
+  "title": "Ladainha do Sagrado Coração de Jesus",
+  "subtitle": "Devoção ao Coração de Nosso Senhor",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Sinal da Cruz",
+      "text": "Em nome do Pai, e do Filho, e do Espírito Santo. Amém."
+    },
+    "closingPrayer": {
+      "title": "Oração",
+      "text": "Ó Deus todo-poderoso e eterno, olhai para o Coração do vosso diletíssimo Filho e para os louvores e satisfações que Ele vos dá em nome dos pecadores; e a quantos imploram a vossa misericórdia, concedei benigno o perdão, em nome do mesmo Jesus Cristo, vosso Filho, que convosco vive e reina pelos séculos dos séculos. Amém."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, tende piedade de nós.", "response": "Cristo, tende piedade de nós." },
+        { "text": "Senhor, tende piedade de nós.", "response": "Senhor, tende piedade de nós." },
+        { "text": "Cristo, ouvi-nos.", "response": "Cristo, atendei-nos." }
+      ]
+    },
+    {
+      "title": "Santíssima Trindade",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Pai celeste, que sois Deus," },
+        { "text": "Filho, Redentor do mundo, que sois Deus," },
+        { "text": "Espírito Santo, que sois Deus," },
+        { "text": "Santíssima Trindade, que sois um só Deus," }
+      ]
+    },
+    {
+      "title": "Natureza divina",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, Filho do Pai eterno," },
+        { "text": "Coração de Jesus, formado pelo Espírito Santo no seio da Virgem Mãe," },
+        { "text": "Coração de Jesus, unido substancialmente ao Verbo de Deus," },
+        { "text": "Coração de Jesus, de majestade infinita," },
+        { "text": "Coração de Jesus, templo santo de Deus," },
+        { "text": "Coração de Jesus, tabernáculo do Altíssimo," },
+        { "text": "Coração de Jesus, casa de Deus e porta do Céu," }
+      ]
+    },
+    {
+      "title": "Amor e virtude",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, fornalha ardente de caridade," },
+        { "text": "Coração de Jesus, receptáculo de justiça e de amor," },
+        { "text": "Coração de Jesus, cheio de bondade e de amor," },
+        { "text": "Coração de Jesus, abismo de todas as virtudes," },
+        { "text": "Coração de Jesus, digníssimo de todo o louvor," }
+      ]
+    },
+    {
+      "title": "Sabedoria e glória",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, Rei e centro de todos os corações," },
+        { "text": "Coração de Jesus, no qual estão todos os tesouros da sabedoria e da ciência," },
+        { "text": "Coração de Jesus, no qual habita toda a plenitude da divindade," },
+        { "text": "Coração de Jesus, no qual o Pai põe todas as suas complacências," },
+        { "text": "Coração de Jesus, de cuja plenitude todos nós participamos," }
+      ]
+    },
+    {
+      "title": "Misericórdia e santidade",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, desejado das colinas eternas," },
+        { "text": "Coração de Jesus, paciente e de muita misericórdia," },
+        { "text": "Coração de Jesus, rico para todos que vos invocam," },
+        { "text": "Coração de Jesus, fonte de vida e santidade," },
+        { "text": "Coração de Jesus, propiciação por nossos pecados," }
+      ]
+    },
+    {
+      "title": "Sofrimento",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, saturado de opróbrios," },
+        { "text": "Coração de Jesus, esmagado por causa dos nossos pecados," },
+        { "text": "Coração de Jesus, feito obediente até a morte," },
+        { "text": "Coração de Jesus, transpassado pela lança," }
+      ]
+    },
+    {
+      "title": "Vida e salvação",
+      "type": "petition",
+      "response": "tende piedade de nós.",
+      "invocations": [
+        { "text": "Coração de Jesus, fonte de toda consolação," },
+        { "text": "Coração de Jesus, nossa vida e ressurreição," },
+        { "text": "Coração de Jesus, nossa paz e reconciliação," },
+        { "text": "Coração de Jesus, vítima dos pecadores," },
+        { "text": "Coração de Jesus, salvação dos que em vós esperam," },
+        { "text": "Coração de Jesus, esperança dos que morrem em vós," },
+        { "text": "Coração de Jesus, delícias de todos os santos," }
+      ]
+    },
+    {
+      "title": "Cordeiro de Deus",
+      "type": "lambOfGod",
+      "invocations": [
+        { "text": "Cordeiro de Deus, que tirais os pecados do mundo,", "response": "perdoai-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais os pecados do mundo,", "response": "ouvi-nos, Senhor." },
+        { "text": "Cordeiro de Deus, que tirais os pecados do mundo,", "response": "tende piedade de nós." }
+      ]
+    },
+    {
+      "title": "Versículo",
+      "type": "versicle",
+      "invocations": [
+        { "text": "Jesus, manso e humilde de coração,", "response": "Fazei o nosso coração semelhante ao vosso." }
+      ]
+    }
+  ]
+}
