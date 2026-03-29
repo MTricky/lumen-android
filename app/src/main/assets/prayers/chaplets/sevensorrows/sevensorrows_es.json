@@ -1,0 +1,103 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Señal de la Cruz",
+      "text": "En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén."
+    },
+    "introductoryPrayer": {
+      "title": "Oración Introductoria",
+      "text": "Dios mío, te ofrezco este Rosario para tu gloria, para honrar a tu Santa Madre, la Santísima Virgen, para compartir y meditar sobre sus sufrimientos. Humildemente te pido que me des verdadero arrepentimiento por todos mis pecados. Dame sabiduría y humildad, para que pueda recibir todas las indulgencias contenidas en esta oración."
+    },
+    "actOfContrition": {
+      "title": "Acto de Contrición",
+      "text": "Dios mío, me arrepiento de todo corazón de haberte ofendido, y detesto todos mis pecados porque temo la pérdida del Cielo y las penas del infierno; pero sobre todo porque te ofenden a Ti, Dios mío, que eres todo bondad y digno de todo mi amor. Firmemente propongo, con la ayuda de tu gracia, confesar mis pecados, hacer penitencia y enmendar mi vida. Amén."
+    },
+    "ourFather": {
+      "title": "Padre Nuestro",
+      "text": "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén."
+    },
+    "hailMary": {
+      "title": "Ave María",
+      "text": "Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén."
+    },
+    "gloryBe": {
+      "title": "Gloria",
+      "text": "Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén."
+    },
+    "sorrowfulMotherPrayer": {
+      "title": "Madre Misericordiosísima",
+      "text": "Madre Misericordiosísima, recuérdanos siempre los Dolores de tu Hijo, Jesús."
+    },
+    "closingPrayer": {
+      "title": "Oración de Cierre",
+      "text": "Reina de los Mártires, tu corazón sufrió tanto. Te ruego, por los méritos de las lágrimas que derramaste en esos terribles y dolorosos momentos, que obtengas para mí y para todos los pecadores del mundo la gracia de una sinceridad completa y arrepentimiento. Amén."
+    },
+    "finalInvocation": {
+      "title": "Invocación Final",
+      "text": "María, que fuiste concebida sin pecado y que sufriste por nosotros, ruega por nosotros."
+    },
+    "versicle": {
+      "title": "Versículo",
+      "text": "Ruega por nosotros, oh Virgen Dolorosísima."
+    },
+    "response": {
+      "title": "Respuesta",
+      "text": "Para que seamos dignos de alcanzar las promesas de Cristo."
+    },
+    "concludingPrayer": {
+      "title": "Oración Conclusiva",
+      "text": "Que interceda por nosotros, te suplicamos, oh Señor Jesucristo, ahora y en la hora de nuestra muerte, ante el trono de tu misericordia, la Santísima Virgen María, tu Madre, cuya santísima alma fue traspasada por una espada de dolor en la hora de tu amarga Pasión. Por Ti, Jesucristo, Salvador del mundo, que con el Padre y el Espíritu Santo vives y reinas, por los siglos de los siglos. Amén."
+    }
+  },
+  "sorrows": [
+    {
+      "title": "El Primer Dolor",
+      "name": "La Profecía de Simeón",
+      "scripture": "Lucas 2:34-35",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en la aflicción de tu tierno corazón ante la profecía del santo y anciano Simeón. Querida Madre, por tu corazón tan afligido, obtén para mí la virtud de la humildad y el don del santo temor de Dios.",
+      "fruit": "Humildad y el don del santo temor de Dios"
+    },
+    {
+      "title": "El Segundo Dolor",
+      "name": "La Huida a Egipto",
+      "scripture": "Mateo 2:13-15",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en la angustia de tu afectuosísimo corazón durante la huida a Egipto y tu estancia allí. Querida Madre, por tu corazón tan atribulado, obtén para mí la virtud de la generosidad, especialmente hacia los pobres, y el don de la piedad.",
+      "fruit": "Generosidad hacia los pobres y el don de la piedad"
+    },
+    {
+      "title": "El Tercer Dolor",
+      "name": "La Pérdida del Niño Jesús en el Templo",
+      "scripture": "Lucas 2:41-50",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en las ansiedades que probaron tu corazón atribulado por la pérdida de tu querido Jesús. Querida Madre, por tu corazón tan lleno de angustia, obtén para mí la virtud de la castidad y el don de la ciencia.",
+      "fruit": "Castidad y el don de la ciencia"
+    },
+    {
+      "title": "El Cuarto Dolor",
+      "name": "María Encuentra a Jesús Cargando la Cruz",
+      "scripture": "Lucas 23:27-31",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en la consternación de tu corazón al encontrarte con Jesús mientras cargaba su Cruz. Querida Madre, por tu corazón tan atribulado, obtén para mí la virtud de la paciencia y el don de la fortaleza.",
+      "fruit": "Paciencia y el don de la fortaleza"
+    },
+    {
+      "title": "El Quinto Dolor",
+      "name": "La Crucifixión y Muerte de Jesús",
+      "scripture": "Juan 19:25-30",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en el martirio que tu generoso corazón soportó al estar junto a Jesús en su agonía. Querida Madre, por tu corazón afligido, obtén para mí la virtud de la templanza y el don del consejo.",
+      "fruit": "Templanza y el don del consejo"
+    },
+    {
+      "title": "El Sexto Dolor",
+      "name": "María Recibe el Cuerpo de Jesús",
+      "scripture": "Juan 19:38-40",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, en la herida de tu compasivo corazón, cuando el costado de Jesús fue atravesado por la lanza y su cuerpo fue bajado de la Cruz. Querida Madre, por tu corazón así traspasado, obtén para mí la virtud de la caridad fraterna y el don del entendimiento.",
+      "fruit": "Caridad fraterna y el don del entendimiento"
+    },
+    {
+      "title": "El Séptimo Dolor",
+      "name": "La Sepultura de Jesús",
+      "scripture": "Juan 19:41-42",
+      "meditation": "Me aflijo contigo, oh María dolorosísima, por los dolores que desgarraron tu amorosísimo corazón en la sepultura de Jesús. Querida Madre, por tu corazón hundido en la amargura de la desolación, obtén para mí la virtud de la diligencia y el don de la sabiduría.",
+      "fruit": "Diligencia y el don de la sabiduría"
+    }
+  ]
+}

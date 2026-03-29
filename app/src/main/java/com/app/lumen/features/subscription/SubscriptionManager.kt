@@ -38,6 +38,9 @@ object SubscriptionManager {
     private lateinit var appContext: Context
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
+    // Track last known premium status to avoid redundant widget refreshes
+    private var lastKnownPremium: Boolean? = null
+
     private val _availablePackages = MutableStateFlow<List<Package>>(emptyList())
     val availablePackages: StateFlow<List<Package>> = _availablePackages.asStateFlow()
 
@@ -70,16 +73,19 @@ object SubscriptionManager {
         if (cachedExpiry > 0L) {
             _expirationDate.value = Date(cachedExpiry)
         }
+        lastKnownPremium = _hasProAccess.value
         Log.d(TAG, "Initialized from cache - premium: ${_hasProAccess.value}, expiry: ${_expirationDate.value}")
 
         // Listen for RevenueCat customer info updates (purchases, renewals, etc.)
+        // This is the single source of truth — no need to also call checkProAccess()
+        // since the listener fires immediately with cached data and again on network refresh.
         Purchases.sharedInstance.updatedCustomerInfoListener = UpdatedCustomerInfoListener { customerInfo ->
             Log.d(TAG, "Customer info updated via listener")
             updateFromCustomerInfo(customerInfo)
         }
 
-        // Fetch latest state from RevenueCat
-        checkProAccess()
+        // Pre-fetch offerings so the paywall opens instantly
+        fetchOfferings()
     }
 
     private fun updateFromCustomerInfo(customerInfo: CustomerInfo) {
@@ -99,11 +105,12 @@ object SubscriptionManager {
         Log.d(TAG, "Updated state - premium: $hasAccess, expiry: $expiry")
         Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")
 
-        // Sync premium status to widgets immediately
-        if (::appContext.isInitialized) {
+        // Only refresh widgets when premium status actually changes
+        if (::appContext.isInitialized && hasAccess != lastKnownPremium) {
+            Log.d(TAG, "Premium status changed ($lastKnownPremium -> $hasAccess), refreshing widgets")
+            lastKnownPremium = hasAccess
             VerseWidgetData.savePremiumStatus(appContext, hasAccess)
             scope.launch(Dispatchers.IO) {
-                Log.d(TAG, "Refreshing widgets with premium=$hasAccess")
                 VerseWidgetData.updateAllWidgets(appContext)
                 Log.d(TAG, "Widgets refreshed successfully")
             }
@@ -111,7 +118,10 @@ object SubscriptionManager {
     }
 
     fun fetchOfferings() {
-        _isLoading.value = true
+        // Skip if already fetching
+        if (_isLoading.value) return
+        // Only show loading spinner if packages aren't cached yet
+        _isLoading.value = _availablePackages.value.isEmpty()
         Log.d(TAG, "Fetching offerings...")
         Purchases.sharedInstance.getOfferingsWith(
             onError = { error ->
@@ -123,16 +133,21 @@ object SubscriptionManager {
                 Log.d(TAG, "Offerings fetched successfully")
                 Log.d(TAG, "  Current offering: ${offerings.current?.identifier ?: "null"}")
                 Log.d(TAG, "  All offering keys: ${offerings.all.keys}")
-                offerings.current?.let { current ->
-                    Log.d(TAG, "  Available packages: ${current.availablePackages.size}")
-                    current.availablePackages.forEach { pkg ->
+
+                // Use current offering, or fall back to first available offering
+                val offering = offerings.current ?: offerings.all.values.firstOrNull()
+                if (offering != null && offering !== offerings.current) {
+                    Log.d(TAG, "  Current offering unavailable, falling back to: ${offering.identifier}")
+                }
+
+                offering?.let { selected ->
+                    Log.d(TAG, "  Available packages: ${selected.availablePackages.size}")
+                    selected.availablePackages.forEach { pkg ->
                         Log.d(TAG, "    Package: ${pkg.identifier} (${pkg.packageType})")
                         Log.d(TAG, "      Product: ${pkg.product.id}")
                         Log.d(TAG, "      Price: ${pkg.product.price.formatted}")
                     }
-                }
-                offerings.current?.availablePackages?.let { packages ->
-                    _availablePackages.value = packages
+                    _availablePackages.value = selected.availablePackages
                 }
                 _isLoading.value = false
             },

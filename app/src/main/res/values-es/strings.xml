@@ -1,0 +1,791 @@
+<resources>
+    <!-- Tab bar -->
+    <string name="tab_liturgy">Liturgia</string>
+    <string name="tab_bible">Biblia</string>
+    <string name="tab_prayers">Oraciones</string>
+    <string name="tab_calendar">Calendario</string>
+    <string name="tab_settings">Ajustes</string>
+
+    <!-- Day picker -->
+    <string name="today">Hoy</string>
+    <string name="tomorrow">Mañana</string>
+
+    <!-- Reading sections -->
+    <string name="section_saint_title">Santo del Día</string>
+    <string name="section_saint_short">Santo</string>
+    <string name="section_first_reading_title">Primera Lectura</string>
+    <string name="section_first_reading_short">1.ª</string>
+    <string name="section_psalm_title">Salmo Responsorial</string>
+    <string name="section_psalm_short">Salmo</string>
+    <string name="section_second_reading_title">Segunda Lectura</string>
+    <string name="section_second_reading_short">2.ª</string>
+    <string name="section_gospel_title">Evangelio</string>
+    <string name="section_gospel_short">Evangelio</string>
+    <string name="section_reflection_title">Reflexión</string>
+    <string name="section_reflection_short">Reflexión</string>
+
+    <!-- Reading cards -->
+    <string name="tap_to_read_more">Toca para leer más</string>
+    <string name="tap_to_read_more_ellipsis">Toca para leer más\u2026</string>
+    <string name="verse_of_the_day">Versículo del Día</string>
+    <string name="view_all_readings">Ver Todas las Lecturas</string>
+    <string name="tap_for_reflection">Toca para la reflexión</string>
+
+    <!-- Psalm -->
+    <string name="psalm_response_label">Respuesta</string>
+
+    <!-- Audio -->
+    <string name="listen">Escuchar</string>
+    <string name="pause">Pausar</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_back">Atrás</string>
+    <string name="cd_play">Reproducir</string>
+    <string name="cd_pause">Pausar</string>
+    <string name="cd_settings">Ajustes</string>
+    <string name="cd_font_size">Tamaño de letra</string>
+
+    <!-- Font size options -->
+    <string name="font_size_small">Pequeño</string>
+    <string name="font_size_medium">Mediano</string>
+    <string name="font_size_large">Grande</string>
+    <string name="font_size_extra_large">Muy grande</string>
+
+    <!-- Bible -->
+    <string name="bible_old">Antiguo</string>
+    <string name="bible_new">Nuevo</string>
+    <string name="bible_old_testament">Antiguo Testamento</string>
+    <string name="bible_new_testament">Nuevo Testamento</string>
+    <string name="bible_book_count">%1$d Libros</string>
+    <string name="cd_language">Idioma</string>
+    <string name="cd_search">Buscar</string>
+    <string name="bible_search_books">Buscar libros\u2026</string>
+    <string name="bible_search_hint">Buscar por nombre o abreviatura del libro</string>
+    <string name="bible_no_results">Sin resultados para \"%1$s\"</string>
+    <string name="translation">Traducción</string>
+    <string name="done">Listo</string>
+    <string name="retry">Reintentar</string>
+    <string name="error_load_translations">Error al cargar las traducciones</string>
+    <string name="catholic_bible">Católica</string>
+    <string name="protestant_bible">Protestante</string>
+
+    <!-- Bible Reader -->
+    <string name="cd_text_settings">Configuración de texto</string>
+    <string name="cd_chapter_picker">Selección de capítulo</string>
+    <string name="reader_font_size">Tamaño de letra</string>
+    <string name="reader_line_spacing">Espaciado de línea</string>
+    <string name="reader_justify_text">Justificar texto</string>
+    <string name="reader_preview_text">En el principio creó Dios los cielos y la tierra.</string>
+    <string name="reader_pt_format">%1$d pt</string>
+    <string name="error_load_chapter">Error al cargar el capítulo</string>
+    <string name="error_load_chapters">Error al cargar los capítulos</string>
+
+    <!-- Bible book sections -->
+    <string name="section_law">Pentateuco</string>
+    <string name="section_ot_history">Libros Históricos</string>
+    <string name="section_poetry">Libros Sapienciales</string>
+    <string name="section_major_prophets">Profetas Mayores</string>
+    <string name="section_minor_prophets">Profetas Menores</string>
+    <string name="section_gospels">Evangelios</string>
+    <string name="section_nt_history">Historia</string>
+    <string name="section_pauline_epistles">Epístolas Paulinas</string>
+    <string name="section_general_epistles">Epístolas Católicas</string>
+    <string name="section_prophecy">Apocalipsis</string>
+
+    <!-- Bible languages -->
+    <string name="lang_english">Inglés</string>
+    <string name="lang_spanish">Español</string>
+    <string name="lang_portuguese">Portugués</string>
+    <string name="lang_french">Francés</string>
+    <string name="lang_italian">Italiano</string>
+    <string name="lang_german">Alemán</string>
+    <string name="lang_polish">Polaco</string>
+
+    <!-- Verse categories -->
+    <string name="verse_category_faith">Fe</string>
+    <string name="verse_category_love">Amor</string>
+    <string name="verse_category_hope">Esperanza</string>
+    <string name="verse_category_strength">Fortaleza</string>
+    <string name="verse_category_peace">Paz</string>
+    <string name="verse_category_guidance">Guía</string>
+    <string name="verse_category_healing">Sanación</string>
+    <string name="verse_category_family">Familia</string>
+    <string name="verse_category_gratitude">Gratitud</string>
+    <string name="verse_category_forgiveness">Perdón</string>
+
+    <!-- Verse of the Day detail -->
+    <string name="verse_reflection">Reflexión</string>
+    <string name="verse_liturgical_connection">Conexión Litúrgica</string>
+    <string name="verse_share">Compartir Versículo</string>
+    <string name="verse_connection_gospel">Evangelio de Hoy</string>
+    <string name="verse_connection_first_reading">Primera Lectura</string>
+    <string name="verse_connection_psalm">Salmo Responsorial</string>
+    <string name="verse_connection_saint">Santo del Día</string>
+    <string name="verse_connection_season">Tiempo Litúrgico</string>
+
+    <!-- Bible errors -->
+    <string name="error_api_limit">Límite diario de solicitudes alcanzado. Por favor, inténtalo de nuevo mañana.</string>
+    <string name="error_load_bible_versions">Error al cargar las versiones de la Biblia</string>
+
+    <!-- Rosary -->
+    <string name="rosary_todays_mysteries">Misterios de Hoy</string>
+    <string name="rosary_joyful">Gozosos</string>
+    <string name="rosary_sorrowful">Dolorosos</string>
+    <string name="rosary_glorious">Gloriosos</string>
+    <string name="rosary_luminous">Luminosos</string>
+    <string name="rosary_days_joyful">Lunes, Sábado</string>
+    <string name="rosary_days_sorrowful">Martes, Viernes</string>
+    <string name="rosary_days_glorious">Miércoles, Domingo</string>
+    <string name="rosary_days_luminous">Jueves</string>
+    <string name="rosary_tap_to_start">Toca para comenzar a rezar\u2026</string>
+    <string name="rosary_the_holy_rosary">EL SANTO ROSARIO</string>
+    <string name="rosary_tap_to_begin">Toca para comenzar</string>
+    <string name="rosary_tap_to_continue">Toca en cualquier lugar para continuar</string>
+    <string name="rosary_close">Cerrar</string>
+    <string name="rosary_previous">Anterior</string>
+    <string name="rosary_next">Siguiente</string>
+    <string name="rosary_decade_of">Decena %1$d de %2$d</string>
+    <string name="rosary_hail_mary_of">Ave María %1$d de %2$d</string>
+    <string name="rosary_mystery_number">%1$d%2$s MISTERIO</string>
+    <string name="rosary_ordinal_1">.º</string>
+    <string name="rosary_ordinal_2">.º</string>
+    <string name="rosary_ordinal_3">.º</string>
+    <string name="rosary_ordinal_other">.º</string>
+    <string name="rosary_fruit">Fruto: %1$s</string>
+    <string name="rosary_completed">Rosario Completado</string>
+    <string name="rosary_completed_message">Que la Santísima Virgen María interceda por ti y te acerque a su Hijo, Jesucristo.</string>
+    <string name="rosary_done">Listo</string>
+    <string name="rosary_progress_remaining">%1$d oraciones restantes · %2$d%% completado</string>
+    <string name="rosary_almost_done">¡Casi terminado!</string>
+    <string name="rosary_section_sign_of_cross">Señal de la Cruz</string>
+    <string name="rosary_section_apostles_creed">Credo de los Apóstoles</string>
+    <string name="rosary_section_our_father">Padre Nuestro</string>
+    <string name="rosary_section_hail_mary">Ave María</string>
+    <string name="rosary_section_glory_be">Gloria al Padre</string>
+    <string name="rosary_section_fatima_prayer">Oración de Fátima</string>
+    <string name="rosary_section_mystery">Misterio</string>
+    <string name="rosary_section_hail_holy_queen">Salve Regina</string>
+    <string name="rosary_section_final_prayer">Oración Final</string>
+
+    <!-- Rosary Audio -->
+    <string name="rosary_audio_label">Audio</string>
+    <string name="rosary_audio_playback_speed">Velocidad de reproducción</string>
+    <string name="rosary_audio_speed_format">%.1f×</string>
+    <string name="rosary_audio_auto_advance">Avance automático</string>
+    <string name="rosary_audio_downloading">Descargando audio\u2026</string>
+
+    <!-- Prayer Audio Download Sheet -->
+    <string name="prayer_audio_available">Audio disponible</string>
+    <string name="prayer_audio_enable">Activar audio</string>
+    <string name="prayer_audio_listen">Escucha mientras rezas</string>
+    <string name="prayer_audio_ready">Audio listo para usar</string>
+    <string name="prayer_audio_downloading">Descargando audio\u2026</string>
+    <string name="prayer_audio_download_complete">Descarga completada</string>
+    <string name="prayer_audio_continue">Continuar</string>
+    <string name="prayer_audio_settings_note">Puedes cambiarlo en cualquier momento en Ajustes</string>
+
+    <!-- Chaplets -->
+    <string name="chaplets_header_title">Coronillas</string>
+    <string name="chaplets_header_subtitle">Oraciones Devocionales</string>
+    <string name="chaplets_header_description">Oraciones devocionales católicas tradicionales</string>
+
+    <!-- Chaplet Types -->
+    <string name="chaplet_divine_mercy_title">Divina Misericordia</string>
+    <string name="chaplet_divine_mercy_subtitle">Ora por la misericordia de Dios</string>
+    <string name="chaplet_divine_mercy_duration">5 decenas</string>
+    <string name="chaplet_st_michael_title">San Miguel</string>
+    <string name="chaplet_st_michael_subtitle">Honra los nueve coros de ángeles</string>
+    <string name="chaplet_st_michael_duration">9 salutaciones</string>
+    <string name="chaplet_seven_sorrows_title">Siete Dolores</string>
+    <string name="chaplet_seven_sorrows_subtitle">Medita sobre los dolores de María</string>
+    <string name="chaplet_seven_sorrows_duration">7 dolores</string>
+
+    <!-- Chaplet Progress -->
+    <string name="chaplet_decade_of">Decena %1$d de %2$d</string>
+    <string name="chaplet_for_the_sake_of">Por Su dolorosa Pasión %1$d de %2$d</string>
+    <string name="chaplet_holy_god_of">Santo Dios %1$d de %2$d</string>
+    <string name="chaplet_salutation_of">Salutación %1$d de %2$d</string>
+    <string name="chaplet_archangel_prayer_of">Oración al Arcángel %1$d de %2$d</string>
+    <string name="chaplet_hail_mary_of">Ave María %1$d de %2$d</string>
+    <string name="chaplet_sorrow_of">Dolor %1$d de %2$d</string>
+    <string name="chaplet_invocation_of">Invocación %1$d de %2$d</string>
+
+    <!-- Chaplet Announcement Labels -->
+    <string name="chaplet_decade_number">%1$d%2$s DECENA</string>
+    <string name="chaplet_salutation_number">%1$d%2$s SALUTACIÓN</string>
+    <string name="chaplet_archangel_number">%1$d%2$s ORACIÓN AL ARCÁNGEL</string>
+    <string name="chaplet_sorrow_number">%1$d%2$s DOLOR</string>
+    <string name="chaplet_choir_of">Coro: %1$s</string>
+
+    <!-- Chaplet Section Labels -->
+    <string name="chaplet_section_opening_prayer">Oración Inicial</string>
+    <string name="chaplet_section_eternal_father">Padre Eterno</string>
+    <string name="chaplet_section_for_the_sake">Por Su dolorosa Pasión</string>
+    <string name="chaplet_section_holy_god">Santo Dios</string>
+    <string name="chaplet_section_closing_prayer">Oración Final</string>
+    <string name="chaplet_section_decade">Decena</string>
+    <string name="chaplet_section_salutation">Salutación</string>
+    <string name="chaplet_section_archangel_prayer">Oración al Arcángel</string>
+    <string name="chaplet_section_introductory_prayer">Oración Introductoria</string>
+    <string name="chaplet_section_act_of_contrition">Acto de Contrición</string>
+    <string name="chaplet_section_sorrowful_mother">Madre Misericordiosísima</string>
+    <string name="chaplet_section_sorrow">Dolor</string>
+    <string name="chaplet_section_final_invocation">Invocación Final</string>
+    <string name="chaplet_section_versicle">Versículo</string>
+    <string name="chaplet_section_response">Respuesta</string>
+    <string name="chaplet_section_concluding_prayer">Oración Final</string>
+
+    <!-- Prayer Type Menu -->
+    <string name="chaplet_prayer_type_menu">Tipo de oración</string>
+    <string name="prayer_type_rosary">Rosario</string>
+    <string name="prayer_type_chaplets">Coronillas</string>
+    <string name="prayer_type_litanies">Letanías</string>
+
+    <!-- Chaplet Completion -->
+    <string name="chaplet_completed">Coronilla Completada</string>
+    <string name="chaplet_completed_message">Que el Señor te conceda su misericordia y paz.</string>
+
+    <!-- Litanies -->
+    <string name="litanies_header_title">Letanías</string>
+    <string name="litanies_header_subtitle">Oraciones sagradas</string>
+    <string name="litanies_header_description">Antiguas oraciones de petición y devoción</string>
+
+    <string name="litany_blessed_virgin_mary_title">Letanía de la Santísima Virgen María</string>
+    <string name="litany_blessed_virgin_mary_subtitle">Loreto</string>
+    <string name="litany_blessed_virgin_mary_duration">~10 min</string>
+
+    <string name="litany_sacred_heart_title">Letanía del Sagrado Corazón de Jesús</string>
+    <string name="litany_sacred_heart_subtitle">Sagrado Corazón</string>
+    <string name="litany_sacred_heart_duration">~8 min</string>
+
+    <string name="litany_st_joseph_title">Letanía de San José</string>
+    <string name="litany_st_joseph_subtitle">San José</string>
+    <string name="litany_st_joseph_duration">~7 min</string>
+
+    <string name="litany_saints_title">Letanía de los Santos</string>
+    <string name="litany_saints_subtitle">Todos los Santos</string>
+    <string name="litany_saints_duration">~12 min</string>
+
+    <string name="litany_holy_name_title">Letanía del Santo Nombre de Jesús</string>
+    <string name="litany_holy_name_subtitle">Santo Nombre</string>
+    <string name="litany_holy_name_duration">~8 min</string>
+
+    <string name="litany_precious_blood_title">Letanía de la Preciosísima Sangre</string>
+    <string name="litany_precious_blood_subtitle">Preciosísima Sangre</string>
+    <string name="litany_precious_blood_duration">~8 min</string>
+
+    <string name="litany_navigation_title">Letanía</string>
+    <string name="litany_tap_to_begin">Toca para comenzar</string>
+
+    <string name="litany_step_sign_of_cross">Señal de la Cruz</string>
+    <string name="litany_step_closing_prayer">Oración final</string>
+    <string name="litany_step_invocation">Invocación</string>
+
+    <string name="litany_progress_almost_done">¡Casi terminado!</string>
+    <string name="litany_progress_remaining">%1$d oraciones restantes</string>
+
+    <string name="litany_completed">Letanía completada</string>
+    <string name="litany_completed_message">Que tus oraciones sean escuchadas y que las bendiciones de Dios estén contigo.</string>
+
+    <string name="litany_audio_response_delay">Retraso de respuesta</string>
+
+    <!-- Calendar -->
+    <string name="calendar_title">Calendario</string>
+    <string name="calendar_tab_calendar">Calendario</string>
+    <string name="calendar_tab_routine">Rutina</string>
+    <string name="calendar_tab_notes">Notas</string>
+    <string name="calendar_info_title">Acerca del Calendario</string>
+    <string name="calendar_info_region_title">Región Litúrgica</string>
+    <string name="calendar_info_region_description">El calendario muestra las celebraciones para tu región seleccionada: %1$s. Diferentes regiones pueden tener fiestas y días de precepto únicos.</string>
+    <string name="calendar_info_colors_title">Colores Litúrgicos</string>
+    <string name="calendar_info_colors_description">Los colores indican el tiempo litúrgico y el tipo de celebración:</string>
+    <string name="calendar_info_color_green_name">Verde</string>
+    <string name="calendar_info_color_green_desc">Tiempo Ordinario</string>
+    <string name="calendar_info_color_violet_name">Morado</string>
+    <string name="calendar_info_color_violet_desc">Adviento y Cuaresma</string>
+    <string name="calendar_info_color_white_name">Blanco</string>
+    <string name="calendar_info_color_white_desc">Navidad, Pascua, Fiestas</string>
+    <string name="calendar_info_color_red_name">Rojo</string>
+    <string name="calendar_info_color_red_desc">Mártires y Pentecostés</string>
+    <string name="calendar_info_color_rose_name">Rosa</string>
+    <string name="calendar_info_color_rose_desc">Domingos Gaudete y Laetare</string>
+    <string name="calendar_info_ranks_title">Rangos de Celebración</string>
+    <string name="calendar_info_ranks_description">Las celebraciones tienen diferentes niveles de importancia:</string>
+    <string name="calendar_info_rank_solemnity">Rango más alto</string>
+    <string name="calendar_info_rank_feast">Celebraciones importantes</string>
+    <string name="calendar_info_rank_memorial">Conmemoraciones de santos</string>
+    <string name="calendar_info_rank_weekday">Días ordinarios</string>
+    <string name="calendar_info_rank_solemnity_name">Solemnidad</string>
+    <string name="calendar_info_rank_feast_name">Fiesta</string>
+    <string name="calendar_info_rank_memorial_name">Memoria</string>
+    <string name="calendar_info_rank_weekday_name">Feria</string>
+    <string name="calendar_info_holydays_title">Días de Precepto</string>
+    <string name="calendar_info_holydays_description">Los días marcados con una estrella son días de precepto. Los católicos deben asistir a Misa en estos días, igual que los domingos.</string>
+    <string name="calendar_info_howto_title">Cómo usar</string>
+    <string name="calendar_info_howto_description">Toca cualquier día para ver sus detalles y registrar tu asistencia a Misa. Usa el menú contextual (mantén pulsado) para acciones rápidas como marcar que asististe a Misa.</string>
+    <string name="calendar_day_obligatory">De precepto</string>
+    <string name="calendar_day_set_reminder">Establecer recordatorio</string>
+    <string name="calendar_day_add_note">Añadir nota</string>
+    <string name="cd_calendar_info">Info del Calendario</string>
+
+    <!-- Placeholder -->
+    <string name="coming_soon">Próximamente</string>
+
+    <!-- Common actions -->
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="set">Establecer</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+
+    <!-- Note types -->
+    <string name="note_type_mass">Misa</string>
+    <string name="note_type_confession">Confesión</string>
+    <string name="note_type_custom">Personalizada</string>
+
+    <!-- Note placeholders -->
+    <string name="note_placeholder_mass_title">Ej., Misa dominical en Santa María</string>
+    <string name="note_placeholder_confession_title">ej., Confesión antes de Pascua</string>
+    <string name="note_placeholder_custom_title">Título de la nota</string>
+    <string name="note_placeholder_mass_content">Ej., Hermosa homilía sobre el perdón\u2026</string>
+    <string name="note_placeholder_confession_content">ej., Reflexiones y propósitos\u2026</string>
+    <string name="note_placeholder_custom_content">Añade tus notas aquí\u2026</string>
+
+    <!-- Note type descriptions (day detail) -->
+    <string name="note_type_mass_desc">Registrar una Misa a la que asististe</string>
+    <string name="note_type_confession_desc">Registrar una Confesión</string>
+    <string name="note_type_custom_desc">Añadir una nota personal</string>
+
+    <!-- Notes -->
+    <string name="note_add_title">Nueva Nota</string>
+    <string name="note_edit_title">Editar Nota</string>
+    <string name="note_field_type">Tipo</string>
+    <string name="note_field_date">Fecha</string>
+    <string name="note_field_title">Título</string>
+    <string name="note_field_content">Notas (opcional)</string>
+    <string name="note_delete_title">Eliminar Nota</string>
+    <string name="note_delete_message">¿Estás seguro de que deseas eliminar esta nota?</string>
+    <string name="note_delete_action">Eliminar Nota</string>
+    <string name="notes_search_placeholder">Buscar notas</string>
+    <string name="notes_section_plans">Planes futuros</string>
+    <string name="notes_section_notes">Notas</string>
+    <string name="notes_empty_title">Aún no hay notas</string>
+    <string name="notes_empty_message">Añade notas desde el calendario o crea una nueva nota para comenzar</string>
+    <string name="notes_yesterday">Ayer</string>
+
+    <!-- Reminder types -->
+    <string name="reminder_type_mass">Misa</string>
+    <string name="reminder_type_confession">Confesión</string>
+    <string name="reminder_type_holy_day">Día de precepto</string>
+    <string name="reminder_type_first_friday">Primer Viernes</string>
+    <string name="reminder_type_fasting">Ayuno</string>
+    <string name="reminder_type_prayer">Oración</string>
+    <string name="reminder_type_custom">Personalizado</string>
+
+    <!-- Reminder type descriptions -->
+    <string name="reminder_desc_mass">Recordarme asistir a Misa</string>
+    <string name="reminder_desc_confession">Recordarme ir a confesarme</string>
+    <string name="reminder_desc_holy_day">Recordarme este día de precepto</string>
+    <string name="reminder_desc_first_friday">Recordarme la devoción del Primer Viernes</string>
+    <string name="reminder_desc_fasting">Recordarme ayunar</string>
+    <string name="reminder_desc_prayer">Recordarme orar</string>
+    <string name="reminder_desc_custom">Establecer un recordatorio personalizado</string>
+
+    <!-- Reminder default titles -->
+    <string name="reminder_default_mass">Asistir a Misa</string>
+    <string name="reminder_default_confession">Ir a confesarme</string>
+    <string name="reminder_default_holy_day">Día de precepto</string>
+    <string name="reminder_default_first_friday">Devoción del Primer Viernes</string>
+    <string name="reminder_default_fasting">Día de ayuno</string>
+    <string name="reminder_default_prayer">Hora de orar</string>
+
+    <!-- Reminder default messages -->
+    <string name="reminder_msg_mass">Es hora de prepararte para la Santa Misa</string>
+    <string name="reminder_msg_confession">Recuerda examinar tu conciencia</string>
+    <string name="reminder_msg_holy_day">Hoy es obligatorio asistir a Misa</string>
+    <string name="reminder_msg_first_friday">Recibe la Sagrada Comunión en reparación</string>
+    <string name="reminder_msg_fasting">Abstente de carne y limita las comidas</string>
+    <string name="reminder_msg_prayer">Tómate un momento para orar</string>
+    <string name="reminder_msg_default">¡No olvides!</string>
+
+    <!-- Reminders -->
+    <string name="reminder_field_title">Título</string>
+    <string name="reminder_field_message">Mensaje</string>
+    <string name="reminder_field_time">Hora</string>
+    <string name="reminder_field_notes">Notas (opcional)</string>
+    <string name="reminder_title_placeholder">Título del recordatorio</string>
+    <string name="reminder_notes_placeholder">Añadir una nota\u2026</string>
+    <string name="reminder_delete_title">Eliminar recordatorio</string>
+    <string name="reminder_delete_message">¿Estás seguro de que quieres eliminar este recordatorio?</string>
+    <string name="reminder_delete_action">Eliminar recordatorio</string>
+
+    <!-- Add menu -->
+    <string name="menu_add_note">Añadir nota</string>
+    <string name="menu_add_reminder">Añadir recordatorio</string>
+
+    <!-- Day Detail -->
+    <string name="day_detail_existing_reminders">Recordatorios</string>
+    <string name="day_detail_set_reminders">Establecer recordatorios</string>
+    <string name="day_detail_existing_notes">Notas</string>
+    <string name="day_detail_add_note">Añadir nota</string>
+
+    <!-- Routine types -->
+    <string name="routine_type_mass">Santa Misa</string>
+    <string name="routine_type_morning_prayer">Oración de la mañana</string>
+    <string name="routine_type_evening_prayer">Oración de la noche</string>
+    <string name="routine_type_rosary">Rosario</string>
+    <string name="routine_type_adoration">Adoración</string>
+    <string name="routine_type_angelus">Ángelus</string>
+    <string name="routine_type_divine_mercy">Divina Misericordia</string>
+    <string name="routine_type_custom">Personalizada</string>
+    <string name="routine_type_prayer_routine">Rutina de oración</string>
+
+    <!-- Routine default titles -->
+    <string name="routine_default_sunday_mass">Misa Dominical</string>
+    <string name="routine_default_morning_offering">Ofrecimiento Matutino</string>
+    <string name="routine_default_evening_reflection">Reflexión Vespertina</string>
+    <string name="routine_default_daily_rosary">Rosario Diario</string>
+    <string name="routine_default_divine_mercy_chaplet">Coronilla de la Divina Misericordia</string>
+    <string name="routine_default_weekly_adoration">Adoración Semanal</string>
+
+    <!-- Routine notification messages -->
+    <string name="routine_notif_mass">Hora de prepararte para la Santa Misa</string>
+    <string name="routine_notif_morning">Comienza tu día con oración</string>
+    <string name="routine_notif_evening">Termina tu día con oración</string>
+    <string name="routine_notif_rosary">Hora de rezar el Rosario</string>
+    <string name="routine_notif_adoration">Hora de la Adoración Eucarística</string>
+    <string name="routine_notif_angelus">El Ángel del Señor anunció a María</string>
+    <string name="routine_notif_divine_mercy">Hora de la Misericordia - reza la Coronilla de la Divina Misericordia</string>
+    <string name="routine_notif_custom">Hora de tu práctica espiritual</string>
+
+    <!-- Routine suggestions -->
+    <string name="routine_suggestion_mass_subtitle">Recordatorio semanal para la Santa Misa</string>
+    <string name="routine_suggestion_rosary_subtitle">Medita con María a través de los misterios</string>
+    <string name="routine_suggestion_morning_subtitle">Comienza tu día con el Ofrecimiento de la Mañana</string>
+    <string name="routine_suggestion_evening_subtitle">Termina tu día con las Completas</string>
+    <string name="routine_suggestion_divine_mercy_subtitle">Reza la Coronilla en la Hora de la Misericordia</string>
+    <string name="routine_suggestion_adoration_subtitle">Visita a Jesús en el Santísimo Sacramento</string>
+    <string name="routine_suggestion_angelus_subtitle">Oración tradicional del mediodía</string>
+
+    <!-- Routine empty state -->
+    <string name="routine_empty_title">Inicia Tu Rutina de Oración</string>
+    <string name="routine_empty_subtitle">Elige una rutina para crear tu hábito de oración diaria</string>
+
+    <!-- Routine sections -->
+    <string name="routine_section_active">RUTINAS ACTIVAS</string>
+    <string name="routine_section_paused">PAUSADO</string>
+    <string name="routine_section_suggested">SUGERENCIAS PARA TI</string>
+
+    <!-- Routine actions -->
+    <string name="routine_add">Añadir</string>
+    <string name="routine_mark_completed">Marcar como completado</string>
+    <string name="routine_completed_today">Completado hoy</string>
+    <string name="routine_pause">Pausar</string>
+    <string name="routine_resume">Reanudar</string>
+    <string name="routine_delete_title">Eliminar rutina</string>
+    <string name="routine_delete_message">¿Estás seguro de que quieres eliminar \"%1$s\"? Esta acción no se puede deshacer.</string>
+
+    <!-- Routine detail -->
+    <string name="routine_close">Cerrar</string>
+    <string name="routine_options">Opciones</string>
+    <string name="routine_schedule">Horario</string>
+    <string name="routine_progress">Progreso</string>
+    <string name="routine_settings">Ajustes</string>
+    <string name="routine_track_completion">Registrar completado</string>
+    <string name="routine_day_streak">Racha de días</string>
+    <string name="routine_this_month">Este mes</string>
+    <string name="routine_created_date">Creada %1$s</string>
+    <string name="routine_month_count">%1$d de %2$d este mes</string>
+
+    <!-- Routine create/edit -->
+    <string name="routine_new_title">Nueva Rutina</string>
+    <string name="routine_new_subtitle">Elige un hábito espiritual</string>
+    <string name="routine_edit_title">Editar rutina</string>
+    <string name="routine_quick_start">Inicio Rápido</string>
+    <string name="routine_field_title">Título</string>
+    <string name="routine_field_title_placeholder">Nombre de la rutina</string>
+    <string name="routine_field_days">Días</string>
+    <string name="routine_field_time">Hora</string>
+    <string name="routine_days_every_day">Todos los días</string>
+    <string name="routine_days_weekdays">Entre semana</string>
+    <string name="routine_days_weekends">Fines de semana</string>
+    <string name="routine_notifications">Notificaciones</string>
+    <string name="routine_remind_me">Recordarme</string>
+    <string name="routine_back">Atrás</string>
+    <string name="routine_enabled">Activado</string>
+    <string name="routine_disabled">Desactivado</string>
+
+    <!-- Routine lead times -->
+    <string name="routine_lead_at_time">A la hora</string>
+    <string name="routine_lead_5min">5 min antes</string>
+    <string name="routine_lead_15min">15 min antes</string>
+    <string name="routine_lead_30min">30 min antes</string>
+    <string name="routine_lead_1hour">1 hora antes</string>
+    <string name="routine_lead_2hours">2 horas antes</string>
+    <string name="routine_lead_1day">Un día antes</string>
+
+    <!-- First Friday -->
+    <string name="first_friday_title">Devoción del Primer Viernes</string>
+    <string name="first_friday_subtitle">Seguimiento anual</string>
+    <string name="first_friday_schedule">Primer viernes de cada mes</string>
+    <string name="first_friday_setup_monthly_reminder">Recordatorio mensual</string>
+    <string name="first_friday_setup_reminder_time">Hora del recordatorio</string>
+
+    <!-- Day abbreviations -->
+    <string name="day_abbrev_mon">L</string>
+    <string name="day_abbrev_tue">M</string>
+    <string name="day_abbrev_wed">X</string>
+    <string name="day_abbrev_thu">J</string>
+    <string name="day_abbrev_fri">V</string>
+    <string name="day_abbrev_sat">S</string>
+    <string name="day_abbrev_sun">D</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_section_premium">Premium</string>
+    <string name="settings_premium_lumen_pro">Lumen Pro</string>
+    <string name="settings_premium_go_premium">Hazte Premium</string>
+    <string name="settings_premium_renews">Se renueva el %1$s</string>
+    <string name="settings_premium_active">Lumen Pro</string>
+    <string name="settings_premium_unlock">Desbloquea todas las funciones</string>
+    <string name="settings_section_calendar">Calendario</string>
+    <string name="settings_calendar_region">Región del Calendario</string>
+    <string name="settings_calendar_region_footer">Determina qué fiestas regionales y días de precepto se muestran.</string>
+
+    <!-- Liturgical seasons -->
+    <string name="season_advent">Adviento</string>
+    <string name="season_christmas">Navidad</string>
+    <string name="season_lent">Cuaresma</string>
+    <string name="season_easter">Pascua</string>
+    <string name="season_ordinary_time">Tiempo Ordinario</string>
+
+    <!-- Calendar regions -->
+    <string name="region_universal">Universal</string>
+    <string name="region_argentina">Argentina</string>
+    <string name="region_australia">Australia</string>
+    <string name="region_austria">Austria</string>
+    <string name="region_brazil">Brasil</string>
+    <string name="region_canada">Canadá</string>
+    <string name="region_chile">Chile</string>
+    <string name="region_colombia">Colombia</string>
+    <string name="region_france">Francia</string>
+    <string name="region_germany">Alemania</string>
+    <string name="region_ireland">Irlanda</string>
+    <string name="region_italy">Italia</string>
+    <string name="region_mexico">México</string>
+    <string name="region_peru">Perú</string>
+    <string name="region_philippines">Filipinas</string>
+    <string name="region_poland">Polonia</string>
+    <string name="region_portugal">Portugal</string>
+    <string name="region_spain">España</string>
+    <string name="region_uk">Reino Unido</string>
+    <string name="region_usa">Estados Unidos</string>
+    <string name="settings_section_bible">Biblia</string>
+    <string name="settings_bible_font_size">Tamaño de Fuente</string>
+    <string name="settings_bible_clear_cache">Limpiar Caché de la Biblia</string>
+    <string name="settings_bible_cache_footer">Los capítulos en caché se eliminan automáticamente después de 30 días.</string>
+    <string name="settings_section_prayer">Oración</string>
+    <string name="settings_prayer_visual_style">Estilo Visual</string>
+    <string name="settings_prayer_visual_sacred_art">Arte Sacro</string>
+    <string name="settings_prayer_visual_simple">Simple</string>
+    <string name="settings_prayer_footer">Arte Sacro muestra pinturas para cada misterio. Simple usa un fondo oscuro. El audio reproduce oraciones narradas.</string>
+    <string name="settings_section_support">Soporte</string>
+    <string name="settings_support_share">Compartir la App</string>
+    <string name="settings_share_title">Compartir Lumen</string>
+    <string name="settings_share_subtitle">¿Para qué plataforma quieres compartir el enlace?</string>
+    <string name="settings_share_android">Android</string>
+    <string name="settings_share_ios">iOS</string>
+    <string name="settings_support_contact">Contactar Soporte</string>
+    <string name="settings_section_legal">Legal</string>
+    <string name="settings_legal_privacy">Política de Privacidad</string>
+    <string name="settings_legal_terms">Términos de Uso</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title_lumen">Lumen</string>
+    <string name="paywall_title_pro">Pro</string>
+    <string name="paywall_subtitle">Desbloquea la Experiencia\nEspiritual Completa</string>
+    <string name="paywall_close">Cerrar</string>
+    <string name="paywall_feature_audio">Audio</string>
+    <string name="paywall_feature_audio_desc">Escucha lecturas y oraciones</string>
+    <string name="badge_pro">PRO</string>
+    <string name="unlock_full_reflection">Desbloquear reflexión completa</string>
+    <string name="paywall_feature_reflections">Reflexiones diarias</string>
+    <string name="paywall_feature_reflections_desc">Reflexiones espirituales para cada día</string>
+    <string name="paywall_feature_bible">Biblia Completa</string>
+    <string name="paywall_feature_bible_desc">Antiguo y Nuevo Testamento</string>
+    <string name="paywall_feature_prayers">Todas las oraciones</string>
+    <string name="paywall_feature_prayers_desc">Rosario, coronillas y letanías</string>
+    <string name="paywall_feature_widgets">Widgets</string>
+    <string name="paywall_feature_widgets_desc">Versículo diario en tu pantalla</string>
+    <string name="paywall_feature_suggestions">Moldea la App</string>
+    <string name="paywall_feature_suggestions_desc">Sugiere nuevas funciones e ideas</string>
+    <string name="paywall_plan_monthly">Mensual</string>
+    <string name="paywall_plan_annual">Anual</string>
+    <string name="paywall_trial_free">%1$s de prueba</string>
+    <string name="paywall_price_per_month">%1$s/mes</string>
+    <string name="paywall_price_per_year">%1$s/año</string>
+    <string name="paywall_price_per_week">%1$s/semana</string>
+    <string name="paywall_price_then_per_month">luego %1$s/mes</string>
+    <string name="paywall_price_then_per_year">luego %1$s/año</string>
+    <string name="paywall_trial_days">%1$d días</string>
+    <string name="paywall_trial_months">%1$d mes</string>
+    <string name="paywall_trial_years">%1$d año</string>
+    <string name="paywall_button_start_trial">Comenzar prueba gratuita</string>
+    <string name="paywall_button_subscribe">Suscribirse ahora</string>
+    <string name="paywall_terms">Términos</string>
+    <string name="paywall_privacy">Privacidad</string>
+    <string name="paywall_restore">Restaurar</string>
+    <string name="paywall_error_title">Error</string>
+    <string name="paywall_error_ok">Aceptar</string>
+    <string name="paywall_error_no_subscription">No se encontró una suscripción activa.</string>
+
+    <!-- Errors -->
+    <string name="error_no_liturgy">Liturgia no encontrada para esta fecha</string>
+    <string name="error_load_failed">Error al cargar la liturgia: %1$s</string>
+
+    <!-- Widgets -->
+    <string name="widget_verse_title">Versículo del Día</string>
+    <string name="widget_medium_label">Widget mediano</string>
+    <string name="widget_large_label">Widget grande</string>
+    <string name="widget_medium_description">Escritura diaria con reflexión</string>
+    <string name="widget_large_description">Versículo completo con hermosas imágenes</string>
+    <string name="widget_loading">Cargando\u2026</string>
+    <string name="widget_unlock">Desbloquear</string>
+
+    <!-- Onboarding - Common -->
+    <string name="onboarding_continue">Continuar</string>
+
+    <!-- Onboarding - Welcome -->
+    <string name="onboarding_welcome_subtitle">Luz para tu Camino Espiritual</string>
+    <string name="onboarding_welcome_body">Crece en la fe con la Biblia, lecturas diarias, oraciones guiadas y rutinas espirituales.</string>
+    <string name="onboarding_get_started">Comenzar</string>
+
+    <!-- Onboarding - Bible Quotes -->
+    <string name="onboarding_quote_john_8_12">\"Yo soy la luz del mundo; el que me sigue no andará en tinieblas, sino que tendrá la luz de la vida.\"</string>
+    <string name="onboarding_quote_john_8_12_source">Juan 8,12</string>
+    <string name="onboarding_quote_psalm_27_1">\"El Señor es mi luz y mi salvación, ¿a quién temeré?\"</string>
+    <string name="onboarding_quote_psalm_27_1_source">Salmo 27,1</string>
+    <string name="onboarding_quote_psalm_119_105">\"Lámpara es a mis pies tu palabra, y luz para mi camino.\"</string>
+    <string name="onboarding_quote_psalm_119_105_source">Salmo 119,105</string>
+    <string name="onboarding_quote_ephesians_5_8">\"En otro tiempo erais tinieblas, mas ahora sois luz en el Señor. Caminad como hijos de la luz.\"</string>
+    <string name="onboarding_quote_ephesians_5_8_source">Efesios 5,8</string>
+    <string name="onboarding_quote_matthew_5_14">\"Vosotros sois la luz del mundo. No puede ocultarse una ciudad puesta en lo alto de un monte.\"</string>
+    <string name="onboarding_quote_matthew_5_14_source">Mateo 5,14</string>
+    <string name="onboarding_quote_isaiah_60_1">\"¡Levántate, brilla, que ha llegado tu luz, y la gloria del Señor sobre ti ha amanecido!\"</string>
+    <string name="onboarding_quote_isaiah_60_1_source">Isaías 60,1</string>
+
+    <!-- Onboarding - Features -->
+    <string name="onboarding_features_title">Todo lo que necesitas</string>
+    <string name="onboarding_features_subtitle">Para tu camino espiritual</string>
+    <string name="onboarding_features_bible">La Biblia</string>
+    <string name="onboarding_features_readings">Lecturas del Día</string>
+    <string name="onboarding_features_prayers">Oraciones Guiadas</string>
+    <string name="onboarding_features_calendar">Calendario Litúrgico</string>
+    <string name="onboarding_features_routines">Rutinas de Oración</string>
+    <string name="onboarding_features_and_more">y más\u2026</string>
+
+    <!-- Onboarding - Bible -->
+    <string name="onboarding_bible_title">Idioma de la Biblia</string>
+    <string name="onboarding_bible_subtitle">Selecciona tu idioma preferido\npara leer la Biblia.</string>
+    <string name="onboarding_bible_selected_language">Idioma seleccionado</string>
+    <string name="onboarding_bible_change_language">Cambiar idioma</string>
+
+    <!-- Onboarding - Region -->
+    <string name="onboarding_region_title">Tu Región</string>
+    <string name="onboarding_region_subtitle">Te mostraremos las fiestas y días de precepto correctos para tu ubicación.</string>
+    <string name="onboarding_region_selected">Región seleccionada</string>
+    <string name="onboarding_region_change">Cambiar región</string>
+
+    <!-- Onboarding - Notifications -->
+    <string name="onboarding_notifications_title">Mantente al día</string>
+    <string name="onboarding_notifications_subtitle">Recibe recordatorios suaves para tus rutinas de oración y eventos litúrgicos importantes.</string>
+    <string name="onboarding_notifications_benefit_reminders">Recordatorios de oración a tiempo</string>
+    <string name="onboarding_notifications_benefit_morning_evening">Oraciones de mañana y noche</string>
+    <string name="onboarding_notifications_benefit_holy_days">Alertas de días de precepto</string>
+    <string name="onboarding_notifications_benefit_control">Tú controlas qué y cuándo</string>
+    <string name="onboarding_notifications_enable">Activar notificaciones</string>
+
+    <!-- Onboarding - Rosary -->
+    <string name="onboarding_rosary_title">Experiencia de Oración</string>
+    <string name="onboarding_rosary_subtitle">Personaliza tu experiencia de oración</string>
+    <string name="onboarding_rosary_description">Arte Sacro muestra pinturas de fondo. Simple usa un fondo oscuro. Puedes cambiarlo en Ajustes cuando quieras.</string>
+    <string name="onboarding_rosary_enable_audio">Activar audio</string>
+    <string name="onboarding_rosary_audio_guided">Rosario audio guiado</string>
+    <string name="onboarding_rosary_audio_ready">Audio listo para usar</string>
+    <string name="onboarding_rosary_audio_downloading">Descargando\u2026 %1$d%%</string>
+    <string name="onboarding_rosary_audio_will_download">El audio se descargará</string>
+    <string name="onboarding_rosary_audio_preview">Ave María – Vista previa</string>
+
+    <!-- Onboarding - Routine Intro -->
+    <string name="onboarding_routine_intro_title">Crea tu Rutina</string>
+    <string name="onboarding_routine_intro_subtitle">El crecimiento espiritual ocurre con la práctica diaria. Configura horarios de oración que se adapten a tu agenda.</string>
+    <string name="onboarding_routine_intro_benefit_reminders">Los recordatorios programados te mantienen constante</string>
+    <string name="onboarding_routine_intro_benefit_progress">Registra tu progreso y rachas</string>
+    <string name="onboarding_routine_intro_benefit_habits">Construye hábitos espirituales duraderos</string>
+    <string name="onboarding_routine_intro_button">Configurar rutinas</string>
+
+    <!-- Onboarding - Routine Setup -->
+    <string name="onboarding_routine_setup_title">Elige tus Rutinas</string>
+    <string name="onboarding_routine_setup_subtitle">Toca para seleccionar, luego personaliza la hora</string>
+    <string name="onboarding_routine_setup_suggested">Sugeridas</string>
+    <string name="onboarding_routine_setup_custom">Personalizada</string>
+    <string name="onboarding_routine_setup_add_custom">Añadir rutina personalizada</string>
+    <string name="onboarding_routine_setup_count">%1$d rutina(s) seleccionada(s)</string>
+    <string name="onboarding_routine_setup_skip">Omitir por ahora</string>
+    <string name="onboarding_routine_setup_dialog_title">Nueva rutina personalizada</string>
+    <string name="onboarding_routine_setup_dialog_placeholder">Nombre de la rutina</string>
+    <string name="onboarding_routine_setup_dialog_add">Añadir</string>
+    <string name="onboarding_routine_setup_first_fridays">Primeros Viernes</string>
+    <string name="onboarding_routine_setup_yearly_tracking">Seguimiento anual</string>
+
+    <!-- Onboarding - Routine Edit Sheet -->
+    <string name="onboarding_routine_edit_title">Editar rutina</string>
+    <string name="onboarding_routine_edit_days">DÍAS</string>
+    <string name="onboarding_routine_edit_every_day">Todos los días</string>
+    <string name="onboarding_routine_edit_weekdays">Entre semana</string>
+    <string name="onboarding_routine_edit_weekends">Fines de semana</string>
+    <string name="onboarding_routine_edit_time">HORA</string>
+    <string name="onboarding_routine_edit_notifications">Notificaciones</string>
+    <string name="onboarding_routine_edit_remind_me">Recordarme</string>
+    <string name="onboarding_routine_edit_delete">Eliminar rutina</string>
+    <string name="onboarding_routine_edit_done">Listo</string>
+
+    <!-- Onboarding - First Friday Edit Sheet -->
+    <string name="onboarding_first_friday_title">Primeros Viernes</string>
+    <string name="onboarding_first_friday_subtitle">Registra tu devoción de Primer Viernes durante todo el año</string>
+    <string name="onboarding_first_friday_question">¿Cuántos Primeros Viernes consecutivos ya tienes?</string>
+    <string name="onboarding_first_friday_month">mes</string>
+    <string name="onboarding_first_friday_months">meses</string>
+    <string name="onboarding_first_friday_tracking_note">Esto nos ayuda a continuar el seguimiento de tu racha de devoción</string>
+
+    <!-- Onboarding - Loading -->
+    <string name="onboarding_loading_step_1">Guardando tus preferencias</string>
+    <string name="onboarding_loading_step_2">Preparando tu contenido</string>
+    <string name="onboarding_loading_step_3">Configurando oraciones</string>
+    <string name="onboarding_loading_step_4">Casi listo</string>
+    <string name="onboarding_loading_ready">¡Listo para comenzar!</string>
+    <string name="onboarding_loading_begin">Continuar</string>
+    <string name="onboarding_loading_preparing">Preparando\u2026</string>
+
+    <!-- Onboarding - Widgets -->
+    <string name="onboarding_widgets_title">Widgets de Pantalla</string>
+    <string name="onboarding_widgets_subtitle">Versículo nuevo e imágenes hermosas cada día</string>
+
+    <!-- Onboarding - Completion -->
+    <string name="onboarding_completion_title">¡Todo listo!</string>
+    <string name="onboarding_completion_subtitle">Tu camino espiritual comienza ahora</string>
+    <string name="onboarding_completion_routines">%1$d Rutina(s) de oración</string>
+    <string name="onboarding_completion_routines_subtitle">Programadas con recordatorios</string>
+    <string name="onboarding_completion_bible_subtitle">Tu traducción de la Biblia</string>
+    <string name="onboarding_completion_region_subtitle">Región del calendario litúrgico</string>
+    <string name="onboarding_completion_notifications_title">Notificaciones activadas</string>
+    <string name="onboarding_completion_notifications_subtitle">Recibirás recordatorios de oración</string>
+    <string name="onboarding_completion_done">Listo</string>
+
+    <!-- Onboarding - Feedback -->
+    <string name="onboarding_feedback_title">¿Qué te parece la experiencia hasta ahora?</string>
+    <string name="onboarding_feedback_subtitle">Nos encantaría escuchar tu opinión sobre la introducción de Lumen. ¡Los comentarios positivos nos ayudan a crecer!</string>
+    <string name="onboarding_feedback_positive">¡Excelente! \u2B50</string>
+    <string name="onboarding_feedback_neutral">Estuvo bien</string>
+    <string name="onboarding_feedback_negative">Necesita mejoras</string>
+</resources>

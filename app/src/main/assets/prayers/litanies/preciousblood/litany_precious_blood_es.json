@@ -1,0 +1,200 @@
+{
+  "id": "preciousBlood",
+  "title": "Letanía de la Preciosísima Sangre de Nuestro Señor Jesucristo",
+  "subtitle": "El precio de nuestra salvación",
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Señal de la Cruz",
+      "text": "En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén."
+    },
+    "closingPrayer": {
+      "title": "Oración",
+      "text": "Dios todopoderoso y eterno, que constituiste a tu Hijo unigénito Redentor del mundo, y quisiste ser aplacado con su Sangre, concédenos, te rogamos, venerar dignamente el precio de nuestra salvación, y por su poder ser protegidos de los males de la vida presente, para que gocemos de sus frutos eternamente en el cielo. Por el mismo Cristo nuestro Señor. Amén."
+    }
+  },
+  "sections": [
+    {
+      "title": "Kyrie",
+      "type": "kyrie",
+      "invocations": [
+        {
+          "text": "Señor, ten piedad de nosotros.",
+          "response": "Señor, ten piedad de nosotros."
+        },
+        {
+          "text": "Cristo, ten piedad de nosotros.",
+          "response": "Cristo, ten piedad de nosotros."
+        },
+        {
+          "text": "Señor, ten piedad de nosotros.",
+          "response": "Señor, ten piedad de nosotros."
+        },
+        {
+          "text": "Jesús, óyenos.",
+          "response": "Jesús, escúchanos."
+        }
+      ]
+    },
+    {
+      "title": "Santísima Trinidad",
+      "type": "petition",
+      "response": "ten piedad de nosotros.",
+      "invocations": [
+        {
+          "text": "Dios, Padre celestial,"
+        },
+        {
+          "text": "Dios Hijo, Redentor del mundo,"
+        },
+        {
+          "text": "Dios Espíritu Santo,"
+        },
+        {
+          "text": "Santísima Trinidad, un solo Dios,"
+        }
+      ]
+    },
+    {
+      "title": "Origen divino",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, del Hijo Unigénito del Padre Eterno,"
+        },
+        {
+          "text": "Sangre de Cristo, del Verbo de Dios encarnado,"
+        },
+        {
+          "text": "Sangre de Cristo, de la Nueva y Eterna Alianza,"
+        }
+      ]
+    },
+    {
+      "title": "La Pasión",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, derramada sobre la tierra en la agonía,"
+        },
+        {
+          "text": "Sangre de Cristo, que brotaste en la flagelación,"
+        },
+        {
+          "text": "Sangre de Cristo, manada en la coronación de espinas,"
+        },
+        {
+          "text": "Sangre de Cristo, derramada en la Cruz,"
+        }
+      ]
+    },
+    {
+      "title": "Redención",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, precio de nuestra salvación,"
+        },
+        {
+          "text": "Sangre de Cristo, sin la cual no hay perdón,"
+        },
+        {
+          "text": "Sangre de Cristo, bebida eucarística y alivio de las almas,"
+        }
+      ]
+    },
+    {
+      "title": "Poder y santidad",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, río de misericordia,"
+        },
+        {
+          "text": "Sangre de Cristo, vencedora de los demonios,"
+        },
+        {
+          "text": "Sangre de Cristo, fortaleza de los Mártires,"
+        },
+        {
+          "text": "Sangre de Cristo, virtud de los Confesores,"
+        }
+      ]
+    },
+    {
+      "title": "Protección",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, que engendras vírgenes,"
+        },
+        {
+          "text": "Sangre de Cristo, amparo de los que peligran,"
+        },
+        {
+          "text": "Sangre de Cristo, alivio de los que sufren,"
+        },
+        {
+          "text": "Sangre de Cristo, consuelo en el llanto,"
+        }
+      ]
+    },
+    {
+      "title": "Esperanza y gloria",
+      "type": "petition",
+      "response": "sálvanos.",
+      "invocations": [
+        {
+          "text": "Sangre de Cristo, esperanza de los penitentes,"
+        },
+        {
+          "text": "Sangre de Cristo, consuelo de los moribundos,"
+        },
+        {
+          "text": "Sangre de Cristo, paz y dulzura de los corazones,"
+        },
+        {
+          "text": "Sangre de Cristo, prenda de vida eterna,"
+        },
+        {
+          "text": "Sangre de Cristo, que libras a las almas del purgatorio,"
+        },
+        {
+          "text": "Sangre de Cristo, digna de toda gloria y honor,"
+        }
+      ]
+    },
+    {
+      "title": "Cordero de Dios",
+      "type": "lambOfGod",
+      "invocations": [
+        {
+          "text": "Cordero de Dios, que quitas los pecados del mundo,",
+          "response": "perdónanos, Señor."
+        },
+        {
+          "text": "Cordero de Dios, que quitas los pecados del mundo,",
+          "response": "escúchanos, Señor."
+        },
+        {
+          "text": "Cordero de Dios, que quitas los pecados del mundo,",
+          "response": "ten piedad de nosotros."
+        }
+      ]
+    },
+    {
+      "title": "Versículo",
+      "type": "versicle",
+      "invocations": [
+        {
+          "text": "Nos has redimido, Señor, con tu Sangre.",
+          "response": "Y nos hiciste para nuestro Dios un reino."
+        }
+      ]
+    }
+  ]
+}

@@ -531,7 +531,7 @@ private fun PlanCard(
                 shape = RoundedCornerShape(16.dp),
             )
             .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(horizontal = 16.dp, vertical = 15.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
@@ -558,8 +558,8 @@ private fun PlanCard(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
+                lineHeight = 18.sp,
             )
-            Spacer(Modifier.height(2.dp))
             Text(
                 text = subtitle,
                 fontSize = 13.sp,

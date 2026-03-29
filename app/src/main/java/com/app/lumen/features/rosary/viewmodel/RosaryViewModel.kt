@@ -100,6 +100,7 @@ class RosaryViewModel(application: Application) : AndroidViewModel(application) 
         return when {
             lang.startsWith("pl") -> "pl"
             lang.startsWith("fr") -> "fr"
+            lang.startsWith("es") -> "es"
             else -> "en"
         }
     }

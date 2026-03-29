@@ -1,0 +1,97 @@
+{
+  "prayers": {
+    "signOfTheCross": {
+      "title": "Señal de la Cruz",
+      "text": "En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén."
+    },
+    "openingPrayer": {
+      "title": "Oración Inicial",
+      "text": "Oh Dios, ven en mi auxilio. Oh Señor, date prisa en socorrerme. Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén."
+    },
+    "ourFather": {
+      "title": "Padre Nuestro",
+      "text": "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén."
+    },
+    "hailMary": {
+      "title": "Ave María",
+      "text": "Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén."
+    },
+    "gloryBe": {
+      "title": "Gloria",
+      "text": "Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén."
+    },
+    "closingPrayer": {
+      "title": "Oración de Cierre",
+      "text": "Oh glorioso príncipe San Miguel, jefe y comandante de los ejércitos celestiales, guardián de las almas, vencedor de los espíritus rebeldes, servidor en la casa del Divino Rey y nuestro admirable guía, tú que brillas con excelencia y virtud sobrehumana, líbranos de todo mal, a nosotros que acudimos a ti con confianza, y permítenos por tu graciosa protección servir a Dios más y más fielmente cada día."
+    },
+    "finalPrayer": {
+      "title": "Oración Final",
+      "text": "Dios todopoderoso y eterno, que por un prodigio de bondad y un deseo misericordioso por la salvación de todos los hombres, has designado al gloriosísimo Arcángel San Miguel Príncipe de tu Iglesia, haznos dignos, te pedimos, de ser liberados de todos nuestros enemigos, para que ninguno de ellos nos atormente en la hora de la muerte, sino que seamos conducidos por él a tu Presencia. Esto te pedimos por los méritos de Jesucristo nuestro Señor. Amén."
+    }
+  },
+  "salutations": [
+    {
+      "title": "Primera Salutación",
+      "choir": "Serafines",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Serafines, que el Señor nos haga dignos de arder con el fuego de la caridad perfecta. Amén."
+    },
+    {
+      "title": "Segunda Salutación",
+      "choir": "Querubines",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Querubines, que el Señor nos conceda la gracia de abandonar los caminos del pecado y correr por los senderos de la perfección cristiana. Amén."
+    },
+    {
+      "title": "Tercera Salutación",
+      "choir": "Tronos",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Tronos, que el Señor infunda en nuestros corazones un verdadero y sincero espíritu de humildad. Amén."
+    },
+    {
+      "title": "Cuarta Salutación",
+      "choir": "Dominaciones",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de las Dominaciones, que el Señor nos dé la gracia de gobernar nuestros sentidos y vencer cualquier pasión desordenada. Amén."
+    },
+    {
+      "title": "Quinta Salutación",
+      "choir": "Potestades",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de las Potestades, que el Señor proteja nuestras almas de las trampas y tentaciones del demonio. Amén."
+    },
+    {
+      "title": "Sexta Salutación",
+      "choir": "Virtudes",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de las Virtudes, que el Señor nos preserve del mal y no nos deje caer en la tentación. Amén."
+    },
+    {
+      "title": "Séptima Salutación",
+      "choir": "Principados",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Principados, que Dios llene nuestras almas de un verdadero espíritu de obediencia. Amén."
+    },
+    {
+      "title": "Octava Salutación",
+      "choir": "Arcángeles",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Arcángeles, que el Señor nos dé perseverancia en la fe y en todas las buenas obras para que alcancemos la gloria del Cielo. Amén."
+    },
+    {
+      "title": "Novena Salutación",
+      "choir": "Ángeles",
+      "salutation": "Por la intercesión de San Miguel y el Coro celestial de los Ángeles, que el Señor nos conceda ser protegidos por ellos en esta vida mortal y ser conducidos en la vida futura al Cielo. Amén."
+    }
+  ],
+  "archangelPrayers": [
+    {
+      "title": "En honor de San Miguel",
+      "instruction": "Un Padre Nuestro"
+    },
+    {
+      "title": "En honor de San Gabriel",
+      "instruction": "Un Padre Nuestro"
+    },
+    {
+      "title": "En honor de San Rafael",
+      "instruction": "Un Padre Nuestro"
+    },
+    {
+      "title": "En honor de nuestro Ángel de la Guarda",
+      "instruction": "Un Padre Nuestro"
+    }
+  ]
+}

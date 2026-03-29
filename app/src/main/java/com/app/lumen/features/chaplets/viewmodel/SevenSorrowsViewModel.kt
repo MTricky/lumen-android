@@ -95,6 +95,7 @@ class SevenSorrowsViewModel(application: Application) : AndroidViewModel(applica
         return when {
             lang.startsWith("pl") -> "pl"
             lang.startsWith("fr") -> "fr"
+            lang.startsWith("es") -> "es"
             else -> "en"
         }
     }
