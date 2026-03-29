@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +19,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material3.Icon
@@ -141,16 +144,11 @@ fun WidgetsPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                 .background(NearBlack.copy(alpha = 0.4f))
         )
 
-        // Title + subtitle take ~130dp, button ~60dp, padding ~80dp = ~270dp fixed
-        // Remaining space is split between widgets
-        androidx.compose.foundation.layout.BoxWithConstraints(
+        BoxWithConstraints(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp)
-                .padding(top = 40.dp)
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(bottom = 24.dp)
         ) {
+            val isCompact = maxHeight < 680.dp
             val totalHeight = maxHeight
             // Reserve space for title (~130dp) + button (~70dp) + spacers (~40dp)
             val widgetSpace = totalHeight - 240.dp
@@ -158,7 +156,15 @@ fun WidgetsPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
             val mediumHeight = (widgetSpace * 0.32f).coerceIn(110.dp, 150.dp)
 
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .then(
+                        if (isCompact) Modifier.verticalScroll(rememberScrollState())
+                        else Modifier
+                    )
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 40.dp)
+                    .padding(bottom = 140.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Title section
@@ -187,7 +193,8 @@ fun WidgetsPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                     )
                 }
 
-                Spacer(modifier = Modifier.weight(1f))
+                if (!isCompact) Spacer(modifier = Modifier.weight(1f))
+                else Spacer(modifier = Modifier.height(16.dp))
 
                 // Widget previews with dynamic heights
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -203,11 +210,40 @@ fun WidgetsPhase(viewModel: OnboardingViewModel, onContinue: () -> Unit) {
                     )
                 }
 
-                Spacer(modifier = Modifier.weight(1f))
+                if (!isCompact) Spacer(modifier = Modifier.weight(1f))
+            }
 
-                OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_continue)) {
-                    HapticManager.selection(view)
-                    onContinue()
+            // Floating button at bottom with gradient
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(30.dp)
+                        .background(
+                            androidx.compose.ui.graphics.Brush.verticalGradient(
+                                colors = listOf(
+                                    NearBlack.copy(alpha = 0f),
+                                    NearBlack
+                                )
+                            )
+                        )
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(NearBlack)
+                        .windowInsetsPadding(WindowInsets.navigationBars)
+                        .padding(horizontal = 20.dp)
+                        .padding(bottom = 16.dp)
+                ) {
+                    OnboardingGlassProminentButton(title = stringResource(R.string.onboarding_continue)) {
+                        HapticManager.selection(view)
+                        onContinue()
+                    }
                 }
             }
         }
