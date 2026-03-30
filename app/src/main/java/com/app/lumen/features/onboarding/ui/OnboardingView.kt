@@ -154,6 +154,7 @@ fun OnboardingView(
         ) {
             OnboardingFeedbackDialog(
                 onDismiss = {
+                    OnboardingManager.shared.markFeedbackAsked()
                     showFeedbackDialog = false
                 },
                 onFeedback = { result ->
