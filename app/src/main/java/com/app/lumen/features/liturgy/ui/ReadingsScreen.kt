@@ -327,7 +327,7 @@ fun ReadingsScreen(
                     )
                     Spacer(Modifier.width(10.dp))
                     Text(
-                        text = currentReading!!.displayName,
+                        text = stringResource(currentReading!!.displayNameRes),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color.White,

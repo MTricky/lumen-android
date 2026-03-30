@@ -2,13 +2,14 @@ package com.app.lumen.features.rosary.ui
 
 import android.content.Context
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.app.lumen.R
 import com.app.lumen.features.rosary.model.MysteryType
 import com.app.lumen.features.rosary.model.RosaryPrayerStep
 
-enum class RosaryVisualMode(val key: String, val displayName: String) {
-    SACRED_ART("Sacred Art", "Sacred Art"),
-    SIMPLE("Simple", "Simple");
+enum class RosaryVisualMode(val key: String, @StringRes val displayNameRes: Int) {
+    SACRED_ART("Sacred Art", R.string.settings_prayer_visual_sacred_art),
+    SIMPLE("Simple", R.string.settings_prayer_visual_simple);
 
     companion object {
         private const val PREFS_NAME = "rosary_prefs"

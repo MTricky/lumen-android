@@ -1,6 +1,7 @@
 package com.app.lumen.features.calendar.service
 
 import android.content.Context
+import com.app.lumen.R
 import com.app.lumen.features.calendar.data.FirstFridayCompletionEntity
 import com.app.lumen.features.calendar.data.FirstFridayRoutineEntity
 import com.app.lumen.features.calendar.data.RoutineDataStore
@@ -19,7 +20,7 @@ data class FirstFridayYearProgress(
     val isBeforeTracking: Boolean = false // before the earliest tracked/pre-checked month
 )
 
-class FirstFridayRoutineService(context: Context) {
+class FirstFridayRoutineService(private val context: Context) {
 
     private val store = RoutineDataStore.getInstance(context)
     private val json = Json { ignoreUnknownKeys = true }
@@ -246,8 +247,8 @@ class FirstFridayRoutineService(context: Context) {
             if (triggerTime > System.currentTimeMillis()) {
                 notificationManager.scheduleOneTimeNotification(
                     identifier = identifier,
-                    title = "First Friday Devotion",
-                    body = "Receive Holy Communion in reparation to the Sacred Heart",
+                    title = context.getString(R.string.first_friday_title),
+                    body = context.getString(R.string.first_friday_notification_body),
                     triggerTimeMillis = triggerTime
                 )
             }

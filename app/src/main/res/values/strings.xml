@@ -518,6 +518,7 @@
     <string name="routine_back">Back</string>
     <string name="routine_enabled">Enabled</string>
     <string name="routine_disabled">Disabled</string>
+    <string name="routine_notification_body">Time for %1$s</string>
 
     <!-- Routine lead times -->
     <string name="routine_lead_at_time">At time of event</string>
@@ -534,6 +535,8 @@
     <string name="first_friday_schedule">First Friday of each month</string>
     <string name="first_friday_setup_monthly_reminder">Monthly reminder</string>
     <string name="first_friday_setup_reminder_time">Reminder time</string>
+    <string name="first_friday_consecutive_count">Consecutive count: %1$d</string>
+    <string name="first_friday_notification_body">Receive Holy Communion in reparation to the Sacred Heart</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">M</string>

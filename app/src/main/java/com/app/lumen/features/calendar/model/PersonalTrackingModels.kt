@@ -251,31 +251,45 @@ enum class ReminderType(val rawValue: String) {
     val defaultMinute: Int
         get() = 0
 
-    fun defaultTitle(liturgicalDay: LiturgicalDay? = null): String = when (this) {
+    @get:StringRes
+    val defaultTitleRes: Int
+        get() = when (this) {
+            MASS -> R.string.reminder_default_mass
+            CONFESSION -> R.string.reminder_default_confession
+            HOLY_DAY -> R.string.reminder_default_holy_day
+            FIRST_FRIDAY -> R.string.reminder_default_first_friday
+            FASTING -> R.string.reminder_default_fasting
+            PRAYER -> R.string.reminder_default_prayer
+            CUSTOM -> R.string.reminder_msg_default
+        }
+
+    @get:StringRes
+    val defaultMessageRes: Int
+        get() = when (this) {
+            MASS -> R.string.reminder_msg_mass
+            CONFESSION -> R.string.reminder_msg_confession
+            HOLY_DAY -> R.string.reminder_msg_holy_day
+            FIRST_FRIDAY -> R.string.reminder_msg_first_friday
+            FASTING -> R.string.reminder_msg_fasting
+            PRAYER -> R.string.reminder_msg_prayer
+            CUSTOM -> R.string.reminder_msg_default
+        }
+
+    fun defaultTitle(context: android.content.Context, liturgicalDay: LiturgicalDay? = null): String = when (this) {
         MASS -> {
-            val base = "Attend Mass"
+            val base = context.getString(defaultTitleRes)
             if (liturgicalDay != null) "$base - ${liturgicalDay.localizedCelebrationName()}" else base
         }
-        CONFESSION -> "Go to Confession"
         HOLY_DAY -> {
-            val base = "Holy Day of Obligation"
+            val base = context.getString(defaultTitleRes)
             if (liturgicalDay != null) "$base - ${liturgicalDay.localizedCelebrationName()}" else base
         }
-        FIRST_FRIDAY -> "First Friday Devotion"
-        FASTING -> "Day of Fasting"
-        PRAYER -> "Prayer Time"
         CUSTOM -> ""
+        else -> context.getString(defaultTitleRes)
     }
 
-    fun defaultMessage(liturgicalDay: LiturgicalDay? = null): String = when (this) {
-        MASS -> "Time to prepare for Holy Mass"
-        CONFESSION -> "Remember to examine your conscience"
-        HOLY_DAY -> "Obligatory Mass attendance today"
-        FIRST_FRIDAY -> "Receive Holy Communion in reparation"
-        FASTING -> "Abstain from meat and limit meals"
-        PRAYER -> "Take a moment for prayer"
-        CUSTOM -> ""
-    }
+    fun defaultMessage(context: android.content.Context): String =
+        if (this == CUSTOM) "" else context.getString(defaultMessageRes)
 
     companion object {
         fun fromRawValue(value: String): ReminderType =

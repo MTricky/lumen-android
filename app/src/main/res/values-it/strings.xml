@@ -514,6 +514,7 @@
     <string name="routine_back">Indietro</string>
     <string name="routine_enabled">Abilitato</string>
     <string name="routine_disabled">Disabilitato</string>
+    <string name="routine_notification_body">È ora di %1$s</string>
 
     <!-- Routine lead times -->
     <string name="routine_lead_at_time">All\'ora dell\'evento</string>
@@ -530,6 +531,8 @@
     <string name="first_friday_schedule">Primo venerdì di ogni mese</string>
     <string name="first_friday_setup_monthly_reminder">Promemoria mensile</string>
     <string name="first_friday_setup_reminder_time">Ora del promemoria</string>
+    <string name="first_friday_consecutive_count">Mesi consecutivi: %1$d</string>
+    <string name="first_friday_notification_body">Ricevi la Santa Comunione in riparazione al Sacro Cuore</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">L</string>

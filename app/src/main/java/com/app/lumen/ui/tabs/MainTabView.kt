@@ -1018,7 +1018,7 @@ private fun ExpandedAccessory(
         )
         Spacer(Modifier.width(10.dp))
         Text(
-            text = readingType.displayName,
+            text = stringResource(readingType.displayNameRes),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = Color.White,
@@ -1073,7 +1073,7 @@ private fun InlineAccessory(
         )
         Spacer(Modifier.width(6.dp))
         Text(
-            text = readingType.displayName,
+            text = stringResource(readingType.displayNameRes),
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium,
             color = Color.White,

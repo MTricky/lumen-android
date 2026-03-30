@@ -2,19 +2,21 @@ package com.app.lumen.features.audio
 
 import android.content.Context
 import androidx.annotation.OptIn
+import androidx.annotation.StringRes
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import com.app.lumen.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-enum class ReadingType(val displayName: String) {
-    FIRST_READING("First Reading"),
-    PSALM("Responsorial Psalm"),
-    SECOND_READING("Second Reading"),
-    GOSPEL("Gospel"),
+enum class ReadingType(@StringRes val displayNameRes: Int) {
+    FIRST_READING(R.string.section_first_reading_title),
+    PSALM(R.string.section_psalm_title),
+    SECOND_READING(R.string.section_second_reading_title),
+    GOSPEL(R.string.section_gospel_title),
 }
 
 class AudioPlayerManager private constructor(context: Context) {

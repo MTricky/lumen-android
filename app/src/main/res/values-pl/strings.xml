@@ -477,6 +477,7 @@
     <string name="routine_back">Wstecz</string>
     <string name="routine_enabled">Włączone</string>
     <string name="routine_disabled">Wyłączone</string>
+    <string name="routine_notification_body">Czas na %1$s</string>
 
     <!-- Routine lead times -->
     <string name="routine_lead_at_time">O czasie</string>
@@ -493,6 +494,8 @@
     <string name="first_friday_schedule">Pierwszy piątek każdego miesiąca</string>
     <string name="first_friday_setup_monthly_reminder">Comiesięczne przypomnienie</string>
     <string name="first_friday_setup_reminder_time">Godzina przypomnienia</string>
+    <string name="first_friday_consecutive_count">Kolejne miesiące: %1$d</string>
+    <string name="first_friday_notification_body">Przyjmij Komunię Świętą w wynagrodzeniu Najświętszemu Sercu</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">P</string>

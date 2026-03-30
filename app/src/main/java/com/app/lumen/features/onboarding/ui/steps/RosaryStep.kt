@@ -319,7 +319,7 @@ private fun VisualModeOption(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = mode.displayName,
+            text = stringResource(mode.displayNameRes),
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
             color = if (isSelected) Color.White else Color.White.copy(alpha = 0.5f)

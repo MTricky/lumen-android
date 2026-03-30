@@ -2,6 +2,7 @@ package com.app.lumen.features.onboarding
 
 import android.app.Application
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -657,7 +658,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
                 notificationManager.scheduleWeeklyNotification(
                     identifier = identifier,
                     title = entity.title,
-                    body = "Time for ${entity.title}",
+                    body = context.getString(R.string.routine_notification_body, entity.title),
                     weekday = day,
                     hour = entity.hour,
                     minute = entity.minute,
@@ -726,7 +727,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
     }
 }
 
-enum class RosaryVisualMode(val displayName: String) {
-    SACRED_ART("Sacred Art"),
-    SIMPLE("Simple")
+enum class RosaryVisualMode(@StringRes val displayNameRes: Int) {
+    SACRED_ART(R.string.settings_prayer_visual_sacred_art),
+    SIMPLE(R.string.settings_prayer_visual_simple)
 }

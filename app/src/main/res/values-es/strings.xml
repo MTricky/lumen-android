@@ -514,6 +514,7 @@
     <string name="routine_back">Atrás</string>
     <string name="routine_enabled">Activado</string>
     <string name="routine_disabled">Desactivado</string>
+    <string name="routine_notification_body">Hora de %1$s</string>
 
     <!-- Routine lead times -->
     <string name="routine_lead_at_time">A la hora</string>
@@ -530,6 +531,8 @@
     <string name="first_friday_schedule">Primer viernes de cada mes</string>
     <string name="first_friday_setup_monthly_reminder">Recordatorio mensual</string>
     <string name="first_friday_setup_reminder_time">Hora del recordatorio</string>
+    <string name="first_friday_consecutive_count">Meses consecutivos: %1$d</string>
+    <string name="first_friday_notification_body">Recibe la Santa Comunión en reparación al Sagrado Corazón</string>
 
     <!-- Day abbreviations -->
     <string name="day_abbrev_mon">L</string>

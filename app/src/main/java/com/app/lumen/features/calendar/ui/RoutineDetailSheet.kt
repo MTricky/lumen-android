@@ -415,7 +415,7 @@ private fun FirstFridayDetailContent(
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(stringResource(R.string.first_friday_title), color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Consecutive count: $count", color = SoftGold, fontSize = 14.sp)
+                    Text(stringResource(R.string.first_friday_consecutive_count, count), color = SoftGold, fontSize = 14.sp)
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))

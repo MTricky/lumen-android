@@ -27,6 +27,7 @@ import com.app.lumen.features.calendar.model.ReminderType
 import com.app.lumen.services.AnalyticsEvent
 import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.ui.theme.*
+import androidx.compose.ui.platform.LocalContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -44,16 +45,17 @@ fun SetReminderSheet(
     onDelete: (() -> Unit)?,
     onDismiss: () -> Unit
 ) {
+    val context = LocalContext.current
     val isEditing = existingReminder != null
 
     var title by remember {
         mutableStateOf(
-            existingReminder?.title ?: reminderType.defaultTitle(liturgicalDay)
+            existingReminder?.title ?: reminderType.defaultTitle(context, liturgicalDay)
         )
     }
     var message by remember {
         mutableStateOf(
-            existingReminder?.message ?: reminderType.defaultMessage(liturgicalDay)
+            existingReminder?.message ?: reminderType.defaultMessage(context)
         )
     }
     var notes by remember { mutableStateOf(existingReminder?.notes ?: "") }

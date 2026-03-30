@@ -477,13 +477,13 @@ fun CalendarScreen(
         if (routineDeleteConfirm) {
             val title = when (val item = selectedRoutineItem) {
                 is UnifiedRoutineItem.Weekly -> item.entity.title
-                is UnifiedRoutineItem.FirstFriday -> "First Friday Devotion"
+                is UnifiedRoutineItem.FirstFriday -> stringResource(R.string.first_friday_title)
                 null -> ""
             }
             AlertDialog(
                 onDismissRequest = { routineDeleteConfirm = false },
-                title = { Text("Delete Routine") },
-                text = { Text("Are you sure you want to delete \"$title\"? This will also remove all completion history.") },
+                title = { Text(stringResource(R.string.routine_delete_title)) },
+                text = { Text(stringResource(R.string.routine_delete_message, title)) },
                 confirmButton = {
                     TextButton(
                         onClick = {
@@ -493,11 +493,11 @@ fun CalendarScreen(
                             selectedRoutineItem = null
                         },
                         colors = ButtonDefaults.textButtonColors(contentColor = Color.Red)
-                    ) { Text("Delete") }
+                    ) { Text(stringResource(R.string.delete)) }
                 },
                 dismissButton = {
                     TextButton(onClick = { routineDeleteConfirm = false }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.cancel))
                     }
                 }
             )
