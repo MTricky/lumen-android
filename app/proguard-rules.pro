@@ -68,6 +68,9 @@
 # ── Google Generative AI ────────────────────────────────────────────
 -keep class com.google.ai.client.generativeai.** { *; }
 
+# ── Google Play Services ─────────────────────────────────────────────
+-dontwarn com.google.android.gms.common.annotation.NoNullnessRewrite
+
 # ── Kotlin ──────────────────────────────────────────────────────────
 -dontwarn kotlin.**
 -keep class kotlin.Metadata { *; }
