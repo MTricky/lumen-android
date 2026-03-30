@@ -1,6 +1,9 @@
 package com.app.lumen.features.liturgy.ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -23,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,6 +34,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.app.lumen.features.subscription.PaywallSheet
 import com.app.lumen.features.subscription.SubscriptionManager
+import com.app.lumen.features.survey.ui.SurveySheet
+import com.app.lumen.features.survey.viewmodel.SurveyViewModel
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,6 +60,8 @@ import com.app.lumen.ui.components.VerseCard
 import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.features.calendar.model.LiturgicalSeason
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.ui.theme.*
 
 private val HEADER_HEIGHT = 380.dp
@@ -72,8 +80,11 @@ fun LiturgyScreen(
     val daySelection by viewModel.daySelection.collectAsStateWithLifecycle()
     val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     var showPaywall by remember { mutableStateOf(false) }
+    var showSurveyAlert by remember { mutableStateOf(false) }
+    var showSurvey by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
+    var showSurveyButton by remember { mutableStateOf(SurveyViewModel.shouldShowSurvey(context)) }
     val audioPlayer = remember { AudioPlayerManager.getInstance(context) }
     val currentReading by audioPlayer.currentReadingType.collectAsState()
     val isPlaying by audioPlayer.isPlaying.collectAsState()
@@ -192,6 +203,50 @@ fun LiturgyScreen(
                                 .statusBarsPadding()
                                 .padding(top = 8.dp)
                         )
+
+                        // Survey button (top-right) with pulsing glow
+                        if (showSurveyButton) {
+                            val infiniteTransition = rememberInfiniteTransition(label = "survey_pulse")
+                            val pulseAlpha by infiniteTransition.animateFloat(
+                                initialValue = 0.15f,
+                                targetValue = 0.35f,
+                                animationSpec = infiniteRepeatable(
+                                    animation = tween(1200, easing = androidx.compose.animation.core.EaseInOut),
+                                    repeatMode = androidx.compose.animation.core.RepeatMode.Reverse,
+                                ),
+                                label = "survey_pulse_alpha",
+                            )
+                            val pulseScale by infiniteTransition.animateFloat(
+                                initialValue = 1f,
+                                targetValue = 1.08f,
+                                animationSpec = infiniteRepeatable(
+                                    animation = tween(1200, easing = androidx.compose.animation.core.EaseInOut),
+                                    repeatMode = androidx.compose.animation.core.RepeatMode.Reverse,
+                                ),
+                                label = "survey_pulse_scale",
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    .statusBarsPadding()
+                                    .padding(top = 8.dp, end = 12.dp)
+                                    .size(44.dp)
+                                    .graphicsLayer { scaleX = pulseScale; scaleY = pulseScale }
+                                    .clip(CircleShape)
+                                    .background(Color.White.copy(alpha = pulseAlpha))
+                                    .border(0.5.dp, Color.White.copy(alpha = 0.25f), CircleShape)
+                                    .clickable { showSurveyAlert = true },
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                @Suppress("DEPRECATION")
+                                Icon(
+                                    imageVector = Icons.Filled.Assignment,
+                                    contentDescription = "Survey",
+                                    tint = SoftGold,
+                                    modifier = Modifier.size(22.dp),
+                                )
+                            }
+                        }
 
                         // Header text centered at bottom
                         if (liturgy != null) {
@@ -434,6 +489,29 @@ fun LiturgyScreen(
         if (showPaywall) {
             PaywallSheet(onDismiss = { showPaywall = false })
         }
+
+        if (showSurvey) {
+            SurveySheet(onDismiss = {
+                showSurvey = false
+                showSurveyButton = false
+            })
+        }
+
+        SurveyAlertDialog(
+            isPresented = showSurveyAlert,
+            onContinue = {
+                showSurveyAlert = false
+                AnalyticsManager.trackEvent(AnalyticsEvent.SURVEY_ALERT_INTERACTED, mapOf("dismissed" to false))
+                showSurveyButton = false
+                showSurvey = true
+            },
+            onDismiss = {
+                showSurveyAlert = false
+                AnalyticsManager.trackEvent(AnalyticsEvent.SURVEY_ALERT_INTERACTED, mapOf("dismissed" to true))
+                SurveyViewModel.dismissSurvey(context)
+                showSurveyButton = false
+            },
+        )
     }
 }
 
@@ -475,6 +553,120 @@ private fun DayPicker(
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                     color = Color.White,
                 )
+            }
+        }
+    }
+}
+
+// Glass survey alert matching the CompletionReviewDialog pattern
+@Composable
+private fun SurveyAlertDialog(
+    isPresented: Boolean,
+    onContinue: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    androidx.compose.animation.AnimatedVisibility(
+        visible = isPresented,
+        enter = fadeIn(tween(300)),
+        exit = fadeOut(tween(200)),
+    ) {
+        val cardScale = remember { androidx.compose.animation.core.Animatable(0.85f) }
+        LaunchedEffect(Unit) {
+            cardScale.animateTo(
+                targetValue = 1f,
+                animationSpec = androidx.compose.animation.core.spring(
+                    dampingRatio = 0.75f,
+                    stiffness = 400f,
+                ),
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.3f))
+                .clickable(
+                    interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() },
+                    indication = null,
+                ) { onDismiss() },
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 32.dp)
+                    .graphicsLayer {
+                        scaleX = cardScale.value
+                        scaleY = cardScale.value
+                    }
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(Color(0xFF1A1A29))
+                    .border(1.dp, Color.White.copy(alpha = 0.15f), RoundedCornerShape(20.dp))
+                    .clickable(
+                        interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() },
+                        indication = null,
+                    ) { /* consume taps */ }
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(R.string.survey_alert_title),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                )
+
+                Spacer(Modifier.height(10.dp))
+
+                Text(
+                    text = stringResource(R.string.survey_alert_message),
+                    fontSize = 14.sp,
+                    color = Color.White.copy(alpha = 0.7f),
+                    textAlign = TextAlign.Start,
+                    lineHeight = 20.sp,
+                )
+
+                Spacer(Modifier.height(24.dp))
+
+                // Continue
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(Color.White.copy(alpha = 0.08f))
+                        .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(14.dp))
+                        .clickable { onContinue() }
+                        .padding(vertical = 14.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = stringResource(R.string.survey_alert_continue),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.White,
+                    )
+                }
+
+                Spacer(Modifier.height(10.dp))
+
+                // Not Now
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(Color.White.copy(alpha = 0.08f))
+                        .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(14.dp))
+                        .clickable { onDismiss() }
+                        .padding(vertical = 14.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = stringResource(R.string.survey_alert_not_now),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.White,
+                    )
+                }
             }
         }
     }

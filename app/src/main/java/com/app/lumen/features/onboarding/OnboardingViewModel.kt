@@ -17,10 +17,13 @@ import com.app.lumen.features.bible.model.BibleTradition
 import com.app.lumen.features.bible.model.BibleVersion
 import com.app.lumen.features.bible.service.BibleRoutingService
 import com.app.lumen.features.calendar.model.LiturgicalRegion
+import com.app.lumen.features.survey.viewmodel.SurveyViewModel
 import com.app.lumen.features.calendar.model.RoutineItemType
 import com.app.lumen.features.calendar.data.RoutineDataStore
 import com.app.lumen.features.calendar.data.WeeklyRoutineEntity
 import com.app.lumen.features.calendar.data.FirstFridayRoutineEntity
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
 import com.app.lumen.features.calendar.service.LumenNotificationManager
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
 import com.app.lumen.features.rosary.service.RosaryAudioService
@@ -582,13 +585,13 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
         isCompleting = true
         viewModelScope.launch {
             // Create routines
-            val routineStore = RoutineDataStore(context)
+            val routineStore = RoutineDataStore.getInstance(context)
             for (selection in selectedRoutines) {
                 val entity = WeeklyRoutineEntity(
                     id = UUID.randomUUID().toString(),
                     title = selection.title,
                     typeRaw = selection.type.name,
-                    selectedDaysJson = selection.selectedDays.sorted().toString(),
+                    selectedDaysJson = Json.encodeToString(selection.selectedDays.sorted()),
                     hour = selection.selectedHour,
                     minute = selection.selectedMinute,
                     isNotificationEnabled = selection.isNotificationEnabled && notificationsAuthorized,
@@ -641,6 +644,9 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
 
             // Mark onboarding complete
             OnboardingManager.shared.completeOnboarding()
+
+            // Set survey eligibility date (3 days from now)
+            SurveyViewModel.setOnboardingCompletedDateIfNeeded(getApplication())
             isCompleting = false
         }
     }

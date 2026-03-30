@@ -802,4 +802,47 @@
     <string name="completion_review_positive">Love it! \u2B50</string>
     <string name="completion_review_neutral">It\'s okay</string>
     <string name="completion_review_negative">Needs work</string>
+
+    <!-- Survey -->
+    <string name="survey_alert_title">\uD83D\uDCCB Quick Survey</string>
+    <string name="survey_alert_message">Help us improve Lumen with a quick 1-minute survey. Your feedback shapes the app\'s future.</string>
+    <string name="survey_alert_continue">\u2713 Continue</string>
+    <string name="survey_alert_not_now">\u2715 Not Now</string>
+    <string name="survey_welcome_title">Help Us Improve</string>
+    <string name="survey_welcome_subtitle">Share your thoughts to help shape Lumen\'s future. It only takes a minute.</string>
+    <string name="survey_welcome_continue">Let\'s Go</string>
+    <string name="survey_about_you_title">About You</string>
+    <string name="survey_about_you_subtitle">This helps us understand our community better.</string>
+    <string name="survey_age_range_label">Age Range</string>
+    <string name="survey_age_under_18">Under 18</string>
+    <string name="survey_age_18_24">18–24</string>
+    <string name="survey_age_25_34">25–34</string>
+    <string name="survey_age_35_44">35–44</string>
+    <string name="survey_age_45_54">45–54</string>
+    <string name="survey_age_55_64">55–64</string>
+    <string name="survey_age_65_plus">65+</string>
+    <string name="survey_gender_label">Gender</string>
+    <string name="survey_gender_male">Male</string>
+    <string name="survey_gender_female">Female</string>
+    <string name="survey_continue">Continue</string>
+    <string name="survey_feature_request_title">What\'s Missing?</string>
+    <string name="survey_feature_request_subtitle">What would make Lumen even better for you?</string>
+    <string name="survey_feature_request_placeholder">New prayers, features, improvements…</string>
+    <string name="survey_feature_request_submit">Submit Feedback</string>
+    <string name="survey_feature_request_skip">Skip</string>
+    <string name="survey_satisfaction_title">Your Experience</string>
+    <string name="survey_satisfaction_subtitle">How satisfied are you with Lumen?</string>
+    <string name="survey_satisfaction_fully">Fully satisfied</string>
+    <string name="survey_satisfaction_fully_desc">I love it!</string>
+    <string name="survey_satisfaction_somewhat">Somewhat satisfied</string>
+    <string name="survey_satisfaction_somewhat_desc">It\'s good</string>
+    <string name="survey_satisfaction_not">Not satisfied</string>
+    <string name="survey_satisfaction_not_desc">Needs work</string>
+    <string name="survey_finish">Finish</string>
+    <string name="survey_completion_title">Thank You!</string>
+    <string name="survey_completion_subtitle_positive">We\'re so glad you\'re enjoying Lumen!</string>
+    <string name="survey_completion_subtitle_neutral">Your feedback helps us improve.</string>
+    <string name="survey_completion_review_request">If you have a moment, a good review would help others discover the app.</string>
+    <string name="survey_completion_write_review">Write a Review</string>
+    <string name="survey_completion_done">Done</string>
 </resources>

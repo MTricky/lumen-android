@@ -816,4 +816,47 @@
     <string name="onboarding_routine_edit_days">DNI</string>
     <string name="onboarding_routine_edit_time">GODZINA</string>
     <string name="onboarding_completion_routines">%1$d praktyk(i) modlitewnych</string>
+
+    <!-- Survey alert -->
+    <string name="survey_alert_title">\uD83D\uDCCB Szybka ankieta</string>
+    <string name="survey_alert_message">Pomóż nam ulepszyć Lumen, wypełniając krótką, jednominutową ankietę. Twoja opinia kształtuje przyszłość aplikacji.</string>
+    <string name="survey_alert_continue">\u2713 Kontynuuj</string>
+    <string name="survey_alert_not_now">\u2715 Nie teraz</string>
+    <string name="survey_welcome_title">Pomóż nam się rozwijać</string>
+    <string name="survey_welcome_subtitle">Podziel się swoimi przemyśleniami, aby pomóc kształtować przyszłość Lumen. Zajmie to tylko minutę.</string>
+    <string name="survey_welcome_continue">Zaczynajmy</string>
+    <string name="survey_about_you_title">O Tobie</string>
+    <string name="survey_about_you_subtitle">To pomaga nam lepiej zrozumieć naszą społeczność.</string>
+    <string name="survey_age_range_label">Przedział wiekowy</string>
+    <string name="survey_age_under_18">Poniżej 18</string>
+    <string name="survey_age_18_24">18–24</string>
+    <string name="survey_age_25_34">25–34</string>
+    <string name="survey_age_35_44">35–44</string>
+    <string name="survey_age_45_54">45–54</string>
+    <string name="survey_age_55_64">55–64</string>
+    <string name="survey_age_65_plus">65+</string>
+    <string name="survey_gender_label">Płeć</string>
+    <string name="survey_gender_male">Mężczyzna</string>
+    <string name="survey_gender_female">Kobieta</string>
+    <string name="survey_continue">Kontynuuj</string>
+    <string name="survey_feature_request_title">Czego brakuje?</string>
+    <string name="survey_feature_request_subtitle">Co sprawiłoby, że Lumen byłby jeszcze lepszy dla Ciebie?</string>
+    <string name="survey_feature_request_placeholder">Nowe modlitwy, funkcje, ulepszenia…</string>
+    <string name="survey_feature_request_submit">Wyślij opinię</string>
+    <string name="survey_feature_request_skip">Pomiń</string>
+    <string name="survey_satisfaction_title">Twoje doświadczenie</string>
+    <string name="survey_satisfaction_subtitle">Jak bardzo jesteś zadowolony z Lumen?</string>
+    <string name="survey_satisfaction_fully">W pełni zadowolony</string>
+    <string name="survey_satisfaction_fully_desc">Uwielbiam!</string>
+    <string name="survey_satisfaction_somewhat">Częściowo zadowolony</string>
+    <string name="survey_satisfaction_somewhat_desc">Jest dobrze</string>
+    <string name="survey_satisfaction_not">Niezadowolony</string>
+    <string name="survey_satisfaction_not_desc">Wymaga pracy</string>
+    <string name="survey_finish">Zakończ</string>
+    <string name="survey_completion_title">Dziękujemy!</string>
+    <string name="survey_completion_subtitle_positive">Cieszymy się, że Lumen Ci się podoba!</string>
+    <string name="survey_completion_subtitle_neutral">Twoja opinia pomaga nam się rozwijać.</string>
+    <string name="survey_completion_review_request">Jeśli masz chwilę, dobra recenzja pomoże innym odkryć aplikację.</string>
+    <string name="survey_completion_write_review">Napisz recenzję</string>
+    <string name="survey_completion_done">Gotowe</string>
 </resources>
