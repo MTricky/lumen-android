@@ -379,7 +379,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
     private fun saveRosaryPreferences() {
         val prefs = context.getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE)
         prefs.edit()
-            .putString("visual_style", selectedVisualMode.name)
+            .putString("visual_style", selectedVisualMode.key)
             .putBoolean("audio_enabled", isRosaryAudioEnabled)
             .apply()
     }
@@ -733,7 +733,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
     }
 }
 
-enum class RosaryVisualMode(@StringRes val displayNameRes: Int) {
-    SACRED_ART(R.string.settings_prayer_visual_sacred_art),
-    SIMPLE(R.string.settings_prayer_visual_simple)
+enum class RosaryVisualMode(val key: String, @StringRes val displayNameRes: Int) {
+    SACRED_ART("Sacred Art", R.string.settings_prayer_visual_sacred_art),
+    SIMPLE("Simple", R.string.settings_prayer_visual_simple)
 }
