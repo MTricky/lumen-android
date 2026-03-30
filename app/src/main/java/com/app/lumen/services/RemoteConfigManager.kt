@@ -11,6 +11,8 @@ object RemoteConfigManager {
     private val defaults = mapOf(
         "android_review_enabled" to true,
         "android_weekly_split_enabled" to true,
+        "android_prayer_review_enabled" to true,
+        "android_rosary_review_enabled" to true,
     )
 
     val reviewEnabled: Boolean
@@ -18,6 +20,12 @@ object RemoteConfigManager {
 
     val weeklySplitEnabled: Boolean
         get() = remoteConfig.getBoolean("android_weekly_split_enabled")
+
+    val prayerReviewEnabled: Boolean
+        get() = remoteConfig.getBoolean("android_prayer_review_enabled")
+
+    val rosaryReviewEnabled: Boolean
+        get() = remoteConfig.getBoolean("android_rosary_review_enabled")
 
     fun initialize() {
         val configSettings = FirebaseRemoteConfigSettings.Builder()

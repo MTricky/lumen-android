@@ -69,19 +69,12 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .then(
-                    if (isCompact) Modifier.verticalScroll(rememberScrollState())
-                    else Modifier
-                )
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp)
                 .padding(top = 48.dp, bottom = 140.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (isCompact) {
-                Spacer(modifier = Modifier.height(24.dp))
-            } else {
-                Spacer(modifier = Modifier.weight(1f))
-            }
+            Spacer(modifier = Modifier.height(if (isCompact) 24.dp else 48.dp))
 
             // Main content - no animation, just show everything
             Column(
@@ -169,9 +162,7 @@ fun CompletionPhase(viewModel: OnboardingViewModel, onDone: () -> Unit) {
                 }
             }
 
-            if (!isCompact) {
-                Spacer(modifier = Modifier.weight(1f))
-            }
+            Spacer(modifier = Modifier.height(24.dp))
         }
 
         // Floating button at bottom with gradient transition
@@ -257,8 +248,8 @@ private fun SummaryCard(
             Text(
                 text = subtitle,
                 fontSize = 12.sp,
-                color = Color.White.copy(alpha = 0.6f),
-                maxLines = 1
+                lineHeight = 16.sp,
+                color = Color.White.copy(alpha = 0.6f)
             )
         }
 

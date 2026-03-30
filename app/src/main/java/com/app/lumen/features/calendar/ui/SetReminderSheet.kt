@@ -24,6 +24,8 @@ import com.app.lumen.R
 import com.app.lumen.features.calendar.model.LiturgicalDay
 import com.app.lumen.features.calendar.model.Reminder
 import com.app.lumen.features.calendar.model.ReminderType
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.ui.theme.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -300,6 +302,13 @@ fun SetReminderSheet(
             Button(
                 onClick = {
                     isSaving = true
+                    // Track reminder created (matching iOS)
+                    if (!isEditing) {
+                        AnalyticsManager.trackEvent(
+                            AnalyticsEvent.REMINDER_CREATED,
+                            mapOf("reminder_type" to reminderType.rawValue)
+                        )
+                    }
                     val cal = Calendar.getInstance()
                     val dateCal = Calendar.getInstance().apply { time = date }
                     cal.set(Calendar.YEAR, dateCal.get(Calendar.YEAR))

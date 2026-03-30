@@ -90,10 +90,11 @@ fun LitanyPrayerScreen(
     val rosaryPrefs = remember { context.getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE) }
 
     val chapletType = litanyType.audioChapletType
+    val audioLang = remember { LitanyType.prayerLanguageCode() }
 
     // Audio state
-    var isChapletAudioDownloaded by remember { mutableStateOf(audioService.isChapletAudioDownloaded("en", chapletType)) }
-    var isRosaryAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded("en")) }
+    var isChapletAudioDownloaded by remember { mutableStateOf(audioService.isChapletAudioDownloaded(audioLang, chapletType)) }
+    var isRosaryAudioDownloaded by remember { mutableStateOf(audioService.isAudioDownloaded(audioLang)) }
     val isAudioFullyDownloaded = isChapletAudioDownloaded && isRosaryAudioDownloaded
     var hasLitanyAudioAvailable by remember { mutableStateOf(false) }
     val showAudioButton = isAudioFullyDownloaded || (hasLitanyAudioAvailable && isRosaryAudioDownloaded)
@@ -119,8 +120,8 @@ fun LitanyPrayerScreen(
     val isIntro = step is LitanyPrayerStep.Intro
 
     fun recheckAudioState() {
-        isRosaryAudioDownloaded = audioService.isAudioDownloaded("en")
-        isChapletAudioDownloaded = audioService.isChapletAudioDownloaded("en", chapletType)
+        isRosaryAudioDownloaded = audioService.isAudioDownloaded(audioLang)
+        isChapletAudioDownloaded = audioService.isChapletAudioDownloaded(audioLang, chapletType)
     }
 
     fun playAudioForCurrentStep() {
@@ -133,13 +134,13 @@ fun LitanyPrayerScreen(
 
     LaunchedEffect(chapletType) {
         withContext(Dispatchers.IO) {
-            val config = audioService.fetchChapletAudioConfig("en", chapletType)
+            val config = audioService.fetchChapletAudioConfig(audioLang, chapletType)
             if (config != null) {
                 hasLitanyAudioAvailable = true
             }
         }
 
-        val sheetShown = rosaryPrefs.getBoolean("chaplet_audio_offer_shown_${chapletType}_en", false)
+        val sheetShown = rosaryPrefs.getBoolean("chaplet_audio_offer_shown_${chapletType}_${audioLang}", false)
         if (!sheetShown && !isChapletAudioDownloaded && isRosaryAudioDownloaded) {
             delay(400)
             showDownloadSheet = true
@@ -149,11 +150,11 @@ fun LitanyPrayerScreen(
     LaunchedEffect(isAudioFullyDownloaded) {
         if (isAudioFullyDownloaded) {
             withContext(Dispatchers.IO) {
-                val config = audioService.fetchChapletAudioConfig("en", chapletType)
-                val rosaryConfig = audioService.fetchAudioConfig("en")
+                val config = audioService.fetchChapletAudioConfig(audioLang, chapletType)
+                val rosaryConfig = audioService.fetchAudioConfig(audioLang)
                 if (config != null) {
                     withContext(Dispatchers.Main) {
-                        audioPlayer.configure(config, rosaryConfig, "en", chapletType)
+                        audioPlayer.configure(config, rosaryConfig, audioLang, chapletType)
                     }
                 }
             }
@@ -165,7 +166,7 @@ fun LitanyPrayerScreen(
     }
 
     LaunchedEffect(currentStepIndex) {
-        if (!contentVisible && !isComplete) {
+        if (!contentVisible && !viewModel.isComplete.value) {
             delay(1)
             contentVisible = true
         }
@@ -193,7 +194,7 @@ fun LitanyPrayerScreen(
             delay(fadeOutMs)
             if (direction == 1) viewModel.advanceToNextStep() else viewModel.goToPreviousStep()
 
-            if (isComplete) {
+            if (viewModel.isComplete.value) {
                 delay(400)
                 onComplete()
                 return@launch
@@ -201,6 +202,7 @@ fun LitanyPrayerScreen(
 
             val fadeInMs = if (isSlowTransition) 450L else 200L
             delay(fadeInMs)
+            contentVisible = true
             isTransitioning = false
 
             if (isAudioEnabled && isAudioFullyDownloaded) {
@@ -456,7 +458,7 @@ fun LitanyPrayerScreen(
         PrayerAudioDownloadSheet(
             prayerName = prayerData?.title ?: stringResource(litanyType.titleRes),
             chapletType = chapletType,
-            language = "en",
+            language = audioLang,
             onDismiss = {
                 showDownloadSheet = false
                 recheckAudioState()

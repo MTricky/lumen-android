@@ -3,6 +3,7 @@ package com.app.lumen.features.subscription
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.widget.VerseWidgetData
 import com.revenuecat.purchases.CustomerInfo
 import com.revenuecat.purchases.Package
@@ -101,6 +102,9 @@ object SubscriptionManager {
             .putBoolean(KEY_IS_PREMIUM, hasAccess)
             .putLong(KEY_EXPIRATION_DATE, expiry?.time ?: 0L)
             .apply()
+
+        // Set Mixpanel premium user property (matching iOS)
+        AnalyticsManager.setUserPremiumProperty(hasAccess)
 
         Log.d(TAG, "Updated state - premium: $hasAccess, expiry: $expiry")
         Log.d(TAG, "  Entitlements: ${customerInfo.entitlements.all.keys}")

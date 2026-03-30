@@ -64,6 +64,8 @@ import com.app.lumen.features.onboarding.ui.steps.RosaryStep
 import com.app.lumen.features.onboarding.ui.steps.RoutineIntroStep
 import com.app.lumen.features.onboarding.ui.steps.RoutineSetupStep
 import com.app.lumen.features.onboarding.ui.steps.WelcomeStep
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.services.RemoteConfigManager
 import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.NearBlack
@@ -80,6 +82,11 @@ fun OnboardingView(
     val view = LocalView.current
     val activity = context as? Activity
     var showFeedbackDialog by remember { mutableStateOf(false) }
+
+    // Track onboarding started (matching iOS)
+    LaunchedEffect(Unit) {
+        AnalyticsManager.trackEvent(AnalyticsEvent.STARTED_ONBOARDING)
+    }
 
     // Show feedback dialog after loading completes (matching iOS behavior)
     LaunchedEffect(viewModel.isLoadingComplete) {
@@ -154,6 +161,14 @@ fun OnboardingView(
                     OnboardingManager.shared.markFeedbackAsked()
                     OnboardingManager.shared.saveFeedbackResult(result)
                     showFeedbackDialog = false
+
+                    // Track feedback event (matching iOS)
+                    when (result) {
+                        OnboardingFeedbackResult.POSITIVE -> AnalyticsManager.trackEvent(AnalyticsEvent.FEEDBACK_POSITIVE)
+                        OnboardingFeedbackResult.NEUTRAL -> AnalyticsManager.trackEvent(AnalyticsEvent.FEEDBACK_NEUTRAL)
+                        OnboardingFeedbackResult.NEGATIVE -> AnalyticsManager.trackEvent(AnalyticsEvent.FEEDBACK_NEGATIVE)
+                        else -> {}
+                    }
 
                     // Trigger Google Play In-App Review on positive feedback
                     if (result == OnboardingFeedbackResult.POSITIVE && activity != null) {

@@ -1,6 +1,7 @@
 package com.app.lumen.ui.tabs
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -56,17 +58,22 @@ import com.app.lumen.features.rosary.ui.RosaryScreen
 import com.app.lumen.features.chaplets.model.ChapletType
 import com.app.lumen.features.chaplets.model.PrayerType
 import com.app.lumen.features.chaplets.ui.*
+import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.settings.ui.SettingsScreen
 import com.app.lumen.features.subscription.PaywallSheet
 import com.app.lumen.features.subscription.SubscriptionManager
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.lumen.R
+import com.app.lumen.ui.HapticManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.Slate
 import com.app.lumen.ui.theme.SoftGold
 import androidx.annotation.StringRes
+import com.google.android.play.core.review.ReviewManagerFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -227,6 +234,21 @@ fun MainTabView(
     // Premium / Paywall state
     val isPremium by SubscriptionManager.hasProAccess.collectAsState()
     var showPaywall by remember { mutableStateOf(false) }
+
+    // Completion review state (matching iOS)
+    var showCompletionReview by remember { mutableStateOf(false) }
+    var pendingCompletionReview by remember { mutableStateOf(false) }
+    val view = androidx.compose.ui.platform.LocalView.current
+    val activity = context as? android.app.Activity
+
+    // Show completion review with 0.5s delay (matching iOS delayed presentation)
+    LaunchedEffect(pendingCompletionReview) {
+        if (pendingCompletionReview) {
+            delay(500)
+            showCompletionReview = true
+            pendingCompletionReview = false
+        }
+    }
 
     // Open paywall when launched from locked widget
     LaunchedEffect(openPaywall) {
@@ -748,6 +770,7 @@ fun MainTabView(
                     showRosaryPrayer = false
                     rosaryViewModel.reset()
                 },
+                onRequestReview = { pendingCompletionReview = true },
             )
         }
 
@@ -816,6 +839,7 @@ fun MainTabView(
                             ChapletType.SEVEN_SORROWS -> sevenSorrowsViewModel.reset()
                         }
                     },
+                    onRequestReview = { pendingCompletionReview = true },
                 )
             }
         }
@@ -866,6 +890,7 @@ fun MainTabView(
                         showLitanyCompletion = false
                         showLitanyPrayer = false
                     },
+                    onRequestReview = { pendingCompletionReview = true },
                 )
             }
         }
@@ -874,6 +899,37 @@ fun MainTabView(
         if (showPaywall) {
             PaywallSheet(onDismiss = { showPaywall = false })
         }
+
+        // Completion review dialog (matching iOS)
+        CompletionReviewDialog(
+            isPresented = showCompletionReview,
+            onPositive = {
+                showCompletionReview = false
+                OnboardingManager.shared.markCompletionReviewShown()
+                HapticManager.mediumImpact(view)
+                AnalyticsManager.trackEvent(AnalyticsEvent.COMPLETION_REVIEW_POSITIVE)
+                // Trigger Google Play In-App Review
+                if (activity != null) {
+                    val reviewManager = ReviewManagerFactory.create(context)
+                    reviewManager.requestReviewFlow().addOnSuccessListener { reviewInfo ->
+                        reviewManager.launchReviewFlow(activity, reviewInfo)
+                    }
+                }
+            },
+            onNeutral = {
+                showCompletionReview = false
+                OnboardingManager.shared.markCompletionReviewShown()
+                HapticManager.lightImpact(view)
+                AnalyticsManager.trackEvent(AnalyticsEvent.COMPLETION_REVIEW_NEUTRAL)
+            },
+            onNegative = {
+                showCompletionReview = false
+                OnboardingManager.shared.markCompletionReviewShown()
+                HapticManager.lightImpact(view)
+                AnalyticsManager.trackEvent(AnalyticsEvent.COMPLETION_REVIEW_NEGATIVE)
+            },
+            onDismiss = { showCompletionReview = false },
+        )
     }
 }
 
@@ -1062,6 +1118,119 @@ private fun formatTime(millis: Long): String {
     val minutes = totalSeconds / 60
     val seconds = totalSeconds % 60
     return "%d:%02d".format(minutes, seconds)
+}
+
+private val ReviewCardBg = Color(0xFF1A1A29)
+private val ReviewCardBorder = Color.White.copy(alpha = 0.15f)
+
+/**
+ * Completion review dialog — visually matches the onboarding feedback dialog.
+ * Shown once after prayer completion for users who didn't give positive onboarding feedback.
+ * Matching iOS completion review 1:1.
+ */
+@Composable
+private fun CompletionReviewDialog(
+    isPresented: Boolean,
+    onPositive: () -> Unit,
+    onNeutral: () -> Unit,
+    onNegative: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AnimatedVisibility(
+        visible = isPresented,
+        enter = fadeIn(tween(300)),
+        exit = fadeOut(tween(200)),
+    ) {
+        val cardScale = remember { androidx.compose.animation.core.Animatable(0.85f) }
+        LaunchedEffect(Unit) {
+            cardScale.animateTo(
+                targetValue = 1f,
+                animationSpec = spring(
+                    dampingRatio = 0.75f,
+                    stiffness = 400f,
+                ),
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.3f))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                ) { onDismiss() },
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 32.dp)
+                    .graphicsLayer {
+                        scaleX = cardScale.value
+                        scaleY = cardScale.value
+                    }
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(ReviewCardBg)
+                    .border(1.dp, ReviewCardBorder, RoundedCornerShape(20.dp))
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { /* consume taps */ }
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(R.string.completion_review_title),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Text(
+                    text = stringResource(R.string.completion_review_message),
+                    fontSize = 14.sp,
+                    color = Color.White.copy(alpha = 0.7f),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Start,
+                    lineHeight = 20.sp,
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                ReviewButton(stringResource(R.string.completion_review_positive)) { onPositive() }
+                Spacer(modifier = Modifier.height(10.dp))
+                ReviewButton(stringResource(R.string.completion_review_neutral)) { onNeutral() }
+                Spacer(modifier = Modifier.height(10.dp))
+                ReviewButton(stringResource(R.string.completion_review_negative)) { onNegative() }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ReviewButton(
+    title: String,
+    onClick: () -> Unit,
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(Color.White.copy(alpha = 0.08f))
+            .border(0.5.dp, Color.White.copy(alpha = 0.12f), RoundedCornerShape(14.dp))
+            .clickable { onClick() }
+            .padding(vertical = 14.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color.White,
+        )
+    }
 }
 
 @Composable

@@ -707,6 +707,13 @@
     <string name="onboarding_feedback_neutral">Było w porządku</string>
     <string name="onboarding_feedback_negative">Wymaga poprawy</string>
 
+    <!-- Completion Review -->
+    <string name="completion_review_title">Podoba Ci się Lumen?</string>
+    <string name="completion_review_message">Twoja opinia pomaga nam się rozwijać. Pozytywna recenzja bardzo nam pomoże!</string>
+    <string name="completion_review_positive">Uwielbiam! \u2B50</string>
+    <string name="completion_review_neutral">Jest okej</string>
+    <string name="completion_review_negative">Wymaga pracy</string>
+
     <!-- Previously missing strings -->
 
     <!-- Reader -->

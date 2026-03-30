@@ -69,7 +69,7 @@ fun SevenSorrowsPrayerScreen(
         onGoBack = { viewModel.goToPreviousStep() },
         onNavigateBack = onBack,
         onComplete = onComplete,
-        isComplete = isComplete,
+        isCompleteProvider = { viewModel.isComplete.value },
         peekNextIsAnnouncement = viewModel.peekNextStep()?.isSorrowAnnouncement == true,
         playAudioForStep = { onFinished ->
             viewModel.currentStep?.let { currentStep ->

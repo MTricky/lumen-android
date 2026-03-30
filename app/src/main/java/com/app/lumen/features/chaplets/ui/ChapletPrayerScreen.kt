@@ -111,7 +111,7 @@ fun ChapletPrayerScreen(
     onGoBack: () -> Unit,
     onNavigateBack: () -> Unit,
     onComplete: () -> Unit,
-    isComplete: Boolean,
+    isCompleteProvider: () -> Boolean,
     peekNextIsAnnouncement: Boolean = false,
     playAudioForStep: ((onFinished: () -> Unit) -> Unit)? = null,
 ) {
@@ -207,7 +207,7 @@ fun ChapletPrayerScreen(
 
     // When step changes and contentVisible is false, show after one frame
     LaunchedEffect(state.currentStepIndex) {
-        if (!contentVisible && !isComplete) {
+        if (!contentVisible && !isCompleteProvider()) {
             delay(1)
             contentVisible = true
         }
@@ -237,7 +237,7 @@ fun ChapletPrayerScreen(
             delay(fadeOutMs)
             if (direction == 1) onAdvance() else onGoBack()
 
-            if (isComplete) {
+            if (isCompleteProvider()) {
                 delay(400)
                 onComplete()
                 return@launch
@@ -245,6 +245,7 @@ fun ChapletPrayerScreen(
 
             val fadeInMs = if (isSlowTransition) 450L else 200L
             delay(fadeInMs)
+            contentVisible = true
             isTransitioning = false
 
             // Trigger audio for the new step (only if BOTH downloaded)

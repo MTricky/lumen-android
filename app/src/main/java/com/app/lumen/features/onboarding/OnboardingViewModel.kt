@@ -23,6 +23,8 @@ import com.app.lumen.features.calendar.data.FirstFridayRoutineEntity
 import com.app.lumen.features.calendar.service.LumenNotificationManager
 import com.app.lumen.features.liturgy.viewmodel.LiturgyViewModel
 import com.app.lumen.features.rosary.service.RosaryAudioService
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.widget.VerseWidgetData
 import com.app.lumen.widget.VerseWidgetWorker
 import android.graphics.BitmapFactory
@@ -208,6 +210,14 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
             OnboardingStep.BIBLE -> currentStep = OnboardingStep.ROSARY
             OnboardingStep.ROSARY -> {
                 saveRosaryPreferences()
+                // Track rosary onboarding completed (matching iOS)
+                val props = mutableMapOf<String, Any>(
+                    "visual_mode" to selectedVisualMode.name.lowercase()
+                )
+                if (isRosaryAudioEnabled || isAudioDownloaded) {
+                    props["audio_enabled"] = if (isRosaryAudioEnabled) "true" else "false"
+                }
+                AnalyticsManager.trackEvent(AnalyticsEvent.ROSARY_ONBOARDING_COMPLETED, props)
                 currentStep = OnboardingStep.ROUTINE_INTRO
             }
             OnboardingStep.ROUTINE_INTRO -> currentStep = OnboardingStep.ROUTINE_SETUP
@@ -612,6 +622,21 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
                 )
                 routineStore.insertFirstFridayRoutine(ffEntity)
             }
+
+            // Track routine_created_onboarding (matching iOS)
+            if (selectedRoutines.isNotEmpty()) {
+                val routineTypes = selectedRoutines.joinToString(",") { it.type.rawValue }
+                AnalyticsManager.trackEvent(
+                    AnalyticsEvent.ROUTINE_CREATED_ONBOARDING,
+                    mapOf(
+                        "routine_types" to routineTypes,
+                        "count" to selectedRoutines.size
+                    )
+                )
+            }
+
+            // Track finished onboarding (matching iOS)
+            AnalyticsManager.trackEvent(AnalyticsEvent.FINISHED_ONBOARDING)
 
             // Mark onboarding complete
             OnboardingManager.shared.completeOnboarding()

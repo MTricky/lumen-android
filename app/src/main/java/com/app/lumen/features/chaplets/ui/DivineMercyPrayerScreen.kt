@@ -71,7 +71,7 @@ fun DivineMercyPrayerScreen(
         onGoBack = { viewModel.goToPreviousStep() },
         onNavigateBack = onBack,
         onComplete = onComplete,
-        isComplete = isComplete,
+        isCompleteProvider = { viewModel.isComplete.value },
         peekNextIsAnnouncement = viewModel.peekNextStep()?.isDecadeAnnouncement == true,
         playAudioForStep = { onFinished ->
             viewModel.currentStep?.let { currentStep ->

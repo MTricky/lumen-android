@@ -1,8 +1,11 @@
 package com.app.lumen.features.chaplets.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import com.app.lumen.features.chaplets.model.*
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.json.Json
@@ -113,11 +116,35 @@ class StMichaelViewModel(application: Application) : AndroidViewModel(applicatio
         _currentStepIndex.value = 0
         _isComplete.value = false
         allSteps = buildAllSteps()
+
+        // Track prayer started (matching iOS)
+        AnalyticsManager.trackEvent(
+            AnalyticsEvent.PRAYER_STARTED,
+            mapOf("prayer_type" to "st_michael")
+        )
     }
 
     fun advanceToNextStep() {
+        if (_isComplete.value) return // Prevent duplicate tracking
         if (_currentStepIndex.value >= allSteps.size - 1) {
             _isComplete.value = true
+
+            // Track prayer completed (matching iOS)
+            val app = getApplication<Application>()
+            val prefs = app.getSharedPreferences("rosary_prefs", Context.MODE_PRIVATE)
+            val audioToggle = prefs.getBoolean("audio_enabled", false)
+            val lang = prayerLanguageCode()
+            val audioService = com.app.lumen.features.rosary.service.RosaryAudioService.getInstance(app)
+            val audioEffective = audioToggle &&
+                audioService.isAudioDownloaded(lang) &&
+                audioService.isChapletAudioDownloaded(lang, "st_michael")
+            AnalyticsManager.trackEvent(
+                AnalyticsEvent.PRAYER_COMPLETED,
+                mapOf(
+                    "prayer_type" to "st_michael",
+                    "audio_enabled" to audioEffective
+                )
+            )
             return
         }
         _currentStepIndex.value += 1

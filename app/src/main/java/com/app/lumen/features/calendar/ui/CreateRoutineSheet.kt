@@ -31,6 +31,8 @@ import androidx.compose.ui.res.stringResource
 import com.app.lumen.R
 import com.app.lumen.features.calendar.model.*
 import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.ui.theme.*
 import java.util.Calendar
 
@@ -117,6 +119,11 @@ fun CreateRoutineSheet(
                     isPrimary = true
                 ) {
                     if (title.isNotBlank() && selectedType != null) {
+                        // Track routine created (matching iOS)
+                        AnalyticsManager.trackEvent(
+                            AnalyticsEvent.ROUTINE_CREATED,
+                            mapOf("routine_type" to selectedType!!.rawValue)
+                        )
                         onCreate(
                             title,
                             selectedType!!,

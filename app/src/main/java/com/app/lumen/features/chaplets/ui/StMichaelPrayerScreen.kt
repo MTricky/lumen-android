@@ -83,7 +83,7 @@ fun StMichaelPrayerScreen(
         onGoBack = { viewModel.goToPreviousStep() },
         onNavigateBack = onBack,
         onComplete = onComplete,
-        isComplete = isComplete,
+        isCompleteProvider = { viewModel.isComplete.value },
         peekNextIsAnnouncement = viewModel.peekNextStep()?.let {
             it.isSalutationAnnouncement || it.isArchangelAnnouncement
         } == true,

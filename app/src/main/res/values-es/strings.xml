@@ -788,4 +788,11 @@
     <string name="onboarding_feedback_positive">¡Excelente! \u2B50</string>
     <string name="onboarding_feedback_neutral">Estuvo bien</string>
     <string name="onboarding_feedback_negative">Necesita mejoras</string>
+
+    <!-- Completion Review -->
+    <string name="completion_review_title">¿Te gusta Lumen?</string>
+    <string name="completion_review_message">Tus comentarios nos ayudan a mejorar. ¡Una reseña positiva nos ayuda mucho!</string>
+    <string name="completion_review_positive">¡Me encanta! \u2B50</string>
+    <string name="completion_review_neutral">Está bien</string>
+    <string name="completion_review_negative">Necesita mejoras</string>
 </resources>

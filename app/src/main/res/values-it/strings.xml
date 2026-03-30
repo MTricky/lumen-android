@@ -790,4 +790,11 @@ per leggere la Bibbia.</string>
     <string name="onboarding_feedback_positive">Ottimo! ⭐</string>
     <string name="onboarding_feedback_neutral">È stato ok</string>
     <string name="onboarding_feedback_negative">Necessita miglioramenti</string>
+
+    <!-- Completion Review -->
+    <string name="completion_review_title">Ti piace Lumen?</string>
+    <string name="completion_review_message">Il tuo feedback ci aiuta a migliorare. Una recensione positiva fa la differenza!</string>
+    <string name="completion_review_positive">Lo adoro! \u2B50</string>
+    <string name="completion_review_neutral">Va bene</string>
+    <string name="completion_review_negative">Da migliorare</string>
 </resources>

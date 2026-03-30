@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.calendar.model.Note
 import com.app.lumen.features.calendar.model.NoteType
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import com.app.lumen.ui.theme.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -284,6 +286,11 @@ fun NoteSheet(
             Button(
                 onClick = {
                     isSaving = true
+                    // Track note created (matching iOS)
+                    AnalyticsManager.trackEvent(
+                        AnalyticsEvent.NOTE_CREATED,
+                        mapOf("note_type" to selectedType.rawValue)
+                    )
                     onSave(selectedType, selectedDate, title, content.ifBlank { null })
                 },
                 enabled = canSave,

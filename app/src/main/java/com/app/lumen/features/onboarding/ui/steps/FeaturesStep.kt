@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.onboarding.OnboardingStep
 import com.app.lumen.features.onboarding.OnboardingViewModel
+import com.app.lumen.features.onboarding.ui.components.LocalCompactOnboarding
 import com.app.lumen.features.onboarding.ui.components.OnboardingBottomSpacer
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassCard
 import com.app.lumen.features.onboarding.ui.components.OnboardingGlassProminentButton
@@ -74,9 +75,10 @@ fun FeaturesStep(viewModel: OnboardingViewModel) {
                     text = stringResource(R.string.onboarding_features_title),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color.White,
+                    textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(6.dp))
                 Text(
                     text = stringResource(R.string.onboarding_features_subtitle),
                     fontSize = 14.sp,
@@ -85,11 +87,13 @@ fun FeaturesStep(viewModel: OnboardingViewModel) {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-        features.forEach { feature ->
+        features.forEachIndexed { index, feature ->
             FeatureRow(icon = feature.icon, color = feature.color, title = stringResource(feature.titleRes))
-            Spacer(modifier = Modifier.height(8.dp))
+            if (index < features.lastIndex) {
+                Spacer(modifier = Modifier.height(6.dp))
+            }
         }
 
         Text(
@@ -98,7 +102,7 @@ fun FeaturesStep(viewModel: OnboardingViewModel) {
             color = Color.White.copy(alpha = 0.5f),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 4.dp),
+                .padding(top = 8.dp, bottom = 8.dp),
             textAlign = TextAlign.Center
         )
 
@@ -108,19 +112,20 @@ fun FeaturesStep(viewModel: OnboardingViewModel) {
 
 @Composable
 private fun FeatureRow(icon: ImageVector, color: Color, title: String) {
+    val isCompact = LocalCompactOnboarding.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
             .background(Color(0xFF1A1A29))
             .border(1.dp, Color.White.copy(alpha = 0.10f), RoundedCornerShape(14.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(horizontal = 16.dp, vertical = if (isCompact) 10.dp else 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         Box(
             modifier = Modifier
-                .size(36.dp)
+                .size(if (isCompact) 32.dp else 36.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(color.copy(alpha = 0.15f)),
             contentAlignment = Alignment.Center

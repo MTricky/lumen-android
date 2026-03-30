@@ -8,6 +8,8 @@ import com.app.lumen.features.calendar.data.WeeklyRoutineEntity
 import com.app.lumen.features.calendar.model.RoutineItemType
 import com.app.lumen.features.calendar.model.RoutineSuggestion
 import com.app.lumen.features.calendar.service.*
+import com.app.lumen.services.AnalyticsEvent
+import com.app.lumen.services.AnalyticsManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -263,6 +265,11 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
                         routineService.unmarkCompleted(routine, todayStart)
                     } else {
                         routineService.markCompleted(routine, todayStart)
+                        // Track routine completed (matching iOS)
+                        AnalyticsManager.trackEvent(
+                            AnalyticsEvent.ROUTINE_COMPLETED,
+                            mapOf("routine_type" to routine.typeRaw)
+                        )
                         // Cancel today's pending notification since the routine is done
                         if (routine.isNotificationEnabled) {
                             notificationManager.cancelTodayNotificationForRoutine(routine.id)
@@ -277,6 +284,11 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
                         firstFridayService.unmarkCompleted(routine, todayStart)
                     } else {
                         firstFridayService.markCompleted(routine, todayStart)
+                        // Track routine completed (matching iOS)
+                        AnalyticsManager.trackEvent(
+                            AnalyticsEvent.ROUTINE_COMPLETED,
+                            mapOf("routine_type" to "firstFriday")
+                        )
                     }
                 }
             }

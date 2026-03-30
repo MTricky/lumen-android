@@ -26,7 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.lumen.R
 import com.app.lumen.features.litany.model.LitanyType
+import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.rosary.ui.RosaryVisualMode
+import com.app.lumen.services.RemoteConfigManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
 
@@ -38,6 +40,7 @@ fun LitanyCompletionScreen(
     litanyType: LitanyType,
     litanyTitle: String?,
     onDone: () -> Unit,
+    onRequestReview: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val visualMode = remember { RosaryVisualMode.current(context) }
@@ -125,7 +128,15 @@ fun LitanyCompletionScreen(
                     .clip(RoundedCornerShape(26.dp))
                     .background(Color(0xFF2E2A24).copy(alpha = 0.88f))
                     .border(0.5.dp, Color.White.copy(alpha = 0.15f), RoundedCornerShape(26.dp))
-                    .clickable { onDone() },
+                    .clickable {
+                        // Check if completion review should be shown (matching iOS)
+                        if (RemoteConfigManager.prayerReviewEnabled &&
+                            OnboardingManager.shared.shouldShowCompletionReview
+                        ) {
+                            onRequestReview()
+                        }
+                        onDone()
+                    },
                 contentAlignment = Alignment.Center,
             ) {
                 Text(

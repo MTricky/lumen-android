@@ -28,7 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import com.app.lumen.R
+import com.app.lumen.features.onboarding.OnboardingManager
 import com.app.lumen.features.rosary.viewmodel.RosaryViewModel
+import com.app.lumen.services.RemoteConfigManager
 import com.app.lumen.ui.theme.NearBlack
 import com.app.lumen.ui.theme.SoftGold
 
@@ -39,6 +41,7 @@ private val CardBorder = Color.White.copy(alpha = 0.12f)
 fun RosaryCompletionScreen(
     viewModel: RosaryViewModel,
     onDone: () -> Unit,
+    onRequestReview: () -> Unit = {},
 ) {
     val mysteryType by viewModel.selectedMysteryType.collectAsState()
 
@@ -135,7 +138,15 @@ fun RosaryCompletionScreen(
                     .clip(RoundedCornerShape(26.dp))
                     .background(Color(0xFF2E2A24).copy(alpha = 0.88f))
                     .border(0.5.dp, Color.White.copy(alpha = 0.15f), RoundedCornerShape(26.dp))
-                    .clickable { onDone() },
+                    .clickable {
+                        // Check if completion review should be shown (matching iOS)
+                        if (RemoteConfigManager.rosaryReviewEnabled &&
+                            OnboardingManager.shared.shouldShowCompletionReview
+                        ) {
+                            onRequestReview()
+                        }
+                        onDone()
+                    },
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
