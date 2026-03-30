@@ -59,6 +59,13 @@
 # ── RevenueCat ──────────────────────────────────────────────────────
 -keep class com.revenuecat.purchases.** { *; }
 
+# ── AndroidX WorkManager + Room (used internally by WorkManager) ────
+-keep class androidx.work.** { *; }
+-keep class androidx.room.** { *; }
+-keepclassmembers class * extends androidx.room.RoomDatabase {
+    <init>();
+}
+
 # ── Google Play In-App Review ───────────────────────────────────────
 -keep class com.google.android.play.core.** { *; }
 
