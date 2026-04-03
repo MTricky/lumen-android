@@ -124,8 +124,7 @@
         "key": "stJoseph",
         "name": "São José, esposo da Virgem Maria",
         "rank": "solemnity",
-        "color": "white",
-        "isHolyDay": true
+        "color": "white"
       },
       {
         "month": 3, "day": 25,
@@ -195,8 +194,7 @@
         "key": "stsPeterPaul",
         "name": "São Pedro e São Paulo, apóstolos",
         "rank": "solemnity",
-        "color": "red",
-        "isHolyDay": true
+        "color": "red"
       },
       {
         "month": 7, "day": 3,
@@ -394,8 +392,7 @@
         "key": "immaculateConception",
         "name": "Imaculada Conceição da Virgem Maria",
         "rank": "solemnity",
-        "color": "white",
-        "isHolyDay": true
+        "color": "white"
       },
       {
         "month": 12, "day": 12,
@@ -1277,7 +1274,6 @@
       "daysFromEaster": 39,
       "rank": "solemnity",
       "color": "white",
-      "isHolyDay": true,
       "transferToSunday": ["usa", "brazil"]
     },
     {

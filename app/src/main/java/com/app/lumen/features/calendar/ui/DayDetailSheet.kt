@@ -50,8 +50,7 @@ fun DayDetailSheet(
     }
 
     val celebrationName = day.liturgicalDay?.localizedCelebrationName() ?: ""
-    val isObligatory = day.rank == CelebrationRank.SOLEMNITY ||
-            day.liturgicalDay?.isHolyDayOfObligation == true
+    val isObligatory = day.liturgicalDay?.isHolyDayOfObligation == true
     val dateFormatted = remember(day.date) {
         SimpleDateFormat("d MMM yyyy", Locale.getDefault()).format(day.date)
     }
