@@ -1,6 +1,7 @@
 package com.app.lumen.features.calendar.service
 
 import android.content.Context
+import com.app.lumen.R
 import com.app.lumen.features.calendar.data.RoutineCompletionEntity
 import com.app.lumen.features.calendar.data.RoutineDataStore
 import com.app.lumen.features.calendar.data.WeeklyRoutineEntity
@@ -245,9 +246,9 @@ class RoutineStorageService(private val context: Context) {
             val dayStart = startOfDay(cal.timeInMillis)
             val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
 
-            if (dayOfWeek in selectedDays && dayStart >= startOfDay(routine.createdAt) && dayStart <= todayStart) {
+            if (dayOfWeek in selectedDays && dayStart >= startOfDay(routine.createdAt)) {
                 scheduled++
-                if (completionDates.contains(dayStart)) {
+                if (dayStart <= todayStart && completionDates.contains(dayStart)) {
                     completed++
                 }
             }
@@ -367,39 +368,33 @@ class RoutineStorageService(private val context: Context) {
         val timeStr = formatTime(routine.hour, routine.minute)
 
         return when {
-            days.size == 7 -> "Every day at $timeStr"
-            days == setOf(2, 3, 4, 5, 6) -> "Weekdays at $timeStr"
-            days == setOf(1, 7) -> "Weekends at $timeStr"
+            days.size == 7 -> context.getString(R.string.routine_schedule_every_day_at, timeStr)
+            days == setOf(2, 3, 4, 5, 6) -> context.getString(R.string.routine_schedule_weekdays_at, timeStr)
+            days == setOf(1, 7) -> context.getString(R.string.routine_schedule_weekends_at, timeStr)
             days.size == 1 -> {
-                val dayName = dayName(days.first())
-                "$dayName at $timeStr"
+                val dayName = localizedDayName(days.first())
+                context.getString(R.string.routine_schedule_day_at, dayName, timeStr)
             }
             else -> {
-                val dayNames = days.sorted().joinToString(", ") { dayAbbrev(it) }
-                "$dayNames at $timeStr"
+                val dayNames = days.sorted().joinToString(", ") { localizedDayAbbrev(it) }
+                context.getString(R.string.routine_schedule_days_at, dayNames, timeStr)
             }
         }
     }
 
-    private fun dayName(day: Int): String = when (day) {
-        Calendar.SUNDAY -> "Sun"
-        Calendar.MONDAY -> "Mon"
-        Calendar.TUESDAY -> "Tue"
-        Calendar.WEDNESDAY -> "Wed"
-        Calendar.THURSDAY -> "Thu"
-        Calendar.FRIDAY -> "Fri"
-        Calendar.SATURDAY -> "Sat"
-        else -> ""
+    private fun localizedDayName(day: Int): String {
+        val symbols = java.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+        return symbols.shortWeekdays[day].replaceFirstChar { it.uppercase() }
     }
 
-    private fun dayAbbrev(day: Int): String = dayName(day)
+    private fun localizedDayAbbrev(day: Int): String = localizedDayName(day)
 
     private fun formatTime(hour: Int, minute: Int): String {
         val cal = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
         }
-        val formatter = java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault())
+        val formatter = java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault())
         return formatter.format(cal.time)
     }
 

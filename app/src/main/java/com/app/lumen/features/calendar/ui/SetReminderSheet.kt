@@ -83,7 +83,7 @@ fun SetReminderSheet(
         val cal = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, selectedHour)
         cal.set(Calendar.MINUTE, selectedMinute)
-        SimpleDateFormat("h:mm a", Locale.getDefault()).format(cal.time)
+        java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, Locale.getDefault()).format(cal.time)
     }
 
     if (showDeleteConfirmation && onDelete != null) {

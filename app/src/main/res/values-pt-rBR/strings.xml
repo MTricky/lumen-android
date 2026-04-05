@@ -509,6 +509,11 @@
     <string name="routine_days_every_day">Todos os dias</string>
     <string name="routine_days_weekdays">Dias úteis</string>
     <string name="routine_days_weekends">Fins de semana</string>
+    <string name="routine_schedule_every_day_at">Todos os dias às %1$s</string>
+    <string name="routine_schedule_weekdays_at">Dias úteis às %1$s</string>
+    <string name="routine_schedule_weekends_at">Fins de semana às %1$s</string>
+    <string name="routine_schedule_day_at">%1$s às %2$s</string>
+    <string name="routine_schedule_days_at">%1$s às %2$s</string>
     <string name="routine_notifications">Notificações</string>
     <string name="routine_remind_me">Lembrar-me</string>
     <string name="routine_back">Voltar</string>

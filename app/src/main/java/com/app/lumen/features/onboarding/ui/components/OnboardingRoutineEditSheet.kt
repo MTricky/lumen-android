@@ -4,7 +4,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -119,7 +122,10 @@ fun OnboardingRoutineEditSheet(
 
                 Spacer(modifier = Modifier.height(8.dp))
                 // Quick select buttons
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.horizontalScroll(rememberScrollState())
+                ) {
                     val allDays = (Calendar.SUNDAY..Calendar.SATURDAY).toSet()
                     val weekdays = setOf(Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY)
                     val weekends = setOf(Calendar.SATURDAY, Calendar.SUNDAY)
@@ -245,10 +251,11 @@ fun OnboardingRoutineEditSheet(
     }
 
     if (showTimePicker) {
+        val is24Hour = android.text.format.DateFormat.is24HourFormat(LocalContext.current)
         val timePickerState = rememberTimePickerState(
             initialHour = hour,
             initialMinute = minute,
-            is24Hour = false
+            is24Hour = is24Hour
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
@@ -329,5 +336,5 @@ private fun formatTime(hour: Int, minute: Int): String {
         set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, minute)
     }
-    return java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault()).format(cal.time)
+    return java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault()).format(cal.time)
 }

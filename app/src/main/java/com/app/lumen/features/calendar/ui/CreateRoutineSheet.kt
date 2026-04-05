@@ -189,10 +189,11 @@ fun CreateRoutineSheet(
 
     // Time picker dialog
     if (showTimePicker) {
+        val is24Hour = android.text.format.DateFormat.is24HourFormat(LocalContext.current)
         val timePickerState = rememberTimePickerState(
             initialHour = hour,
             initialMinute = minute,
-            is24Hour = false
+            is24Hour = is24Hour
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
@@ -489,7 +490,10 @@ private fun ConfigurationContent(
             DaysPicker(selectedDays = selectedDays, onDaysChange = onDaysChange)
             Spacer(modifier = Modifier.height(8.dp))
             // Quick select buttons
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.horizontalScroll(rememberScrollState())
+            ) {
                 QuickDayChip(stringResource(R.string.routine_days_every_day), selectedDays == setOf(1, 2, 3, 4, 5, 6, 7)) {
                     onDaysChange(setOf(1, 2, 3, 4, 5, 6, 7))
                 }
@@ -632,14 +636,18 @@ fun DaysPicker(
     selectedDays: Set<Int>,
     onDaysChange: (Set<Int>) -> Unit
 ) {
+    val locale = java.util.Locale.getDefault()
+    val symbols = java.text.DateFormatSymbols.getInstance(locale)
+    val shortWeekdays = symbols.shortWeekdays // index 1=Sunday..7=Saturday
+
     val dayLabels = listOf(
-        Calendar.MONDAY to "M",
-        Calendar.TUESDAY to "T",
-        Calendar.WEDNESDAY to "W",
-        Calendar.THURSDAY to "T",
-        Calendar.FRIDAY to "F",
-        Calendar.SATURDAY to "S",
-        Calendar.SUNDAY to "S"
+        Calendar.MONDAY to shortWeekdays[Calendar.MONDAY].first().uppercaseChar().toString(),
+        Calendar.TUESDAY to shortWeekdays[Calendar.TUESDAY].first().uppercaseChar().toString(),
+        Calendar.WEDNESDAY to shortWeekdays[Calendar.WEDNESDAY].first().uppercaseChar().toString(),
+        Calendar.THURSDAY to shortWeekdays[Calendar.THURSDAY].first().uppercaseChar().toString(),
+        Calendar.FRIDAY to shortWeekdays[Calendar.FRIDAY].first().uppercaseChar().toString(),
+        Calendar.SATURDAY to shortWeekdays[Calendar.SATURDAY].first().uppercaseChar().toString(),
+        Calendar.SUNDAY to shortWeekdays[Calendar.SUNDAY].first().uppercaseChar().toString()
     )
 
     Row(
@@ -706,7 +714,7 @@ private fun formatTime(hour: Int, minute: Int): String {
         set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, minute)
     }
-    return java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault()).format(cal.time)
+    return java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault()).format(cal.time)
 }
 
 /**

@@ -472,6 +472,11 @@
     <string name="routine_days_every_day">Codziennie</string>
     <string name="routine_days_weekdays">Dni robocze</string>
     <string name="routine_days_weekends">Weekendy</string>
+    <string name="routine_schedule_every_day_at">Codziennie o %1$s</string>
+    <string name="routine_schedule_weekdays_at">Dni robocze o %1$s</string>
+    <string name="routine_schedule_weekends_at">Weekendy o %1$s</string>
+    <string name="routine_schedule_day_at">%1$s o %2$s</string>
+    <string name="routine_schedule_days_at">%1$s o %2$s</string>
     <string name="routine_notifications">Powiadomienia</string>
     <string name="routine_remind_me">Przypomnij mi</string>
     <string name="routine_back">Wstecz</string>

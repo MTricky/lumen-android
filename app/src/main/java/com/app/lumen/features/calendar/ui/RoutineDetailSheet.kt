@@ -580,7 +580,8 @@ private fun TappableYearProgressRow(
     yearProgress: List<FirstFridayYearProgress>,
     onToggle: (FirstFridayYearProgress) -> Unit
 ) {
-    val monthLabels = listOf("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D")
+    val symbols = java.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+    val monthLabels = (0..11).map { symbols.shortMonths[it].first().uppercaseChar().toString() }
     val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
 
     val rows = yearProgress.chunked(6)
@@ -644,7 +645,17 @@ private fun TappableWeeklyProgressDots(
     weekProgress: List<WeekProgress>,
     onToggle: (WeekProgress) -> Unit
 ) {
-    val dayLabels = listOf("M", "T", "W", "T", "F", "S", "S")
+    val symbols = java.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+    val shortWeekdays = symbols.shortWeekdays
+    val dayLabels = listOf(
+        shortWeekdays[Calendar.MONDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.TUESDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.WEDNESDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.THURSDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.FRIDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.SATURDAY].first().uppercaseChar().toString(),
+        shortWeekdays[Calendar.SUNDAY].first().uppercaseChar().toString()
+    )
     val todayStart = RoutineStorageService.startOfDay(System.currentTimeMillis())
 
     Row(
@@ -707,5 +718,5 @@ private fun formatTime(hour: Int, minute: Int): String {
         set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, minute)
     }
-    return SimpleDateFormat("h:mm a", Locale.getDefault()).format(cal.time)
+    return java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, Locale.getDefault()).format(cal.time)
 }

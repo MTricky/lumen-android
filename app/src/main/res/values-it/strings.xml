@@ -509,6 +509,11 @@
     <string name="routine_days_every_day">Ogni giorno</string>
     <string name="routine_days_weekdays">Giorni feriali</string>
     <string name="routine_days_weekends">Fine settimana</string>
+    <string name="routine_schedule_every_day_at">Ogni giorno alle %1$s</string>
+    <string name="routine_schedule_weekdays_at">Giorni feriali alle %1$s</string>
+    <string name="routine_schedule_weekends_at">Fine settimana alle %1$s</string>
+    <string name="routine_schedule_day_at">%1$s alle %2$s</string>
+    <string name="routine_schedule_days_at">%1$s alle %2$s</string>
     <string name="routine_notifications">Notifiche</string>
     <string name="routine_remind_me">Ricordami</string>
     <string name="routine_back">Indietro</string>

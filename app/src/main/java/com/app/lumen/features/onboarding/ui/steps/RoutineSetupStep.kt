@@ -353,11 +353,13 @@ private fun RoutineCard(
     onToggle: () -> Unit,
     onEdit: () -> Unit
 ) {
-    val timeText = String.format(Locale.getDefault(), "%d:%02d %s",
-        if (defaultHour % 12 == 0) 12 else defaultHour % 12,
-        defaultMinute,
-        if (defaultHour < 12) "AM" else "PM"
-    )
+    val timeText = remember(defaultHour, defaultMinute) {
+        val cal = java.util.Calendar.getInstance().apply {
+            set(java.util.Calendar.HOUR_OF_DAY, defaultHour)
+            set(java.util.Calendar.MINUTE, defaultMinute)
+        }
+        java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, Locale.getDefault()).format(cal.time)
+    }
 
     Column(
         modifier = modifier
@@ -524,11 +526,13 @@ private fun CustomRoutineRow(
     routine: com.app.lumen.features.onboarding.OnboardingRoutineSelection,
     onEdit: () -> Unit
 ) {
-    val timeText = String.format(Locale.getDefault(), "%d:%02d %s",
-        if (routine.selectedHour % 12 == 0) 12 else routine.selectedHour % 12,
-        routine.selectedMinute,
-        if (routine.selectedHour < 12) "AM" else "PM"
-    )
+    val timeText = remember(routine.selectedHour, routine.selectedMinute) {
+        val cal = java.util.Calendar.getInstance().apply {
+            set(java.util.Calendar.HOUR_OF_DAY, routine.selectedHour)
+            set(java.util.Calendar.MINUTE, routine.selectedMinute)
+        }
+        java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, Locale.getDefault()).format(cal.time)
+    }
 
     Row(
         modifier = Modifier

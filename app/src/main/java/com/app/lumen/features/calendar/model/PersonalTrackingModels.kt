@@ -346,7 +346,7 @@ data class Reminder(
     val triggerTime: java.util.Date get() = java.util.Date(triggerTimeLong)
 
     fun formattedTime(): String {
-        val formatter = java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault())
+        val formatter = java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault())
         return formatter.format(triggerTime)
     }
 

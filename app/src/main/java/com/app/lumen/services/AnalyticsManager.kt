@@ -39,7 +39,7 @@ object AnalyticsManager {
             mixpanel?.identify(deviceId)
             // Sync Mixpanel distinct ID with RevenueCat for attribution (matching iOS)
             try {
-                Purchases.sharedInstance.setMixpanelDistinctID("\$device:$deviceId")
+                Purchases.sharedInstance.setMixpanelDistinctID(deviceId)
             } catch (_: Exception) {
                 // RevenueCat may not be configured yet
             }

@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -253,10 +254,11 @@ fun FirstFridaySetupSheet(
 
     // Time picker dialog
     if (showTimePicker) {
+        val is24Hour = android.text.format.DateFormat.is24HourFormat(LocalContext.current)
         val timePickerState = rememberTimePickerState(
             initialHour = notificationHour,
             initialMinute = notificationMinute,
-            is24Hour = false
+            is24Hour = is24Hour
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
@@ -280,5 +282,5 @@ private fun formatTime(hour: Int, minute: Int): String {
         set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, minute)
     }
-    return java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault()).format(cal.time)
+    return java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault()).format(cal.time)
 }

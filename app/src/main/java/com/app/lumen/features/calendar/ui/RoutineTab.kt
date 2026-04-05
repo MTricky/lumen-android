@@ -378,14 +378,14 @@ fun WeeklyRoutineCard(
             Column(modifier = Modifier.padding(16.dp)) {
                 // Header row
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
+                    verticalAlignment = Alignment.Top,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(
                         imageVector = type.icon,
                         contentDescription = null,
                         tint = SoftGold,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(24.dp).padding(top = 2.dp)
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
@@ -414,9 +414,13 @@ fun WeeklyRoutineCard(
                     // Month count
                     if (monthProgress != null) {
                         Text(
-                            text = "${monthProgress.first} of ${monthProgress.second} this month",
+                            text = stringResource(R.string.routine_month_count, monthProgress.first, monthProgress.second),
                             color = Slate,
-                            fontSize = 11.sp
+                            fontSize = 11.sp,
+                            textAlign = TextAlign.End,
+                            lineHeight = 14.sp,
+                            maxLines = 2,
+                            modifier = Modifier.widthIn(max = 110.dp)
                         )
                     }
                 }
@@ -460,7 +464,7 @@ fun WeeklyRoutineCard(
                             if (isCompletedToday) {
                                 Icon(
                                     Icons.Filled.Check,
-                                    contentDescription = "Completed",
+                                    contentDescription = stringResource(R.string.routine_completed_today),
                                     tint = Color.Black,
                                     modifier = Modifier.size(14.dp)
                                 )
@@ -652,10 +656,10 @@ fun PausedRoutineCard(
                 Text(scheduleSummary, color = Slate, fontSize = 12.sp, lineHeight = 17.sp)
             }
             IconButton(onClick = onResume) {
-                Icon(Icons.Filled.PlayArrow, "Resume", tint = SoftGold)
+                Icon(Icons.Filled.PlayArrow, stringResource(R.string.routine_resume), tint = SoftGold)
             }
             IconButton(onClick = onDelete) {
-                Icon(Icons.Filled.Delete, "Delete", tint = Color(0xFFEF5350))
+                Icon(Icons.Filled.Delete, stringResource(R.string.delete), tint = Color(0xFFEF5350))
             }
         }
     }
@@ -698,7 +702,17 @@ private fun ConsecutiveCountBadge(count: Int) {
 
 @Composable
 fun WeeklyProgressDots(weekProgress: List<WeekProgress>) {
-    val dayLabels = listOf("M", "T", "W", "T", "F", "S", "S")
+    val symbols = java.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+    val shortWeekdays = symbols.shortWeekdays
+    val dayLabels = listOf(
+        shortWeekdays[java.util.Calendar.MONDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.TUESDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.WEDNESDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.THURSDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.FRIDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.SATURDAY].first().uppercaseChar().toString(),
+        shortWeekdays[java.util.Calendar.SUNDAY].first().uppercaseChar().toString()
+    )
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -784,7 +798,8 @@ fun MonthlyProgressDots(weekProgress: List<WeekProgress>) {
 
 @Composable
 fun YearProgressRow(yearProgress: List<FirstFridayYearProgress>) {
-    val monthLabels = listOf("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D")
+    val symbols = java.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+    val monthLabels = (0..11).map { symbols.shortMonths[it].first().uppercaseChar().toString() }
 
     Row(
         modifier = Modifier.fillMaxWidth(),

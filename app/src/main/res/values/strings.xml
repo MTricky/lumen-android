@@ -513,6 +513,11 @@
     <string name="routine_days_every_day">Every day</string>
     <string name="routine_days_weekdays">Weekdays</string>
     <string name="routine_days_weekends">Weekends</string>
+    <string name="routine_schedule_every_day_at">Every day at %1$s</string>
+    <string name="routine_schedule_weekdays_at">Weekdays at %1$s</string>
+    <string name="routine_schedule_weekends_at">Weekends at %1$s</string>
+    <string name="routine_schedule_day_at">%1$s at %2$s</string>
+    <string name="routine_schedule_days_at">%1$s at %2$s</string>
     <string name="routine_notifications">Notifications</string>
     <string name="routine_remind_me">Remind me</string>
     <string name="routine_back">Back</string>

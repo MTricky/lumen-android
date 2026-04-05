@@ -22,6 +22,7 @@ import com.app.lumen.features.calendar.model.leadTimeOptions
 import com.app.lumen.features.onboarding.ui.components.SheetCapsuleButton
 import com.app.lumen.ui.theme.*
 import kotlinx.serialization.json.Json
+import androidx.compose.ui.platform.LocalContext
 import java.util.Calendar
 
 private val CardBorder = Color.White.copy(alpha = 0.10f)
@@ -261,10 +262,11 @@ fun EditRoutineSheet(
     }
 
     if (showTimePicker) {
+        val is24Hour = android.text.format.DateFormat.is24HourFormat(LocalContext.current)
         val timePickerState = rememberTimePickerState(
             initialHour = hour,
             initialMinute = minute,
-            is24Hour = false
+            is24Hour = is24Hour
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
@@ -288,5 +290,5 @@ private fun formatTime(hour: Int, minute: Int): String {
         set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, minute)
     }
-    return java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault()).format(cal.time)
+    return java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault()).format(cal.time)
 }

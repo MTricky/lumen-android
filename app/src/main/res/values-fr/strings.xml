@@ -509,6 +509,11 @@
     <string name="routine_days_every_day">Chaque jour</string>
     <string name="routine_days_weekdays">Jours de semaine</string>
     <string name="routine_days_weekends">Week-end</string>
+    <string name="routine_schedule_every_day_at">Chaque jour à %1$s</string>
+    <string name="routine_schedule_weekdays_at">Jours ouvrables à %1$s</string>
+    <string name="routine_schedule_weekends_at">Week-ends à %1$s</string>
+    <string name="routine_schedule_day_at">%1$s à %2$s</string>
+    <string name="routine_schedule_days_at">%1$s à %2$s</string>
     <string name="routine_notifications">Notifications</string>
     <string name="routine_remind_me">Me rappeler</string>
     <string name="routine_back">Retour</string>
