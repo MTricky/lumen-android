@@ -42,7 +42,7 @@ fun CalendarInfoSheet(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
-                .padding(top = 4.dp, bottom = 16.dp)
+                .padding(top = 4.dp, bottom = 8.dp)
         ) {
             Text(
                 text = stringResource(R.string.calendar_info_title),
@@ -70,7 +70,7 @@ fun CalendarInfoSheet(
                 .fillMaxWidth()
                 .weight(1f)
                 .verticalScroll(scrollState)
-                .padding(horizontal = 16.dp)
+                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                 .navigationBarsPadding()
                 .padding(bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -187,75 +187,59 @@ private fun InfoSectionCard(
 
 @Composable
 private fun ColorRow(color: Color, name: String, meaning: String) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 5.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(vertical = 5.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .size(12.dp)
-                .clip(CircleShape)
-                .background(color)
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(
-            text = name,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color.White
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(
-            text = "\u2014",
-            fontSize = 14.sp,
-            color = SecondaryText
-        )
-        Spacer(modifier = Modifier.width(10.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .size(12.dp)
+                    .clip(CircleShape)
+                    .background(color)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+            Text(
+                text = name,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color.White
+            )
+        }
         Text(
             text = meaning,
-            fontSize = 14.sp,
-            color = SecondaryText,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            fontSize = 13.sp,
+            color = SecondaryText
         )
     }
 }
 
 @Composable
 private fun RankRow(name: String, description: String) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 5.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(vertical = 5.dp)
     ) {
-        Text(
-            text = "\u2022",
-            fontSize = 14.sp,
-            color = SoftGold
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = name,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color.White
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(
-            text = "\u2014",
-            fontSize = 14.sp,
-            color = SecondaryText
-        )
-        Spacer(modifier = Modifier.width(10.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = "\u2022",
+                fontSize = 14.sp,
+                color = SoftGold
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = name,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color.White
+            )
+        }
         Text(
             text = description,
-            fontSize = 14.sp,
-            color = SecondaryText,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            fontSize = 13.sp,
+            color = SecondaryText
         )
     }
 }

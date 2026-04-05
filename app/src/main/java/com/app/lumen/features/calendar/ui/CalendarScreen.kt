@@ -105,7 +105,10 @@ fun CalendarScreen(
 
     // Info sheet state
     var showInfoSheet by remember { mutableStateOf(false) }
-    val infoSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val infoSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true,
+        confirmValueChange = { it != SheetValue.Hidden },
+    )
 
     // Note/Reminder sub-sheets
     var showNoteSheet by remember { mutableStateOf(false) }
@@ -198,23 +201,14 @@ fun CalendarScreen(
     // Info sheet — full screen with top spacing to mimic iOS
     if (showInfoSheet) {
         ModalBottomSheet(
-            onDismissRequest = { showInfoSheet = false },
+            onDismissRequest = { /* blocked by confirmValueChange */ },
             sheetState = infoSheetState,
             containerColor = NearBlack,
             sheetMaxWidth = Dp.Unspecified,
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(top = 40.dp),
-            dragHandle = {
-                Box(
-                    modifier = Modifier
-                        .padding(top = 12.dp, bottom = 8.dp)
-                        .width(36.dp)
-                        .height(4.dp)
-                        .clip(RoundedCornerShape(2.dp))
-                        .background(Color.White.copy(alpha = 0.3f))
-                )
-            },
+            dragHandle = null,
             contentWindowInsets = { WindowInsets(0) },
         ) {
             CalendarInfoSheet(
