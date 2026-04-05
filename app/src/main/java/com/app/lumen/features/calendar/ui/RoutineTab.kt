@@ -960,17 +960,20 @@ private fun EmptySuggestionCard(
                 stringResource(suggestion.titleRes),
                 color = Color.White,
                 fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                lineHeight = 18.sp
             )
+            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 stringResource(suggestion.subtitleRes),
                 color = Slate,
                 fontSize = 12.sp,
                 maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                lineHeight = 16.sp
             )
             Spacer(modifier = Modifier.weight(1f))
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Filled.Add, null, tint = SoftGold, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(4.dp))
@@ -1002,10 +1005,11 @@ private fun FirstFridaySuggestionCardLarge(
                 Text("1", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 14.sp)
             }
             Spacer(modifier = Modifier.height(12.dp))
-            Text(stringResource(R.string.first_friday_title), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-            Text(stringResource(R.string.first_friday_subtitle), color = Slate, fontSize = 12.sp, lineHeight = 17.sp)
+            Text(stringResource(R.string.first_friday_title), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, lineHeight = 18.sp)
+            Spacer(modifier = Modifier.height(5.dp))
+            Text(stringResource(R.string.first_friday_subtitle), color = Slate, fontSize = 12.sp, lineHeight = 16.sp)
             Spacer(modifier = Modifier.weight(1f))
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Filled.Add, null, tint = SoftGold, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(4.dp))
